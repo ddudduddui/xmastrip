@@ -620,6 +620,28 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
 <!-- ══════════ 준비 ══════════ -->
 <section class="pane" id="p-todo">
   <div id="lists"></div>
+
+  <h2 class="sec">앱 공식 사이트</h2>
+  <div class="card tight">
+    <div class="note" style="margin:2px 0 9px">앱 이름이 나라마다 비슷해 잘못 받기 쉽습니다. 아래 <b>공식 사이트</b>에서 App Store·Play 스토어 링크를 확인해 받으세요.</div>
+    <div class="btns">
+      <button class="b wide" onclick="op('https://bkk.hu/en/')">🇭🇺 BKK · BudapestGO</button>
+      <button class="b wide" onclick="op('https://www.oebb.at/en/')">🇦🇹 ÖBB</button>
+    </div>
+    <div class="btns" style="margin-top:6px">
+      <button class="b wide" onclick="op('https://www.wienerlinien.at/')">🇦🇹 WienMobil</button>
+      <button class="b wide" onclick="op('https://pid.cz/en/')">🇨🇿 PID Lítačka</button>
+    </div>
+    <div class="btns" style="margin-top:6px">
+      <button class="b wide" onclick="op('https://bolt.eu/')">🚕 Bolt</button>
+      <button class="b wide" onclick="op('https://www.koreanair.com/')">✈️ 대한항공</button>
+    </div>
+    <div class="btns" style="margin-top:6px">
+      <button class="b wide" onclick="op('https://translate.google.com/')">🌐 구글 번역</button>
+      <button class="b wide" onclick="op('https://www.0404.go.kr/')">🆘 영사콜센터</button>
+    </div>
+  </div>
+
   <div class="card tight">
     <div class="btns"><button class="b wide" onclick="resetAll()">모든 체크 초기화</button></div>
     <div class="note" style="margin-top:6px">체크 상태는 이 휴대폰에 자동 저장됩니다.</div>
@@ -956,6 +978,28 @@ const LISTS = [
  '비엔나 연말 콘서트/오페라 예약 (매진 빠름)',
  '여권 유효기간 확인 (귀국일 기준 6개월 이상)',
  '온라인 체크인(출발 48시간 전) 캘린더 등록']},
+{id:'app-move',t:'📱 앱 — 교통·이동',note:'현지 도착 직후부터 필요하다. 앱 설치와 카드 등록은 Wi-Fi 가 있는 한국에서 끝내 두는 것이 안전하다',items:[
+ 'BudapestGO 설치 + 카드 등록 — 100E 공항버스·BKK 72시간권을 앱으로 산다 (12/22 도착 직후 바로 필요)',
+ 'ÖBB 앱 설치 + 회원가입 — 부다페스트→비엔나(12/25), 비엔나→프라하(12/29) 레일젯 승차권',
+ 'WienMobil 설치 — 비엔나 지하철·트램 티켓 (숙소↔구시가 야간 이동에 씀)',
+ 'PID Lítačka 설치 — 프라하 대중교통 티켓',
+ 'Bolt 설치 + 전화번호 SMS 인증 + 카드 등록 — 1/2 프라하 공항 이동용. **현지에서 SMS 인증이 안 될 수 있어 한국에서 미리 끝낼 것**',
+ '대한항공 앱 설치 + 로그인 — 온라인 체크인(출발 48시간 전)·모바일 탑승권']},
+{id:'app-pay',t:'📱 앱 — 결제·통신',note:'카드 실물 배송에 며칠 걸린다. 이 묶음이 가장 급하다',items:[
+ '트래블월렛 또는 트래블로그 **카드 발급 신청** — 실물 카드 배송 대기 필요 (가장 먼저 할 일)',
+ '카드 수령 후 앱에서 EUR·HUF·CZK 미리 충전 (3개 통화 모두)',
+ '해외 결제·ATM 출금 한도와 수수료 확인',
+ 'Apple Pay 또는 삼성페이에 카드 등록 — 유럽은 컨택리스 결제가 기본이라 실물 카드보다 편하다',
+ 'eSIM 구매 + 설치 (설치에 Wi-Fi 필요) 또는 통신사 로밍 신청',
+ '통신사 앱에서 데이터 사용량 확인 방법 익혀두기']},
+{id:'app-map',t:'📱 앱 — 지도·번역·안전',note:'전부 출국 전 Wi-Fi 에서 내려받아야 현지에서 데이터 없이 쓸 수 있다',items:[
+ '구글지도 **오프라인 지도** 3개 저장 — 부다페스트 / 비엔나 / 프라하+드레스덴 (합쳐 500MB~1GB)',
+ '구글 번역 **오프라인 언어팩** 내려받기 — 헝가리어 · 독일어 · 체코어',
+ '구글 번역 카메라 번역 기능 확인 — 메뉴판·표지판을 비추면 번역된다',
+ '영사콜센터 앱 설치 — 해외 사건·사고 시 24시간 무료 상담',
+ '숙소 예약 앱(예약처) 로그인 확인 + 예약 확인서 캡처 — 오프라인에서 열람 가능하게',
+ '이 일정표를 홈 화면에 추가 (아이폰: 사파리 → 공유 → 홈 화면에 추가)',
+ '항공권·기차표·입장권 캡처를 **🎟 티켓 탭**에 미리 저장']},
 {id:'spa',t:'♨️ 세체니 온천 준비물',note:'12/23 오픈런 — 12/22 밤 짐 정리 시 미리 꺼내두기',items:[
  '수영복 2인분 (일반 수영복 권장, 전신 래시가드·웻슈트는 규정상 제한될 수 있음)',
  '개인 수건 (대여는 유료)',
@@ -1005,6 +1049,8 @@ const LISTS = [
 /* ══════════════ 유틸 ══════════════ */
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* 이스케이프한 뒤 **강조** 만 굵게 — 체크리스트 항목에서 중요한 대목을 살리기 위해 */
+const em=s=>esc(s).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');
 /* 외부 링크 열기 — 실제 <a> 클릭으로 처리한다.
    window.open 은 iframe(웹 게시본) 안에서 조용히 null 을 반환하며 막히지만,
    앵커 클릭은 브라우저·게시 환경 양쪽에서 정상 동작한다. */
@@ -1464,7 +1510,7 @@ function renderLists(){
       <div class="pb"><i style="width:${pct}%"></i></div>
       ${L.items.map((x,i)=>`<label class="ck">
         <input type="checkbox" data-k="${L.id}-${i}"${st[L.id+'-'+i]?' checked':''}>
-        <span>${esc(x)}</span></label>`).join('')}
+        <span>${em(x)}</span></label>`).join('')}
     </div>`;
   }).join('');
   $$('#lists input').forEach(cb=>cb.addEventListener('change',()=>{
