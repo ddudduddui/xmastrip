@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>부다페스트·비엔나·프라하 여행</title>
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="크리스마스 여행">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+:root{
+  --bg:#0f172a; --bg2:#16213c; --card:#1b2745; --card2:#223055;
+  --line:#2e3d63; --tx:#e9eefb; --tx2:#a3b0d0; --tx3:#6f7fa6;
+  --ac:#e0483c; --ac2:#ff6b5e; --gr:#2f9e6f; --gr2:#3ec98d;
+  --gd:#d9a325; --bl:#4a8fe0; --shadow:0 4px 16px rgba(0,0,0,.35);
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+/* 라이트 팔레트 — OS 설정 / 뷰어 토글(data-theme) 양쪽 대응 */
+@media(prefers-color-scheme:light){:root{
+  --bg:#f4f6fb; --bg2:#ffffff; --card:#ffffff; --card2:#eef2fa;
+  --line:#dde3f0; --tx:#1a2340; --tx2:#5a678a; --tx3:#8d99b5;
+  --ac:#d13b2e; --ac2:#b8281c; --gr:#1e8a5d; --gr2:#157048;
+  --gd:#a97b09; --bl:#2a6fc0; --shadow:0 2px 10px rgba(30,45,90,.10);
+}}
+:root[data-theme="light"]{
+  --bg:#f4f6fb; --bg2:#ffffff; --card:#ffffff; --card2:#eef2fa;
+  --line:#dde3f0; --tx:#1a2340; --tx2:#5a678a; --tx3:#8d99b5;
+  --ac:#d13b2e; --ac2:#b8281c; --gr:#1e8a5d; --gr2:#157048;
+  --gd:#a97b09; --bl:#2a6fc0; --shadow:0 2px 10px rgba(30,45,90,.10);
+}
+:root[data-theme="dark"]{
+  --bg:#0f172a; --bg2:#16213c; --card:#1b2745; --card2:#223055;
+  --line:#2e3d63; --tx:#e9eefb; --tx2:#a3b0d0; --tx3:#6f7fa6;
+  --ac:#e0483c; --ac2:#ff6b5e; --gr:#2f9e6f; --gr2:#3ec98d;
+  --gd:#d9a325; --bl:#4a8fe0; --shadow:0 4px 16px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--tx);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",system-ui,sans-serif;
+  font-size:15px; line-height:1.6; padding-bottom:calc(76px + var(--safe-b));
+  -webkit-text-size-adjust:100%;
+}
+a{color:var(--bl);text-decoration:none}
+
+/* ── 헤더 ── */
+header{
+  background:linear-gradient(150deg,#8c1f1a 0%,#c0392b 45%,#1d4d3e 100%);
+  color:#fff; padding:20px 16px 16px; position:relative; overflow:hidden;
+}
+header::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 88% 12%,rgba(255,255,255,.22),transparent 42%);pointer-events:none}
+header h1{margin:0;font-size:19px;font-weight:800;letter-spacing:-.4px}
+header .sub{font-size:12.5px;opacity:.9;margin-top:3px}
+.dday{
+  display:inline-flex;align-items:baseline;gap:6px;margin-top:11px;
+  background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);
+  padding:5px 12px;border-radius:99px;font-size:12.5px;font-weight:700;backdrop-filter:blur(4px);
+}
+.dday b{font-size:17px;font-weight:800}
+
+/* ── 탭 ── */
+nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  background:var(--bg2);border-top:1px solid var(--line);
+  display:flex;padding-bottom:var(--safe-b);box-shadow:0 -3px 14px rgba(0,0,0,.18);
+}
+nav button{
+  flex:1;min-width:0;background:none;border:0;color:var(--tx3);
+  padding:7px 1px 8px;font-size:9.5px;font-weight:700;font-family:inherit;
+  display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;
+  white-space:nowrap;letter-spacing:-.3px;
+}
+nav button .ic{font-size:17px;line-height:1}
+@media(min-width:420px){nav button{font-size:11px}nav button .ic{font-size:19px}}
+nav button.on{color:var(--ac2)}
+main{padding:14px 12px 8px}
+.pane{display:none} .pane.on{display:block}
+
+/* ── 카드 ── */
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:13px 14px;margin-bottom:11px;box-shadow:var(--shadow)}
+.card.tight{padding:11px 12px}
+h2.sec{font-size:12px;font-weight:800;color:var(--tx3);letter-spacing:.8px;
+  margin:20px 4px 9px;text-transform:uppercase}
+h2.sec:first-child{margin-top:2px}
+
+/* ── 일정 ── */
+.day{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  margin-bottom:11px;overflow:hidden;box-shadow:var(--shadow)}
+.day.today{border-color:var(--ac);box-shadow:0 0 0 2px rgba(224,72,60,.28),var(--shadow)}
+.dh{display:flex;align-items:center;gap:10px;padding:12px 13px;cursor:pointer;user-select:none}
+.dnum{flex:0 0 42px;height:42px;border-radius:11px;background:var(--card2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.dnum .m{font-size:9.5px;color:var(--tx3);font-weight:700}
+.dnum .d{font-size:17px;font-weight:800}
+.day.today .dnum{background:var(--ac);color:#fff}
+.day.today .dnum .m{color:rgba(255,255,255,.85)}
+.dti{flex:1;min-width:0}
+.dti .t{font-weight:700;font-size:14.5px;letter-spacing:-.2px}
+.dti .s{font-size:11.5px;color:var(--tx2);margin-top:1px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chev{color:var(--tx3);font-size:12px;transition:transform .22s;flex:0 0 auto}
+.day.open .chev{transform:rotate(180deg)}
+.dbody{display:none;border-top:1px solid var(--line);padding:4px 13px 13px}
+.day.open .dbody{display:block}
+.city{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;
+  border-radius:5px;margin-left:6px;vertical-align:1px}
+.c-bud{background:rgba(224,72,60,.18);color:var(--ac2)}
+.c-vie{background:rgba(74,143,224,.18);color:var(--bl)}
+.c-pra{background:rgba(47,158,111,.2);color:var(--gr2)}
+.c-drs{background:rgba(217,163,37,.18);color:var(--gd)}
+.c-air{background:rgba(150,150,180,.2);color:var(--tx2)}
+
+/* 일정 항목 */
+.it{display:flex;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.it:last-child{border-bottom:0;padding-bottom:2px}
+.it .tm{flex:0 0 46px;font-size:11.5px;font-weight:800;color:var(--ac2);padding-top:2px;
+  font-variant-numeric:tabular-nums}
+.it .bd{flex:1;min-width:0}
+.it .nm{font-weight:700;font-size:14px;letter-spacing:-.2px}
+.it .ds{font-size:12.5px;color:var(--tx2);margin-top:2px}
+.it .en{font-size:11px;color:var(--tx3);margin-top:1px}
+.tip{font-size:12px;color:var(--gd);margin-top:4px}
+.warn{font-size:12px;color:var(--ac2);margin-top:4px}
+
+/* 명소 설명 */
+.sp{padding:13px 0;border-bottom:1px solid var(--line)}
+.sp:last-child{border-bottom:0;padding-bottom:3px}
+.sp .h1{display:flex;align-items:flex-start;gap:6px}
+.sp .nm2{flex:1;min-width:0}
+.sp .nm2 .k1{font-size:14.5px;font-weight:700;letter-spacing:-.25px}
+.sp .nm2 .e1{font-size:11px;color:var(--tx3);margin-top:1px}
+.ds2{font-size:12.5px;color:var(--tx2);line-height:1.68;margin-top:7px}
+.ds2 b{color:var(--tx);font-weight:700}
+.vp{font-size:12.5px;line-height:1.68;margin-top:7px;padding:9px 11px;border-radius:9px;
+  background:var(--card2);border-left:3px solid var(--gd);color:var(--tx2)}
+.vp b{color:var(--tx);font-weight:700}
+.vp .vl{display:block;color:var(--gd);font-weight:800;font-size:11px;
+  letter-spacing:.4px;margin-bottom:3px}
+.b.inf{background:rgba(217,163,37,.14);border-color:rgba(217,163,37,.42);color:var(--gd)}
+.info{display:none;margin-top:2px}
+.it.open .info{display:block}
+.it.open .b.inf{background:var(--gd);border-color:var(--gd);color:#fff}
+
+/* 일정 편집 */
+.pb2{display:flex;align-items:center;gap:7px}
+.pb2 .pc{margin-left:auto;font-size:11px;font-weight:800;color:var(--tx3);white-space:nowrap}
+.b.dl{background:rgba(224,72,60,.13);border-color:rgba(224,72,60,.4);color:var(--ac2)}
+.day.chg{border-color:rgba(217,163,37,.55)}
+.ck2{flex:0 0 19px;width:19px;height:19px;margin-top:3px;padding:0;border-radius:99px;
+  border:2px solid var(--line);background:var(--bg);color:#fff;font-size:11px;font-weight:900;
+  font-family:inherit;cursor:pointer;line-height:1}
+.ck2.on{background:var(--gr);border-color:var(--gr)}
+.it{gap:8px}
+.it .tm{flex:0 0 42px}
+.it.dn{opacity:.45}
+.it.dn .nm{text-decoration:line-through}
+.edr{display:flex;gap:5px;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
+.edr .b{padding:6px 9px}
+.edadd{display:flex;gap:6px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.it.ef{background:var(--card2);border-radius:11px;padding:11px;margin:7px 0;
+  border:1px solid rgba(74,143,224,.45)}
+.it.ef .tm{display:none}
+.it.ef .tr2 span{flex:0 0 42px}
+
+/* 회화 카드 */
+.pr{padding:10px 2px;border-bottom:1px solid var(--line);cursor:pointer}
+.pr:last-child{border-bottom:0;padding-bottom:2px}
+.pr:active{opacity:.6}
+.pr .pk{font-size:12px;color:var(--tx3);font-weight:700}
+.pr .po{font-size:16px;font-weight:800;letter-spacing:-.3px;margin-top:2px;line-height:1.35}
+.pr .pp{font-size:13px;color:var(--ac2);font-weight:700;margin-top:2px}
+
+/* 예약 보관함 */
+.tk.ok{border-color:rgba(47,158,111,.5)}
+.tkview{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 2px}
+.tv{flex:1 1 auto;min-width:78px;background:var(--card2);border-radius:9px;padding:8px 10px}
+.tv span{display:block;font-size:10px;color:var(--tx3);font-weight:700}
+.tv b{font-size:14px;font-weight:800;letter-spacing:-.2px;font-variant-numeric:tabular-nums}
+.tm{flex:1 1 100%;font-size:12px;color:var(--tx2);margin-top:4px;padding:0 2px}
+.tkedit{margin-top:8px}
+.tkedit summary{font-size:11.5px;font-weight:800;color:var(--bl);cursor:pointer;
+  padding:6px 0;list-style:none}
+.tkedit summary::-webkit-details-marker{display:none}
+.tkedit summary::before{content:"✎ ";}
+.tr2{display:flex;align-items:center;gap:9px;padding:4px 0}
+.tr2 span{flex:0 0 66px;font-size:11.5px;color:var(--tx2);font-weight:700}
+.tr2 input{flex:1;margin:0;padding:9px 10px;font-size:13px}
+
+/* 좌표 */
+.geo{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:8px;padding:7px 10px;
+  border-radius:8px;background:var(--card2);font-size:11.5px;font-weight:700;
+  color:var(--tx2);font-variant-numeric:tabular-nums;cursor:pointer}
+.geo .cp{font-size:10px;font-weight:800;padding:1px 6px;border-radius:4px;
+  background:var(--line);color:var(--tx3)}
+.geo a{margin-left:auto;font-size:10.5px;font-weight:800;color:var(--bl);white-space:nowrap}
+
+/* 촬영 포인트 */
+.ph{margin-top:8px;padding:10px 11px;border-radius:10px;
+  background:rgba(74,143,224,.09);border:1px solid rgba(74,143,224,.28)}
+.ph .pl{display:block;font-size:11px;font-weight:800;color:var(--bl);
+  letter-spacing:.4px;margin-bottom:6px}
+.ph .pi{padding:7px 0;border-top:1px dashed var(--line)}
+.ph .pi:first-of-type{border-top:0;padding-top:0}
+.ph .pn{font-size:13px;font-weight:700;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.ph .pg{font-size:10px;font-weight:700;color:var(--tx3);font-variant-numeric:tabular-nums}
+.ph .pd{font-size:12px;color:var(--tx2);line-height:1.62;margin-top:3px}
+
+/* 전체 지도 배너 */
+.allmap{display:flex;align-items:center;gap:9px;margin:9px 0 4px;padding:11px 12px;
+  border-radius:11px;cursor:pointer;
+  background:linear-gradient(100deg,rgba(74,143,224,.18),rgba(47,158,111,.14));
+  border:1px solid rgba(74,143,224,.4)}
+.allmap:active{transform:scale(.985)}
+.allmap .pin{font-size:17px;flex:0 0 auto}
+.allmap .t2{flex:1;font-size:12.5px;font-weight:700;color:var(--tx);line-height:1.35}
+.allmap .t2 b{color:var(--bl)}
+.allmap .go2{flex:0 0 auto;font-size:11.5px;font-weight:800;color:var(--bl)}
+
+/* 버튼 */
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.b{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;
+  padding:6px 10px;border-radius:8px;border:1px solid var(--line);
+  background:var(--card2);color:var(--tx);cursor:pointer;font-family:inherit;white-space:nowrap}
+.b:active{transform:scale(.96)}
+.b.map{background:rgba(74,143,224,.14);border-color:rgba(74,143,224,.4);color:var(--bl)}
+.b.dir{background:rgba(47,158,111,.14);border-color:rgba(47,158,111,.4);color:var(--gr2)}
+.b.go{background:rgba(224,72,60,.14);border-color:rgba(224,72,60,.4);color:var(--ac2)}
+.b.wide{flex:1;justify-content:center}
+
+/* 리스트 */
+.row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;
+  border-bottom:1px solid var(--line);font-size:13.5px}
+.row:last-child{border-bottom:0}
+.row .k{color:var(--tx2);flex:0 0 auto}
+.row .v{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.row.big .v{font-size:15.5px;color:var(--ac2)}
+.tt{font-weight:800;font-size:15px;margin:0 0 3px;letter-spacing:-.3px}
+.st{font-size:12px;color:var(--tx3);margin-bottom:8px}
+
+/* 체크리스트 */
+.ck{display:flex;gap:10px;align-items:flex-start;padding:9px 2px;
+  border-bottom:1px solid var(--line);cursor:pointer}
+.ck:last-child{border-bottom:0}
+.ck input{appearance:none;flex:0 0 20px;width:20px;height:20px;margin:1px 0 0;
+  border:2px solid var(--tx3);border-radius:6px;background:none;cursor:pointer;position:relative}
+.ck input:checked{background:var(--gr);border-color:var(--gr)}
+.ck input:checked::after{content:"✓";position:absolute;inset:0;color:#fff;font-size:13px;
+  font-weight:900;display:flex;align-items:center;justify-content:center}
+.ck span{flex:1;font-size:13.5px}
+.ck input:checked+span{color:var(--tx3);text-decoration:line-through}
+.pb{height:6px;border-radius:99px;background:var(--card2);overflow:hidden;margin:6px 0 2px}
+.pb i{display:block;height:100%;background:linear-gradient(90deg,var(--gr),var(--gr2));
+  border-radius:99px;transition:width .3s}
+.cnt{font-size:11.5px;color:var(--tx3);font-weight:700;float:right}
+
+/* 환율 계산기 */
+.calc input{width:100%;padding:12px 13px;font-size:19px;font-weight:800;
+  background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--tx);
+  font-family:inherit;font-variant-numeric:tabular-nums;text-align:right}
+.cur{display:flex;gap:6px;margin:9px 0}
+.cur button{flex:1;padding:8px 3px;border-radius:9px;border:1px solid var(--line);
+  background:var(--card2);color:var(--tx2);font-size:12px;font-weight:800;font-family:inherit;
+  cursor:pointer;line-height:1.35}
+.cur button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.cur button small{display:block;font-size:10px;font-weight:700;opacity:.8}
+.cur.g4{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.cur.g4 button{padding:9px 6px}
+/* 환율 상태 */
+.rst{display:flex;align-items:center;gap:8px;padding:9px 11px;border-radius:10px;
+  background:var(--card2);font-size:11.5px;margin-bottom:9px}
+.rst .dot{flex:0 0 8px;width:8px;height:8px;border-radius:99px;background:var(--tx3)}
+.rst.live .dot{background:var(--gr2)} .rst.old .dot{background:var(--gd)}
+.rst .tx{flex:1;color:var(--tx2);line-height:1.45}
+.rst b{color:var(--tx)}
+.rtab{width:100%;border-collapse:collapse;margin-top:4px;font-size:12.5px}
+.rtab td{padding:7px 2px;border-bottom:1px solid var(--line)}
+.rtab tr:last-child td{border-bottom:0}
+.rtab td:last-child{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+.rtab input{width:88px;padding:6px 8px;font-size:13px;text-align:right;background:var(--bg);
+  border:1px solid var(--line);border-radius:7px;color:var(--tx);font-family:inherit;
+  font-variant-numeric:tabular-nums;margin:0}
+.out{text-align:center;padding:14px 0 4px}
+.out .n{font-size:30px;font-weight:800;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.out .u{font-size:12px;color:var(--tx3);margin-top:2px}
+.quick{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.quick button{padding:5px 10px;border-radius:7px;border:1px solid var(--line);
+  background:none;color:var(--tx2);font-size:11.5px;font-weight:700;font-family:inherit;cursor:pointer}
+
+/* ── 경비 ── */
+select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:var(--bg);
+  border:1px solid var(--line);border-radius:10px;color:var(--tx);font-family:inherit;margin-bottom:8px}
+.cats{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.cats button{padding:7px 11px;border-radius:8px;border:1px solid var(--line);background:var(--card2);
+  color:var(--tx2);font-size:12px;font-weight:700;font-family:inherit;cursor:pointer}
+.cats button.on{background:var(--bl);border-color:var(--bl);color:#fff}
+.calc input#e-amt{margin-bottom:8px}
+.ex{display:flex;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.ex:last-of-type{border-bottom:0}
+.ex .c1{flex:0 0 auto;font-size:17px}
+.ex .b1{flex:1;min-width:0}
+.ex .n1{font-size:13px;font-weight:700}
+.ex .s1{font-size:11px;color:var(--tx3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ex .a1{flex:0 0 auto;font-size:13.5px;font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+.ex .a1 small{display:block;font-size:10.5px;color:var(--tx3);font-weight:700}
+.del{flex:0 0 27px;width:27px;height:27px;border-radius:7px;border:1px solid var(--line);
+  background:none;color:var(--tx3);font-size:15px;cursor:pointer;font-family:inherit;padding:0}
+.dsum{display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;
+  padding:9px 0 0;border-top:1px solid var(--line);margin-top:5px;color:var(--tx2)}
+.dsum b{color:var(--ac2);font-variant-numeric:tabular-nums}
+.cbar{display:flex;align-items:center;gap:8px;padding:7px 0}
+.cbar .lb{flex:0 0 82px;font-size:12px;font-weight:700}
+.cbar .tr{flex:1;height:8px;background:var(--card2);border-radius:99px;overflow:hidden}
+.cbar .tr i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--bl),#7ab4f0)}
+.cbar .vl{flex:0 0 70px;font-size:11.5px;font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+.empty{text-align:center;color:var(--tx3);font-size:13px;padding:22px 0}
+.over .v{color:var(--ac2)!important}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini{background:var(--card2);border-radius:10px;padding:10px 11px}
+.mini .k{font-size:10.5px;color:var(--tx3);font-weight:700}
+.mini .v{font-size:14px;font-weight:800;margin-top:2px;letter-spacing:-.3px}
+.note{font-size:12px;color:var(--tx3);line-height:1.65;margin-top:8px}
+.hr{height:1px;background:var(--line);margin:11px 0}
+.badge{display:inline-block;font-size:10px;font-weight:800;padding:2px 6px;border-radius:5px;
+  background:var(--card2);color:var(--tx2);margin-left:5px;vertical-align:1px}
+.badge.r{background:rgba(224,72,60,.18);color:var(--ac2)}
+.badge.y{background:rgba(217,163,37,.18);color:var(--gd)}
+.badge.g{background:rgba(47,158,111,.2);color:var(--gr2)}
+.toast{position:fixed;left:50%;bottom:calc(88px + var(--safe-b));transform:translateX(-50%) translateY(20px);
+  background:#000d;color:#fff;padding:9px 17px;border-radius:99px;font-size:12.5px;font-weight:700;
+  opacity:0;transition:.25s;pointer-events:none;z-index:99;white-space:nowrap;backdrop-filter:blur(6px)}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.foot{text-align:center;font-size:11px;color:var(--tx3);padding:16px 0 4px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎄 부다페스트 · 비엔나 · 프라하</h1>
+  <div class="sub">2026.12.22(화) ~ 2027.1.3(일) · 12박 13일 · 성인 2인</div>
+  <div class="dday" id="dday">불러오는 중…</div>
+</header>
+
+<main>
+
+<!-- ══════════ 일정 ══════════ -->
+<section class="pane on" id="p-plan">
+  <h2 class="sec">전체 일정</h2>
+  <div id="planbar"></div>
+  <div id="days"></div>
+  <div class="foot">항목의 <b>지도</b>는 구글지도 검색, <b>길찾기</b>는 현재 위치에서 대중교통 경로로 열립니다.</div>
+</section>
+
+<!-- ══════════ 장소 ══════════ -->
+<section class="pane" id="p-place">
+  <h2 class="sec">숙소</h2>
+  <div id="stays"></div>
+  <h2 class="sec">오프라인 지도 준비</h2>
+  <div class="card">
+    <div class="note" style="margin:0">모든 장소에 <b>실제 좌표가 저장되어 있습니다</b> — 데이터가 없어도 <b>📌 좌표</b>를 눌러 오프라인 지도앱으로 열 수 있습니다. 출국 전에 구글지도에서 세 도시 지역을 <b>오프라인 지도로 미리 내려받아</b> 두세요.<br><br>구글지도 앱 → 프로필 → <b>오프라인 지도</b> → 직접 지도 선택 → 부다페스트 / 비엔나 / 프라하+드레스덴 각각 저장. 세 곳 합쳐 대략 500MB~1GB 정도이며 Wi-Fi 에서 받아두면 됩니다.</div>
+  </div>
+
+  <h2 class="sec">도시별 주요 장소</h2>
+  <div id="spots"></div>
+</section>
+
+<!-- ══════════ 교통 ══════════ -->
+<section class="pane" id="p-move">
+  <h2 class="sec">항공편</h2>
+  <div class="card">
+    <div class="tt">KE963 · 가는 편 <span class="badge g">확정</span></div>
+    <div class="st">B787-9 · 일반석 스탠다드(T)</div>
+    <div class="row"><span class="k">구간</span><span class="v">ICN 인천 → BUD 부다페스트</span></div>
+    <div class="row"><span class="k">일시</span><span class="v">12.22(화) 12:15 → 16:55</span></div>
+    <div class="row"><span class="k">좌석</span><span class="v">45G / 45H</span></div>
+  </div>
+  <div class="card">
+    <div class="tt">KE970 · 오는 편 <span class="badge g">확정</span></div>
+    <div class="st">B787-9 · 일반석 스탠다드(T)</div>
+    <div class="row"><span class="k">구간</span><span class="v">PRG 프라하 → ICN 인천</span></div>
+    <div class="row"><span class="k">일시</span><span class="v">1.2(토) 18:30 → 1.3(일) 13:50</span></div>
+    <div class="row"><span class="k">좌석</span><span class="v">45G / 45H</span></div>
+    <div class="note">JUNG JIHUN 45G · KIM HYUNJUNG 45H (양편 동일)<br>
+    ⚠️ 할인 운임 — 취소/변경 시 위약금 발생 가능</div>
+    <div class="btns"><button class="b wide go" onclick="op('https://www.koreanair.com/booking/checkin')">온라인 체크인 (48h 전)</button></div>
+  </div>
+
+  <h2 class="sec">🎫 기차 예약 보관함</h2>
+  <div class="card tight">
+    <div class="note" style="margin:2px 0 0">예약하면 <b>예약번호·좌석·시각</b>을 아래에 채워 두세요. 이 휴대폰에 저장되어 <b>비행기 모드·데이터 없이도</b> 열립니다. 티켓 QR 은 캡처해서 사진앱에 따로 저장해 두시는 걸 권합니다.</div>
+  </div>
+  <div id="tickets"></div>
+
+  <h2 class="sec">구간 이동</h2>
+  <div id="moves"></div>
+
+  <h2 class="sec">예약 사이트</h2>
+  <div class="card tight">
+    <div class="btns">
+      <button class="b wide" onclick="op('https://www.oebb.at/en/')">ÖBB 오스트리아철도</button>
+      <button class="b wide" onclick="op('https://jegy.mav.hu/')">MÁV 헝가리철도</button>
+    </div>
+    <div class="btns" style="margin-top:6px">
+      <button class="b wide" onclick="op('https://www.cd.cz/en/')">ČD 체코철도</button>
+      <button class="b wide" onclick="op('https://www.bahn.com/en')">DB 독일철도</button>
+    </div>
+    <div class="btns" style="margin-top:6px">
+      <button class="b wide" onclick="op('https://www.omnibus.hu/szechenyi-bath-tickets')">세체니 온천 티켓</button>
+      <button class="b wide" onclick="op('https://bolt.eu/')">Bolt 택시</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 예산 ══════════ -->
+<section class="pane" id="p-money">
+  <h2 class="sec">환율 계산기</h2>
+  <div class="card calc">
+    <div class="rst" id="rst"><div class="dot"></div><div class="tx">환율 확인 중…</div></div>
+    <div class="cur" id="c-cur"></div>
+    <input type="number" id="amt" inputmode="decimal" placeholder="0" value="1000">
+    <div class="out"><div class="n" id="krw">–</div><div class="u" id="rate"></div></div>
+    <div class="quick" id="quick"></div>
+    <div class="note">카드 결제 시 카드사 환율·수수료가 추가로 붙습니다. 실제 결제액은 조금 더 나옵니다.</div>
+  </div>
+
+  <h2 class="sec">환율 갱신</h2>
+  <div class="card">
+    <div class="btns">
+      <button class="b go wide" onclick="fetchRates(true)">🔄 자동 갱신</button>
+      <button class="b wide" onclick="op('https://search.naver.com/search.naver?query=' + encodeURIComponent('환율'))">🔎 네이버 환율</button>
+    </div>
+    <div class="note" style="margin:9px 0 2px">네이버 <b>매매기준율</b>을 보고 아래에 직접 입력하면 계산기·경비 집계에 함께 반영됩니다. (1단위 = 원)</div>
+    <table class="rtab" id="rtab"></table>
+    <div class="btns" style="margin-top:9px">
+      <button class="b go wide" onclick="saveManual()">입력한 환율 적용</button>
+      <button class="b" onclick="resetRates()">기준값 복귀</button>
+    </div>
+  </div>
+
+  <h2 class="sec">예산 현황</h2>
+  <div class="card">
+    <div class="row"><span class="k">항공권 (좌석지정 포함)</span><span class="v">2,895,400원</span></div>
+    <div class="row"><span class="k">부다페스트 숙소 3박</span><span class="v">414,269원</span></div>
+    <div class="row"><span class="k">비엔나 숙소 4박</span><span class="v">1,437,365원</span></div>
+    <div class="row"><span class="k">프라하 숙소 5박</span><span class="v">1,699,193원</span></div>
+    <div class="row big"><span class="k">확정 소계</span><span class="v">6,446,227원</span></div>
+    <div class="hr"></div>
+    <div class="grid2">
+      <div class="mini"><div class="k">예산 총액</div><div class="v">1,000만 원</div></div>
+      <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 355만 원</div></div>
+    </div>
+    <div class="note">온천·기차·투어 / 식비·잡비 미확정</div>
+  </div>
+
+  <h2 class="sec">환전 계획</h2>
+  <div class="card">
+    <div class="tt">다통화 체크카드 준비</div>
+    <div class="st">트래블월렛 / 트래블로그 등</div>
+    <div class="row"><span class="k">🇭🇺 헝가리 · 부다페스트</span><span class="v">포린트 HUF <span class="badge y">유로존 아님</span></span></div>
+    <div class="row"><span class="k">🇦🇹 오스트리아 · 비엔나</span><span class="v">유로 EUR</span></div>
+    <div class="row"><span class="k">🇨🇿 체코 · 프라하</span><span class="v">코루나 CZK <span class="badge y">유로존 아님</span></span></div>
+    <div class="row"><span class="k">🇩🇪 독일 · 드레스덴</span><span class="v">유로 EUR</span></div>
+    <div class="note">비상용 소액 현금은 한국에서 미리 준비 권장. 세체니 온천 락커용 동전도 필요.</div>
+  </div>
+</section>
+
+<!-- ══════════ 경비 ══════════ -->
+<section class="pane" id="p-exp">
+  <h2 class="sec">사용 요약</h2>
+  <div class="card">
+    <div class="grid2">
+      <div class="mini"><div class="k">총 사용</div><div class="v" id="e-tot">0원</div></div>
+      <div class="mini" id="e-leftbox"><div class="k">남은 현지 예산</div><div class="v" id="e-left">–</div></div>
+    </div>
+    <div class="pb" style="margin-top:9px"><i id="e-bar" style="width:0%"></i></div>
+    <div class="grid2" style="margin-top:9px">
+      <div class="mini"><div class="k">기록된 일수</div><div class="v" id="e-days">0일</div></div>
+      <div class="mini"><div class="k">하루 평균</div><div class="v" id="e-avg">0원</div></div>
+    </div>
+    <div class="note">현지 예산 <b>355만 원</b>(항공·숙소 결제분 제외한 잔여) 기준 · 2인 합산 · 환산은 계획표의 대략 환율 사용</div>
+  </div>
+
+  <h2 class="sec">지출 추가</h2>
+  <div class="card calc">
+    <select id="e-date"></select>
+    <div class="cats" id="e-cats"></div>
+    <div class="cur" id="e-cur"></div>
+    <input type="number" id="e-amt" inputmode="decimal" placeholder="0">
+    <div class="note" id="e-prev" style="text-align:right;margin:0 0 9px">≈ 0원</div>
+    <input type="text" id="e-memo" placeholder="메모 (예: 굴라시 2인, 100E 버스)" maxlength="40">
+    <button class="b go wide" style="padding:12px" onclick="addExp()">＋ 지출 추가</button>
+  </div>
+
+  <h2 class="sec">분류별 사용</h2>
+  <div class="card" id="e-bycat"></div>
+
+  <h2 class="sec">도시별 사용</h2>
+  <div class="card" id="e-bycity"></div>
+
+  <h2 class="sec">날짜별 기록</h2>
+  <div id="e-list"></div>
+
+  <div class="card tight">
+    <div class="btns">
+      <button class="b wide" onclick="expBackup()">📋 백업 복사</button>
+      <button class="b wide" onclick="expRestore()">📥 백업 붙여넣기</button>
+    </div>
+    <div class="btns" style="margin-top:6px">
+      <button class="b wide" onclick="expClear()">전체 삭제</button>
+    </div>
+    <div class="note" style="margin-top:6px"><b>백업 복사</b>는 경비뿐 아니라 <b>일정 변경·체크리스트·기차 예약·환율</b>까지 전부 담습니다. 이 휴대폰에만 저장되므로 여행 중 하루 한 번씩 복사해 메모앱이나 카톡 「나에게 보내기」에 붙여두시는 걸 권합니다.</div>
+  </div>
+</section>
+
+<!-- ══════════ 회화 ══════════ -->
+<section class="pane" id="p-talk">
+  <div class="card tight">
+    <div class="cur" id="t-lang"></div>
+    <div class="note" style="margin:2px 0 0">발음은 <b>한글 근사치</b>입니다. 정확하지 않아도 대체로 통합니다. 문장을 누르면 원문이 복사되어 번역앱·필담에 쓸 수 있습니다.</div>
+  </div>
+  <div id="talk"></div>
+</section>
+
+<!-- ══════════ 준비 ══════════ -->
+<section class="pane" id="p-todo">
+  <div id="lists"></div>
+  <div class="card tight">
+    <div class="btns"><button class="b wide" onclick="resetAll()">모든 체크 초기화</button></div>
+    <div class="note" style="margin-top:6px">체크 상태는 이 휴대폰에 자동 저장됩니다.</div>
+  </div>
+</section>
+
+</main>
+
+<nav>
+  <button class="on" data-p="plan"><span class="ic">🗓️</span>일정</button>
+  <button data-p="place"><span class="ic">📍</span>장소</button>
+  <button data-p="move"><span class="ic">🚄</span>교통</button>
+  <button data-p="money"><span class="ic">💰</span>예산</button>
+  <button data-p="exp"><span class="ic">💸</span>경비</button>
+  <button data-p="talk"><span class="ic">🗣️</span>회화</button>
+  <button data-p="todo"><span class="ic">✅</span>준비</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══════════════ 데이터 ══════════════ */
+const DAYS = [
+{d:'2026-12-22',w:'화',city:'air',ct:'이동',t:'인천 → 부다페스트',sum:'12:15 출발 · 16:55 도착 · 국회의사당 야경',
+ items:[
+  {tm:'07:15',nm:'집 → 인천공항 리무진',ds:'평일 출근시간대 감안, 체크인 시작 09:15 도착 목표(2시간 버퍼)',
+   warn:'강설 시 플랜B — 지하철 06:46 동구릉역 출발 (8호선→9호선 석촌→공항철도 김포공항→인천공항2터미널, 2시간 29분, 5,650원)',q:'인천국제공항 제2여객터미널'},
+  {tm:'12:15',nm:'KE963 인천 출발',ds:'약 11시간 40분 비행'},
+  {tm:'16:55',nm:'부다페스트 도착',en:'Budapest Ferenc Liszt Airport (BUD)',q:'Budapest Ferenc Liszt International Airport'},
+  {tm:'17:30',nm:'100E 공항버스 → 데악 페렌츠 광장',ds:'약 40분 · 2,500 HUF · BudapestGO 앱으로 티켓 구매',
+   tip:'광장에서 숙소까지 도보 10분',q:'Deák Ferenc tér Budapest'},
+  {tm:'19:00',nm:'플로린 아파트 호텔 체크인',en:'Florin Apart Hotel · Karoly Krt. 9',q:'Florin Apart Hotel Budapest'},
+  {tm:'20:00',nm:'저녁 식사',ds:'숙소 주변 7구 시내'},
+  {tm:'21:30',nm:'국회의사당 야경 + 도나우강변 산책',en:'Hungarian Parliament Building',q:'Hungarian Parliament Building',
+   tip:'오늘 밤 짐 정리 시 수영복·수건 미리 꺼내두기 (내일 온천 오픈런)'}
+ ]},
+{d:'2026-12-23',w:'수',city:'bud',ct:'부다페스트',t:'세체니 온천 + 부다 지구',sum:'온천 오픈런 → 어부의 요새 → 국회의사당',
+ items:[
+  {tm:'06:00',nm:'세체니 온천 오픈런',en:'Széchenyi Thermal Bath',ds:'이른 아침 — 물 깨끗, 사람 적음, 요금도 저렴',
+   tip:'온라인 사전 예약해두면 대기 줄 회피',q:'Széchenyi Thermal Bath Budapest'},
+  {tm:'10:30',nm:'어부의 요새',en:"Fisherman's Bastion (Halászbástya)",ds:'부다 지구 · 도나우강·국회의사당 전망',q:"Fisherman's Bastion Budapest"},
+  {tm:'11:30',nm:'마차시 성당',en:'Matthias Church',ds:'어부의 요새 바로 옆',q:'Matthias Church Budapest'},
+  {tm:'13:00',nm:'점심 — 부다 지구 또는 중앙시장',en:'Great Market Hall',q:'Great Market Hall Budapest'},
+  {tm:'15:00',nm:'세체니 다리 도보 횡단',en:'Széchenyi Chain Bridge',ds:'부다 → 페스트',q:'Széchenyi Chain Bridge Budapest'},
+  {tm:'16:30',nm:'국회의사당 외관 + 강변 산책',en:'Hungarian Parliament Building',q:'Hungarian Parliament Building'},
+  {tm:'저녁',nm:'도나우강 야경 크루즈 (선택)',ds:'3박 일정 여유분 — 원하면 추가',q:'Danube river cruise Budapest'}
+ ]},
+{d:'2026-12-24',w:'목',city:'bud',ct:'부다페스트',t:'대성당 + 크리스마스 마켓',sum:'성 이슈트반 대성당 · 바실리카 앞 마켓',
+ items:[
+  {tm:'10:00',nm:'성 이슈트반 대성당',en:"St. Stephen's Basilica",ds:'전망대 올라가면 시내 파노라마',q:"St. Stephen's Basilica Budapest"},
+  {tm:'12:00',nm:'바실리카 앞 크리스마스 마켓',en:'Advent Bazilika Christmas Market',ds:'퇴뢰크 굴뚝빵·굴라시·뜨거운 와인',
+   tip:'핫팩 챙기기 — 밤 기온 -3~-5°C',q:'Advent Bazilika Christmas Market Budapest'},
+  {tm:'15:00',nm:'보로시마르티 광장 마켓 (선택)',en:'Vörösmarty Square Christmas Market',q:'Vörösmarty Square Budapest'},
+  {tm:'18:00',nm:'크리스마스 이브 저녁',warn:'12/25 대비 비상식량(컵라면 등) 소량 미리 구매 — 현지 상점 휴무'}
+ ]},
+{d:'2026-12-25',w:'금',city:'vie',ct:'이동',t:'부다페스트 → 비엔나',sum:'오전 여유 → 레일젯 이동 → 크리스마스 저녁',
+ items:[
+  {tm:'오전',nm:'오전 여유 일정 · 짐 정리'},
+  {tm:'11:00',nm:'플로린 아파트 호텔 체크아웃',ds:'체크아웃 11:00',q:'Florin Apart Hotel Budapest'},
+  {tm:'12:00',nm:'부다페스트 켈레티역 이동',en:'Budapest-Keleti',q:'Budapest Keleti railway station'},
+  {tm:'13:00',nm:'레일젯 부다페스트 → 비엔나',ds:'ÖBB/MÁV · 약 2시간 20~40분',
+   warn:'⚠️ 스케줄 미오픈 — 9~10월 재시도 후 예약',q:'Wien Hauptbahnhof'},
+  {tm:'16:00',nm:'Adina Apartment Hotel 체크인',en:'Canettistraße 3, 1100 Wien',ds:'빈 중앙역 인근 · 취사 가능',q:'Adina Apartment Hotel Vienna Belvedere'},
+  {tm:'19:30',nm:'크리스마스 당일 저녁 식사',ds:'후보: Griechenbeisl · Meissl & Schadn · Huth Gastwirtschaft',
+   warn:'⚠️ 예약 필수 — 예약 시스템 미오픈, 9~10월 재시도 (19:30~20:00 권장)',q:'Griechenbeisl Vienna'}
+ ]},
+{d:'2026-12-26',w:'토',city:'vie',ct:'비엔나',t:'구시가 · 슈테판 대성당',sum:'슈테판 대성당 · 그라벤 · 케른트너 거리',
+ items:[
+  {tm:'10:00',nm:'슈테판 대성당',en:"St. Stephen's Cathedral (Stephansdom)",ds:'구시가 중심 · 남탑 전망',q:"St. Stephen's Cathedral Vienna"},
+  {tm:'11:30',nm:'그라벤 거리',en:'Graben',ds:'페스트조일레 · 크리스마스 조명',q:'Graben Vienna'},
+  {tm:'13:00',nm:'케른트너 거리 + 점심',en:'Kärntner Straße',q:'Kärntner Straße Vienna'},
+  {tm:'15:00',nm:'빈 시청 앞 마켓 (Christkindlmarkt)',en:'Rathausplatz Christmas Market',ds:'비엔나 최대 규모 마켓',q:'Rathausplatz Christmas Market Vienna'},
+  {tm:'18:00',nm:'저녁 — 구시가',warn:'숙소↔구시가 도보 30~40분 → 야간엔 트램/지하철 이용'}
+ ]},
+{d:'2026-12-27',w:'일',city:'vie',ct:'비엔나',t:'쇤브룬 궁전 + 카페 문화',sum:'쇤브룬 궁전 마켓 · 비엔나 카페',
+ items:[
+  {tm:'09:30',nm:'쇤브룬 궁전',en:'Schönbrunn Palace',ds:'U4 Schönbrunn 하차 · 궁전 + 정원',q:'Schönbrunn Palace Vienna'},
+  {tm:'12:00',nm:'쇤브룬 궁전 앞 크리스마스 마켓',en:'Schönbrunn Christmas Market',q:'Schloss Schönbrunn Christmas Market'},
+  {tm:'15:00',nm:'비엔나 카페 — 자허 또는 센트랄',en:'Café Sacher / Café Central',ds:'자허토르테 · 아인슈페너',q:'Cafe Central Vienna'},
+  {tm:'17:00',nm:'벨베데레 궁전 (선택)',en:'Belvedere Palace',ds:'클림트 「키스」 · 숙소 근처',q:'Belvedere Palace Vienna'}
+ ]},
+{d:'2026-12-28',w:'월',city:'vie',ct:'비엔나',t:'여유 일정',sum:'미술사박물관 · 나슈마르크트 · 호프부르크 등 선택',
+ items:[
+  {tm:'제안',nm:'미술사 박물관',en:'Kunsthistorisches Museum',ds:'악천후 대비 실내 일정으로 좋음',q:'Kunsthistorisches Museum Vienna'},
+  {tm:'제안',nm:'호프부르크 왕궁',en:'Hofburg',ds:'시씨 박물관 · 스페인 승마학교',q:'Hofburg Vienna'},
+  {tm:'제안',nm:'나슈마르크트',en:'Naschmarkt',ds:'재래시장 · 먹거리',q:'Naschmarkt Vienna'},
+  {tm:'제안',nm:'훈데르트바서 하우스',en:'Hundertwasserhaus',q:'Hundertwasserhaus Vienna'},
+  {tm:'저녁',nm:'연말 콘서트/오페라 (예약 시)',ds:'복장: 스마트 캐주얼 — 셔츠 + 치노/슬랙스, 로퍼·첼시부츠',
+   tip:'바버 왁스 재킷 OK (클로크룸 보관)',q:'Vienna State Opera'},
+  {tm:'밤',nm:'짐 정리',warn:'내일 오전 레일젯 프라하행 — 캐리어 자물쇠 확인'}
+ ]},
+{d:'2026-12-29',w:'화',city:'pra',ct:'이동',t:'비엔나 → 프라하',sum:'오전 레일젯 약 4시간 · 프라하 구시가 첫 야경',
+ items:[
+  {tm:'09:00',nm:'빈 중앙역 이동',en:'Wien Hauptbahnhof',ds:'숙소에서 도보권',q:'Wien Hauptbahnhof'},
+  {tm:'10:00',nm:'레일젯 비엔나 → 프라하',ds:'ÖBB · 약 4시간',
+   warn:'⚠️ 스케줄 미오픈 — 9~10월 재시도 후 예약',q:'Praha hlavní nádraží'},
+  {tm:'14:30',nm:'프라하 중앙역 도착',en:'Praha hlavní nádraží',q:'Praha hlavní nádraží'},
+  {tm:'15:30',nm:'Unitas Hotel 체크인',en:'Bartolomějská 308/9, Praha 1',ds:'구시가 광장 인근 · 마켓·야경 도보권',q:'Unitas Hotel Prague'},
+  {tm:'17:30',nm:'구시가 광장 크리스마스 마켓',en:'Old Town Square',ds:'대형 트리 · 천문시계',q:'Old Town Square Prague'},
+  {tm:'19:30',nm:'카를교 야경',en:'Charles Bridge',ds:'프라하성 조명 배경',q:'Charles Bridge Prague'}
+ ]},
+{d:'2026-12-30',w:'수',city:'drs',ct:'드레스덴',t:'드레스덴 당일치기',sum:'EC 직행 왕복 · 건축·도시 관광',
+ items:[
+  {tm:'08:00',nm:'프라하 중앙역 출발 (EC 직행)',ds:'약 2시간~2시간 15분',
+   warn:'⚠️ 연말 성수기 — 왕복 사전 예약 권장',q:'Praha hlavní nádraží'},
+  {tm:'10:15',nm:'드레스덴 중앙역 도착',en:'Dresden Hauptbahnhof',q:'Dresden Hauptbahnhof'},
+  {tm:'10:30',nm:'츠빙거 궁전',en:'Zwinger Palace',q:'Zwinger Dresden'},
+  {tm:'11:30',nm:'프라우엔 교회',en:'Frauenkirche',q:'Frauenkirche Dresden'},
+  {tm:'12:30',nm:'점심',ds:'노이마르크트 광장 주변',q:'Neumarkt Dresden'},
+  {tm:'14:00',nm:'브륄의 테라스',en:"Brühl's Terrace (Brühlsche Terrasse)",ds:'"유럽의 발코니" · 엘베강 전망',q:'Brühlsche Terrasse Dresden'},
+  {tm:'15:00',nm:'젬퍼오퍼 외관 + 노이마르크트 광장',en:'Semperoper',q:'Semperoper Dresden'},
+  {tm:'16:00',nm:'구시가 자유 산책 · 카페·쇼핑',
+   warn:'슈트리첼마르크트는 12/24 전후 종료 → 마켓은 못 봄'},
+  {tm:'17:30',nm:'드레스덴 중앙역 이동',q:'Dresden Hauptbahnhof'},
+  {tm:'18:00',nm:'드레스덴 출발 (EC 직행)'},
+  {tm:'20:15',nm:'프라하 중앙역 도착',q:'Praha hlavní nádraží'}
+ ]},
+{d:'2026-12-31',w:'목',city:'pra',ct:'프라하',t:'프라하성 + 새해 전야',sum:'프라하성 · 구시가 광장 카운트다운',
+ items:[
+  {tm:'10:00',nm:'프라하성',en:'Prague Castle',ds:'성 비투스 대성당 · 황금소로',q:'Prague Castle'},
+  {tm:'13:00',nm:'점심 — 말라스트라나',en:'Malá Strana',q:'Malá Strana Prague'},
+  {tm:'15:00',nm:'천문시계 · 구시가 산책',en:'Prague Astronomical Clock',ds:'정시 인형 퍼레이드',q:'Prague Astronomical Clock'},
+  {tm:'18:00',nm:'저녁 식사',warn:'연말 성수기 — 미리 예약해두면 안전'},
+  {tm:'23:00',nm:'새해 전야 카운트다운',en:'Old Town Square',ds:'구시가 광장 · 자정 불꽃',
+   tip:'인파·소매치기 주의 — 지갑 앞주머니, 가방 자물쇠',q:'Old Town Square Prague'}
+ ]},
+{d:'2027-01-01',w:'금',city:'pra',ct:'프라하',t:'여유 일정 (새해 첫날)',sum:'페트르진 전망대 · 비셰흐라드 등 선택',
+ items:[
+  {tm:'제안',nm:'페트르진 전망대',en:'Petřín Lookout Tower',ds:'푸니쿨라 탑승 · 프라하 파노라마',q:'Petřín Lookout Tower Prague'},
+  {tm:'제안',nm:'비셰흐라드',en:'Vyšehrad',ds:'한적한 성채 · 강 전망',q:'Vyšehrad Prague'},
+  {tm:'제안',nm:'존 레논 벽 · 캄파 섬',en:'Lennon Wall',q:'Lennon Wall Prague'},
+  {tm:'제안',nm:'유대인 지구',en:'Josefov Jewish Quarter',q:'Jewish Quarter Prague'},
+  {tm:'참고',nm:'새해 첫날 휴무 주의',warn:'상점·박물관 상당수 휴무 — 방문 전 영업시간 확인 필수'}
+ ]},
+{d:'2027-01-02',w:'토',city:'air',ct:'귀국',t:'프라하 → 인천',sum:'오전 자유 → Bolt 택시 → 18:30 출국',
+ items:[
+  {tm:'오전',nm:'프라하 시내 or 근교 마지막 일정',ds:'짐은 호텔에 맡기고 이동'},
+  {tm:'13:00',nm:'점심 · 기념품 쇼핑'},
+  {tm:'14:30',nm:'Unitas Hotel 체크아웃 · 짐 수령',q:'Unitas Hotel Prague'},
+  {tm:'15:00',nm:'Bolt 택시 → 프라하 공항',ds:'약 25~30분 · 편도 약 600~800 CZK',
+   tip:'사전 예약 불필요 — 당일 Bolt 앱으로 호출',q:'Václav Havel Airport Prague'},
+  {tm:'15:45',nm:'프라하 공항 도착 · 체크인',en:'Václav Havel Airport (PRG)',q:'Václav Havel Airport Prague'},
+  {tm:'18:30',nm:'KE970 프라하 출발'}
+ ]},
+{d:'2027-01-03',w:'일',city:'air',ct:'도착',t:'인천 도착',sum:'13:50 인천공항 도착',
+ items:[
+  {tm:'13:50',nm:'인천공항 도착',q:'인천국제공항 제2여객터미널'}
+ ]}
+];
+
+const STAYS = [
+{nm:'플로린 아파트 호텔',en:'Florin Apart Hotel',city:'bud',ct:'부다페스트',
+ ad:'District 7, Karoly Krt. 9, Budapest, Hungary, 1072',
+ rows:[['기간','12.22(화) ~ 12.25(금) · 3박'],['체크인/아웃','14:00 / 11:00'],
+   ['객실','Studio Apartment · 성인 2명 · 객실만'],['금액','414,269원']],
+ note:'7구(에르제베트바로시) · 대유대교회당·시내 중심가 도보권 · 데악 광장 인근',q:'Florin Apart Hotel Budapest'},
+{nm:'Adina Apartment Hotel Vienna Belvedere',en:'Adina Apartment Hotel',city:'vie',ct:'비엔나',
+ ad:'Canettistraße 3, 1100 Wien, Austria',
+ rows:[['기간','12.25(금) ~ 12.29(화) · 4박'],['금액','1,437,365원']],
+ note:'빈 중앙역(Wien Hbf) 인근 · 취사 가능(주방) · 실내수영장·사우나·헬스장 · 12/29 프라하행 레일젯도 Wien Hbf 출발',
+ warn:'구시가(슈테판 대성당) 도보 30~40분 → 야간 이동 시 트램/지하철',q:'Adina Apartment Hotel Vienna Belvedere'},
+{nm:'Unitas Hotel',en:'Unitas Hotel',city:'pra',ct:'프라하',
+ ad:'Bartolomějská 308/9, 110 00 Praha 1, Czech Republic',
+ rows:[['기간','12.29(화) ~ 1.2(토) · 5박'],['금액','1,699,193원']],
+ note:'구시가 광장(Old Town Square) 인근 · 마켓·야경 도보권',q:'Unitas Hotel Prague'}
+];
+
+/* 명소: nm 한글명 · en 원어명 · q 지도검색어 · ds 역사·배경 · vp 뷰포인트 */
+const SPOTS = [
+{ct:'부다페스트',city:'bud',list:[
+ {nm:'세체니 온천',en:'Széchenyi Thermal Bath',q:'Széchenyi Thermal Bath Budapest',
+  ds:'1913년 개장한 유럽 최대급 온천 복합시설. 지하 1,000m 넘는 깊이에서 끌어올린 온천수를 쓴다. 도시공원(바로슬리게트) 안에 네오바로크 양식으로 지어져, 온천이라기보다 노란 궁전처럼 보인다.',
+  vp:'추운 날 야외 풀에서 <b>수증기가 궁전 외벽을 타고 오르는 광경</b>이 이곳의 상징 이미지다. 야외 풀 한쪽에서 물에 몸을 담근 채 체스를 두는 현지 어르신들도 이곳의 오랜 풍경.'},
+ {nm:'어부의 요새',en:"Fisherman's Bastion (Halászbástya)",q:"Fisherman's Bastion Budapest",
+  ds:'1895~1902년 프리제시 슐레크가 설계한 네오로마네스크 구조물. 이름은 요새지만 <b>실제 방어시설이 아니라 처음부터 전망대로 지어졌다</b>. 중세에 이 구역 성벽을 어부 길드가 지켰다는 데서 이름이 왔다.',
+  vp:'뾰족한 <b>탑 7개는 896년 카르파티아 분지에 정착한 마자르 7부족</b>을 뜻한다. 테라스에서 도나우강 너머 국회의사당이 정면으로 보이는데, 부다페스트에서 가장 유명한 전망이다. 입구 쪽 성 이슈트반 기마상도 함께.'},
+ {nm:'마차시 성당',en:'Matthias Church',q:'Matthias Church Budapest',
+  ds:'13세기에 세워졌지만 지금 모습은 19세기 말 슐레크의 대개축 결과다. 오스만 지배기에는 <b>모스크로 쓰였다</b>. 이름은 마차시 1세가 이곳에서 두 번 결혼식을 올린 데서 유래.',
+  vp:'<b>지붕을 덮은 졸너이 채색 타일</b>의 기하학 무늬가 압권 — 어부의 요새 쪽에서 올려다보면 잘 보인다. 1867년 프란츠 요제프와 시씨의 헝가리 국왕 대관식이 여기서 열렸고, 리스트가 그 대관식을 위해 「헝가리 대관식 미사」를 썼다. 내부는 벽면 전체가 동양풍 문양으로 덮여 여느 유럽 성당과 분위기가 아주 다르다.'},
+ {nm:'국회의사당',en:'Hungarian Parliament Building',q:'Hungarian Parliament Building',
+  ds:'1885~1904년 임레 슈타인들 설계의 네오고딕 건물. <b>돔 높이 96m는 건국 연도 896년</b>을 상징하며, 성 이슈트반 대성당과 높이를 똑같이 맞춰 세속 권력과 종교 권력의 균형을 나타냈다. 헝가리 왕관(성 이슈트반 왕관)이 이 안에 보관돼 있다.',
+  vp:'정면 전체를 보려면 페스트 쪽이 아니라 <b>강 건너 부다 쪽 강변에서</b> 봐야 한다. 야간 조명이 켜지면 강물에 통째로 반사된다. 남쪽으로 조금 걸으면 <b>「도나우 강가의 신발」</b> — 강가에 벗어놓은 60켤레의 청동 신발로, 1944~45년 이 자리에서 강으로 쏘아 죽인 유대인들을 기린 추모비다.'},
+ {nm:'세체니 다리',en:'Széchenyi Chain Bridge',q:'Széchenyi Chain Bridge Budapest',
+  ds:'1849년 완공된 <b>부다와 페스트를 잇는 최초의 영구 다리</b>. 세체니 이슈트반 백작이 주도했고, 영국인 윌리엄 티어니 클라크가 설계했다. 2차대전 말 퇴각하는 독일군이 폭파했고 개통 100주년인 1949년에 복원됐다.',
+  vp:'양쪽 입구를 지키는 <b>사자상</b>. 다리 위 중간에서 한쪽은 부다 성, 반대쪽은 국회의사당이 보인다 — 야경 산책에 가장 좋은 구간.'},
+ {nm:'성 이슈트반 대성당',en:"St. Stephen's Basilica",q:"St. Stephen's Basilica Budapest",
+  ds:'착공부터 완공까지 <b>54년(1851~1905)</b>이 걸렸다. 공사 중 돔이 무너져 처음부터 다시 쌓았다. 헝가리를 기독교 국가로 세운 초대 국왕 성 이슈트반에게 헌정됐고, 돔 높이는 국회의사당과 같은 96m.',
+  vp:'<b>성 이슈트반의 미라화된 오른손(성스러운 오른손)</b>이 유물함에 안치돼 있다. 계단 또는 엘리베이터로 돔 전망대에 올라가면 부다페스트가 360도로 보인다. 성당 앞 광장이 12/24 방문할 크리스마스 마켓 자리.'},
+ {nm:'중앙시장',en:'Great Market Hall (Nagyvásárcsárnok)',q:'Great Market Hall Budapest',
+  ds:'1897년 개장한 부다페스트 최대 실내시장. 사무 페츠가 설계했고 지붕에 졸너이 타일을 얹었다.',
+  vp:'<b>1층은 식재료</b> — 파프리카 가루, 살라미, 푸아그라, 토카이 와인. <b>2층은 먹거리와 수공예</b>로 랑고시(튀긴 빵)를 먹을 수 있다. 위층에서 내려다보는 철골 구조와 타일 지붕도 볼거리.'},
+ {nm:'켈레티역',en:'Budapest-Keleti',q:'Budapest Keleti railway station',
+  ds:'1884년 개장 당시 유럽 최첨단 시설을 갖춘 역으로, <b>오리엔트 특급</b>이 지나던 역이다. 12/25 비엔나행 기차를 타는 곳.',
+  vp:'철골 아치 지붕과 정면 파사드. 역 구조가 복잡하니 출발 30분 전 도착 권장.'},
+ {nm:'보로시마르티 광장',en:'Vörösmarty tér',q:'Vörösmarty Square Budapest',
+  ds:'부다페스트에서 <b>가장 오래된 크리스마스 마켓</b>이 서는 광장. 이름은 헝가리 국민시인 보로시마르티 미하이에서 왔고 그의 동상이 중앙에 있다.',
+  vp:'바실리카 앞 마켓보다 <b>수공예 노점 비중이 높아</b> 기념품을 고르기 좋다. 광장 한쪽의 <b>제르보(Gerbeaud) 카페</b>는 1858년에 문을 연 곳으로, 케이크와 실내 장식을 보러 들어가 볼 만하다.'},
+ {nm:'도나우강 야경 크루즈',en:'Danube River Night Cruise',q:'Danube river cruise Budapest',
+  ds:'부다 성 지구부터 국회의사당까지 이어지는 <b>도나우 강안 전체가 유네스코 세계유산</b>이다. 강 위에서 보면 육지에서 나눠 보던 랜드마크가 한 화면에 들어온다.',
+  vp:'해가 진 뒤 조명이 켜진 <b>국회의사당·부다 성·세체니 다리를 한 번에</b> 볼 수 있는 유일한 방법. 12/23 저녁 선택 일정으로 넣어 뒀다. 갑판은 매우 추우니 방한 필수.'},
+ {nm:'데악 광장 (100E 정류장)',en:'Deák Ferenc tér',q:'Deák Ferenc tér Budapest',
+  ds:'부다페스트 지하철 세 노선이 만나는 교통 중심이자 공항버스 100E 종점. 여기서 지나는 <b>M1 노선은 1896년 개통</b>으로, 런던에 이어 유럽 대륙에서 가장 오래된 지하철이며 유네스코 세계유산이다.',
+  vp:'M1 역사(驛舍)의 <b>19세기 목재·타일 인테리어</b>가 그대로 남아 있다. 숙소에서 도보 10분이라 오가며 들르기 좋다.'}]},
+{ct:'비엔나',city:'vie',list:[
+ {nm:'슈테판 대성당',en:'Stephansdom',q:"St. Stephen's Cathedral Vienna",
+  ds:'12세기 로마네스크 기초 위에 14세기 고딕으로 다시 세워진 빈의 상징. 남탑은 136.4m로 애칭이 <b>「슈테플」</b>이다. <b>모차르트가 1782년 이곳에서 결혼하고 1791년 장례를 치렀으며</b>, 소년 하이든이 여기 성가대에서 노래했다.',
+  vp:'<b>지붕의 채색 타일 23만 장</b>으로 만든 합스부르크 쌍두 독수리 무늬 — 남쪽에서 봐야 보인다. 남탑은 343계단을 걸어 올라가고 북탑은 엘리베이터로 오른다(전망은 남탑이 낫다). 지하 카타콤에는 합스부르크 가문의 내장을 담은 항아리가 안치돼 있다.'},
+ {nm:'그라벤 거리',en:'Graben',q:'Graben Vienna',
+  ds:'로마 군단 요새의 <b>방어용 참호(Graben)를 메워 만든 길</b>이라 이름이 그렇다. 중앙의 페스트조일레(흑사병 기념탑)는 1679년 대역병이 끝난 뒤 레오폴트 1세가 봉헌한 것.',
+  vp:'<b>페스트조일레의 바로크 조각</b> — 구름 위로 인물들이 뒤엉켜 올라가는 형태로, 질병을 물리친 감사를 표현했다. 크리스마스 시즌엔 거리 전체에 샹들리에 모양 조명이 걸린다.'},
+ {nm:'케른트너 거리',en:'Kärntner Straße',q:'Kärntner Straße Vienna',
+  ds:'슈테판 대성당에서 국립 오페라극장까지 이어지는 빈 최대 번화가. 남쪽 케른텐(Carinthia) 지방으로 가는 길이라는 뜻.',
+  vp:'양 끝이 대성당과 오페라극장이라 <b>걷는 것만으로 두 랜드마크가 이어진다</b>. 연말엔 거리 조명과 노점이 늘어선다.'},
+ {nm:'쇤브룬 궁전',en:'Schönbrunn Palace',q:'Schönbrunn Palace Vienna',
+  ds:'합스부르크의 여름 궁전. 18세기 중반 <b>마리아 테레지아</b> 시기에 지금 규모로 확장되며 특유의 「쇤브룬 옐로」 색을 얻었다. <b>여섯 살 모차르트가 1762년 마리아 테레지아 앞에서 연주</b>한 곳이고, 나폴레옹이 두 차례 사령부로 썼고, 프란츠 요제프 황제는 이곳에서 태어나 이곳에서 죽었다.',
+  vp:'궁전 뒤 언덕 위 <b>글로리에테</b>까지 올라가면 궁전과 빈 시내가 한 축으로 내려다보인다(겨울엔 미끄러움 주의). 정원 안 <b>티어가르텐은 1752년 개원한 세계에서 가장 오래된 동물원</b>. 궁전 앞 광장이 크리스마스 마켓 자리다.'},
+ {nm:'시청 앞 마켓',en:'Rathausplatz Christkindlmarkt',q:'Rathausplatz Christmas Market Vienna',
+  ds:'빈에서 가장 크고 유명한 크리스마스 마켓. 배경이 되는 네오고딕 시청사는 1872~1883년 프리드리히 폰 슈미트가 설계했다.',
+  vp:'광장 옆 공원 나무에 <b>붉은 하트 모양 조명</b>이 달린 「하트 나무」 길이 이 마켓의 대표 사진 포인트. 푼슈(따뜻한 과일 와인)는 컵 보증금을 받고 컵을 반납하면 돌려준다 — 기념으로 가져가도 된다.'},
+ {nm:'벨베데레 궁전',en:'Belvedere Palace',q:'Belvedere Palace Vienna',
+  ds:'오스만 전쟁의 영웅 <b>사보이 공 오이겐</b>의 여름 궁전으로 18세기 초 요한 루카스 폰 힐데브란트가 지었다. 1955년 <b>오스트리아 국가조약</b>(점령 종료·주권 회복)이 상궁에서 조인됐고, 발코니에서 조약서를 시민들에게 들어 보인 장면이 유명하다.',
+  vp:'<b>클림트 「키스」</b>가 여기 있다 — 세계 최대 클림트 컬렉션의 핵심. 정원 축을 따라 상궁에서 하궁 방향을 보면 빈 시내가 액자처럼 들어온다. 숙소에서 가까워 자투리 시간에 넣기 좋다.'},
+ {nm:'미술사 박물관',en:'Kunsthistorisches Museum',q:'Kunsthistorisches Museum Vienna',
+  ds:'1891년 개관. 합스부르크가 수백 년간 모은 수집품이 그대로 넘어왔다. <b>브뤼헐(대) 컬렉션이 세계 최대</b>이며 「바벨탑」·「눈 속의 사냥꾼」이 여기 있다.',
+  vp:'브뤼헐 방, 페르메이르 「회화의 기술」, 카라바조. <b>계단홀 상부의 클림트 초기 벽화</b>도 놓치기 쉬운 볼거리. 궂은 날씨나 추위를 피할 실내 일정으로 12/28에 넣기 좋다.'},
+ {nm:'나슈마르크트',en:'Naschmarkt',q:'Naschmarkt Vienna',
+  ds:'16세기부터 이어진 빈 최대 상설 재래시장. 100여 개 노점과 식당이 줄지어 있다.',
+  vp:'치즈·올리브·향신료 노점과 <b>즉석 식당</b>이 섞여 있어 점심 장소로 좋다. 토요일에는 시장 끝에 벼룩시장이 선다.'},
+ {nm:'국립 오페라극장',en:'Wiener Staatsoper',q:'Vienna State Opera',
+  ds:'1869년 모차르트 「돈 조반니」로 개관했다. 2차대전 폭격으로 파괴된 뒤 <b>1955년 베토벤 「피델리오」로 재개관</b>했는데, 이는 오스트리아 재건의 상징적 사건으로 여겨진다. 말러·리하르트 슈트라우스·카라얀이 음악감독을 지냈다.',
+  vp:'정식 관람이 아니어도 <b>당일 입석(Stehplatz)</b>을 아주 싸게 살 수 있다. 휴식시간의 계단홀과 살롱이 사실 본 건물의 백미. 야간 외관 조명도 볼 만하다.'},
+ {nm:'호프부르크 왕궁',en:'Hofburg',q:'Hofburg Vienna',
+  ds:'13세기부터 1918년까지 <b>합스부르크 왕가의 겨울 궁전</b>이자 제국의 심장이었고, 지금은 오스트리아 대통령 집무실이다. 600년에 걸쳐 증축된 탓에 양식이 구역마다 다르다.',
+  vp:'<b>시씨 박물관</b>이 백미 — 미모로만 소비된 엘리자베트 황후의 강박적인 미용·체중 관리·끝없는 도피 여행을 유물로 보여준다. <b>스페인 승마학교</b>의 리피자너 종마 훈련도 볼 수 있다. 신왕궁 앞 <b>헬덴플라츠(영웅 광장)</b>는 1938년 히틀러가 오스트리아 병합을 선언한 그 발코니가 있는 광장이다.'},
+ {nm:'카페 센트랄',en:'Café Central',q:'Cafe Central Vienna',
+  ds:'1876년 개업. 20세기 초 <b>프로이트와 트로츠키</b>가 드나들던 곳으로, 빈 커피하우스 문화의 상징이다(빈 커피하우스 문화는 유네스코 무형문화유산). 시인 페터 알텐베르크는 이곳을 자기 주소로 썼다고 전해진다.',
+  vp:'아치형 천장 아래 <b>입구에 앉아 있는 알텐베르크 인형</b>. 멜란지나 아인슈페너에 자허토르테를 곁들이는 게 정석. 대기줄이 길 수 있으니 오후 늦게가 낫다.'},
+ {nm:'훈데르트바서 하우스',en:'Hundertwasserhaus',q:'Hundertwasserhaus Vienna',
+  ds:'화가 훈데르트바서가 1985년 완성한 공동주택. <b>"직선은 신을 부정한다"</b>며 직각과 평평한 바닥을 거부해, 바닥이 물결치고 창문마다 크기와 모양이 다르다.',
+  vp:'건물에서 자라 나오는 <b>「나무 세입자」</b> — 나무에게도 거주권을 준다는 개념이다. <b>실제 주거용이라 내부는 볼 수 없고 외관만</b> 관람한다. 길 건너 훈데르트바서 빌리지에 같은 양식의 상가가 있다.'},
+ {nm:'빈 중앙역',en:'Wien Hauptbahnhof',q:'Wien Hauptbahnhof',
+  ds:'여러 종착역으로 흩어져 있던 빈의 철도를 하나로 모아 2014년 완전 개통한 통과역. 숙소가 이 역 인근이고 12/29 프라하행 레일젯도 여기서 출발한다.',
+  vp:'지붕의 마름모 구조. 상가·슈퍼가 잘 갖춰져 있어 <b>기차 이동 전 간식·물 조달</b>에 좋다(12/25 상점 휴무 때도 역 상가는 여는 경우가 많다).'}]},
+{ct:'프라하',city:'pra',list:[
+ {nm:'구시가 광장',en:'Old Town Square (Staroměstské náměstí)',q:'Old Town Square Prague',
+  ds:'12세기부터 시장이 서던 광장. 중앙의 <b>얀 후스 동상</b>은 그가 화형당한 1415년으로부터 500년이 된 1915년에 세워졌다. 1621년 백산 전투 패배 뒤 보헤미아 귀족 27명이 이 광장에서 처형됐다.',
+  vp:'구시청사 앞 바닥에 <b>처형된 27명을 기리는 십자가 27개</b>가 박혀 있다 — 사람들이 밟고 지나가는 자리라 모르고 지나치기 쉽다. 쌍탑의 틴 성모 교회, 그리고 구시청사 탑 전망대에서 내려다보는 광장 부감. 12/31 카운트다운 장소.'},
+ {nm:'카를교',en:'Charles Bridge (Karlův most)',q:'Charles Bridge Prague',
+  ds:'1357년 <b>카를 4세</b>가 착공해 15세기 초 완공했다. 착공 시각이 1357년 9월 7일 5시 31분이라고 전해지는데, 1-3-5-7-9-7-5-3-1로 이어지는 회문 숫자를 일부러 맞췄다는 이야기가 유명하다. 난간에 선 30개 성인상은 대부분 바로크 시대에 세워졌고 지금 있는 것은 복제품이다.',
+  vp:'<b>성 얀 네포무츠키상</b> — 왕비의 고해 비밀을 지키다 이 다리에서 강에 던져진 성인으로, 아래 부조를 만지면 소원이 이루어진다 해서 그 부분만 반질하게 닳아 있다. 사람 없는 사진을 원하면 <b>이른 아침</b>뿐이다. 구시가 교탑에 오르면 다리와 프라하성이 한 프레임에 들어온다.'},
+ {nm:'프라하성',en:'Prague Castle (Pražský hrad)',q:'Prague Castle',
+  ds:'9세기부터 조성된 <b>세계 최대 규모의 성채 복합단지</b>. 보헤미아 왕, 신성로마제국 황제, 그리고 지금은 체코 대통령의 관저다. 1618년 이곳 구 왕궁에서 황제 관리들을 창밖으로 던진 <b>「프라하 창문 투척사건」이 30년 전쟁의 방아쇠</b>가 됐다.',
+  vp:'<b>성 비투스 대성당</b>은 1344년 착공해 1929년에야 완공됐다(약 600년). 안에 <b>알폰스 무하의 스테인드글라스</b>와 보헤미아 왕관 보석이 있다. <b>황금소로</b>는 연금술사 전설이 붙은 좁은 골목으로, 카프카가 22번지에서 글을 썼다. 위병 교대식도 볼거리.'},
+ {nm:'천문시계',en:'Prague Astronomical Clock (Orloj)',q:'Prague Astronomical Clock',
+  ds:'1410년 제작된 <b>현존하는 세계에서 가장 오래된 작동 천문시계</b>. 시계 장인과 천문학자가 함께 만들었다. 다른 도시가 같은 시계를 갖지 못하게 제작자의 눈을 멀게 했다는 전설이 붙어 있다.',
+  vp:'매시 정각 <b>「사도의 행렬」</b> — 창이 열려 12사도 인형이 지나가고, 해골(죽음)이 종을 흔들며 허영·탐욕·이교도 상이 함께 움직인 뒤 마지막에 수탉이 운다. <b>1분이 채 안 되니 기대치는 낮추고</b> 대신 아래쪽 <b>달력판</b>(열두 달 농촌 생활을 그린 원판)을 천천히 보는 게 낫다.'},
+ {nm:'페트르진 전망대',en:'Petřín Lookout Tower',q:'Petřín Lookout Tower Prague',
+  ds:'1891년 만국박람회 때 <b>에펠탑을 본떠</b> 세운 63.5m 철탑. 탑 자체는 낮지만 언덕 위에 있어 정상 높이는 에펠탑과 비슷해진다.',
+  vp:'푸니쿨라를 타고 올라간다. 프라하 전경을 <b>강 건너에서 한눈에</b> 담을 수 있는 곳으로, 성 안에서 보는 시내와는 완전히 다른 구도가 나온다. 새해 첫날처럼 실내 시설이 문 닫는 날에 적합.'},
+ {nm:'비셰흐라드',en:'Vyšehrad',q:'Vyšehrad Prague',
+  ds:'프라하성보다 관광객이 훨씬 적은 「제2의 성」. <b>리부셰 공주가 이곳에서 프라하의 번영을 예언했다는 건국 전설</b>의 무대다.',
+  vp:'<b>슬라빈 묘지에 드보르자크·스메타나·무하가 안장</b>돼 있다. 성벽 위를 걸으며 보는 블타바강 굽이. 성 베드로·바울 교회의 쌍탑. 한적해서 새해 첫날 붐비는 구시가를 피하기에 좋다.'},
+ {nm:'존 레논 벽',en:'Lennon Wall',q:'Lennon Wall Prague',
+  ds:'1980년 레논이 피살된 뒤 공산 정권하의 젊은이들이 이 담에 그의 얼굴과 가사를 그리며 저항했다. 당국이 계속 덧칠했지만 다음 날 다시 그려졌고, 지금도 그림이 끊임없이 덮여 바뀐다.',
+  vp:'<b>오늘 보는 그림은 내일 사라진다</b>는 게 이 벽의 요점이다. 말라스트라나 골목 안이라 카를교에서 걸어가며 함께 묶기 좋다.'},
+ {nm:'유대인 지구 (요세포프)',en:'Josefov Jewish Quarter',q:'Jewish Quarter Prague',
+  ds:'구신 시나고그는 1270년경 지어져 <b>유럽에서 가장 오래 계속 사용된 시나고그</b>다. 구 유대인 묘지는 확장이 금지돼 <b>위로 겹쳐 묻는 방식</b>으로 층층이 쌓였고, 기울어진 묘비 약 1만 2천 기가 빽빽하다. 골렘 전설의 랍비 로위도 여기 묻혔다.',
+  vp:'<b>핀카스 시나고그 벽</b>에 보헤미아·모라비아 유대인 희생자 약 8만 명의 이름이 손으로 적혀 있다 — 이 여행에서 가장 무거운 장소다. 나치가 「멸종된 민족의 박물관」을 만들려고 유물을 모아둔 탓에 오히려 유물이 살아남았다는 아이러니도 함께 알고 보면 다르게 읽힌다.'},
+ {nm:'말라스트라나',en:'Malá Strana',q:'Malá Strana Prague',
+  ds:'카를교 서쪽, 프라하성 아래로 펼쳐진 <b>바로크 지구</b>. 귀족 궁전과 좁은 골목이 그대로 남아 있고 존 레논 벽과 캄파 섬도 이 안에 있다.',
+  vp:'성 미쿨라시 교회의 바로크 내부. <b>구시가보다 관광 인파가 적어</b> 걷기가 훨씬 편하다 — 12/31 점심이나 새해 첫날 산책 구간으로 적합.'},
+ {nm:'프라하 중앙역',en:'Praha hlavní nádraží',q:'Praha hlavní nádraží',
+  ds:'19세기 후반 개장한 프라하의 중심역. 요세프 판타가 설계한 <b>아르누보 원 역사</b>가 현대 역사 뒤편에 남아 있다. 12/30 드레스덴 왕복과 12/29 도착이 모두 이 역.',
+  vp:'현대식 대합실만 보고 나가기 쉽지만, <b>위층 옛 아르누보 홀(판타 카페)</b>에 올라가면 스테인드글라스와 돔이 있는 전혀 다른 공간이 나온다. 기차 대기시간에 딱.'},
+ {nm:'바츨라프 하벨 공항',en:'Václav Havel Airport Prague',q:'Václav Havel Airport Prague',
+  ds:'체코의 관문. 벨벳 혁명을 이끌고 초대 대통령이 된 <b>바츨라프 하벨</b>의 이름을 2012년에 붙였다.',
+  vp:'1/2 귀국편 출발지. 숙소에서 Bolt 로 25~30분이지만 연말 교통을 감안해 여유를 두는 게 안전하다.'}]},
+{ct:'드레스덴',city:'drs',list:[
+ {nm:'츠빙거 궁전',en:'Zwinger',q:'Zwinger Dresden',
+  ds:'<b>아우구스트 강건왕</b>(작센 선제후 겸 폴란드 왕)의 명으로 1710~1728년 마테우스 다니엘 푀펠만이 설계하고 발타자르 페르모저가 조각을 맡은 후기 바로크 걸작. 애초에 궁정 축제와 오랑주리를 위한 공간이었다.',
+  vp:'입구 <b>왕관 문(Kronentor)</b> 위의 폴란드 왕관 장식. 회화관의 <b>라파엘로 「시스티나의 마돈나」</b>(아래쪽 두 천사가 그 유명한 이미지의 원본이다)와 페르메이르. 그리고 마이센 <b>도자기 컬렉션</b>. 1945년 폭격으로 파괴된 뒤 복원됐다.'},
+ {nm:'프라우엔 교회',en:'Frauenkirche',q:'Frauenkirche Dresden',
+  ds:'1743년 게오르크 베어가 완성한 <b>석조 돔(「돌 종」)</b> 교회. <b>1945년 2월 폭격으로 무너져</b> 동독 시절 폐허로 방치되며 반전(反戰) 기념물이 되었고, 통일 후 국제 모금으로 재건되어 <b>2005년 재봉헌</b>됐다.',
+  vp:'외벽을 보면 <b>검게 그을린 돌과 밝은 새 돌이 얼룩처럼 섞여 있다</b> — 검은 돌은 잔해에서 찾아내 원래 자리에 되끼운 것으로, 그 얼룩 자체가 이 건물의 역사다. 첨탑 위 황금 십자가는 영국에서 기부했고 <b>드레스덴을 폭격한 조종사의 아들이 제작에 참여</b>했다. 이번 여행에서 가장 「봐야 할 이유가 분명한」 건물.'},
+ {nm:'브륄의 테라스',en:"Brühlsche Terrasse",q:'Brühlsche Terrasse Dresden',
+  ds:'원래 도시 요새의 성벽이었다가 18세기에 브륄 백작이 정원으로 꾸민 산책로. <b>「유럽의 발코니」</b>라는 별칭으로 불린다.',
+  vp:'엘베강과 아우구스투스 다리, 강 건너 신시가가 한 줄로 펼쳐진다. 테라스로 오르는 <b>넓은 계단</b>이 사진 포인트. 근처 아우구스투스 거리 벽면의 <b>「군주의 행렬」</b>도 함께 보면 좋다 — 길이 100m가 넘는 마이센 도자 타일 벽화로, 작센 군주들의 행렬을 그린 세계 최대급 도자 벽화다.'},
+ {nm:'젬퍼오퍼',en:'Semperoper',q:'Semperoper Dresden',
+  ds:'고트프리트 젬퍼가 설계했고, 화재와 폭격으로 두 번 잃었다가 두 번 다시 세워졌다. <b>1985년 2월 13일 — 드레스덴 폭격 40주기에 재개관</b>했는데, 공연작을 1944년 마지막 공연과 같은 「마탄의 사수」로 골랐다. <b>바그너의 「방황하는 네덜란드인」·「탄호이저」, R.슈트라우스의 「살로메」·「장미의 기사」가 여기서 초연</b>됐다.',
+  vp:'외관과 야간 조명(당일치기라 내부 관람은 어렵다). 광장의 요한 왕 기마상과 함께 보는 구도.'},
+ {nm:'노이마르크트 광장',en:'Neumarkt',q:'Neumarkt Dresden',
+  ds:'프라우엔 교회 앞 광장. 전쟁으로 통째로 사라졌다가 통일 후 <b>옛 모습에 가깝게 다시 지어졌다</b> — 지금 보이는 「오래된」 건물 대부분이 실은 2000년대 이후 건물이다.',
+  vp:'교회를 등지고 선 <b>마르틴 루터 동상</b>(폐허에서 찾아내 다시 세운 것). 점심 먹을 식당과 카페가 몰려 있어 12/30 코스의 중간 기점으로 삼기 좋다.'},
+ {nm:'드레스덴 중앙역',en:'Dresden Hauptbahnhof',q:'Dresden Hauptbahnhof',
+  ds:'19세기 말 지어진 역으로, 2000년대에 <b>노먼 포스터</b>가 반투명 막 구조로 지붕을 개조했다.',
+  vp:'빛이 투과되는 <b>흰 막 지붕</b>. 구시가까지 프라거 거리를 따라 도보 15분쯤이니 왕복 시간을 여기 기준으로 계산하면 된다.'}]}
+];
+
+const MOVES = [
+{nm:'부다페스트 공항 → 숙소',how:'100E 공항버스',st:'g',
+ ds:'데악 페렌츠 광장까지 직행 약 40분 · 2,500 HUF · 도보 10분',
+ tip:'BudapestGO 앱으로 티켓 구매',from:'Budapest Ferenc Liszt International Airport',to:'Deák Ferenc tér Budapest'},
+{nm:'부다페스트 → 비엔나',how:'ÖBB/MÁV 레일젯',st:'r',
+ ds:'12/25 · 약 2시간 20~40분',warn:'스케줄 미오픈 — 9~10월 재시도',
+ from:'Budapest Keleti railway station',to:'Wien Hauptbahnhof'},
+{nm:'비엔나 → 프라하',how:'ÖBB 레일젯',st:'r',
+ ds:'12/29 오전 · 약 4시간',warn:'스케줄 미오픈 — 9~10월 재시도',
+ from:'Wien Hauptbahnhof',to:'Praha hlavní nádraží'},
+{nm:'프라하 ↔ 드레스덴',how:'EC 유로시티 직행',st:'y',
+ ds:'12/30 왕복 · 편도 약 2시간~2시간 15분',warn:'연말 성수기 — 사전 예약 권장',
+ from:'Praha hlavní nádraží',to:'Dresden Hauptbahnhof'},
+{nm:'프라하 숙소 → 공항',how:'Bolt 택시',st:'g',
+ ds:'약 25~30분 · 편도 약 600~800 CZK',tip:'사전 예약 불필요 — 당일 앱으로 호출',
+ from:'Unitas Hotel Prague',to:'Václav Havel Airport Prague'},
+{nm:'부다페스트 시내 교통',how:'BKK 72시간권',st:'y',
+ ds:'4,150~5,500 HUF/1인 · 3박 일정에 적합 (또는 24시간권)',tip:'BudapestGO 앱 미리 설치'}
+];
+
+const LISTS = [
+{id:'todo-red',t:'🔴 급함',items:[
+ '집 → 인천공항 리무진버스 예약 (12/22, 07:15경 출발 목표)',
+ '강설 시 플랜B 지하철 경로 확인 (06:46 동구릉역 출발)']},
+{id:'todo-yellow',t:'🟡 곧 해야 함 (9~10월경)',items:[
+ '12/25 크리스마스 저녁 식사 예약 (비엔나, 19:30~20:00)',
+ '부다페스트 → 비엔나 편도 기차 예약 (12/25)',
+ '비엔나 → 프라하 레일젯 예약 (12/29)',
+ '프라하 ↔ 드레스덴 왕복 EC 기차 예약 (12/30)',
+ '세체니 온천 티켓 온라인 사전 예약',
+ '다통화 환전 카드 발급 (트래블월렛/트래블로그)',
+ '여행자보험 가입',
+ '부다페스트 BKK 72시간권 구매 계획 · BudapestGO 앱 설치']},
+{id:'todo-green',t:'🟢 여유 있게',items:[
+ '비엔나 연말 콘서트/오페라 예약 (매진 빠름)',
+ '여권 유효기간 확인 (귀국일 기준 6개월 이상)',
+ '온라인 체크인(출발 48시간 전) 캘린더 등록']},
+{id:'spa',t:'♨️ 세체니 온천 준비물',note:'12/23 오픈런 — 12/22 밤 짐 정리 시 미리 꺼내두기',items:[
+ '수영복 2인분 (일반 수영복 권장, 전신 래시가드·웻슈트는 규정상 제한될 수 있음)',
+ '개인 수건 (대여는 유료)',
+ '비니/방한모 — 젖은 머리로 야외 이동 대비',
+ '얇은 가운 또는 큰 타월 — 탈의실↔야외 풀 방한용',
+ '여벌 속옷·양말',
+ '방수 파우치 또는 지퍼백 — 젖은 수영복 보관',
+ '슬리퍼/샌들 — 탈의실 이동용',
+ '락커용 동전 또는 소액 현금',
+ '머리끈 (긴 머리인 경우)',
+ '드라이어 유무 사전 확인']},
+{id:'pack-cloth',t:'🧥 의류',items:[
+ '방한 롱패딩 또는 두꺼운 코트 (밤 -3~-5°C)',
+ '기모 안감 바지/레깅스',
+ '두꺼운 양말 여러 켤레 (돌바닥 냉기)',
+ '방한 장갑 · 목도리 · 비니',
+ '핫팩 다량 (마켓 구경 필수)',
+ '방수·방한 신발 (두꺼운 밑창 — 눈길/빙판)',
+ '실내용 여벌 옷 (건물 안 난방 강함)']},
+{id:'pack-elec',t:'🔌 전자기기',items:[
+ '유럽 220V 콘센트 어댑터',
+ '보조배터리',
+ '유심 또는 eSIM (유럽 전역)',
+ '여행용 멀티탭 (콘센트 부족 대비)']},
+{id:'pack-doc',t:'💳 금융/서류',items:[
+ '다통화 체크카드 (EUR + HUF + CZK 충전)',
+ '비상용 현금 소액',
+ '여권 원본 + 사본(사진 촬영)',
+ '여행자보험 증서 캡처본 휴대전화 저장',
+ '항공권/숙소 예약 확인서 (전자 + 출력본)']},
+{id:'pack-health',t:'💊 건강/기타',items:[
+ '상비약 (감기약·진통제·소화제·밴드)',
+ '손소독제 · 개인 위생용품',
+ '선글라스 (설원 반사광)',
+ '립밤 · 핸드크림 (건조한 겨울)',
+ '캐리어/가방 자물쇠 (기차 이동 중 도난 방지)',
+ '크리스마스 당일(12/25) 대비 비상식량 소량 (현지 상점 휴무)']},
+{id:'opera',t:'🎭 비엔나 오페라 복장 (선택)',note:'공식 드레스코드는 없으나 연말 시즌은 격식 있게 — 스마트 캐주얼 권장',items:[
+ '셔츠 (솔리드 컬러·옥스포드 등 깔끔한 스타일)',
+ '면바지(치노) 또는 슬랙스',
+ '아우터: 바버 왁스 재킷 OK (클로크룸 보관)',
+ '얇은 니트 재킷/블레이저 (실내용, 선택)',
+ '신발: 로퍼·첼시부츠·단정한 스니커즈 (구두 필수 아님)',
+ '(여성) 원피스 또는 블라우스+슬랙스']}
+];
+
+/* ══════════════ 유틸 ══════════════ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* 외부 링크 열기 — 실제 <a> 클릭으로 처리한다.
+   window.open 은 iframe(웹 게시본) 안에서 조용히 null 을 반환하며 막히지만,
+   앵커 클릭은 브라우저·게시 환경 양쪽에서 정상 동작한다. */
+function op(u){
+  try{
+    const a=document.createElement('a');
+    a.href=u; a.target='_blank'; a.rel='noopener noreferrer';
+    a.style.display='none';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{try{a.remove()}catch(e){}},0);
+  }catch(e){
+    try{ if(!window.open(u,'_blank','noopener')) location.href=u }
+    catch(_){ location.href=u }
+  }
+}
+const mapU=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+/* 좌표 유틸 — 좌표가 있으면 경로·핀을 정확한 지점으로 지정(이름 검색 실패·오프라인 대비) */
+const gp=q=>GEO[q]?GEO[q][0]+','+GEO[q][1]:null;
+const gtxt=q=>GEO[q]?GEO[q][0].toFixed(5)+', '+GEO[q][1].toFixed(5):null;
+const geoU=q=>GEO[q]?`geo:${gp(q)}?q=${gp(q)}(${encodeURIComponent(q)})`:mapU(q);
+const pinU=q=>GEO[q]?'https://www.google.com/maps/search/?api=1&query='+gp(q):mapU(q);
+const dirU=(to,from)=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(gp(to)||to)
+  +(from?'&origin='+encodeURIComponent(gp(from)||from):'')+'&travelmode=transit';
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');
+  clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove('on'),1700)}
+function copy(txt){
+  const done=()=>toast('주소를 복사했습니다');
+  if(navigator.clipboard&&location.protocol!=='file:'){navigator.clipboard.writeText(txt).then(done,fb)}else fb();
+  function fb(){const a=document.createElement('textarea');a.value=txt;a.style.position='fixed';a.style.opacity=0;
+    document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){toast('복사 실패')}
+    document.body.removeChild(a)}
+}
+/* 명소 좌표 (OpenStreetMap Nominatim 조회, 2026-08-04 · 도시 경계 검증 완료) */
+const GEO={
+ 'Adina Apartment Hotel Vienna Belvedere':[48.18555,16.38199],
+ 'Advent Bazilika Christmas Market Budapest':[47.50078,19.05397],
+ 'Augustusbrücke, Dresden':[51.05555,13.73975],
+ 'Batthyány tér, Budapest':[47.50687,19.03778],
+ 'Belvedere Palace Vienna':[48.19107,16.37976],
+ 'Brühlsche Terrasse Dresden':[51.05341,13.74061],
+ 'Brühlsche Terrasse, Dresden':[51.05341,13.74061],
+ 'Budapest Ferenc Liszt International Airport':[47.43527,19.25351],
+ 'Budapest Keleti railway station':[47.50048,19.08394],
+ 'Cafe Central Vienna':[48.21037,16.36539],
+ 'Charles Bridge Prague':[50.0868,14.40898],
+ 'Danube river cruise Budapest':[47.49582,19.04919],
+ 'Deák Ferenc tér Budapest':[47.49835,19.05359],
+ 'Dresden Hauptbahnhof':[51.04039,13.73147],
+ 'Fisherman\'s Bastion Budapest':[47.50231,19.0347],
+ 'Florin Apart Hotel Budapest':[47.49664,19.05795],
+ 'Frauenkirche Dresden':[51.05196,13.74162],
+ 'Fürstenzug, Dresden':[51.05276,13.73897],
+ 'Gellért Hill, Budapest':[47.48692,19.04456],
+ 'Gloriette, Schönbrunn, Wien':[48.17827,16.30873],
+ 'Graben Vienna':[48.20837,16.3702],
+ 'Great Market Hall Budapest':[47.48658,19.05899],
+ 'Griechenbeisl Vienna':[48.21075,16.37726],
+ 'Halászbástya, Budapest':[47.50231,19.0347],
+ 'Hofburg Vienna':[48.20633,16.36563],
+ 'Hundertwasserhaus Vienna':[48.20738,16.39394],
+ 'Hungarian Parliament Building':[47.50705,19.04592],
+ 'Jewish Quarter Prague':[50.08975,14.4181],
+ 'Kunsthistorisches Museum Vienna':[48.20374,16.36178],
+ 'Kärntner Straße Vienna':[48.206,16.37139],
+ 'Lennon Wall Prague':[50.08624,14.40681],
+ 'Letná Park, Praha':[50.0964,14.41414],
+ 'Malá Strana Prague':[50.08646,14.40227],
+ 'Matthias Church Budapest':[47.50201,19.03421],
+ 'Naschmarkt Vienna':[48.19818,16.36262],
+ 'Neumarkt Dresden':[51.05131,13.74071],
+ 'Old Town Square Prague':[50.08745,14.42097],
+ 'Petřín Lookout Tower Prague':[50.08352,14.39509],
+ 'Petřínská rozhledna, Praha':[50.08352,14.39509],
+ 'Prague Astronomical Clock':[50.08698,14.42071],
+ 'Prague Castle':[50.09081,14.40052],
+ 'Praha hlavní nádraží':[50.08296,14.43609],
+ 'Rathausplatz Christmas Market Vienna':[48.20887,16.35861],
+ 'Schloss Schonbrunn Christmas Market':[48.18499,16.31157],
+ 'Schloss Schönbrunn Christmas Market':[48.18499,16.31157],
+ 'Schönbrunn Palace Vienna':[48.18499,16.31157],
+ 'Semperoper Dresden':[51.05454,13.73523],
+ 'St. Stephen\'s Basilica Budapest':[47.50078,19.05397],
+ 'St. Stephen\'s Cathedral Vienna':[48.20849,16.37313],
+ 'Staroměstská mostecká věž, Praha':[50.08618,14.41361],
+ 'Széchenyi Chain Bridge Budapest':[47.49898,19.04365],
+ 'Széchenyi Thermal Bath Budapest':[47.51844,19.08252],
+ 'Theaterplatz, Dresden':[51.05381,13.73566],
+ 'Unitas Hotel Prague':[50.08282,14.41685],
+ 'Vienna State Opera':[48.20329,16.36919],
+ 'Vyšehrad Prague':[50.06421,14.41945],
+ 'Václav Havel Airport Prague':[50.10205,14.27057],
+ 'Vörösmarty Square Budapest':[47.49663,19.05022],
+ 'Wien Hauptbahnhof':[48.18499,16.37794],
+ 'Zwinger Dresden':[51.05303,13.73498],
+ '인천국제공항 제2여객터미널':[37.46804,126.43486]
+};
+
+/* 촬영 포인트 — 「어디서 찍어야 그 사진이 나오는가」. 명소 q 에 매달아 둔다 */
+const PHOTO={
+ 'Hungarian Parliament Building':[
+   {nm:'버트야니 광장',q:'Batthyány tér, Budapest',
+    ds:'국회의사당 정면이 강 너머로 통째로 들어오는 지점. M2 지하철역이 바로 있어 접근이 쉽다. 해 진 뒤 조명+강물 반사가 정석 구도.'},
+   {nm:'어부의 요새 테라스',q:'Halászbástya, Budapest',
+    ds:'높이에서 내려다보는 구도. 의사당과 도나우강, 다리들이 한 프레임에 들어온다.'}],
+ "Fisherman's Bastion Budapest":[
+   {nm:'겔레르트 언덕',q:'Gellért Hill, Budapest',
+    ds:'반대로 부다 성·어부의 요새 쪽을 넓게 담는 지점. 부다페스트 전경 사진의 표준 위치.'}],
+ 'Széchenyi Chain Bridge Budapest':[
+   {nm:'버트야니 광장 방향 강변',q:'Batthyány tér, Budapest',
+    ds:'다리와 부다 성을 겹쳐 담을 수 있다. 다리 위에서는 다리 자체가 안 나오니 강변으로 내려가야 한다.'}],
+ 'Charles Bridge Prague':[
+   {nm:'구시가 교탑',q:'Staroměstská mostecká věž, Praha',
+    ds:'탑에 오르면 다리 전체 + 프라하성이 한 축으로 겹친다 — 카를교 사진의 대표 구도. 다리 위에서는 절대 안 나오는 앵글.'},
+   {nm:'레트나 공원',q:'Letná Park, Praha',
+    ds:'블타바강의 다리들이 층층이 겹쳐 보이는 고지대. 인파가 없고 해 질 녘이 좋다.'}],
+ 'Prague Castle':[
+   {nm:'페트르진 전망대',q:'Petřínská rozhledna, Praha',
+    ds:'성 전체와 시내를 강 건너 높이에서. 푸니쿨라로 올라간다.'},
+   {nm:'카를교 위',q:'Charles Bridge Prague',
+    ds:'성을 배경에 두고 다리 위 성인상을 전경으로 넣는 구도. 이른 아침에만 사람 없이 가능.'}],
+ 'Schönbrunn Palace Vienna':[
+   {nm:'글로리에테',q:'Gloriette, Schönbrunn, Wien',
+    ds:'언덕을 올라가야 나오는 지점. 궁전 → 정원 → 빈 시내가 한 직선 축으로 정렬된다. 궁전 앞에서는 이 축이 안 보인다.'}],
+ "St. Stephen's Cathedral Vienna":[
+   {nm:'남탑 전망대',q:"St. Stephen's Cathedral Vienna",
+    ds:'343계단을 걸어 오르면 채색 타일 지붕을 위에서 내려다볼 수 있다. 쌍두 독수리 무늬는 광장에서는 잘 안 보인다.'}],
+ 'Frauenkirche Dresden':[
+   {nm:'노이마르크트 광장',q:'Neumarkt Dresden',
+    ds:'돔 전체와 루터 동상을 함께. 광장 반대편 끝까지 물러나야 첨탑까지 들어온다.'},
+   {nm:'아우구스투스 다리',q:'Augustusbrücke, Dresden',
+    ds:'엘베강 건너에서 보는 드레스덴 구시가 스카이라인 — 프라우엔 교회·궁정교회·성이 한 줄로 늘어선다. 「카날레토의 시점」으로 불리는 고전 구도.'}],
+ 'Zwinger Dresden':[
+   {nm:'테아터플라츠',q:'Theaterplatz, Dresden',
+    ds:'젬퍼오퍼와 츠빙거를 같은 광장에서 각각 담을 수 있다. 왕관 문은 안쪽 중정에서.'}],
+ 'Brühlsche Terrasse Dresden':[
+   {nm:'군주의 행렬 벽화',q:'Fürstenzug, Dresden',
+    ds:'테라스 바로 아래 거리. 100m가 넘어 한 장에 안 담기니 파노라마 또는 부분 촬영. 도자 타일의 광택이 흐린 날에 더 잘 나온다.'}]
+};
+function photoBlk(p){
+  const ls=PHOTO[p.q]; if(!ls) return '';
+  return `<div class="ph"><span class="pl">📷 촬영 포인트</span>`+ls.map(x=>{
+    const g=gtxt(x.q);
+    return `<div class="pi">
+      <div class="pn">${esc(x.nm)}${g?`<span class="pg">${g}</span>`:''}</div>
+      <div class="pd">${esc(x.ds)}</div>
+      <div class="btns">
+        <button class="b map" onclick="op(pinU('${esc(x.q).replace(/'/g,"\\'")}'))">🗺️ 지점</button>
+        <button class="b dir" onclick="op(dirU('${esc(x.q).replace(/'/g,"\\'")}'))">🧭 길찾기</button>
+      </div></div>`}).join('')+`</div>`;
+}
+
+/* 지도검색어 → 명소 설명 색인 (일정 탭에서 같은 데이터를 재사용) */
+const SPOTIDX={};
+SPOTS.forEach(g=>g.list.forEach(p=>{ if(!SPOTIDX[p.q]) SPOTIDX[p.q]={...p,ct:g.ct} }));
+
+/* 여러 장소를 순서대로 핀 찍어 보여주는 구글지도 URL
+   (api=1 은 경유지 9개까지 → 출발+경유9+도착 = 최대 11개) */
+function multiU(list){
+  const s=[]; list.forEach(q=>{ if(q&&q!==s[s.length-1]) s.push(q) });   // 연속 중복 제거
+  if(!s.length) return null;
+  if(s.length===1) return mapU(s[0]);
+  const cut=s.length>11 ? s.slice(0,10).concat(s[s.length-1]) : s;
+  const pt=q=>encodeURIComponent(gp(q)||q);          // 좌표 우선 — 경유지 오인식 방지
+  const mid=cut.slice(1,-1);
+  return 'https://www.google.com/maps/dir/?api=1'
+    +'&origin='+pt(cut[0])
+    +'&destination='+pt(cut[cut.length-1])
+    +(mid.length?'&waypoints='+mid.map(pt).join('%7C'):'')
+    +'&travelmode=transit';
+}
+function openMulti(list,label){
+  const u=multiU(list);
+  if(!u){toast('지도에 표시할 장소가 없습니다');return}
+  if(list.length>11) toast(label+' · 장소가 많아 앞 11곳만 표시합니다');
+  op(u);
+}
+
+function mapBtns(q,from){
+  const s=SPOTIDX[q];
+  return `<div class="btns">
+    <button class="b map" onclick="op(mapU('${esc(q).replace(/'/g,"\\'")}'))">🗺️ 지도</button>
+    <button class="b dir" onclick="op(dirU('${esc(q).replace(/'/g,"\\'")}'${from?",'"+esc(from).replace(/'/g,"\\'")+"'":''}))">🧭 길찾기</button>
+    ${s&&(s.ds||s.vp)?`<button class="b inf" onclick="this.closest('.it').classList.toggle('open')">ⓘ 설명</button>`:''}
+  </div>
+  ${s&&(s.ds||s.vp)?`<div class="info">
+    ${s.ds?`<div class="ds2">${s.ds}</div>`:''}
+    ${s.vp?`<div class="vp"><span class="vl">👁 뷰포인트</span> ${s.vp}</div>`:''}
+    ${photoBlk(s)}
+    ${gtxt(q)?`<div class="geo" onclick="copy('${gtxt(q)}')">
+      📌 ${gtxt(q)} <span class="cp">복사</span>
+      <a href="${geoU(q)}" onclick="event.stopPropagation()">오프라인 지도로 열기 ›</a></div>`:''}
+  </div>`:''}`;
+}
+
+/* ══════════════ D-Day ══════════════ */
+(function(){
+  const dep=new Date(2026,11,22), ret=new Date(2027,0,3);
+  const now=new Date(), t=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const dd=Math.round((dep-t)/864e5);
+  let s;
+  if(dd>0) s=`✈️ 출발까지 <b>D-${dd}</b>일`;
+  else if(t<=ret){const n=Math.round((t-dep)/864e5)+1;s=`🎄 여행 <b>${n}</b>일째 · 즐거운 여행!`}
+  else s='🏠 여행이 끝났습니다 — 다음 여행도 즐겁게!';
+  $('#dday').innerHTML=s;
+})();
+
+/* ══════════════ 일정 편집 (오버레이 방식) ══════════════
+   원본 DAYS 는 절대 수정하지 않는다. 변경분만 localStorage 에 쌓고 렌더 시 덮어씌운다.
+   → 언제든 「원래대로」 로 되돌릴 수 있고, 원본이 바뀌어도 변경분은 유지된다.
+   키 형식: '<날짜인덱스>:b<원본항목번호>' (기존 항목) / '<날짜인덱스>:a<고유값>' (추가 항목) */
+const PKEY='xmas-trip-2026-plan';
+const P0={ord:{},ed:{},del:{},add:{},done:{}};
+function loadP(){
+  try{const p=JSON.parse(localStorage.getItem(PKEY)||'null');
+    if(p&&typeof p==='object') return {...P0,...p,
+      ord:p.ord||{},ed:p.ed||{},del:p.del||{},add:p.add||{},done:p.done||{}};
+  }catch(e){}
+  return JSON.parse(JSON.stringify(P0));
+}
+function saveP(p){try{localStorage.setItem(PKEY,JSON.stringify(p))}catch(e){toast('저장 공간이 부족합니다')} renderDays()}
+function planCount(){const p=loadP();
+  return Object.keys(p.ed).length+Object.keys(p.del).length+Object.keys(p.add).length
+        +Object.keys(p.ord).length;}
+function dayChanged(di){const p=loadP(),pre=di+':';
+  return !!p.ord[di] || Object.keys(p.ed).some(k=>k.startsWith(pre))
+      || Object.keys(p.del).some(k=>k.startsWith(pre))
+      || Object.keys(p.add).some(k=>k.startsWith(pre));}
+
+/* 원본 + 변경분을 합쳐 그 날의 최종 항목 목록을 만든다 */
+function dayItems(di){
+  const p=loadP(), pool={};
+  DAYS[di].items.forEach((it,i)=>{ pool[di+':b'+i]={...it} });
+  Object.keys(p.add).filter(k=>k.startsWith(di+':a')).forEach(k=>{ pool[k]={...p.add[k]} });
+  let keys=(p.ord[di]||Object.keys(pool)).filter(k=>pool[k]);
+  Object.keys(pool).forEach(k=>{ if(keys.indexOf(k)<0) keys.push(k) });   // 새 항목은 뒤에
+  return keys.filter(k=>!p.del[k]).map(k=>({
+    ...pool[k], ...(p.ed[k]||{}), k,
+    done:!!p.done[k], edited:!!p.ed[k], isAdd:k.indexOf(':a')>0
+  }));
+}
+
+let editMode=false, editingKey=null;
+const openDays=new Set();
+
+function toggleDay(i){ openDays.has(i)?openDays.delete(i):openDays.add(i); renderDays() }
+function toggleEdit(){ editMode=!editMode; editingKey=null; renderDays();
+  toast(editMode?'편집 모드 — 항목을 수정·추가·삭제할 수 있습니다':'편집 모드를 종료했습니다') }
+function toggleDone(k){ const p=loadP(); if(p.done[k]) delete p.done[k]; else p.done[k]=1; saveP(p) }
+
+function startEdit(k){ editingKey=k; renderDays();
+  setTimeout(()=>{const el=$('#ef-nm'); if(el){el.focus();
+    el.scrollIntoView({block:'center',behavior:'smooth'})}},60) }
+function cancelEdit(){ editingKey=null; renderDays() }
+function saveEdit(di,k){
+  const g=id=>(($('#'+id)||{}).value||'').trim();
+  const nm=g('ef-nm');
+  if(!nm){toast('제목을 입력하세요');return}
+  const p=loadP(), v={tm:g('ef-tm'),nm:nm,ds:g('ef-ds'),q:g('ef-q')};
+  if(k.indexOf(':a')>0) p.add[k]={...p.add[k],...v}; else p.ed[k]=v;
+  editingKey=null; saveP(p); toast('저장했습니다');
+}
+function addIt(di){
+  const p=loadP();
+  const k=di+':a'+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36);
+  p.add[k]={tm:'',nm:'새 항목',ds:'',q:''};
+  if(p.ord[di]) p.ord[di].push(k);
+  editingKey=k; openDays.add(di); saveP(p);
+}
+function delIt(di,k){
+  if(!confirm('이 항목을 일정에서 지웁니다. 나중에 되돌릴 수 있습니다.')) return;
+  const p=loadP();
+  if(k.indexOf(':a')>0){ delete p.add[k]; delete p.ed[k]; }   // 추가한 항목은 완전 삭제
+  else p.del[k]=1;                                            // 원본 항목은 숨김 처리
+  delete p.done[k]; if(editingKey===k) editingKey=null;
+  saveP(p); toast('지웠습니다');
+}
+function revertIt(di,k){
+  const p=loadP();
+  if(k.indexOf(':a')>0){ delete p.add[k]; delete p.ed[k]; delete p.done[k]; toast('추가한 항목을 지웠습니다') }
+  else { delete p.ed[k]; delete p.del[k]; toast('원래 내용으로 되돌렸습니다') }
+  editingKey=null; saveP(p);
+}
+function moveIt(di,k,dir){
+  const p=loadP();
+  if(!p.ord[di]) p.ord[di]=dayItems(di).map(x=>x.k);           // 순서를 처음 건드릴 때 확정
+  const a=p.ord[di], i=a.indexOf(k), j=i+dir;
+  if(i<0||j<0||j>=a.length) return;
+  a[i]=a[j]; a[j]=k; saveP(p);
+}
+function resetDay(di){
+  if(!confirm('이 날의 변경 내용을 모두 되돌립니다. 계속할까요?')) return;
+  const p=loadP(), pre=di+':';
+  [ 'ed','del','add','done' ].forEach(f=>Object.keys(p[f]).forEach(k=>{if(k.startsWith(pre))delete p[f][k]}));
+  delete p.ord[di]; editingKey=null; saveP(p); toast('이 날을 원래대로 되돌렸습니다');
+}
+function resetPlan(){
+  if(!confirm('일정 변경 내용 전체를 되돌립니다. 되돌릴 수 없습니다. 계속할까요?')) return;
+  try{localStorage.removeItem(PKEY)}catch(e){}
+  editingKey=null; renderDays(); toast('일정을 전부 원래대로 되돌렸습니다');
+}
+
+/* ══════════════ 일정 렌더 ══════════════ */
+function itemHtml(di,it){
+  if(editingKey===it.k) return editForm(di,it);
+  const tag = it.isAdd?'<span class="badge g">추가</span>'
+            : it.edited?'<span class="badge y">수정</span>' : '';
+  return `<div class="it${it.done?' dn':''}">
+    <button class="ck2${it.done?' on':''}" onclick="toggleDone('${it.k}')">${it.done?'✓':''}</button>
+    <div class="tm">${esc(it.tm||'')}</div>
+    <div class="bd">
+      <div class="nm">${esc(it.nm)}${tag}</div>
+      ${it.en?`<div class="en">${esc(it.en)}</div>`:''}
+      ${it.ds?`<div class="ds">${esc(it.ds)}</div>`:''}
+      ${it.tip?`<div class="tip">💡 ${esc(it.tip)}</div>`:''}
+      ${it.warn?`<div class="warn">${it.warn.startsWith('⚠')?'':'⚠️ '}${esc(it.warn)}</div>`:''}
+      ${it.q?mapBtns(it.q):''}
+      ${editMode?`<div class="edr">
+        <button class="b inf" onclick="startEdit('${it.k}')">✏️ 수정</button>
+        <button class="b" onclick="moveIt(${di},'${it.k}',-1)">↑</button>
+        <button class="b" onclick="moveIt(${di},'${it.k}',1)">↓</button>
+        <button class="b dl" onclick="delIt(${di},'${it.k}')">🗑</button>
+      </div>`:''}
+    </div>
+  </div>`;
+}
+function editForm(di,it){
+  return `<div class="it ef"><div class="bd">
+    <label class="tr2"><span>시간</span><input id="ef-tm" type="text" value="${esc(it.tm||'')}" placeholder="10:30 · 오전 · 제안 등"></label>
+    <label class="tr2"><span>제목</span><input id="ef-nm" type="text" value="${esc(it.nm||'')}"></label>
+    <label class="tr2"><span>설명</span><input id="ef-ds" type="text" value="${esc(it.ds||'')}" placeholder="선택"></label>
+    <label class="tr2"><span>장소</span><input id="ef-q" type="text" value="${esc(it.q||'')}" placeholder="지도 검색어 (비우면 지도 버튼 없음)"></label>
+    <div class="btns">
+      <button class="b go wide" onclick="saveEdit(${di},'${it.k}')">저장</button>
+      <button class="b wide" onclick="cancelEdit()">취소</button>
+      ${(it.edited||it.isAdd)?`<button class="b dl" onclick="revertIt(${di},'${it.k}')">${it.isAdd?'삭제':'원래대로'}</button>`:''}
+    </div>
+    <div class="note" style="margin:6px 0 0">장소는 <b>영문 지도 검색어</b>가 정확합니다 (예: <b>Cafe Sacher Vienna</b>). 새로 넣은 장소는 좌표가 없어 이름으로 검색됩니다.</div>
+  </div></div>`;
+}
+function renderDays(){
+  const now=new Date(), today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+  const n=planCount();
+  $('#planbar').innerHTML=`<div class="card tight pb2">
+    <button class="b ${editMode?'go':''} wide" onclick="toggleEdit()">${editMode?'✓ 편집 끝내기':'✏️ 일정 편집'}</button>
+    ${n?`<button class="b dl" onclick="resetPlan()">전체 원래대로</button>`:''}
+    ${n?`<span class="pc">변경 ${n}건</span>`:'<span class="pc">원본 그대로</span>'}
+  </div>`;
+  let html='', todayIdx=-1;
+  DAYS.forEach((D,i)=>{
+    const [y,m,d]=D.d.split('-');
+    const isT=D.d===today; if(isT) todayIdx=i;
+    const items=dayItems(i);
+    const spots=items.filter(x=>x.q).map(x=>x.q);
+    const doneN=items.filter(x=>x.done).length;
+    let body = spots.length>1 ? `<div class="allmap" onclick="openMulti(dayItems(${i}).filter(x=>x.q).map(x=>x.q),'${+m}/${+d}')">
+        <span class="pin">📍</span>
+        <span class="t2">이 날 장소 <b>${new Set(spots).size}곳</b> 지도에 모두 표시</span>
+        <span class="go2">열기 ›</span>
+      </div>` : '';
+    body += items.map(it=>itemHtml(i,it)).join('');
+    if(editMode) body += `<div class="edadd">
+      <button class="b go wide" onclick="addIt(${i})">＋ 항목 추가</button>
+      ${dayChanged(i)?`<button class="b dl" onclick="resetDay(${i})">이 날 원래대로</button>`:''}</div>`;
+    html+=`<div class="day${isT?' today':''}${dayChanged(i)?' chg':''}" id="day${i}">
+      <div class="dh" onclick="toggleDay(${i})">
+        <div class="dnum"><span class="m">${+m}월</span><span class="d">${+d}</span></div>
+        <div class="dti">
+          <div class="t">${esc(D.t)}<span class="city c-${D.city}">${esc(D.ct)}</span>${dayChanged(i)?'<span class="badge y">변경</span>':''}</div>
+          <div class="s">${+m}/${+d}(${D.w}) · ${esc(D.sum)}${doneN?` · <b style="color:var(--gr2)">완료 ${doneN}/${items.length}</b>`:''}</div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="dbody">${body}</div>
+    </div>`;
+  });
+  $('#days').innerHTML=html;
+  if(!renderDays._did){                     // 첫 렌더에서만 오늘(또는 첫날)을 펼친다
+    renderDays._did=1;
+    openDays.add(todayIdx>=0?todayIdx:0);
+    if(todayIdx>=0) setTimeout(()=>{const el=$('#day'+todayIdx);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'center'})},400);
+  }
+  openDays.forEach(i=>{const el=$('#day'+i); if(el) el.classList.add('open')});
+}
+renderDays();
+
+/* ══════════════ 장소 렌더 ══════════════ */
+(function(){
+  $('#stays').innerHTML = STAYS.map(s=>`<div class="card">
+    <div class="tt">${esc(s.nm)}<span class="city c-${s.city}">${esc(s.ct)}</span></div>
+    <div class="st">${esc(s.ad)}</div>
+    ${s.rows.map(r=>`<div class="row"><span class="k">${esc(r[0])}</span><span class="v">${esc(r[1])}</span></div>`).join('')}
+    ${s.note?`<div class="note">${esc(s.note)}</div>`:''}
+    ${s.warn?`<div class="warn">⚠️ ${esc(s.warn)}</div>`:''}
+    <div class="btns">
+      <button class="b map wide" onclick="op(mapU('${esc(s.q)}'))">🗺️ 지도</button>
+      <button class="b dir wide" onclick="op(dirU('${esc(s.q)}'))">🧭 길찾기</button>
+      <button class="b" onclick="copy('${esc(s.ad).replace(/'/g,"\\'")}')">📋 주소</button>
+    </div>
+  </div>`).join('');
+
+  $('#spots').innerHTML = SPOTS.map((g,gi)=>`<div class="card">
+    <div class="tt">${esc(g.ct)}<span class="city c-${g.city}">${g.list.length}곳</span></div>
+    <div class="allmap" onclick="openMulti(SPOTS[${gi}].list.map(p=>p.q),'${esc(g.ct)}')">
+      <span class="pin">📍</span>
+      <span class="t2">${esc(g.ct)} 장소 <b>${g.list.length}곳</b> 지도에 모두 표시</span>
+      <span class="go2">열기 ›</span>
+    </div>
+    ${g.list.map(p=>`<div class="sp">
+      <div class="h1">
+        <div class="nm2">
+          <div class="k1">${esc(p.nm)}</div>
+          <div class="e1">${esc(p.en)}</div>
+        </div>
+        <button class="b map" onclick="op(mapU('${esc(p.q).replace(/'/g,"\\'")}'))">🗺️</button>
+        <button class="b dir" onclick="op(dirU('${esc(p.q).replace(/'/g,"\\'")}'))">🧭</button>
+      </div>
+      ${p.ds?`<div class="ds2">${p.ds}</div>`:''}
+      ${p.vp?`<div class="vp"><span class="vl">👁 뷰포인트</span> ${p.vp}</div>`:''}
+      ${photoBlk(p)}
+      ${gtxt(p.q)?`<div class="geo" onclick="copy('${gtxt(p.q)}')">
+        📌 ${gtxt(p.q)} <span class="cp">복사</span>
+        <a href="${geoU(p.q)}" onclick="event.stopPropagation()">오프라인 지도로 열기 ›</a></div>`:''}
+    </div>`).join('')}
+  </div>`).join('');
+})();
+
+/* ══════════════ 교통 렌더 ══════════════ */
+(function(){
+  $('#moves').innerHTML = MOVES.map(m=>`<div class="card">
+    <div class="tt">${esc(m.nm)}<span class="badge ${m.st}">${m.st==='g'?'확정':m.st==='y'?'예약 필요':'미오픈'}</span></div>
+    <div class="st">${esc(m.how)}</div>
+    ${m.ds?`<div class="ds" style="font-size:13px;color:var(--tx2)">${esc(m.ds)}</div>`:''}
+    ${m.tip?`<div class="tip">💡 ${esc(m.tip)}</div>`:''}
+    ${m.warn?`<div class="warn">⚠️ ${esc(m.warn)}</div>`:''}
+    ${m.from?`<div class="btns">
+      <button class="b dir wide" onclick="op(dirU('${esc(m.to).replace(/'/g,"\\'")}','${esc(m.from).replace(/'/g,"\\'")}'))">🧭 경로 보기</button>
+      <button class="b map" onclick="op(mapU('${esc(m.from).replace(/'/g,"\\'")}'))">출발지</button>
+      <button class="b map" onclick="op(mapU('${esc(m.to).replace(/'/g,"\\'")}'))">도착지</button>
+    </div>`:''}
+  </div>`).join('');
+})();
+
+/* ══════════════ 체크리스트 ══════════════ */
+const KEY='xmas-trip-2026';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function renderLists(){
+  const st=load();
+  $('#lists').innerHTML = LISTS.map(L=>{
+    const done=L.items.filter((_,i)=>st[L.id+'-'+i]).length;
+    const pct=Math.round(done/L.items.length*100);
+    return `<div class="card" data-l="${L.id}">
+      <div class="tt">${esc(L.t)}<span class="cnt">${done}/${L.items.length}</span></div>
+      ${L.note?`<div class="st">${esc(L.note)}</div>`:''}
+      <div class="pb"><i style="width:${pct}%"></i></div>
+      ${L.items.map((x,i)=>`<label class="ck">
+        <input type="checkbox" data-k="${L.id}-${i}"${st[L.id+'-'+i]?' checked':''}>
+        <span>${esc(x)}</span></label>`).join('')}
+    </div>`;
+  }).join('');
+  $$('#lists input').forEach(cb=>cb.addEventListener('change',()=>{
+    const s=load(); if(cb.checked) s[cb.dataset.k]=1; else delete s[cb.dataset.k];
+    save(s); renderLists();
+  }));
+}
+function resetAll(){ if(confirm('모든 체크 표시를 지웁니다. 계속할까요?')){save({});renderLists();toast('초기화했습니다')} }
+renderLists();
+
+/* ══════════════ 회화 카드 ══════════════ */
+/* [한국어, 원문, 한글 발음] */
+const TALK=[
+{code:'hu',fl:'🇭🇺',lang:'헝가리어',ct:'헝가리',city:'부다페스트',
+ note:'헝가리어는 유럽 주류 어족과 계통이 달라 낯설다. 관광지에서는 영어가 통하는 편이지만 인사말 한마디의 효과가 크다.',
+ groups:[
+ {t:'기본',items:[
+  ['안녕하세요 (낮)','Jó napot','요 나포트'],
+  ['안녕 (가벼운 인사)','Sziasztok / Szia','시아스톡 / 시아'],
+  ['감사합니다','Köszönöm','쾨쇠뇜'],
+  ['천만에요','Szívesen','시베셴'],
+  ['네 / 아니오','Igen / Nem','이겐 / 넴'],
+  ['죄송합니다 · 실례합니다','Elnézést','엘네제슈트'],
+  ['안녕히 계세요','Viszontlátásra','비손틀라타슈라'],
+  ['영어 하실 수 있나요?','Beszél angolul?','베셀 안골룰']]},
+ {t:'식당·상점',items:[
+  ['이거 주세요','Ezt kérem','에즈트 케렘'],
+  ['얼마예요?','Mennyibe kerül?','멘니베 케륄'],
+  ['계산서 주세요','A számlát, kérem','아 삼라트 케렘'],
+  ['카드로 계산할게요','Kártyával fizetek','카르티아발 피제텍'],
+  ['물 한 잔 주세요','Egy pohár vizet kérek','에지 포하르 비제트 케렉'],
+  ['맛있어요','Finom','피놈'],
+  ['메뉴판 주세요','A menüt, kérem','아 메뉘트 케렘']]},
+ {t:'이동·곤란할 때',items:[
+  ['화장실이 어디예요?','Hol van a mosdó?','홀 반 아 모슈도'],
+  ['역이 어디예요?','Hol van a pályaudvar?','홀 반 아 팔리아우드바르'],
+  ['도와주세요','Segítség!','셰기트셰그'],
+  ['이해하지 못했어요','Nem értem','넴 에르템'],
+  ['천천히 말해 주세요','Lassabban, kérem','라샤반 케렘']]},
+ {t:'연말 인사',items:[
+  ['메리 크리스마스','Boldog Karácsonyt','볼도그 카라초니트'],
+  ['새해 복 많이 받으세요','Boldog új évet','볼도그 우이 에베트'],
+  ['건배','Egészségedre','에게셰게드레']]}]},
+{code:'de',fl:'🇦🇹',lang:'독일어',ct:'오스트리아 · 독일',city:'비엔나 · 드레스덴',
+ note:'오스트리아에서는 「Guten Tag」보다 <b>「Grüß Gott」</b>를 훨씬 많이 쓴다. 독일(드레스덴)에서는 Guten Tag 가 자연스럽다.',
+ groups:[
+ {t:'기본',items:[
+  ['안녕하세요 (오스트리아)','Grüß Gott','그뤼스 고트'],
+  ['안녕하세요 (일반)','Guten Tag','구텐 탁'],
+  ['감사합니다','Danke (schön)','당케 (쇤)'],
+  ['천만에요','Bitte','비테'],
+  ['네 / 아니오','Ja / Nein','야 / 나인'],
+  ['죄송합니다 · 실례합니다','Entschuldigung','엔트슐디궁'],
+  ['안녕히 계세요','Auf Wiedersehen','아우프 비더제엔'],
+  ['영어 하실 수 있나요?','Sprechen Sie Englisch?','슈프레헨 지 엥글리시']]},
+ {t:'식당·상점',items:[
+  ['이거 주세요','Das hier, bitte','다스 히어 비테'],
+  ['얼마예요?','Wie viel kostet das?','비 필 코스텟 다스'],
+  ['계산서 주세요','Die Rechnung, bitte','디 레히눙 비테'],
+  ['카드로 계산할게요','Mit Karte, bitte','밋 카르테 비테'],
+  ['메뉴판 주세요','Die Speisekarte, bitte','디 슈파이제카르테 비테'],
+  ['커피 하나 주세요','Einen Kaffee, bitte','아이넨 카페 비테'],
+  ['정말 맛있어요','Sehr lecker','제어 레커'],
+  ['두 명이요','Für zwei Personen','퓌어 츠바이 페르조넨']]},
+ {t:'이동·곤란할 때',items:[
+  ['화장실이 어디예요?','Wo ist die Toilette?','보 이스트 디 토일레테'],
+  ['이 기차 프라하 가나요?','Fährt dieser Zug nach Prag?','페어트 디저 축 나흐 프라크'],
+  ['몇 번 플랫폼이에요?','Welches Gleis?','벨헤스 글라이스'],
+  ['도와주세요','Hilfe!','힐페'],
+  ['이해하지 못했어요','Ich verstehe nicht','이히 페어슈테에 니히트'],
+  ['천천히 말해 주세요','Langsamer, bitte','랑자머 비테']]},
+ {t:'연말 인사',items:[
+  ['메리 크리스마스','Frohe Weihnachten','프로에 바이나흐텐'],
+  ['새해 복 많이 받으세요','Frohes neues Jahr','프로에스 노이에스 야'],
+  ['건배','Prost','프로스트']]}]},
+{code:'cs',fl:'🇨🇿',lang:'체코어',ct:'체코',city:'프라하',
+ note:'식당에서 계산할 때는 「계산서」보다 <b>「Zaplatím」(자플라팀 · 계산할게요)</b>이 더 자연스럽다.',
+ groups:[
+ {t:'기본',items:[
+  ['안녕하세요','Dobrý den','도브리 덴'],
+  ['안녕 (가벼운 인사)','Ahoj','아호이'],
+  ['감사합니다','Děkuji','데쿠이'],
+  ['천만에요','Prosím','프로심'],
+  ['네 / 아니오','Ano / Ne','아노 / 네'],
+  ['죄송합니다 · 실례합니다','Promiňte','프로민테'],
+  ['안녕히 계세요','Na shledanou','나 스흘레다노우'],
+  ['영어 하실 수 있나요?','Mluvíte anglicky?','믈루비테 앙글리츠키']]},
+ {t:'식당·상점',items:[
+  ['이거 주세요','Tohle, prosím','토흘레 프로심'],
+  ['얼마예요?','Kolik to stojí?','콜리크 토 스토이'],
+  ['계산할게요','Zaplatím, prosím','자플라팀 프로심'],
+  ['카드로 계산할게요','Kartou, prosím','카르토우 프로심'],
+  ['맥주 하나 주세요','Jedno pivo, prosím','예드노 피보 프로심'],
+  ['메뉴판 주세요','Menu, prosím','메누 프로심'],
+  ['맛있어요','Je to dobré','예 토 도브레']]},
+ {t:'이동·곤란할 때',items:[
+  ['화장실이 어디예요?','Kde je toaleta?','그데 예 토알레타'],
+  ['중앙역이 어디예요?','Kde je hlavní nádraží?','그데 예 흘라브니 나드라지'],
+  ['도와주세요','Pomoc!','포모츠'],
+  ['이해하지 못했어요','Nerozumím','네로주밈'],
+  ['천천히 말해 주세요','Pomaleji, prosím','포말레이 프로심']]},
+ {t:'연말 인사',items:[
+  ['메리 크리스마스','Veselé Vánoce','베셀레 바노체'],
+  ['새해 복 많이 받으세요','Šťastný nový rok','슈탸스트니 노비 로크'],
+  ['건배','Na zdraví','나 즈드라비']]}]}
+];
+let tLang='hu';
+function renderTalk(){
+  const L=TALK.find(x=>x.code===tLang)||TALK[0];
+  $('#t-lang').innerHTML = TALK.map(x=>
+    `<button data-c="${x.code}"${x.code===tLang?' class="on"':''}>${x.fl} ${esc(x.lang)}
+      <small>${esc(x.city)}</small></button>`).join('');
+  $$('#t-lang button').forEach(b=>b.onclick=()=>{tLang=b.dataset.c;renderTalk()});
+  $('#talk').innerHTML = `<div class="card tight"><div class="note" style="margin:0">${L.note}</div></div>`
+    + L.groups.map(g=>`<div class="card">
+      <div class="tt">${esc(g.t)}<span class="cnt">${g.items.length}</span></div>
+      ${g.items.map(p=>`<div class="pr" onclick="copy('${esc(p[1]).replace(/'/g,"\\'")}')">
+        <div class="pk">${esc(p[0])}</div>
+        <div class="po">${esc(p[1])}</div>
+        <div class="pp">${esc(p[2])}</div>
+      </div>`).join('')}
+    </div>`).join('');
+}
+
+/* ══════════════ 기차 예약 보관함 ══════════════ */
+const TKEY='xmas-trip-2026-tickets';
+/* 예약해야 할 구간 4건을 빈 양식으로 미리 깔아 둔다 */
+const TSEED=[
+ {id:'t1',rt:'부다페스트 → 비엔나',date:'12/25 (금)',op:'ÖBB / MÁV 레일젯',
+  fq:'Budapest Keleti railway station',tq:'Wien Hauptbahnhof',dur:'약 2시간 20~40분'},
+ {id:'t2',rt:'비엔나 → 프라하',date:'12/29 (화)',op:'ÖBB 레일젯',
+  fq:'Wien Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'약 4시간'},
+ {id:'t3',rt:'프라하 → 드레스덴',date:'12/30 (수)',op:'EC 유로시티',
+  fq:'Praha hlavní nádraží',tq:'Dresden Hauptbahnhof',dur:'약 2시간~2시간 15분'},
+ {id:'t4',rt:'드레스덴 → 프라하',date:'12/30 (수) 저녁',op:'EC 유로시티',
+  fq:'Dresden Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'약 2시간~2시간 15분'}
+];
+const TF=[['tno','열차번호','예: RJ 41'],['dep','출발 시각','예: 13:40'],['arr','도착 시각','예: 16:19'],
+          ['car','차량·좌석','예: 24호차 51·52'],['pnr','예약번호','예: XK7Q2M'],['memo','메모','플랫폼·환승 등']];
+function loadT(){try{return JSON.parse(localStorage.getItem(TKEY)||'{}')}catch(e){return {}}}
+function saveT(o){try{localStorage.setItem(TKEY,JSON.stringify(o))}catch(e){}}
+function setT(id,f,v){const o=loadT(); o[id]=o[id]||{}; if(v.trim())o[id][f]=v.trim(); else delete o[id][f]; saveT(o); renderT()}
+function clearT(id){const o=loadT(); if(confirm('이 구간의 입력 내용을 지웁니다.')){delete o[id]; saveT(o); renderT(); toast('지웠습니다')}}
+function renderT(){
+  const st=loadT();
+  $('#tickets').innerHTML = TSEED.map(t=>{
+    const v=st[t.id]||{}, done=!!(v.pnr||v.tno||v.dep);
+    return `<div class="card tk${done?' ok':''}">
+      <div class="tt">${esc(t.rt)}<span class="badge ${done?'g':'y'}">${done?'예약 완료':'미입력'}</span></div>
+      <div class="st">${esc(t.date)} · ${esc(t.op)} · ${esc(t.dur)}</div>
+      ${done?`<div class="tkview">${
+        [['tno','열차'],['dep','출발'],['arr','도착'],['car','좌석'],['pnr','예약번호']]
+        .filter(k=>v[k[0]]).map(k=>`<div class="tv"><span>${k[1]}</span><b>${esc(v[k[0]])}</b></div>`).join('')
+      }${v.memo?`<div class="tm">${esc(v.memo)}</div>`:''}</div>`:''}
+      <details class="tkedit"${done?'':' open'}>
+        <summary>${done?'수정':'입력'}</summary>
+        ${TF.map(f=>`<label class="tr2"><span>${f[1]}</span>
+          <input type="text" value="${esc(v[f[0]]||'')}" placeholder="${esc(f[2])}"
+            onchange="setT('${t.id}','${f[0]}',this.value)"></label>`).join('')}
+        <div class="btns">
+          <button class="b" onclick="clearT('${t.id}')">입력 지우기</button>
+        </div>
+      </details>
+      <div class="btns">
+        <button class="b dir wide" onclick="op(dirU('${esc(t.tq)}','${esc(t.fq)}'))">🧭 역 → 역 경로</button>
+        <button class="b map" onclick="op(pinU('${esc(t.fq)}'))">출발역</button>
+        <button class="b map" onclick="op(pinU('${esc(t.tq)}'))">도착역</button>
+      </div>
+    </div>`}).join('');
+}
+
+/* ══════════════ 환율 ══════════════ */
+/* 기준값: 2026-08-04 ECB 매매기준율 교차확인 (frankfurter.dev + open.er-api.com) */
+const RATE_BASE={HUF:4.52,EUR:1646,CZK:68.0,KRW:1};
+const RATE_BASE_AT='2026-08-04';
+const RKEY='xmas-trip-2026-rate';
+const CURINFO={
+  HUF:{fl:'🇭🇺',ct:'헝가리',nm:'포린트',city:'부다페스트',dec:2},
+  EUR:{fl:'🇦🇹',ct:'오스트리아·독일',nm:'유로',city:'비엔나·드레스덴',dec:0,short:'유로존'},
+  CZK:{fl:'🇨🇿',ct:'체코',nm:'코루나',city:'프라하',dec:1},
+  KRW:{fl:'🇰🇷',ct:'한국',nm:'원',city:'',dec:0}
+};
+let RATES={...RATE_BASE}, RMETA={at:RATE_BASE_AT,src:'base'};
+/* 환율 표시: 천단위 구분 + 소수점 유지 (1646.1 → 1,646.1) */
+const rfmt=n=>new Intl.NumberFormat('ko-KR',{maximumFractionDigits:3}).format(n);
+
+function loadR(){
+  try{
+    const s=JSON.parse(localStorage.getItem(RKEY)||'null');
+    if(s&&s.r&&s.r.EUR>0&&s.r.HUF>0&&s.r.CZK>0){RATES={...s.r,KRW:1};RMETA={at:s.at,src:s.src}}
+  }catch(e){}
+}
+function saveR(r,src,at){
+  RATES={...r,KRW:1}; RMETA={at:at,src:src};
+  try{localStorage.setItem(RKEY,JSON.stringify({r:RATES,src:src,at:at}))}catch(e){}
+  drawRate(); drawCalc(); renderExp();
+}
+function resetRates(){
+  try{localStorage.removeItem(RKEY)}catch(e){}
+  RATES={...RATE_BASE}; RMETA={at:RATE_BASE_AT,src:'base'};
+  drawRate(); drawCalc(); renderExp(); toast('기준 환율로 되돌렸습니다');
+}
+
+/* 자동 갱신 — ECB 기준(매매기준율과 거의 동일). 오프라인이면 조용히 실패 */
+function fetchRates(manual){
+  if(manual) toast('환율을 불러옵니다…');
+  fetch('https://api.frankfurter.dev/v1/latest?base=EUR&symbols=KRW,HUF,CZK',{cache:'no-store'})
+    .then(r=>r.ok?r.json():Promise.reject())
+    .then(j=>{
+      const k=j.rates.KRW;
+      if(!(k>0&&j.rates.HUF>0&&j.rates.CZK>0)) throw 0;
+      saveR({EUR:+k.toFixed(1), HUF:+(k/j.rates.HUF).toFixed(3), CZK:+(k/j.rates.CZK).toFixed(2)},
+            'auto', j.date);
+      if(manual) toast('환율을 갱신했습니다 · '+j.date);
+    })
+    /* 실패 원인이 오프라인일 수도, 게시 환경의 외부 요청 차단일 수도 있다 —
+       어느 쪽이든 사용자가 할 수 있는 일은 같으므로 그것만 안내한다 */
+    .catch(()=>{ if(manual) toast('환율을 불러오지 못했습니다 — 아래에 직접 입력하세요'); });
+}
+
+function drawRate(){
+  const el=$('#rst'); if(!el) return;
+  const today=new Date(), at=RMETA.at;
+  let ageD=99; const p=at&&at.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(p) ageD=Math.round((new Date(today.getFullYear(),today.getMonth(),today.getDate())
+        - new Date(+p[1],+p[2]-1,+p[3]))/864e5);
+  const src = RMETA.src==='manual'?'네이버 직접 입력' : RMETA.src==='auto'?'자동 갱신(ECB 기준)' : '계획 수립 시 기준값';
+  el.className='rst '+(ageD<=1?'live':ageD<=7?'':'old');
+  el.querySelector('.tx').innerHTML =
+    `<b>${esc(at||'-')}</b> 환율 · ${src}<br>`+
+    Object.keys(CURINFO).filter(c=>c!=='KRW').map(c=>`${CURINFO[c].fl} 1 ${c} = ${rfmt(RATES[c])}원`).join(' · ')+
+    (ageD>7?`<br><span style="color:var(--gd)">${ageD}일 전 기준입니다 — 아래에서 갱신하세요</span>`:'');
+
+  const t=$('#rtab'); if(!t) return;
+  t.innerHTML = Object.keys(CURINFO).filter(c=>c!=='KRW').map(c=>
+    `<tr><td>${CURINFO[c].fl} ${esc(CURINFO[c].ct)}<br>
+      <span style="color:var(--tx3);font-size:11px">${esc(CURINFO[c].nm)} · 1 ${c}</span></td>
+     <td><input type="number" inputmode="decimal" step="0.001" id="r-${c}" value="${RATES[c]}"> 원</td></tr>`).join('');
+}
+function saveManual(){
+  const r={};
+  for(const c of ['HUF','EUR','CZK']){
+    const v=parseFloat(($('#r-'+c)||{}).value);
+    if(!(v>0)){toast(CURINFO[c].ct+' 환율을 확인하세요');return}
+    r[c]=v;
+  }
+  const n=new Date();
+  saveR(r,'manual',`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`);
+  toast('환율을 적용했습니다');
+}
+
+/* ══════════════ 경비 기록 ══════════════ */
+const EKEY='xmas-trip-2026-exp';
+const CATS=[['식비','🍽️'],['교통','🚇'],['입장료','🎫'],['마켓·쇼핑','🛍️'],['카페·간식','☕'],['기타','💼']];
+const CITYCUR={bud:'HUF',vie:'EUR',pra:'CZK',drs:'EUR',air:'KRW'};
+const CITYNM={bud:'부다페스트',vie:'비엔나',pra:'프라하',drs:'드레스덴',air:'이동·기타'};
+const BUDGET=3550000;
+const nfk=new Intl.NumberFormat('ko-KR');
+let eCat='식비', eCur='HUF';
+
+function loadE(){try{const a=JSON.parse(localStorage.getItem(EKEY)||'[]');return Array.isArray(a)?a:[]}catch(e){return []}}
+function saveE(a){try{localStorage.setItem(EKEY,JSON.stringify(a))}catch(e){toast('저장 공간이 부족합니다')}}
+const dayOf=d=>DAYS.find(x=>x.d===d);
+const krwOf=e=>Math.round(e.amt*(RATES[e.cur]||1));
+const won=n=>nfk.format(n)+'원';
+
+/* 폼 초기화 */
+(function(){
+  const now=new Date(), today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+  $('#e-date').innerHTML = DAYS.map(D=>{
+    const [,m,d]=D.d.split('-');
+    return `<option value="${D.d}"${D.d===today?' selected':''}>${+m}/${+d}(${D.w}) · ${esc(D.ct)}</option>`;
+  }).join('');
+  $('#e-cats').innerHTML = CATS.map(c=>`<button data-c="${c[0]}"${c[0]===eCat?' class="on"':''}>${c[1]} ${c[0]}</button>`).join('');
+  $('#e-cur').className='cur g4';
+  $('#e-cur').innerHTML = ['HUF','EUR','CZK','KRW'].map(c=>
+    `<button data-c="${c}"${c===eCur?' class="on"':''}>${CURINFO[c].fl} ${c}
+      <small>${esc(CURINFO[c].short||CURINFO[c].ct)}</small></button>`).join('');
+
+  $$('#e-cats button').forEach(b=>b.onclick=()=>{
+    $$('#e-cats button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); eCat=b.dataset.c;});
+  $$('#e-cur button').forEach(b=>b.onclick=()=>{
+    $$('#e-cur button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); eCur=b.dataset.c; prev();});
+  $('#e-amt').addEventListener('input',prev);
+  $('#e-date').addEventListener('change',()=>{
+    const D=dayOf($('#e-date').value); if(!D) return;
+    const c=CITYCUR[D.city]||'KRW';
+    eCur=c; $$('#e-cur button').forEach(x=>x.classList.toggle('on',x.dataset.c===c)); prev();
+  });
+  $('#e-date').dispatchEvent(new Event('change'));
+})();
+
+function prev(){
+  const v=parseFloat($('#e-amt').value||0);
+  $('#e-prev').innerHTML = eCur==='KRW' ? '&nbsp;' : `≈ <b>${won(Math.round(v*RATES[eCur]))}</b>`;
+}
+
+function addExp(){
+  const amt=parseFloat($('#e-amt').value);
+  if(!amt||amt<=0){toast('금액을 입력하세요');$('#e-amt').focus();return}
+  const a=loadE();
+  let id; do{ id='e'+Date.now().toString(36)+Math.floor(Math.random()*1e6).toString(36) }
+  while(a.some(x=>x.id===id));
+  a.push({id:id, d:$('#e-date').value, cat:eCat, amt:amt, cur:eCur, memo:$('#e-memo').value.trim()});
+  saveE(a);
+  $('#e-amt').value=''; $('#e-memo').value=''; prev();
+  renderExp(); toast('추가했습니다 · '+won(Math.round(amt*RATES[eCur])));
+}
+
+function delExp(id){
+  const a=loadE().filter(x=>x.id!==id);
+  saveE(a); renderExp(); toast('삭제했습니다');
+}
+
+/* 통합 백업 — 경비 + 일정 변경 + 체크리스트 + 기차 예약 + 환율 */
+function expBackup(){
+  const d={v:2, exp:loadE(), plan:loadP(), checks:load(), tickets:loadT(),
+           rate:{r:RATES,src:RMETA.src,at:RMETA.at}};
+  const n=d.exp.length+planCount()+Object.keys(d.checks).length+Object.keys(d.tickets).length;
+  if(!n){toast('저장된 내용이 없습니다');return}
+  copy(JSON.stringify(d));
+  toast(`경비 ${d.exp.length}건 · 일정 변경 ${planCount()}건 등 백업 복사`);
+}
+function expRestore(){
+  const s=prompt('백업한 텍스트를 붙여넣으세요 (경비는 합쳐지고, 일정·체크·예약은 덮어씁니다)');
+  if(!s) return;
+  let n; try{n=JSON.parse(s)}catch(e){toast('형식이 올바르지 않습니다');return}
+
+  /* 경비만 담긴 옛 백업(배열)도 계속 받아들인다 */
+  const arr = Array.isArray(n) ? n : (Array.isArray(n.exp) ? n.exp : null);
+  if(arr===null && !(n&&n.plan)){toast('형식이 올바르지 않습니다');return}
+
+  let add=0;
+  if(arr){
+    const a=loadE(), have=new Set(a.map(x=>x.id));
+    arr.forEach(x=>{ if(x&&x.d&&x.amt&&!have.has(x.id)){a.push(x);have.add(x.id);add++} });
+    saveE(a);
+  }
+  if(!Array.isArray(n)){
+    try{
+      if(n.plan&&typeof n.plan==='object') localStorage.setItem(PKEY,JSON.stringify(n.plan));
+      if(n.checks&&typeof n.checks==='object') save(n.checks);
+      if(n.tickets&&typeof n.tickets==='object') saveT(n.tickets);
+      if(n.rate&&n.rate.r&&n.rate.r.EUR>0) saveR(n.rate.r,n.rate.src||'manual',n.rate.at);
+    }catch(e){}
+    renderDays(); renderLists(); renderT();
+  }
+  renderExp();
+  toast('불러왔습니다'+(add?` · 경비 ${add}건 추가`:''));
+}
+function expClear(){
+  if(confirm('경비 기록 전체를 삭제합니다. 되돌릴 수 없습니다. 계속할까요?')){
+    saveE([]); renderExp(); toast('전체 삭제했습니다');}
+}
+
+function renderExp(){
+  const a=loadE();
+  const tot=a.reduce((s,e)=>s+krwOf(e),0);
+  const dates=[...new Set(a.map(e=>e.d))];
+  const left=BUDGET-tot;
+
+  $('#e-tot').textContent = won(tot);
+  $('#e-left').textContent = (left<0?'-':'')+won(Math.abs(left));
+  $('#e-leftbox').classList.toggle('over',left<0);
+  $('#e-bar').style.width = Math.min(100,tot/BUDGET*100)+'%';
+  $('#e-days').textContent = dates.length+'일';
+  $('#e-avg').textContent = dates.length?won(Math.round(tot/dates.length)):'0원';
+
+  /* 분류별 */
+  const byc=CATS.map(c=>[c[0],c[1],a.filter(e=>e.cat===c[0]).reduce((s,e)=>s+krwOf(e),0)])
+                .filter(r=>r[2]>0).sort((x,y)=>y[2]-x[2]);
+  const mx=byc.length?byc[0][2]:1;
+  $('#e-bycat').innerHTML = byc.length ? byc.map(r=>`<div class="cbar">
+      <div class="lb">${r[1]} ${esc(r[0])}</div>
+      <div class="tr"><i style="width:${Math.round(r[2]/mx*100)}%"></i></div>
+      <div class="vl">${nfk.format(r[2])}</div></div>`).join('')
+    : '<div class="empty">기록이 없습니다</div>';
+
+  /* 도시별 */
+  const bycity={};
+  a.forEach(e=>{const D=dayOf(e.d); const k=D?D.city:'air'; bycity[k]=(bycity[k]||0)+krwOf(e)});
+  const cityRows=Object.keys(bycity).sort((x,y)=>bycity[y]-bycity[x]);
+  const mx2=cityRows.length?bycity[cityRows[0]]:1;
+  $('#e-bycity').innerHTML = cityRows.length ? cityRows.map(k=>`<div class="cbar">
+      <div class="lb">${esc(CITYNM[k]||k)}</div>
+      <div class="tr"><i style="width:${Math.round(bycity[k]/mx2*100)}%"></i></div>
+      <div class="vl">${nfk.format(bycity[k])}</div></div>`).join('')
+    : '<div class="empty">기록이 없습니다</div>';
+
+  /* 날짜별 (일정 순서, 최근 날짜 위) */
+  const order=DAYS.map(D=>D.d).filter(d=>dates.includes(d)).reverse();
+  const extra=dates.filter(d=>!DAYS.some(D=>D.d===d));
+  $('#e-list').innerHTML = (order.concat(extra)).length
+    ? order.concat(extra).map(d=>{
+      const D=dayOf(d), [,m,dd]=d.split('-');
+      const rows=a.filter(e=>e.d===d);
+      const sub=rows.reduce((s,e)=>s+krwOf(e),0);
+      return `<div class="card">
+        <div class="tt">${+m}/${+dd}${D?`(${D.w})`:''}${D?`<span class="city c-${D.city}">${esc(D.ct)}</span>`:''}
+          <span class="cnt">${rows.length}건</span></div>
+        ${rows.map(e=>{
+          const ic=(CATS.find(c=>c[0]===e.cat)||['','💼'])[1];
+          return `<div class="ex">
+            <div class="c1">${ic}</div>
+            <div class="b1">
+              <div class="n1">${esc(e.cat)}</div>
+              <div class="s1">${e.memo?esc(e.memo)+' · ':''}${nfk.format(e.amt)} ${esc(e.cur)}</div>
+            </div>
+            <div class="a1">${nfk.format(krwOf(e))}<small>원</small></div>
+            <button class="del" onclick="delExp('${esc(e.id)}')">✕</button>
+          </div>`}).join('')}
+        <div class="dsum"><span>합계</span><b>${won(sub)}</b></div>
+      </div>`}).join('')
+    : '<div class="card"><div class="empty">아직 기록이 없습니다.<br>위에서 지출을 추가해 보세요.</div></div>';
+}
+
+/* ══════════════ 환율 계산기 ══════════════ */
+let cCur='HUF';
+const QUICK={HUF:[500,1000,2500,5000,20000],EUR:[5,10,20,50,100],CZK:[50,100,250,500,1000]};
+function drawCalc(){
+  const rate=RATES[cCur];
+  const v=parseFloat(($('#amt')||{}).value||0);
+  $('#krw').textContent = v?nfk.format(Math.round(v*rate))+'원':'–';
+  $('#rate').innerHTML = `${CURINFO[cCur].fl} ${esc(CURINFO[cCur].ct)} · 1 ${cCur} = ${rfmt(rate)}원`;
+  $('#quick').innerHTML = QUICK[cCur].map(n=>`<button data-n="${n}">${nfk.format(n)}</button>`).join('');
+  $$('#quick button').forEach(b=>b.onclick=()=>{$('#amt').value=b.dataset.n;drawCalc()});
+  prev();
+}
+(function(){
+  $('#c-cur').innerHTML = ['HUF','EUR','CZK'].map(c=>
+    `<button data-c="${c}"${c===cCur?' class="on"':''}>${CURINFO[c].fl} ${esc(CURINFO[c].ct.split('·')[0])}
+      <small>${esc(CURINFO[c].nm)} ${c}</small></button>`).join('');
+  $$('#c-cur button').forEach(b=>b.onclick=()=>{
+    $$('#c-cur button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+    cCur=b.dataset.c; drawCalc();
+  });
+  $('#amt').addEventListener('input',drawCalc);
+})();
+
+/* ══════════════ 기동: 저장된 환율 적용 → 그리기 → 자동 갱신 시도 ══════════════ */
+loadR(); drawRate(); drawCalc(); renderExp(); renderT(); renderTalk(); fetchRates(false);
+
+/* ══════════════ 탭 ══════════════ */
+$$('nav button').forEach(b=>b.onclick=()=>{
+  $$('nav button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  $$('.pane').forEach(p=>p.classList.remove('on')); $('#p-'+b.dataset.p).classList.add('on');
+  window.scrollTo({top:0,behavior:'instant'});
+});
+</script>
+</body>
+</html>
