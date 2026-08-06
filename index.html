@@ -202,6 +202,17 @@ h2.sec:first-child{margin-top:2px}
 .ocrp.on{display:block}
 .ocrp i{display:block;height:100%;background:linear-gradient(90deg,var(--bl),#7ab4f0);
   border-radius:99px;transition:width .25s;width:0}
+/* 예약 보관함 자동 입력 확인 화면 */
+.imp{display:none;margin-top:10px;padding:12px;border-radius:11px;background:var(--card2);
+  border:1px solid rgba(47,158,111,.45)}
+.imp.on{display:block}
+.imp select{margin-bottom:8px}
+.imp .tr2 span{flex:0 0 66px}
+.imp .chips button{font-size:11px;padding:4px 8px}
+.tkv .lk{display:flex;align-items:center;gap:7px;margin-top:8px;padding:8px 10px;
+  border-radius:9px;background:rgba(47,158,111,.14);border:1px solid rgba(47,158,111,.4);
+  font-size:11.5px;font-weight:700;color:var(--gr2)}
+
 .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
 .chips button{padding:5px 9px;border-radius:7px;border:1px solid var(--line);
   background:var(--card2);color:var(--tx);font-size:11.5px;font-weight:700;
@@ -450,7 +461,8 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     같은 기차를 <b>ÖBB · MÁV · ČD · DB 가 각각 팔기도 합니다</b> — 두 곳 이상 조회해 싼 쪽으로. Omio·Trainline 같은 재판매 사이트는 수수료가 붙으니 <b>철도사 직접 구매</b>가 낫습니다.</div>
   </div>
   <div class="card tight">
-    <div class="note" style="margin:2px 0 0">예약하면 <b>예약번호·좌석·시각</b>을 아래에 채워 두세요. 이 휴대폰에 저장되어 <b>비행기 모드·데이터 없이도</b> 열립니다. 티켓 QR 은 캡처해서 <b>🎟 티켓 탭</b>에도 저장해 두시는 걸 권합니다.</div>
+    <div class="note" style="margin:2px 0 0">예약하면 <b>예약번호·좌석·시각</b>을 아래에 채워 두세요. 이 휴대폰에 저장되어 <b>비행기 모드·데이터 없이도</b> 열립니다.<br><br>
+    💡 <b>직접 입력하지 않아도 됩니다</b> — 표 캡처를 <b>🎟 티켓 탭</b>에 올리고 텍스트를 읽은 뒤 <b>「🚄 예약 보관함에 넣기」</b>를 누르면 아래 칸이 자동으로 채워집니다.</div>
   </div>
   <div id="tickets"></div>
 
@@ -619,6 +631,11 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="chips" id="tkv-chips"></div>
     <div class="note" style="margin:11px 0 5px"><b>읽어낸 내용</b> — 직접 고쳐도 되고, 고치면 바로 저장됩니다</div>
     <textarea id="tkv-text" placeholder="여기에 티켓 내용이 들어갑니다. 라이브 텍스트로 복사해 붙여넣거나 직접 입력하세요."></textarea>
+    <div class="btns" style="margin-top:9px">
+      <button class="b dir wide" onclick="tkImport()">🚄 예약 보관함에 넣기</button>
+    </div>
+    <div class="note" style="margin-top:4px">기차표라면 <b>열차번호·시각·좌석·예약번호</b>를 뽑아 교통 탭 예약 보관함에 채워 넣습니다. 적용 전에 확인 화면이 나옵니다.</div>
+    <div class="imp" id="tkv-imp"></div>
     <div class="note" id="tkv-meta" style="margin-top:8px"></div>
   </div>
 </div>
@@ -1816,7 +1833,10 @@ function tkOpen(id){
   $('#tkv-text').value=t.text||'';
   $('#tkv-msg').textContent='';
   $('#tkv-prog').classList.remove('on');
-  $('#tkv-meta').innerHTML=`${esc(t.cat)} · ${(t.size/1024).toFixed(0)}KB · 추가 ${esc(t.at||'-')}`;
+  const lk=t.link?(TSEED.find(s=>s.id===t.link)||{}).rt:'';
+  $('#tkv-meta').innerHTML=`${esc(t.cat)} · ${(t.size/1024).toFixed(0)}KB · 추가 ${esc(t.at||'-')}`
+    + (lk?`<div class="lk">✓ 예약 보관함 「${esc(lk)}」에 반영됨</div>`:'');
+  $('#tkv-imp').classList.remove('on'); $('#tkv-imp').innerHTML='';
   tkChips(t.text||'');
   $('#tkv').classList.add('on');
   document.body.style.overflow='hidden';
@@ -1862,6 +1882,100 @@ function tkChips(text){
       + g.map(([k,vs])=>vs.map(v=>
         `<button onclick="copy('${esc(v).replace(/'/g,"\\'")}')"><small>${k}</small>${esc(v)}</button>`).join('')).join('')
     : '';
+}
+
+/* ── 기차표 텍스트 → 예약 보관함 자동 입력 ──
+   OCR 결과는 반드시 틀린 값이 섞이므로 곧바로 쓰지 않고 확인 화면을 거친다.
+   각 항목은 후보를 여러 개 뽑아 사용자가 고르거나 고칠 수 있게 한다. */
+const STN={bud:/budapest|keleti|bp\.?\s*kel/i, vie:/wien|vienna|w[ie]{2}n\s*hbf/i,
+           pra:/praha|prague|hlavn[ií]/i, drs:/dresden/i};
+function parseTrain(text){
+  const T=String(text||''), U=a=>[...new Set(a)];
+  const c={};
+  /* 열차번호 — RJ/RJX/EC/IC/ICE/EN 등 */
+  c.tno=U((T.match(/\b(?:RJX|RJ|ICE|IC|EC|EN|NJ|REX|RE|RB)\s?-?\s?\d{1,4}\b/gi)||[])
+    .map(s=>s.toUpperCase().replace(/[\s-]+/g,' ').trim()));
+  /* 시각 — 값으로 검증(OCR 은 「DEP12:15」처럼 붙여 내놓는다) */
+  c.time=U((T.match(/\d{1,2}[:.]\d{2}/g)||[]).map(s=>s.replace('.',':')))
+    .filter(s=>{const[h,m]=s.split(':').map(Number); return h<24&&m<60});
+  /* 차량·좌석 — 독/영/체/헝 표기를 함께 본다.
+     「Platz 51, 52」처럼 2인 좌석이 나란히 오므로 숫자 나열 전체를 잡는다 */
+  const grab=re=>{const o=[];let m; const r=new RegExp(re.source,'ig');
+    while((m=r.exec(T))) o.push(m[1].replace(/\s*[,·/]\s*/g,'·').trim()); return U(o)};
+  const RUN='(\\d{1,3}(?:\\s*[,·/]\\s*\\d{1,3})*)';
+  const wg=grab(new RegExp('\\b(?:wagen|wg|coach|car|v[uů]z|kocsi|voiture)\\s*\\.?:?\\s*(\\d{1,3})'));
+  const pl=grab(new RegExp('\\b(?:platz|pl|seat|sitzplatz|m[ií]sto|hely|place)\\s*\\.?:?\\s*'+RUN));
+  c.car=[];
+  if(wg.length&&pl.length) c.car.push(`${wg[0]}호차 ${pl[0]}`);
+  else if(pl.length) c.car.push(pl[0]);
+  else if(wg.length) c.car.push(`${wg[0]}호차`);
+  /* 예약번호 — 라벨 뒤의 코드를 우선. 라벨과 코드 사이는 구분자만 건너뛴다
+     (\D 로 두면 코드 첫 글자가 영문일 때 그 글자까지 삼켜 QT8M5P → T8M5P 가 된다) */
+  const lab=grab(/(?:auftragsnummer|buchungsnummer|booking\s*(?:reference|ref|no|number)|reservation\s*(?:code|no)?|pnr|k[oó]d|order\s*(?:no|id))[^A-Za-z0-9]{0,14}([A-Z0-9]{5,9})/)
+    .map(s=>s.toUpperCase()).filter(s=>/\d/.test(s)&&/[A-Z]/.test(s));
+  const bare=U((T.match(/\b[A-Z0-9]{6}\b/g)||[])).filter(s=>/\d/.test(s)&&/[A-Z]/.test(s));
+  c.pnr=U(lab.concat(bare));
+  /* 구간 추정 — 도시명으로 판단 */
+  const has={}; Object.keys(STN).forEach(k=>has[k]=STN[k].test(T));
+  let route=null, sure=true;
+  if(has.bud&&has.vie) route='t1';
+  else if(has.vie&&has.pra) route='t2';
+  else if(has.pra&&has.drs){
+    const h=c.time.length?+c.time[0].split(':')[0]:null;
+    route = (h!==null&&h>=14) ? 't4' : 't3';   // 오후 출발이면 돌아오는 편
+    sure=false;                                 // 왕복이라 방향은 확인이 필요하다
+  }
+  return {c, route, sure,
+    pick:{tno:c.tno[0]||'', dep:c.time[0]||'', arr:c.time[1]||'',
+          car:c.car[0]||'', pnr:c.pnr[0]||''}};
+}
+
+const IMPF=[['tno','열차번호','tno'],['dep','출발 시각','time'],['arr','도착 시각','time'],
+            ['car','차량·좌석','car'],['pnr','예약번호','pnr']];
+let impP=null;
+function tkImport(){
+  const t=tkCache.find(x=>x.id===tkCur); if(!t) return;
+  const txt=$('#tkv-text').value||'';
+  if(!txt.trim()){toast('먼저 텍스트를 읽거나 붙여넣으세요');return}
+  impP=parseTrain(txt);
+  const found=IMPF.filter(f=>impP.pick[f[0]]).length;
+  $('#tkv-imp').innerHTML=`
+    <div class="tt" style="margin-bottom:6px">예약 보관함에 넣기
+      <span class="badge ${found>=3?'g':'y'}">${found}/5 인식</span></div>
+    <div class="note" style="margin:0 0 8px">아래 값은 <b>추출한 후보</b>입니다. <b>틀린 값이 섞일 수 있으니 확인·수정한 뒤</b> 적용하세요. 후보가 여럿이면 눌러서 바꿀 수 있습니다.</div>
+    <label class="tr2"><span>구간</span><select id="imp-route">
+      <option value="">— 고르세요 —</option>
+      ${TSEED.map(s=>`<option value="${s.id}"${impP.route===s.id?' selected':''}>${esc(s.rt)} · ${esc(s.date)}</option>`).join('')}
+    </select></label>
+    ${impP.route&&!impP.sure?`<div class="warn" style="margin:0 0 6px">⚠️ 프라하↔드레스덴은 왕복이라 <b>방향을 직접 확인</b>하세요</div>`:''}
+    ${IMPF.map(f=>{
+      const cands=(impP.c[f[2]]||[]).slice(0,6);
+      return `<label class="tr2"><span>${f[1]}</span>
+        <input type="text" id="imp-${f[0]}" value="${esc(impP.pick[f[0]])}" placeholder="인식 안 됨 — 직접 입력">
+      </label>
+      ${cands.length>1?`<div class="chips" style="margin:0 0 6px 75px">${cands.map(v=>
+        `<button onclick="document.getElementById('imp-${f[0]}').value='${esc(v).replace(/'/g,"\\'")}'">${esc(v)}</button>`).join('')}</div>`:''}`;
+    }).join('')}
+    <div class="btns" style="margin-top:9px">
+      <button class="b go wide" onclick="tkApplyImport()">✓ 예약 보관함에 적용</button>
+      <button class="b wide" onclick="$('#tkv-imp').classList.remove('on')">취소</button>
+    </div>`;
+  $('#tkv-imp').classList.add('on');
+  $('#tkv-imp').scrollIntoView({block:'nearest',behavior:'smooth'});
+}
+function tkApplyImport(){
+  const id=($('#imp-route')||{}).value;
+  if(!id){toast('구간을 골라주세요');return}
+  const v={}; let n=0;
+  IMPF.forEach(f=>{const x=(($('#imp-'+f[0])||{}).value||'').trim(); if(x){v[f[0]]=x;n++}});
+  if(!n){toast('넣을 내용이 없습니다');return}
+  const t=tkCache.find(x=>x.id===tkCur);
+  if(t) v.memo=(v.memo||'')||`🎟 ${t.nm} 에서 자동 입력`;
+  const o=loadT(); o[id]={...(o[id]||{}),...v}; saveT(o); renderT();
+  if(t){ t.link=id; tkPut({id:t.id,cat:t.cat,nm:t.nm,blob:t.blob,text:t.text,size:t.size,at:t.at,link:id}); }
+  $('#tkv-imp').classList.remove('on');
+  const rt=(TSEED.find(s=>s.id===id)||{}).rt||'';
+  toast(`${rt} 에 ${n}개 항목 적용 — 교통 탭에서 확인하세요`);
 }
 
 /* 자동 인식 — Tesseract 를 필요할 때만 인터넷에서 받아 쓴다(오프라인 불가) */
