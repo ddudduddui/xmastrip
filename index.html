@@ -443,8 +443,14 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
   </div>
 
   <h2 class="sec">🎫 기차 예약 보관함</h2>
+  <div class="card">
+    <div class="tt">언제 예매하나 <span class="badge y">10월 중순</span></div>
+    <div class="note" style="margin:6px 0 0">유럽 철도는 <b>12월 중순에 시간표를 개정</b>하고, 개정 이후 날짜의 승차권은 통상 <b>10월 중순</b>에 열립니다(직전 개정은 10/15 부터 판매). 아래 <b>기차 4구간 전부</b> 해당됩니다 — 그전에는 조회해도 나오지 않습니다.<br><br>
+    <b>특가는 좌석 한정이라 빨리 팔립니다.</b> 열리는 즉시 사는 것이 가장 싸고, 늦으면 정상운임만 남습니다. <b>왕복 할인은 없으니 편도 2장</b>을 따로 사면 됩니다.<br><br>
+    같은 기차를 <b>ÖBB · MÁV · ČD · DB 가 각각 팔기도 합니다</b> — 두 곳 이상 조회해 싼 쪽으로. Omio·Trainline 같은 재판매 사이트는 수수료가 붙으니 <b>철도사 직접 구매</b>가 낫습니다.</div>
+  </div>
   <div class="card tight">
-    <div class="note" style="margin:2px 0 0">예약하면 <b>예약번호·좌석·시각</b>을 아래에 채워 두세요. 이 휴대폰에 저장되어 <b>비행기 모드·데이터 없이도</b> 열립니다. 티켓 QR 은 캡처해서 사진앱에 따로 저장해 두시는 걸 권합니다.</div>
+    <div class="note" style="margin:2px 0 0">예약하면 <b>예약번호·좌석·시각</b>을 아래에 채워 두세요. 이 휴대폰에 저장되어 <b>비행기 모드·데이터 없이도</b> 열립니다. 티켓 QR 은 캡처해서 <b>🎟 티켓 탭</b>에도 저장해 두시는 걸 권합니다.</div>
   </div>
   <div id="tickets"></div>
 
@@ -720,10 +726,10 @@ const DAYS = [
   {tm:'11:00',nm:'플로린 아파트 호텔 체크아웃',ds:'체크아웃 11:00',q:'Florin Apart Hotel Budapest'},
   {tm:'12:00',nm:'부다페스트 켈레티역 이동',en:'Budapest-Keleti',q:'Budapest Keleti railway station'},
   {tm:'13:00',nm:'레일젯 부다페스트 → 비엔나',ds:'ÖBB/MÁV · 약 2시간 20~40분',
-   warn:'⚠️ 스케줄 미오픈 — 9~10월 재시도 후 예약',q:'Wien Hauptbahnhof'},
+   warn:'⚠️ 10월 중순 예매 시작 — 열리는 즉시 예약(특가 좌석 한정). ÖBB·MÁV 두 곳 비교',q:'Wien Hauptbahnhof'},
   {tm:'16:00',nm:'Adina Apartment Hotel 체크인',en:'Canettistraße 3, 1100 Wien',ds:'빈 중앙역 인근 · 취사 가능',q:'Adina Apartment Hotel Vienna Belvedere'},
   {tm:'19:30',nm:'크리스마스 당일 저녁 식사',ds:'후보: Griechenbeisl · Meissl & Schadn · Huth Gastwirtschaft',
-   warn:'⚠️ 예약 필수 — 예약 시스템 미오픈, 9~10월 재시도 (19:30~20:00 권장)',q:'Griechenbeisl Vienna'}
+   warn:'⚠️ 예약 필수 — 12/25 는 여는 곳이 적다. 19:30~20:00 권장. 장소 탭 「🍽 식당 후보」 참고',q:'Griechenbeisl Vienna'}
  ]},
 {d:'2026-12-26',w:'토',city:'vie',ct:'비엔나',t:'구시가 · 슈테판 대성당',sum:'슈테판 대성당 · 그라벤 · 케른트너 거리',
  items:[
@@ -754,7 +760,7 @@ const DAYS = [
  items:[
   {tm:'09:00',nm:'빈 중앙역 이동',en:'Wien Hauptbahnhof',ds:'숙소에서 도보권',q:'Wien Hauptbahnhof'},
   {tm:'10:00',nm:'레일젯 비엔나 → 프라하',ds:'ÖBB · 약 4시간',
-   warn:'⚠️ 스케줄 미오픈 — 9~10월 재시도 후 예약',q:'Praha hlavní nádraží'},
+   warn:'⚠️ 10월 중순 예매 시작 — 열리는 즉시 예약(특가 좌석 한정). ÖBB 에서 구매',q:'Praha hlavní nádraží'},
   {tm:'14:30',nm:'프라하 중앙역 도착',en:'Praha hlavní nádraží',q:'Praha hlavní nádraží'},
   {tm:'15:30',nm:'Unitas Hotel 체크인',en:'Bartolomějská 308/9, Praha 1',ds:'구시가 광장 인근 · 마켓·야경 도보권',q:'Unitas Hotel Prague'},
   {tm:'17:30',nm:'구시가 광장 크리스마스 마켓',en:'Old Town Square',ds:'대형 트리 · 천문시계',q:'Old Town Square Prague'},
@@ -1053,13 +1059,13 @@ const MOVES = [
  ds:'데악 페렌츠 광장까지 직행 약 40분 · 2,500 HUF · 도보 10분',
  tip:'BudapestGO 앱으로 티켓 구매',from:'Budapest Ferenc Liszt International Airport',to:'Deák Ferenc tér Budapest'},
 {nm:'부다페스트 → 비엔나',how:'ÖBB/MÁV 레일젯',st:'r',
- ds:'12/25 · 약 2시간 20~40분',warn:'스케줄 미오픈 — 9~10월 재시도',
+ ds:'12/25 · 약 2시간 20~40분',warn:'10월 중순 예매 시작 — ÖBB·MÁV 비교 후 편도 구매',
  from:'Budapest Keleti railway station',to:'Wien Hauptbahnhof'},
 {nm:'비엔나 → 프라하',how:'ÖBB 레일젯',st:'r',
- ds:'12/29 오전 · 약 4시간',warn:'스케줄 미오픈 — 9~10월 재시도',
+ ds:'12/29 오전 · 약 4시간',warn:'10월 중순 예매 시작 — ÖBB 에서 편도 구매',
  from:'Wien Hauptbahnhof',to:'Praha hlavní nádraží'},
 {nm:'프라하 ↔ 드레스덴',how:'EC 유로시티 직행',st:'y',
- ds:'12/30 왕복 · 편도 약 2시간~2시간 15분',warn:'연말 성수기 — 사전 예약 권장',
+ ds:'12/30 왕복 · 편도 약 2시간 7분 · 직행 하루 약 12편',warn:'10월 중순 예매 시작 — ČD·DB 두 곳 비교. 왕복 할인 없으니 편도 2장. 연말 성수기라 좌석 지정 권장',
  from:'Praha hlavní nádraží',to:'Dresden Hauptbahnhof'},
 {nm:'프라하 숙소 → 공항',how:'Bolt 택시',st:'g',
  ds:'약 25~30분 · 편도 약 600~800 CZK',tip:'사전 예약 불필요 — 당일 앱으로 호출',
@@ -1072,11 +1078,11 @@ const LISTS = [
 {id:'todo-red',t:'🔴 급함',items:[
  '집 → 인천공항 리무진버스 예약 (12/22, 07:15경 출발 목표)',
  '강설 시 플랜B 지하철 경로 확인 (06:46 동구릉역 출발)']},
-{id:'todo-yellow',t:'🟡 곧 해야 함 (9~10월경)',items:[
+{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차 4구간은 10월 중순 예매 시작 — 열리는 즉시 사야 특가를 잡는다',items:[
  '12/25 크리스마스 저녁 식사 예약 (비엔나, 19:30~20:00)',
- '부다페스트 → 비엔나 편도 기차 예약 (12/25)',
- '비엔나 → 프라하 레일젯 예약 (12/29)',
- '프라하 ↔ 드레스덴 왕복 EC 기차 예약 (12/30)',
+ '부다페스트 → 비엔나 편도 기차 예약 (12/25) — **10월 중순** · ÖBB·MÁV 비교',
+ '비엔나 → 프라하 레일젯 예약 (12/29) — **10월 중순** · ÖBB',
+ '프라하 ↔ 드레스덴 왕복 EC 기차 예약 (12/30) — **10월 중순** · ČD·DB 비교, 편도 2장',
  '드레스덴 점심 예약 — 아우구스티너 (12/30 12:30, 2인) · 연말 성수기라 예약 권장',
  '**12/24 이브 저녁 예약 (부다페스트)** — ARAZ 등. 오후 2시면 다 닫히니 예약 없으면 못 먹는다',
  '12/31 새해 전야 저녁 예약 (프라하) — 믈리네츠·카페 임페리얼 등. 정상 영업이지만 NYE 좌석은 미리 찬다',
