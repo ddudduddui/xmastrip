@@ -3,15 +3,22 @@
 ## ✅ 1. 지도 버튼 검색 실패 — 해결 (2026-08-08 확인 → 2026-08-10 전수 검증 완료)
 
 **조치**: 🗺️ 를 **이름 검색**으로, 좌표는 **📍** 로 분리했다.
-좌표로만 열면 가게 이름·영업시간이 안 보인다는 지적을 받아, 식당 탭에서 둘의 역할을 맞바꿨다.
+좌표로만 열면 가게 이름·영업시간이 안 보인다는 지적을 받아 둘의 역할을 맞바꿨고,
+**일정 · 장소 · 숙소 · 촬영 포인트 · 식당 다섯 곳 전부** 같은 방식으로 통일했다.
 
 | 버튼 | 방식 | 실패 가능성 |
 |---|---|---|
-| 🗺️ 지도 | `sq` 이름 검색 — 이름·영업시간·평점이 바로 보인다 | 있음 → 📍 로 우회 |
+| 🗺️ 지도 | `SQ` 이름 검색 — 이름·영업시간·평점이 바로 보인다 | 있음 → 📍 로 우회 |
 | 🧭 길찾기 | 좌표 | 없음 |
 | 📍 좌표 | 저장된 좌표 `?api=1&query=위도,경도` | **없음** |
 
-**식당·카페 `sq` 43곳(고유) 전부 실제 구글지도에서 검증 완료** (2026-08-10). 검색 실패 0건.
+검색어는 항목마다 `sq` 를 달지 않고 **`SQ` 표 하나로 통합**했다(`q` → 검색어, 78항목).
+`q` 는 GEO 키와 짝이라 손대지 않는다. 여기 없는 `q` 는 그대로 검색된다.
+
+**검색어 78곳 전부 실제 구글지도에서 검증 완료** (2026-08-10). 좌표 대조까지 했다.
+이름 검색이 아예 안 되는 2곳은 `NOSRCH` 에 넣어 🗺️ 도 좌표로 연다 —
+`Danube river cruise Budapest`(업소가 아니라 활동), `Theaterplatz, Dresden`
+(구글지도에 그 이름의 장소가 없다. 도시명·쉼표·우편번호 다 시도해도 「찾을 수 없습니다」).
 
 ### 검색어 매칭 규칙 (실측으로 확정)
 
@@ -26,7 +33,7 @@
 3. **원어명을 쓴다.** 기존 q 값은 Nominatim(좌표 조회)용이라 발음기호가 빠져 있었다.
    `Cerveny jelen` → `Červený jelen`, `Belvarosi Disznotoros` → `Belvárosi Disznótoros`
 
-→ 이 규칙으로 식당·카페 **54곳에 `sq`(검색 전용 검색어) 필드**를 넣었다.
+→ 이 규칙으로 `SQ` 표를 만들었다(78항목 · 식당 43 + 명소·역·촬영 35).
    `q` 는 좌표 조회 키라 건드리지 않았다(GEO 키와 짝이므로 바꾸면 좌표가 깨진다).
 
 ### 🚨 검증 중 발견한 폐업 → **앱에서 제거함** (직접 대체 예정)
@@ -59,7 +66,7 @@ GEO 좌표와 일정 탭 12/24 항목의 언급까지 함께 지웠다. 되살�
 12/31 일정은 프라하성에서 내려오는 **말라스트라나 점심**이다.
 본점(Nebovidská 460/6) 좌표 `50.08476,14.40574` 로 교체하고 `sq` 도 지점 지정.
 
-### 실제 구글지도에서 확인한 것 (고유 43곳 전부 · 검색 실패 0)
+### 실제 구글지도에서 확인한 것 (78곳 전부)
 
 좌표 불일치도 없었다(마켓·공항처럼 구역이 넓은 곳만 200~800m 차이 — 정상).
 
@@ -75,9 +82,26 @@ Café Central(임시 휴업) · Lokál Dlouhá 4.4 · Grand Café Orient 3.6 ·
 U modré kachničky 4.7 · Café Savoy 4.2 · Café Imperial 4.6 · Café Louvre ·
 Augustiner 4.3 · Coselpalais 4.6 · 마켓·역·호텔·공항 나머지
 
-`sq` 를 더 구체적으로 바꾼 곳: Café Savoy Vítězná · Café Imperial Na Poříčí ·
+거리명을 붙여 지점을 특정한 곳: Café Savoy Vítězná · Café Imperial Na Poříčí ·
 Café Louvre Národní · Café Central Herrengasse · U modré kachničky Nebovidská ·
-Da Mario Budapest Vécsey.
+Kantýna Politických vězňů 5 · V Zátiší Liliová 1 · Figlmüller Wollzeile ·
+Plachutta Wollzeile · ARAZ Dohány utca 42.
+
+**일정·장소·촬영 35곳** (원어명으로 교체 — 전부 좌표 일치):
+Országház · Széchenyi gyógyfürdő · Halászbástya · Mátyás-templom ·
+Széchenyi Lánchíd · Szent István-bazilika · Vörösmarty tér · Deák Ferenc tér ·
+Batthyány tér · Gellért-hegy · Stephansdom · Kärntner Straße · Schloss Schönbrunn ·
+Schloss Belvedere · Hofburg · Hundertwasserhaus · Wiener Staatsoper ·
+Gloriette Schönbrunn · Karlův most · Pražský hrad · Staroměstský orloj ·
+Petřínská rozhledna · Vyšehrad · Lennonova zeď · Josefov · Malá Strana ·
+Staroměstská mostecká věž · Letenské sady · Zwinger · Brühlsche Terrasse ·
+Semperoper · Augustusbrücke Dresden · Fürstenzug Dresden
+
+**q 그대로가 정확해 SQ 에 넣지 않은 곳**: Graben Vienna · Frauenkirche Dresden ·
+Neumarkt Dresden · Wien Hauptbahnhof · Praha hlavní nádraží · Dresden Hauptbahnhof ·
+Budapest Ferenc Liszt International Airport · 인천국제공항 제2여객터미널
+— 이 8곳도 실제로 열어 확인했다. 도시명이 붙어도 되는 경우가 있어 규칙 ①을
+기계적으로 적용하면 안 된다(`Graben` 단독은 오히려 위험하다).
 
 ### ⚠️ 검증 방법 — 다음 사람을 위해
 
@@ -105,7 +129,7 @@ Da Mario Budapest Vécsey.
 ### 앱 (급하지 않음)
 
 - 좌표는 **88곳 전부 검증 완료** — Nominatim 조회 + 도시 경계 대조. 좌표 없는 곳 0.
-- `sq` 실검증 **완료 (고유 43곳 전부)** — 검색 실패 0건. 위 「실제 구글지도에서 확인한 것」 참고.
+- 검색어 실검증 **완료 (78곳 전부)** — 일정·장소·촬영까지 포함. 실패 2곳은 좌표로 우회 처리.
 - 폐업 3곳은 목록에서 제거함. **대체 후보는 직접 찾아 넣을 예정** (12/23 부다 성 점심·카페, 12/24 이브 저녁).
 - 12월 초 재확인 때 **폐업 여부도 같이 본다** — 이번에 3곳이 나왔으니 또 생길 수 있다.
 
