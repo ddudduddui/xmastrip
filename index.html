@@ -447,9 +447,9 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="note" style="margin:2px 0 0">그날 <b>이동 경로 위에 있는 곳만</b> 모았습니다. 날짜를 누르면 그 날의 동선과 후보가 펼쳐집니다. <b style="color:var(--gr2)">초록 표시</b>가 동선상 1순위입니다.<br><br>휴무가 걸리는 <b>12/24 · 12/25 · 1/1</b> 을 먼저 정하세요. 운영시간·휴무는 시기가 되어야 확정되니 <b>출발 2~3주 전에 각 홈페이지·구글지도에서 재확인</b>하세요. 아래 내용은 조사 시점(2026-08) 기준입니다.</div>
   </div>
   <div id="food"></div>
-  <div class="foot"><b>🗺️ 위치</b> — 저장된 좌표로 정확히 열립니다(검색 실패 없음)<br>
-  <b>🧭 길찾기</b> — 현재 위치에서 그 좌표까지<br>
-  <b>🔎 정보</b> — 이름으로 검색해 <b>영업시간·평점</b>을 봅니다. 가게 이름은 구글에서 못 찾는 경우가 있어, 안 나오면 🗺️ 를 쓰세요</div>
+  <div class="foot"><b>🗺️ 지도</b> — 가게 이름으로 검색해 <b>이름·영업시간·평점</b>이 바로 보입니다<br>
+  <b>🧭 길찾기</b> — 현재 위치에서 그 가게 좌표까지<br>
+  <b>📍 좌표</b> — 저장된 좌표로 정확히 열립니다. 🗺️ 에서 가게가 안 나오거나 다른 지점이 나오면 이걸 쓰세요(검색 실패 없음)</div>
 </section>
 
 <!-- ══════════ 교통 ══════════ -->
@@ -1027,16 +1027,16 @@ const FOOD = [
 
 {d:'2026-12-23',w:'수',city:'bud',ct:'부다페스트',t:'온천 → 부다 성 → 국회의사당',
  rt:'06:00 세체니 온천(<b>도시공원</b>) → 10:30 어부의 요새·마차시 성당(<b>부다 성</b>) → 13:00 점심 → 15:00 세체니 다리 도보 횡단 → 16:30 국회의사당(<b>페스트</b>)',
- tip:'⚠️ 일정의 13:00 점심이 「부다 지구 또는 중앙시장」인데, <b>중앙시장은 페스트 쪽이라 15:00 세체니 다리 도보 횡단과 순서가 어긋난다.</b> 점심은 부다 성에서 해결하고 다리를 건너 국회의사당으로 가는 쪽이 깔끔하다. 중앙시장은 12/24 오전 장보기 일정에 이미 들어 있다.',
+ tip:'⚠️ <b>이 날 부다 성 후보 두 곳(뤼스빔·알라바르도시)이 폐업했다</b>(2026-08 구글지도 확인). 부다 성에서 먹을 곳을 새로 찾아야 한다 — 어부의 요새·마차시 성당 주변에 관광객 상대 식당이 여럿 있으니 현장에서 골라도 되지만, 미리 한 곳 정해두면 편하다.<br><br>또 일정의 13:00 점심이 「부다 지구 또는 중앙시장」인데, <b>중앙시장은 페스트 쪽이라 15:00 세체니 다리 도보 횡단과 순서가 어긋난다.</b> 점심은 부다에서 해결하고 다리를 건너 국회의사당으로 가는 쪽이 깔끔하다. 중앙시장은 12/24 오전 장보기 일정에 이미 들어 있다.',
  list:[
  {mt:'10:00 이른 점심',nm:'군델',en:'Gundel · 도시공원',q:'Gundel Restaurant Budapest',sq:'Gundel',tag:'온천 바로 옆',
   ds:'역사 있는 고급 헝가리 식당. 팔로츠 수프, 군델 팬케이크 같은 클래식으로 알려져 있다. <b>세체니 온천 바로 옆</b>이라 이 여행에서 이곳이 동선에 맞는 시점은 온천 직후뿐이다. 다만 10:30 부다 성 일정과 붙어 있어, 넣으려면 <b>온천을 일찍 끝내고 이른 점심으로 당겨야</b> 한다.'},
  {mt:'10:00 이른 점심',nm:'살레틀리',en:'Szaletly · 도시공원',q:'Szaletly Budapest',sq:'Szaletly',tag:'부담 적음',
   ds:'요즘의 헝가리 가정식을 편안하게 내는 곳. 역시 도시공원 안이고 군델보다 값과 격식의 부담이 적다.'},
- {mt:'12:00 카페',pk:1,nm:'뤼스빔',en:'Ruszwurm · Szentháromság u. 7',q:'Ruszwurm Cukrászda Budapest',sq:'Ruszwurm',tag:'마차시 성당 옆',
-  ds:'1827년부터 이어진 부다 성의 작은 제과점. <b>마차시 성당에서 도보 1분</b>이라 어부의 요새 → 마차시 성당 구간에 그대로 끼워 넣을 수 있다. 자리가 몇 개 안 돼 대기가 있는 편이니, 서서 먹거나 포장도 방법이다.'},
- {mt:'13:00 점심',pk:1,nm:'알라바르도시',en:'Alabárdos · 부다 성',q:'Alabardos Restaurant Budapest',sq:'Alabárdos',tag:'부다 성 안',
-  ds:'부다 성 안의 고급 헝가리 식당. <b>점심을 부다에서 끝내면 15:00 다리 횡단이 그대로 이어진다.</b> 12/24 이브 저녁 후보이기도 하다.'},
+ {mt:'12:00 카페',nm:'뤼스빔',en:'Ruszwurm · Szentháromság u. 7',q:'Ruszwurm Cukrászda Budapest',sq:'Ruszwurm',tag:'⚠️ 폐업 확인',
+  ds:'⚠️ <b>2026-08 구글지도 확인 시 「폐업」으로 표기되어 있다.</b> 방문자 메모로 「주인이 8월 6일에 사망해 임시 휴업」이 달려 있다. 출발 전에 영업 재개 여부를 반드시 확인하고, 안 열면 부다 성 카페는 다른 곳을 찾아야 한다.<br><br>1827년부터 이어진 부다 성의 작은 제과점. <b>마차시 성당에서 도보 1분</b>이라 어부의 요새 → 마차시 성당 구간에 그대로 끼워 넣을 수 있다.'},
+ {mt:'13:00 점심',nm:'알라바르도시',en:'Alabárdos · 부다 성',q:'Alabardos Restaurant Budapest',sq:'Alabárdos',tag:'⚠️ 폐업 확인',
+  ds:'⚠️ <b>2026-08 구글지도 확인 시 「폐업」으로 표기되어 있다</b>(평점 4.7·181개는 남아 있으나 영구 폐업 표시). 점심·이브 저녁 후보에서 빼는 것이 안전하다.<br><br>부다 성 안의 고급 헝가리 식당이었다. 점심을 부다에서 끝내면 15:00 다리 횡단이 그대로 이어진다는 동선 이점은 여전하니, 대체할 곳을 부다 성 안에서 찾으면 된다.'},
  {mt:'13:00 점심 · 대안',nm:'중앙시장 2층',en:'Great Market Hall · 페스트',q:'Great Market Hall Budapest',sq:'Great Market Hall',tag:'동선 어긋남',
   ds:'랑고시(튀긴 빵)와 굴라시를 파는 먹거리 층. 맛과 값은 좋지만 <b>페스트 쪽이라 다리 횡단 순서가 뒤집힌다.</b> 게다가 오후에 문을 닫는다. 굳이 넣으려면 부다 일정 전 이른 시간에.'},
  {mt:'19:00 저녁',pk:1,nm:'헝가리쿰 비스트로',en:'Hungarikum Bisztró · 국회의사당 근처',q:'Hungarikum Bisztro Budapest',sq:'Hungarikum Bisztró',tag:'예약 권장',
@@ -1044,7 +1044,7 @@ const FOOD = [
 
 {d:'2026-12-24',w:'목',city:'bud',ct:'부다페스트',t:'크리스마스 이브 · 오후에 다 닫힌다',urgent:1,
  rt:'09:30 장보기(중앙시장) → 10:30 성 이슈트반 대성당 → 11:30 바실리카 마켓 → 12:30 보로시마르티 마켓 → 14:00 숙소 휴식 → <b>18:00 이브 저녁</b>',
- warn:'부다페스트는 12/24 에 <b>상점은 정오, 식당·마켓·온천은 오후 1~3시경 문을 닫습니다.</b> 저녁을 먹으려면 <b>반드시 예약</b>해야 하고, 그날 여는 곳은 호텔 레스토랑과 헝가리 크리스마스 관습을 따르지 않는 외국 음식점 정도입니다.',
+ warn:'부다페스트는 12/24 에 <b>상점은 정오, 식당·마켓·온천은 오후 1~3시경 문을 닫습니다.</b> 저녁을 먹으려면 <b>반드시 예약</b>해야 하고, 그날 여는 곳은 호텔 레스토랑과 헝가리 크리스마스 관습을 따르지 않는 외국 음식점 정도입니다.<br><br>⚠️ <b>후보 두 곳(알라바르도시·다 마리오)이 폐업했습니다</b>(2026-08 확인). 특히 다 마리오는 「연중무휴 안전패」였으니, 남은 <b>ARAZ · 고즈두 우드바르 · 호텔 뷔페</b> 중에서 정하고 예약을 서둘러야 합니다.',
  list:[
  {mt:'11:30 마켓 간식',nm:'바실리카 앞 마켓 먹거리',en:'Advent Bazilika',q:'Advent Bazilika Christmas Market Budapest',sq:'Advent Bazilika',tag:'오전만',
   ds:'퇴뢰크(굴뚝빵)·굴라시·뜨거운 와인(포랄트 보르). <b>오후 1~3시경 폐장</b>이라 이 날 마켓 음식은 오전이 마지막 기회다. 점심을 여기서 때우는 셈 치면 동선이 가장 짧다.'},
@@ -1054,10 +1054,10 @@ const FOOD = [
   ds:'유대인 지구 호텔 레스토랑. <b>숙소에서 도보권</b>이고 12/24 저녁 영업을 하는 곳으로 알려져 있다. 이브 저녁 1순위로 두기 좋다.'},
  {mt:'18:00 저녁',nm:'고즈두 우드바르',en:'Gozsdu udvar · 7구',q:'Gozsdu udvar Budapest',sq:'Gozsdu udvar',tag:'여는 곳 있음',
   ds:'<b>숙소에서 도보 5분.</b> 여러 곳이 모여 있어 이브에도 문 연 데를 찾기 쉬운 편이다. 예약이 다 실패했을 때의 마지막 보루.'},
- {mt:'18:00 저녁',nm:'알라바르도시',en:'Alabárdos · 부다 성',q:'Alabardos Restaurant Budapest',sq:'Alabárdos',tag:'이브 저녁만',
-  ds:'12/24 에는 <b>저녁 시간대만</b> 여는 것으로 안내된다. 분위기를 낼 저녁이면 후보 — 다만 숙소에서 부다 성까지 이동이 붙는다.'},
- {mt:'18:00 저녁',nm:'다 마리오',en:'Da Mario · 5구',q:'Da Mario Restaurant Budapest',sq:'Da Mario',tag:'연중무휴',
-  ds:'이탈리안. 헝가리 명절 관습과 무관해 <b>이브에도 연다</b>고 알려진 곳. 확실하게 먹고 싶을 때의 안전패.'},
+ {mt:'18:00 저녁',nm:'알라바르도시',en:'Alabárdos · 부다 성',q:'Alabardos Restaurant Budapest',sq:'Alabárdos',tag:'⚠️ 폐업 확인',
+  ds:'⚠️ <b>2026-08 구글지도에 「폐업」으로 표기.</b> 이브 저녁 후보에서 빼야 한다. 예전에는 12/24 저녁 시간대만 여는 것으로 안내되던 곳이다.'},
+ {mt:'18:00 저녁',nm:'다 마리오',en:'Da Mario · 5구',q:'Da Mario Restaurant Budapest',sq:'Da Mario Budapest Vécsey',tag:'⚠️ 폐업 확인',
+  ds:'⚠️ <b>2026-08 구글지도에 「폐업」으로 표기.</b> 이브에도 연다는 이유로 「안전패」로 넣었던 곳인데 <b>이제 안전패가 아니다.</b> 12/24 저녁은 ARAZ·고즈두 우드바르·호텔 뷔페 쪽으로 좁혀야 한다.'},
  {mt:'18:00 저녁',nm:'호텔 뷔페 (전략)',en:'Corinthia Grand Hotel Royal · Erzsébet krt',q:'Corinthia Hotel Budapest',sq:'Corinthia Grand Hotel Royal',tag:'선결제',
   ds:'대형 호텔들이 이브 뷔페를 운영한다. <b>사전 예약 + 전액 선결제</b>가 보통이라 값은 비싸지만 확실하다.'}]},
 
@@ -1105,8 +1105,8 @@ const FOOD = [
   ds:'궁전 정문 앞 마켓에 먹거리 노점이 선다. 오전 관람 직후 그 자리에서 점심을 해결하면 15:00 카페까지 시간이 넉넉하다.'},
  {mt:'15:00 카페',pk:1,nm:'카페 자허',en:'Café Sacher · 국립오페라극장 옆',q:'Cafe Sacher Wien',sq:'Café Sacher',tag:'자허토르테',
   ds:'자허토르테의 원조로 알려진 호텔 카페. <b>쇤브룬에서 U4 한 번에 카를스플라츠</b>, 거기서 도보 3분이다. 벨베데레·숙소와 같은 방향이라 이 날 동선에 가장 잘 맞는다.'},
- {mt:'15:00 카페 · 대안',nm:'카페 센트랄',en:'Café Central · Herrengasse',q:'Cafe Central Vienna',sq:'Café Central',tag:'아인슈페너',
-  ds:'아치 천장의 아르카데 실내가 그 자체로 볼거리다. 아인슈페너(휘핑크림 커피)로 알려져 있다. 다만 구시가 북쪽이라 <b>U-Bahn 환승이 한 번 더 붙고 벨베데레로 되돌아오는 거리도 길다.</b> 실내를 보는 값을 치를 생각이면.'},
+ {mt:'15:00 카페 · 대안',nm:'카페 센트랄',en:'Café Central · Herrengasse',q:'Cafe Central Vienna',sq:'Café Central Herrengasse',tag:'⚠️ 임시 휴업',
+  ds:'⚠️ <b>2026-08 구글지도에 「임시 휴업」으로 표기.</b> 폐업은 아니니 12월엔 열려 있을 수 있지만, 예약 전에 홈페이지에서 확인하세요.<br><br>아치 천장의 아르카데 실내가 그 자체로 볼거리다. 아인슈페너(휘핑크림 커피)로 알려져 있다. 다만 구시가 북쪽이라 <b>U-Bahn 환승이 한 번 더 붙고 벨베데레로 되돌아오는 거리도 길다.</b>'},
  {mt:'19:00 저녁',nm:'숙소 근처 · 취사',en:'Adina Apartment Hotel · 빈 중앙역',q:'Adina Apartment Hotel Vienna Belvedere',sq:'Adina Apartment Hotel',tag:'취사 가능',
   ds:'벨베데레에서 숙소까지 도보권이다. 낮에 카페에서 케이크를 먹었으면 저녁은 가볍게 — 주방이 있으니 빈 중앙역 지하 슈퍼(공휴일 예외로 여는 편)에서 사와 해먹는 것도 방법.'}]},
 
@@ -1156,15 +1156,15 @@ const FOOD = [
  warn:'<b>12/31 은 체코 공휴일이 아니라 식당들이 정상 영업합니다.</b> 다만 대부분 특별 「NYE 메뉴」로 바꾸고 좌석을 미리 받으므로 예약이 필요합니다. 23:00 구시가 광장 카운트다운을 감안해 저녁은 <b>광장까지 걸어갈 수 있는 곳</b>으로 잡으세요.',
  tip:'점심은 강 서쪽(말라스트라나), 저녁은 강 동쪽(구시가)이다. <b>카를교를 건너는 것이 15:00 일정이므로</b> 점심을 강 동쪽에서 먹으면 다리를 두 번 건너게 된다.',
  list:[
- {mt:'13:00 점심',pk:1,nm:'우 모드레 카흐니치키',en:'U modré kachničky',q:'U modre kachnicky Praha',sq:'U modré kachničky',tag:'오리',
-  ds:'<b>오리 요리</b>로 이름난 곳. 체코 전통 요리를 격식 있게 먹고 싶을 때. ⚠️ <b>지점이 둘이다</b> — 여기 저장된 좌표는 구시가 쪽 지점이니, 말라스트라나 지점(프라하성에서 내려오는 길)으로 가려면 지도에서 먼저 확인하세요.'},
- {mt:'13:00 점심 · 대안',nm:'카페 사보이',en:'Café Savoy · Vítězná 5',q:'Cafe Savoy Praha',sq:'Café Savoy',tag:'말라스트라나',
+ {mt:'13:00 점심',pk:1,nm:'우 모드레 카흐니치키',en:'U modré kachničky',q:'U modre kachnicky Praha',sq:'U modré kachničky Nebovidská',tag:'오리',
+  ds:'<b>오리 요리</b>로 이름난 곳. 체코 전통 요리를 격식 있게 먹고 싶을 때. 평점 4.7(1,891).<br><br><b>지점이 둘이다</b> — 이 앱은 일정(프라하성에서 내려오는 말라스트라나 점심)에 맞는 <b>Nebovidská 460/6 본점</b> 좌표를 쓴다. 구시가 Michalská 16 에 2호점이 따로 있으니 헷갈리지 마세요.'},
+ {mt:'13:00 점심 · 대안',nm:'카페 사보이',en:'Café Savoy · Vítězná 5',q:'Cafe Savoy Praha',sq:'Café Savoy Vítězná',tag:'말라스트라나',
   ds:'높은 천장의 클래식 카페. 브런치가 강한 곳이라 늦은 점심에도 맞는다. 말라스트라나 남쪽이라 프라하성에서 내려와 강변을 따라 걸으면 된다.'},
  {mt:'18:00 저녁',pk:1,nm:'믈리네츠',en:'Mlýnec · 카를교 옆',q:'Mlynec Praha',sq:'Mlýnec',tag:'NYE 메뉴',
   ds:'<b>카를교 바로 옆 강변</b>. 창가에서 다리와 성이 보인다. 저녁 후 구시가 광장까지 도보 8분이라 <b>카운트다운 동선에 가장 잘 맞는다.</b>'},
  {mt:'18:00 저녁',nm:'브 자티시',en:'V Zátiší · Liliová 1',q:'V Zátiší Liliová 1 Praha',sq:'V Zátiší Liliová 1',tag:'NYE 코스',
   ds:'구시가의 오래된 고급 식당. 새해 전야 코스 메뉴를 낸다. 광장까지 도보 6분. ⚠️ 프라하 4구에 <b>같은 이름의 다른 곳</b>이 있으니 구시가(Staré Město) 리리오바 거리가 맞습니다.'},
- {mt:'18:00 저녁',nm:'카페 임페리얼',en:'Café Imperial · Na Poříčí',q:'Cafe Imperial Praha',sq:'Café Imperial',tag:'NYE 뷔페',
+ {mt:'18:00 저녁',nm:'카페 임페리얼',en:'Café Imperial · Na Poříčí',q:'Cafe Imperial Praha',sq:'Café Imperial Na Poříčí',tag:'NYE 뷔페',
   ds:'1914년 아르누보 타일로 뒤덮인 실내가 볼거리. 새해 전야에 <b>뷔페</b>를 운영한다고 안내된다. 다만 <b>광장까지 도보 12분</b>이라 카운트다운 전 이동을 계산에 넣어야 한다.'},
  {mt:'18:00 저녁 · 대안',nm:'체르베니 옐렌',en:'Červený jelen',q:'Cerveny jelen Praha',sq:'Červený jelen',tag:'연말 내내',
   ds:'NYE 예약이 다 찼을 때의 대안. 대형 비어홀이라 자리가 많고 <b>연말 휴일 기간 내내 문을 연다.</b>'}]},
@@ -1174,7 +1174,7 @@ const FOOD = [
  warn:'<b>1/1 은 공휴일이고 이번 여행에서 휴무가 가장 많은 날입니다.</b> 상점·박물관도 상당수 닫습니다. 미리 한두 곳을 정해두고, 아침에 영업 여부를 다시 확인하세요.',
  tip:'제안 일정 중 <b>페트르진·존 레논 벽·캄파 섬이 모두 강 서쪽</b>에 몰려 있다. 그쪽에서 여는 곳을 하나 잡아두면 하루가 편해진다.',
  list:[
- {mt:'11:00 브런치',pk:1,nm:'카페 사보이',en:'Café Savoy · Vítězná 5',q:'Cafe Savoy Praha',sq:'Café Savoy',tag:'푸니쿨라 옆',
+ {mt:'11:00 브런치',pk:1,nm:'카페 사보이',en:'Café Savoy · Vítězná 5',q:'Cafe Savoy Praha',sq:'Café Savoy Vítězná',tag:'푸니쿨라 옆',
   ds:'브런치가 강한 클래식 카페. <b>페트르진 푸니쿨라 승강장(우예즈드)이 바로 근처</b>라, 늦게 일어난 새해 첫날에 브런치 → 페트르진 전망대로 바로 이어진다. 이 날 1순위.'},
  {mt:'점심·저녁',pk:1,nm:'체르베니 옐렌',en:'Červený jelen',q:'Cerveny jelen Praha',sq:'Červený jelen',tag:'1/1 영업',
   ds:'<b>크리스마스 이브부터 새해 첫날까지 계속 문을 여는 곳</b>으로 소개된다. 1/1 정찬 후보로 가장 확실하다.'},
@@ -1187,7 +1187,7 @@ const FOOD = [
  rt:'오전 자유 → <b>13:00 점심·기념품</b> → 14:30 체크아웃·짐 수령 → 15:00 Bolt 택시 → 15:45 공항 → 18:30 출국',
  tip:'14:30 체크아웃 전에 점심을 끝내야 한다. <b>숙소(Unitas) 반경 500m 안</b>에서 고르면 시간을 하나도 잃지 않는다.',
  list:[
- {mt:'13:00 점심',pk:1,nm:'카페 루브르',en:'Café Louvre · Národní 22',q:'Cafe Louvre Praha',sq:'Café Louvre',tag:'숙소 도보 3분',
+ {mt:'13:00 점심',pk:1,nm:'카페 루브르',en:'Café Louvre · Národní 22',q:'Cafe Louvre Praha',sq:'Café Louvre Národní',tag:'숙소 도보 3분',
   ds:'1902년에 문을 연 2층 카페 겸 식당. 아인슈타인과 카프카가 드나든 곳으로 알려져 있다. <b>숙소에서 도보 3분</b>이라 마지막 점심으로 시간 손실이 없고, 식사와 커피·케이크를 한자리에서 끝낼 수 있다.'},
  {mt:'13:00 점심 · 대안',nm:'칸티나',en:'Kantýna · Politických vězňů 5',q:'Kantýna Politických vězňů 5 Praha',sq:'Kantýna Politických vězňů 5',tag:'빠름',
   ds:'정육점과 식당을 겸한 곳. 고기를 골라 주문하는 방식이라 <b>빨리 먹고 나올 수 있다.</b> 다만 숙소에서 도보 11분이라 왕복 시간을 계산에 넣으세요. ⚠️ 프라하 4구에 <b>같은 이름의 다른 가게</b>가 있으니 신시가(Nové Město) 쪽이 맞습니다.'},
@@ -1380,7 +1380,7 @@ const GEO={
  'Plachutta Wollzeile Wien':[48.20755,16.37876],
  'Ruszwurm Cukrászda Budapest':[47.50127,19.0329],
  'Szaletly Budapest':[47.50886,19.09483],
- 'U modre kachnicky Praha':[50.08555,14.42001],
+ 'U modre kachnicky Praha':[50.08476,14.40574],
  'V Zátiší Liliová 1 Praha':[50.08438,14.41637],
  'Zum Schwarzen Kameel Wien':[48.20999,16.36832],
  'Augustusbrücke, Dresden':[51.05555,13.73975],
@@ -1803,12 +1803,12 @@ function toggleFood(i){ openFood.has(i)?openFood.delete(i):openFood.add(i);
       ${g.list.map(p=>`<div class="sp${p.pk?' pk':''}">
         <div class="h1">
           <div class="nm2">
-            <div class="k1"><span class="mslot">${esc(p.mt)}</span>${esc(p.nm)}${p.tag?`<span class="badge ${p.tag.includes('필수')||p.tag.includes('선결제')||p.tag.includes('어긋')?'y':'g'}">${esc(p.tag)}</span>`:''}</div>
+            <div class="k1"><span class="mslot">${esc(p.mt)}</span>${esc(p.nm)}${p.tag?`<span class="badge ${p.tag.includes('폐업')||p.tag.includes('휴업')?'r':p.tag.includes('필수')||p.tag.includes('선결제')||p.tag.includes('어긋')?'y':'g'}">${esc(p.tag)}</span>`:''}</div>
             <div class="e1">${esc(p.en)}</div>
           </div>
-          <button class="b map" onclick="op(pinU('${esc(p.q).replace(/'/g,"\\'")}'))">🗺️</button>
+          <button class="b map" onclick="op(mapU('${esc(p.sq||p.q).replace(/'/g,"\\'")}'))">🗺️</button>
           <button class="b dir" onclick="op(dirU('${esc(p.q).replace(/'/g,"\\'")}'))">🧭</button>
-          <button class="b inf" onclick="op(mapU('${esc(p.sq||p.q).replace(/'/g,"\\'")}'))">🔎</button>
+          <button class="b inf" onclick="op(pinU('${esc(p.q).replace(/'/g,"\\'")}'))">📍</button>
         </div>
         <div class="ds2">${p.ds}</div>
         ${gtxt(p.q)?`<div class="geo" onclick="copy('${gtxt(p.q)}')">
