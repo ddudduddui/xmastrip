@@ -1,17 +1,17 @@
 # 다음에 할 일
 
-## ✅ 1. 지도 버튼 검색 실패 — 해결 (2026-08-08 확인 → 2026-08-09 조치)
+## ✅ 1. 지도 버튼 검색 실패 — 해결 (2026-08-08 확인 → 2026-08-10 전수 검증 완료)
 
-**조치**: 🗺️ 를 **좌표 기반으로 전환**하고, 식당·카페에만 이름 검색용 **🔎 정보** 버튼을 따로 뒀다.
+**조치**: 🗺️ 를 **이름 검색**으로, 좌표는 **📍** 로 분리했다.
+좌표로만 열면 가게 이름·영업시간이 안 보인다는 지적을 받아, 식당 탭에서 둘의 역할을 맞바꿨다.
 
 | 버튼 | 방식 | 실패 가능성 |
 |---|---|---|
-| 🗺️ 위치 | 저장된 좌표 `?api=1&query=위도,경도` | **없음** |
+| 🗺️ 지도 | `sq` 이름 검색 — 이름·영업시간·평점이 바로 보인다 | 있음 → 📍 로 우회 |
 | 🧭 길찾기 | 좌표 | 없음 |
-| 🔎 정보 (식당·카페 60곳) | 이름 검색 — 영업시간·평점용 | 있음(실패해도 🗺️ 가 멀쩡) |
+| 📍 좌표 | 저장된 좌표 `?api=1&query=위도,경도` | **없음** |
 
-이전 선택지 1~3 중 어느 것도 고르지 않고 **둘 다 가지는 쪽**으로 갔다.
-좌표는 절대 실패하지 않고, 영업시간 확인도 잃지 않는다. 이름 검증이 깨져도 피해가 없다.
+**식당·카페 `sq` 48곳 전부 실제 구글지도에서 검증 완료** (2026-08-10). 검색 실패 0건.
 
 ### 검색어 매칭 규칙 (실측으로 확정)
 
@@ -29,16 +29,49 @@
 → 이 규칙으로 식당·카페 **58곳에 `sq`(검색 전용 검색어) 필드**를 넣었다.
    `q` 는 좌표 조회 키라 건드리지 않았다(GEO 키와 짝이므로 바꾸면 좌표가 깨진다).
 
-### 실제 구글지도에서 확인한 것 (10곳 · 실패 0)
+### 🚨 검증 중 발견한 폐업 — 예약 계획을 다시 짜야 한다
 
-Gozsdu udvar · Naschmarkt · Kantýna Politických vězňů 5 · V Zátiší Liliová 1 ·
-Belvárosi Disznótoros · Mlýnec · Demel · Figlmüller Wollzeile ·
+전수 검증(2026-08-10)에서 **후보 3곳이 폐업, 1곳이 임시 휴업**으로 확인됐다.
+좌표 버튼만 있었을 때는 보이지 않던 정보다 — 이름 검색으로 바꾼 덕에 드러났다.
+
+| 곳 | 상태 | 앱에서의 역할 | 영향 |
+|---|---|---|---|
+| **뤼스빔** Ruszwurm | 폐업 (방문자 메모: 주인 사망, 8/6) | 12/23 12:00 카페 **1순위** | 부다 성 카페 대체 필요 |
+| **알라바르도시** Alabárdos | 폐업 | 12/23 13:00 점심 **1순위** + 12/24 이브 저녁 | 부다 성 점심 대체 필요 |
+| **다 마리오** Da Mario | 폐업 | 12/24 이브 저녁 **「연중무휴 안전패」** | 이브 안전패 소멸 — 가장 아픔 |
+| **카페 센트랄** Café Central | 임시 휴업 | 12/25·12/27 카페 대안 | 12월엔 열 수 있음, 확인 필요 |
+
+앱에는 빨간 **⚠️ 폐업 확인** 배지와 설명을 달아뒀다(지우지 않았다 — 재개할 수도 있고
+직접 확인하실 수 있게). 1순위(초록) 표시는 뗐다.
+
+**할 일**: ① 12/23 부다 성 점심·카페 대체 후보 찾기 ② 12/24 이브 저녁을 ARAZ ·
+고즈두 우드바르 · 호텔 뷔페 중에서 확정 ③ 카페 센트랄 재개 여부 확인.
+
+### 지점 오류 수정
+
+**우 모드레 카흐니치키** — 저장 좌표가 구시가 2호점(Michalská 16)이었으나,
+12/31 일정은 프라하성에서 내려오는 **말라스트라나 점심**이다.
+본점(Nebovidská 460/6) 좌표 `50.08476,14.40574` 로 교체하고 `sq` 도 지점 지정.
+
+### 실제 구글지도에서 확인한 것 (48곳 전부 · 검색 실패 0)
+
+좌표 불일치도 없었다(마켓·공항처럼 구역이 넓은 곳만 200~800m 차이 — 정상).
+
+이전 라운드 10곳: Gozsdu udvar · Naschmarkt · Kantýna Politických vězňů 5 ·
+V Zátiší Liliová 1 · Belvárosi Disznótoros · Mlýnec · Demel · Figlmüller Wollzeile ·
 ARAZ Dohány utca 42 · Červený jelen
 
-동명 업소 구분(칸티나·브 자티시)이 유지되는지, 지점이 여럿인 곳(피글뮐러·벨바로시·데멜)에서
-**앱 좌표와 같은 지점이 먼저 나오는지**를 함께 봤다.
+이번 라운드 38곳: New York Café 4.0 · Gundel · Szaletly 4.7 · Ruszwurm(폐업) ·
+Alabárdos(폐업) · Hungarikum Bisztró 4.7 · Gerbeaud 4.2 · Da Mario(폐업) ·
+Griechenbeisl 4.5 · Meissl & Schadn 4.2 · Huth 4.6 · Café Sacher 3.9 ·
+Zum Schwarzen Kameel 4.4 · Café Hawelka 4.0 · Plachutta Wollzeile 4.2 ·
+Café Central(임시 휴업) · Lokál Dlouhá 4.4 · Grand Café Orient 3.6 ·
+U modré kachničky 4.7 · Café Savoy 4.2 · Café Imperial 4.6 · Café Louvre ·
+Augustiner 4.3 · Coselpalais 4.6 · 마켓·역·호텔·공항 나머지
 
-**미확인**: 나머지 38곳. 🗺️ 가 좌표라 안 봐도 피해는 없다. 여유 있을 때 확인하면 된다.
+`sq` 를 더 구체적으로 바꾼 곳: Café Savoy Vítězná · Café Imperial Na Poříčí ·
+Café Louvre Národní · Café Central Herrengasse · U modré kachničky Nebovidská ·
+Da Mario Budapest Vécsey.
 
 ### ⚠️ 검증 방법 — 다음 사람을 위해
 
@@ -66,60 +99,9 @@ ARAZ Dohány utca 42 · Červený jelen
 ### 앱 (급하지 않음)
 
 - 좌표는 **93곳 전부 검증 완료** — Nominatim 조회 + 도시 경계 대조. 좌표 없는 곳 0.
-- 아래 38곳 `sq` 실검증. **🗺️ 가 좌표라 안 해도 피해는 없다.**
-
-<details>
-<summary>미검증 sq 38곳 (도시별) — 확인한 것부터 체크</summary>
-
-확인 방법: 아래 검색어로 `https://www.google.com/maps/search/?api=1&query=<검색어>` 를 **브라우저에서 열어**
-① 「찾을 수 없습니다」가 뜨는지 ② 결과가 여럿이면 **첫 번째가 앱 좌표와 같은 곳인지** 본다.
-②가 더 중요하다 — 조용히 다른 지점으로 안내되는 편이 「못 찾음」보다 나쁘다.
-
-### 부다페스트 (11곳)
-- [ ] `New York Café` — 뉴욕 카페
-- [ ] `Gundel` — 군델
-- [ ] `Szaletly` — 살레틀리
-- [ ] `Ruszwurm` — 뤼스빔
-- [ ] `Alabárdos` — 알라바르도시
-- [ ] `Great Market Hall` — 중앙시장 2층
-- [ ] `Hungarikum Bisztró` — 헝가리쿰 비스트로
-- [ ] `Advent Bazilika` — 바실리카 앞 마켓 먹거리
-- [ ] `Gerbeaud` — 제르보
-- [ ] `Da Mario` — 다 마리오
-- [ ] `Corinthia Grand Hotel Royal` — 호텔 뷔페 (전략)
-
-### 비엔나 (14곳)
-- [ ] `Florin Apart Hotel` — 숙소에서 해결
-- [ ] `Budapest-Keleti` — 켈레티역에서 사서 타기
-- [ ] `Griechenbeisl` — 그리헨바이슬
-- [ ] `Meissl & Schadn` — 마이슬 & 샤든
-- [ ] `Huth Gastwirtschaft` — 후트 가스트비르트샤프트
-- [ ] `Adina Apartment Hotel` — 숙소 레스토랑 · 취사
-- [ ] `Café Sacher` — 카페 자허 · 센트랄
-- [ ] `Zum Schwarzen Kameel` — 춤 슈바르첸 카멜
-- [ ] `Café Hawelka` — 카페 하벨카
-- [ ] `Rathausplatz Christkindlmarkt` — 시청 앞 마켓 먹거리
-- [ ] `Plachutta Wollzeile` — 플라후타
-- [ ] `Schönbrunn Christmas Market` — 쇤브룬 궁전 앞 마켓 먹거리
-- [ ] `Café Central` — 카페 센트랄
-- [ ] `Kunsthistorisches Museum` — 미술사 박물관 카페
-
-### 프라하 (8곳)
-- [ ] `Wien Hauptbahnhof` — 빈 중앙역에서 사서 타기
-- [ ] `Old Town Square` — 구시가 광장 마켓 먹거리
-- [ ] `Lokál Dlouhá` — 로칼 들로우하
-- [ ] `Grand Café Orient` — 그랑 카페 오리엔트
-- [ ] `U modré kachničky` — 우 모드레 카흐니치키
-- [ ] `Café Savoy` — 카페 사보이
-- [ ] `Café Imperial` — 카페 임페리얼
-- [ ] `Unitas Hotel` — 호텔 레스토랑
-
-### 드레스덴 (3곳)
-- [ ] `Praha hlavní nádraží` — 프라하 중앙역에서 사서 타기
-- [ ] `Augustiner an der Frauenkirche` — 아우구스티너
-- [ ] `Coselpalais` — 코젤팔레
-
-</details>
+- `sq` 실검증 **완료 (48곳 전부)** — 검색 실패 0건. 위 「실제 구글지도에서 확인한 것」 참고.
+- 남은 앱 작업: 폐업 3곳의 **대체 후보 찾기** (12/23 부다 성 점심·카페, 12/24 이브 저녁).
+- 12월 초 재확인 때 **폐업 여부도 같이 본다** — 이번에 3곳이 나왔으니 또 생길 수 있다.
 
 ---
 
