@@ -65,5 +65,80 @@ ARAZ Dohány utca 42 · Červený jelen
 
 ### 앱 (급하지 않음)
 
-- 나머지 38곳 `sq` 실검증.
 - 좌표는 **93곳 전부 검증 완료** — Nominatim 조회 + 도시 경계 대조. 좌표 없는 곳 0.
+- 아래 38곳 `sq` 실검증. **🗺️ 가 좌표라 안 해도 피해는 없다.**
+
+<details>
+<summary>미검증 sq 38곳 (도시별) — 확인한 것부터 체크</summary>
+
+확인 방법: 아래 검색어로 `https://www.google.com/maps/search/?api=1&query=<검색어>` 를 **브라우저에서 열어**
+① 「찾을 수 없습니다」가 뜨는지 ② 결과가 여럿이면 **첫 번째가 앱 좌표와 같은 곳인지** 본다.
+②가 더 중요하다 — 조용히 다른 지점으로 안내되는 편이 「못 찾음」보다 나쁘다.
+
+### 부다페스트 (11곳)
+- [ ] `New York Café` — 뉴욕 카페
+- [ ] `Gundel` — 군델
+- [ ] `Szaletly` — 살레틀리
+- [ ] `Ruszwurm` — 뤼스빔
+- [ ] `Alabárdos` — 알라바르도시
+- [ ] `Great Market Hall` — 중앙시장 2층
+- [ ] `Hungarikum Bisztró` — 헝가리쿰 비스트로
+- [ ] `Advent Bazilika` — 바실리카 앞 마켓 먹거리
+- [ ] `Gerbeaud` — 제르보
+- [ ] `Da Mario` — 다 마리오
+- [ ] `Corinthia Grand Hotel Royal` — 호텔 뷔페 (전략)
+
+### 비엔나 (14곳)
+- [ ] `Florin Apart Hotel` — 숙소에서 해결
+- [ ] `Budapest-Keleti` — 켈레티역에서 사서 타기
+- [ ] `Griechenbeisl` — 그리헨바이슬
+- [ ] `Meissl & Schadn` — 마이슬 & 샤든
+- [ ] `Huth Gastwirtschaft` — 후트 가스트비르트샤프트
+- [ ] `Adina Apartment Hotel` — 숙소 레스토랑 · 취사
+- [ ] `Café Sacher` — 카페 자허 · 센트랄
+- [ ] `Zum Schwarzen Kameel` — 춤 슈바르첸 카멜
+- [ ] `Café Hawelka` — 카페 하벨카
+- [ ] `Rathausplatz Christkindlmarkt` — 시청 앞 마켓 먹거리
+- [ ] `Plachutta Wollzeile` — 플라후타
+- [ ] `Schönbrunn Christmas Market` — 쇤브룬 궁전 앞 마켓 먹거리
+- [ ] `Café Central` — 카페 센트랄
+- [ ] `Kunsthistorisches Museum` — 미술사 박물관 카페
+
+### 프라하 (8곳)
+- [ ] `Wien Hauptbahnhof` — 빈 중앙역에서 사서 타기
+- [ ] `Old Town Square` — 구시가 광장 마켓 먹거리
+- [ ] `Lokál Dlouhá` — 로칼 들로우하
+- [ ] `Grand Café Orient` — 그랑 카페 오리엔트
+- [ ] `U modré kachničky` — 우 모드레 카흐니치키
+- [ ] `Café Savoy` — 카페 사보이
+- [ ] `Café Imperial` — 카페 임페리얼
+- [ ] `Unitas Hotel` — 호텔 레스토랑
+
+### 드레스덴 (3곳)
+- [ ] `Praha hlavní nádraží` — 프라하 중앙역에서 사서 타기
+- [ ] `Augustiner an der Frauenkirche` — 아우구스티너
+- [ ] `Coselpalais` — 코젤팔레
+
+</details>
+
+---
+
+## 다른 PC 에서 이어서 작업하기
+
+```bash
+git clone https://github.com/ddudduddui/xmastrip.git
+cd xmastrip
+```
+
+- 배포는 **GitHub Pages 자동** — `main` 에 푸시하면 1~2분 뒤
+  <https://ddudduddui.github.io/xmastrip/> 에 반영된다. 별도 빌드 없음.
+- 파일은 `index.html` 하나가 전부다 (CSS·JS·데이터 전부 인라인).
+- 로컬에서 볼 때는 파일을 직접 열지 말고 **서버로 띄운다** —
+  `python -m http.server 8000` 후 `http://localhost:8000/`.
+  (`file://` 로 열면 저장소 접근이 막혀 경비·체크·티켓이 동작하지 않는다.)
+
+### 기록이 걱정될 때
+
+앱에 넣은 경비·체크리스트·일정 변경·기차 예약은 **브라우저에 저장되어 저장소에 올라가지 않는다.**
+기기를 옮기기 전에 경비 탭 **📋 백업 복사** → 새 기기에서 **📥 백업 붙여넣기**.
+티켓 이미지는 백업에 포함되지 않으니 원본은 사진앱에 두어야 한다.
