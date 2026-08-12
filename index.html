@@ -285,6 +285,42 @@ h2.sec:first-child{margin-top:2px}
 .ph .pg{font-size:10px;font-weight:700;color:var(--tx3);font-variant-numeric:tabular-nums}
 .ph .pd{font-size:12px;color:var(--tx2);line-height:1.62;margin-top:3px}
 
+/* 하루 동선도 */
+.allmap.rt{background:linear-gradient(100deg,rgba(217,163,37,.18),rgba(224,72,60,.12));
+  border-color:rgba(217,163,37,.45)}
+.allmap.rt .t2 b{color:var(--gd)} .allmap.rt .go2{color:var(--gd)}
+.rbox{display:none}
+.rbox.on{display:block;margin:4px 0 6px;padding:11px 10px 10px;border-radius:12px;
+  background:var(--card2);border:1px solid var(--line)}
+.rsvg{width:100%;height:auto;display:block;overflow:visible}
+.rsvg .rline{fill:none;stroke:var(--line);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.rsvg .rprog{fill:none;stroke:var(--gd);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.rsvg .rp circle{fill:var(--bg2);stroke:var(--tx3);stroke-width:2;transition:.2s}
+.rsvg .rp text{font-size:9.5px;font-weight:800;fill:var(--tx2);text-anchor:middle;font-family:inherit}
+.rsvg .rp.past circle{fill:var(--gd);stroke:var(--gd)} .rsvg .rp.past text{fill:#fff}
+.rsvg .rp.dn circle{stroke-dasharray:2 2}
+.rsvg .rsep{stroke:var(--line);stroke-width:1;stroke-dasharray:4 4;opacity:.8}
+.rsvg .rfar{font-size:9px;font-weight:800;fill:var(--tx3);text-anchor:end;font-family:inherit}
+.rsvg .rmover{fill:var(--ac2);stroke:var(--bg2);stroke-width:2.5}
+.rbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:9px}
+.rbar .rsum{font-size:11.5px;font-weight:700;color:var(--tx2)}
+.rbar .rsum b{color:var(--gd)}
+.rbar .rnow{margin-left:auto;font-size:11px;font-weight:800;color:var(--tx3);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.rleg{list-style:none;margin:10px 0 0;padding:0}
+.rleg li{display:flex;align-items:baseline;gap:7px;padding:5px 0;
+  border-top:1px dashed var(--line);font-size:12px}
+.rleg li:first-child{border-top:0}
+.rleg li.dn{opacity:.5;text-decoration:line-through}
+.rleg .n{flex:0 0 18px;height:18px;border-radius:99px;background:var(--line);color:var(--tx2);
+  font-size:9.5px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+.rleg .t{flex:0 0 40px;font-size:10.5px;font-weight:800;color:var(--ac2);
+  font-variant-numeric:tabular-nums}
+.rleg .v{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rleg .d{flex:0 0 auto;font-size:10.5px;font-weight:700;color:var(--tx3);
+  font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){.rsvg .rp circle{transition:none}}
+
 /* 전체 지도 배너 */
 .allmap{display:flex;align-items:center;gap:9px;margin:9px 0 4px;padding:11px 12px;
   border-radius:11px;cursor:pointer;
@@ -1813,6 +1849,188 @@ function editForm(di,it){
     <div class="note" style="margin:6px 0 0">장소는 <b>영문 지도 검색어</b>가 정확합니다 (예: <b>Cafe Sacher Vienna</b>). 새로 넣은 장소는 좌표가 없어 이름으로 검색됩니다.</div>
   </div></div>`;
 }
+/* ══════════════ 하루 동선도 (SVG) ══════════════
+   지도 타일이나 외부 라이브러리 없이, 저장된 좌표만으로 그 날의 이동 형태를 그린다.
+   실제 지도가 아니라 «관계도» 다 — 순서·거리·되돌아감이 보이는 것이 목적이고,
+   길 모양이 필요하면 기존 「지도에 모두 표시」로 구글지도를 열면 된다. */
+const R_EARTH=6371;
+function haver(a,b){
+  const t=Math.PI/180, dLa=(b[0]-a[0])*t, dLo=(b[1]-a[1])*t;
+  const s=Math.sin(dLa/2)**2+Math.cos(a[0]*t)*Math.cos(b[0]*t)*Math.sin(dLo/2)**2;
+  return 2*R_EARTH*Math.asin(Math.min(1,Math.sqrt(s)));
+}
+const kmTxt=k=>k<1?`${Math.round(k*1000)}m`:`${k.toFixed(k<10?1:0)}km`;
+
+/* 좌표가 있는 항목만, 연속 중복은 합쳐서 뽑는다 */
+function routePts(di){
+  const out=[];
+  dayItems(di).forEach(it=>{
+    if(!it.q||!GEO[it.q]||it.done===undefined&&false) return;
+    if(!GEO[it.q]) return;
+    const last=out[out.length-1];
+    if(last&&last.q===it.q){ last.tm2=it.tm; return; }   // 같은 곳 연속 → 하나로
+    out.push({q:it.q,nm:it.nm,tm:it.tm,ll:GEO[it.q],done:it.done});
+  });
+  return out;
+}
+
+/* 멀리 떨어진 묶음은 따로 그린다.
+   기차로 200km 를 가는 날은 그 구간이 화면을 다 먹어 시내 이동이 한 점으로 뭉갠다.
+   25km 이상 벌어지면 새 묶음으로 끊고, 묶음마다 자기 축척으로 그려 세부를 살린다. */
+function clusterPts(pts,thKm){
+  const th=thKm||25, cl=[[pts[0]]];
+  for(let i=1;i<pts.length;i++){
+    if(haver(pts[i-1].ll,pts[i].ll)>th) cl.push([pts[i]]);
+    else cl[cl.length-1].push(pts[i]);
+  }
+  return cl;
+}
+/* 같은 곳을 다시 지나면 점이 완전히 겹쳐 번호 하나가 가려진다
+   (예: 12/30 드레스덴 중앙역 — 도착과 출발로 두 번).
+   겹친 점만 살짝 비켜 그려 둘 다 보이게 한다. 위치가 조금 어긋나지만
+   거리·순서는 원래 좌표로 계산하므로 표시되는 수치는 정확하다. */
+function deoverlap(pts,minD){
+  const d=minD||10, out=pts.map(p=>({...p}));
+  /* 한 번 밀면 다른 점 옆에 붙을 수 있어 몇 차례 되풀이한다 */
+  for(let pass=0;pass<4;pass++){
+    let moved=false;
+    for(let i=1;i<out.length;i++)
+      for(let j=0;j<i;j++){
+        const dx=out[i].x-out[j].x, dy=out[i].y-out[j].y, L=Math.hypot(dx,dy);
+        if(L>=d) continue;
+        const a=L>0.01 ? Math.atan2(dy,dx) : (i+pass)*2.39996;   // 겹치면 황금각으로
+        out[i].x=Math.max(10,Math.min(330,out[j].x+Math.cos(a)*d));
+        out[i].y=Math.max(10,Math.min(210,out[j].y+Math.sin(a)*d));
+        moved=true;
+      }
+    if(!moved) break;
+  }
+  return out;
+}
+
+/* 묶음이 여럿이면 가로 띠로 나눠 배치한다 — 각 띠가 독립 축척을 갖는다 */
+function projectClustered(pts,W,H,pad){
+  const cl=clusterPts(pts);
+  if(cl.length===1) return {pts:deoverlap(projectPts(pts,W,H,pad)),bands:[{n:cl[0].length,y0:0,y1:H}]};
+  const bandH=H/cl.length, bands=[];
+  let out=[];
+  cl.forEach((c,ci)=>{
+    const y0=ci*bandH, p2=Math.min(pad,bandH*0.22);
+    const sub = c.length===1
+      ? [{...c[0],x:W/2,y:y0+bandH/2}]
+      : projectPts(c,W,bandH,p2).map(q=>({...q,y:q.y+y0}));
+    bands.push({n:c.length,y0:y0,y1:y0+bandH});
+    out=out.concat(sub);
+  });
+  return {pts:deoverlap(out),bands:bands};
+}
+
+/* 등장방형 투영 + 여백 맞춤. 위도에 따른 경도 축소를 보정한다 */
+function projectPts(pts,W,H,pad){
+  const la=pts.map(p=>p.ll[0]), lo=pts.map(p=>p.ll[1]);
+  const laC=(Math.min(...la)+Math.max(...la))/2;
+  const k=Math.cos(laC*Math.PI/180);
+  const xs=lo.map(v=>v*k), ys=la.map(v=>-v);
+  const x0=Math.min(...xs), x1=Math.max(...xs), y0=Math.min(...ys), y1=Math.max(...ys);
+  const w=Math.max(x1-x0,1e-9), h=Math.max(y1-y0,1e-9);
+  const s=Math.min((W-pad*2)/w,(H-pad*2)/h);
+  const ox=(W-w*s)/2-x0*s, oy=(H-h*s)/2-y0*s;
+  return pts.map((p,i)=>({...p,x:xs[i]*s+ox,y:ys[i]*s+oy}));
+}
+
+function routeSvg(di){
+  const raw=routePts(di);
+  if(raw.length<2) return '<div class="empty">좌표가 있는 장소가 2곳 이상이어야 동선을 그립니다</div>';
+  const W=340,H=220,PAD=30;
+  const pr=projectClustered(raw,W,H,PAD), p=pr.pts, bands=pr.bands;
+  const dists=[];
+  let total=0;
+  for(let i=1;i<p.length;i++){
+    const d=haver(p[i-1].ll,p[i].ll); dists.push(d); total+=d;
+  }
+  /* 띠 경계선 + 장거리 구간 표시 */
+  const seps=bands.length>1 ? bands.slice(0,-1).map(b=>
+      `<line class="rsep" x1="6" y1="${b.y1.toFixed(1)}" x2="${W-6}" y2="${b.y1.toFixed(1)}"/>`).join('') : '';
+  const longLbl=bands.length>1 ? p.map((q,i)=>{
+      if(!i||dists[i-1]<=25) return '';
+      const my=((p[i-1].y+q.y)/2).toFixed(1);
+      return `<text class="rfar" x="${W-8}" y="${my}">🚄 ${kmTxt(dists[i-1])}</text>`;
+    }).join('') : '';
+  const line=p.map(q=>`${q.x.toFixed(1)},${q.y.toFixed(1)}`).join(' ');
+  const dots=p.map((q,i)=>`<g class="rp${q.done?' dn':''}">
+      <circle cx="${q.x.toFixed(1)}" cy="${q.y.toFixed(1)}" r="9"/>
+      <text x="${q.x.toFixed(1)}" y="${(q.y+3.6).toFixed(1)}">${i+1}</text></g>`).join('');
+  const legend=p.map((q,i)=>`<li${q.done?' class="dn"':''}>
+      <span class="n">${i+1}</span>
+      <span class="t">${esc(q.tm||'')}</span>
+      <span class="v">${esc(q.nm)}</span>
+      ${i?`<span class="d">${kmTxt(dists[i-1])}</span>`:'<span class="d">출발</span>'}
+    </li>`).join('');
+  return `<svg class="rsvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="이 날 이동 동선">
+      ${seps}${longLbl}
+      <polyline class="rline" points="${line}"/>
+      <polyline class="rprog" points="${line}" id="rprog${di}"/>
+      ${dots}
+      <circle class="rmover" id="rmover${di}" cx="${p[0].x.toFixed(1)}" cy="${p[0].y.toFixed(1)}" r="6"/>
+    </svg>
+    <div class="rbar">
+      <button class="b go" onclick="playRoute(${di})" id="rbtn${di}">▶ 재생</button>
+      <span class="rsum">${p.length}곳 · 총 <b>${kmTxt(total)}</b></span>
+      <span class="rnow" id="rnow${di}">직선거리 기준</span>
+    </div>
+    <ol class="rleg">${legend}</ol>`;
+}
+
+const rTimers={};
+function toggleRoute(di){
+  const box=$('#rt'+di); if(!box) return;
+  if(box.classList.contains('on')){ stopRoute(di); box.classList.remove('on'); box.innerHTML=''; return; }
+  box.innerHTML=routeSvg(di); box.classList.add('on');
+}
+function stopRoute(di){ if(rTimers[di]){cancelAnimationFrame(rTimers[di]); delete rTimers[di]} }
+
+function playRoute(di){
+  const svg=$('#rt'+di+' .rsvg'); if(!svg) return;
+  stopRoute(di);
+  const prog=$('#rprog'+di), mover=$('#rmover'+di), btn=$('#rbtn'+di), now=$('#rnow'+di);
+  const pts=routePts(di), p=projectClustered(pts,340,220,30).pts;
+  const segLen=[], segKm=[]; let totalPx=0;
+  for(let i=1;i<p.length;i++){
+    const dx=p[i].x-p[i-1].x, dy=p[i].y-p[i-1].y;
+    const L=Math.hypot(dx,dy); segLen.push(L); totalPx+=L;
+    segKm.push(haver(p[i-1].ll,p[i].ll));
+  }
+  /* 구간마다 최소 시간을 보장해 짧은 구간이 순간이동처럼 보이지 않게 한다 */
+  const DUR=Math.min(9000,2200+segLen.length*750);
+  const t0=performance.now();
+  btn.textContent='⏸ 정지'; btn.setAttribute('onclick',`stopRoute(${di});this.textContent='▶ 다시';this.setAttribute('onclick','playRoute(${di})')`);
+  prog.style.strokeDasharray=totalPx; prog.style.strokeDashoffset=totalPx;
+  const step=t=>{
+    const e=Math.min(1,(t-t0)/DUR);
+    const walked=e*totalPx;
+    prog.style.strokeDashoffset=totalPx-walked;
+    let acc=0,i=0;
+    while(i<segLen.length&&acc+segLen[i]<walked){acc+=segLen[i];i++}
+    const f=segLen[i]?(walked-acc)/segLen[i]:0;
+    const a=p[Math.min(i,p.length-1)], b=p[Math.min(i+1,p.length-1)];
+    mover.setAttribute('cx',(a.x+(b.x-a.x)*f).toFixed(1));
+    mover.setAttribute('cy',(a.y+(b.y-a.y)*f).toFixed(1));
+    if(now&&segKm[i]!==undefined) now.textContent=`${i+1} → ${i+2} · ${kmTxt(segKm[i])}`;
+    svg.querySelectorAll('.rp').forEach((g,gi)=>g.classList.toggle('past',gi<=i));
+    if(e<1) rTimers[di]=requestAnimationFrame(step);
+    else{ delete rTimers[di]; now.textContent=`도착 · 총 ${kmTxt(segKm.reduce((s,v)=>s+v,0))}`;
+      btn.textContent='▶ 다시'; btn.setAttribute('onclick',`playRoute(${di})`); }
+  };
+  /* 움직임을 줄여달라는 설정이면 애니메이션 없이 결과만 보여준다 */
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    prog.style.strokeDashoffset=0; svg.querySelectorAll('.rp').forEach(g=>g.classList.add('past'));
+    const last=p[p.length-1]; mover.setAttribute('cx',last.x); mover.setAttribute('cy',last.y);
+    now.textContent=`총 ${kmTxt(segKm.reduce((s,v)=>s+v,0))}`;
+    btn.textContent='▶ 다시'; return;
+  }
+  rTimers[di]=requestAnimationFrame(step);
+}
+
 function renderDays(){
   const now=new Date(), today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
   const n=planCount();
@@ -1828,11 +2046,17 @@ function renderDays(){
     const items=dayItems(i);
     const spots=items.filter(x=>x.q).map(x=>x.q);
     const doneN=items.filter(x=>x.done).length;
+    const geoN=new Set(items.filter(x=>x.q&&GEO[x.q]).map(x=>x.q)).size;
     let body = spots.length>1 ? `<div class="allmap" onclick="openMulti(dayItems(${i}).filter(x=>x.q).map(x=>x.q),'${+m}/${+d}')">
         <span class="pin">📍</span>
         <span class="t2">이 날 장소 <b>${new Set(spots).size}곳</b> 지도에 모두 표시</span>
         <span class="go2">열기 ›</span>
       </div>` : '';
+    if(geoN>1) body += `<div class="allmap rt" onclick="toggleRoute(${i})">
+        <span class="pin">🎬</span>
+        <span class="t2">이 날 <b>동선</b> 그려보기 — 순서·거리·되돌아감이 보입니다</span>
+        <span class="go2">열기 ›</span>
+      </div><div class="rbox" id="rt${i}"></div>`;
     body += items.map(it=>itemHtml(i,it)).join('');
     if(editMode) body += `<div class="edadd">
       <button class="b go wide" onclick="addIt(${i})">＋ 항목 추가</button>
