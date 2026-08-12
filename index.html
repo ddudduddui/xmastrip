@@ -318,7 +318,14 @@ h2.sec:first-child{margin-top:2px}
 
 .rsvg .rsep{stroke:var(--line);stroke-width:1;stroke-dasharray:4 4;opacity:.8}
 .rsvg .rfar{font-size:9px;font-weight:800;fill:var(--tx3);text-anchor:end;font-family:inherit}
-.rsvg .rmover{fill:var(--ac2);stroke:var(--bg2);stroke-width:2.5}
+/* 움직이는 커플 표시 — 이미지 없이 이모지로 그린다 */
+.rsvg .rmover{font-size:19px;text-anchor:middle;dominant-baseline:central;
+  paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linejoin:round}
+.lmover span{display:flex;align-items:center;justify-content:center;
+  width:30px;height:30px;font-size:21px;line-height:1;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));animation:bob .9s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media(prefers-reduced-motion:reduce){.lmover span{animation:none}}
 .rbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:9px}
 .rbar .rsum{font-size:11.5px;font-weight:700;color:var(--tx2)}
 .rbar .rsum b{color:var(--gd)}
@@ -1877,6 +1884,8 @@ function haver(a,b){
   return 2*R_EARTH*Math.asin(Math.min(1,Math.sqrt(s)));
 }
 const kmTxt=k=>k<1?`${Math.round(k*1000)}m`:`${k.toFixed(k<10?1:0)}km`;
+/* 움직이는 표시는 그 구간을 «어떻게» 가는지에 맞춘다 — 성인 2인 여행이라 커플 */
+const moverIcon=km=>km>1000?'✈️':km>25?'🚄':'👫';
 
 /* 좌표가 있는 항목만, 연속 중복은 합쳐서 뽑는다 */
 function routePts(di){
@@ -1988,7 +1997,7 @@ function routeSvg(di){
       <polyline class="rline" points="${line}"/>
       <polyline class="rprog" points="${line}" id="rprog${di}"/>
       ${dots}
-      <circle class="rmover" id="rmover${di}" cx="${p[0].x.toFixed(1)}" cy="${p[0].y.toFixed(1)}" r="6"/>
+      <text class="rmover" id="rmover${di}" x="${p[0].x.toFixed(1)}" y="${p[0].y.toFixed(1)}">${moverIcon(dists[0])}</text>
     </svg>`;
 }
 
@@ -2039,7 +2048,10 @@ async function showRealMap(di){
   pts.forEach((p,i)=>L.marker([p.ll[0],p.ll[1]],{icon:L.divIcon({className:'lnum',
     html:`<span${p.done?' class="dn"':''}>${i+1}</span>`,iconSize:[24,24],iconAnchor:[12,12]}),
     title:`${p.tm||''} ${p.nm}`}).addTo(map));
-  const mover=L.circleMarker(ll[0],{radius:7,color:'#fff',weight:2.5,fillColor:'#ff6b5e',fillOpacity:1}).addTo(map);
+  const seg0=ll.length>1?haver(pts[0].ll,pts[1].ll):0;
+  const mover=L.marker(ll[0],{zIndexOffset:1000,interactive:false,
+    icon:L.divIcon({className:'lmover',html:`<span>${moverIcon(seg0)}</span>`,
+                    iconSize:[30,30],iconAnchor:[15,15]})}).addTo(map);
   map.fitBounds(L.latLngBounds(ll).pad(0.12));
   LMAPS[di]={map,prog,mover,ll};
   setTimeout(()=>map.invalidateSize(),60);
@@ -2117,21 +2129,28 @@ function playRoute(di){
   const M=LMAPS[di];
   if(mode==='map'&&!M){ toast('지도를 먼저 불러오세요'); return; }
 
+  let lastIcon=null;
   const paint=(i,f)=>{
+    const ico=moverIcon(segKm[i]);
     if(mode==='svg'){
       let acc=0; for(let k=0;k<i;k++) acc+=segLen[k];
       prog.style.strokeDashoffset=totalPx-(acc+segLen[i]*f);
       const a=svgP[i],b=svgP[i+1];
-      mover.setAttribute('cx',(a.x+(b.x-a.x)*f).toFixed(1));
-      mover.setAttribute('cy',(a.y+(b.y-a.y)*f).toFixed(1));
+      mover.setAttribute('x',(a.x+(b.x-a.x)*f).toFixed(1));
+      mover.setAttribute('y',(a.y+(b.y-a.y)*f).toFixed(1));
+      if(ico!==lastIcon) mover.textContent=ico;
       box.querySelectorAll('.rp').forEach((g,gi)=>g.classList.toggle('past',gi<=i));
     }else{
       const a=M.ll[i],b=M.ll[i+1];
       const cur=[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];
       M.mover.setLatLng(cur);
+      /* 아이콘 교체는 DOM 을 새로 만들므로 «바뀔 때만» 한다 */
+      if(ico!==lastIcon&&window.L) M.mover.setIcon(L.divIcon({className:'lmover',
+        html:`<span>${ico}</span>`,iconSize:[30,30],iconAnchor:[15,15]}));
       M.prog.setLatLngs(M.ll.slice(0,i+1).concat([cur]));
     }
-    if(now) now.textContent=`${i+1} → ${i+2} · ${kmTxt(segKm[i])}`;
+    lastIcon=ico;
+    if(now) now.textContent=`${ico} ${i+1} → ${i+2} · ${kmTxt(segKm[i])}`;
   };
   const finish=()=>{
     delete rTimers[di];
