@@ -261,6 +261,10 @@ h2.sec:first-child{margin-top:2px}
 /* 동선상 1순위 */
 .sp.pk{border-left:3px solid var(--gr);padding-left:11px}
 .sp.pk .mslot{background:rgba(47,158,111,.2);color:var(--gr2)}
+/* 추천도 별점 + 가격대 */
+.rate{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}
+.rate .st5{font-size:12.5px;letter-spacing:1px;color:var(--gd)}
+.rate .pr{font-size:11.5px;font-weight:700;color:var(--tx2);font-variant-numeric:tabular-nums}
 
 /* 좌표 */
 .geo{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:8px;padding:7px 10px;
@@ -1027,8 +1031,20 @@ const FOOD = [
 
 {d:'2026-12-23',w:'수',city:'bud',ct:'부다페스트',t:'온천 → 부다 성 → 국회의사당',
  rt:'06:00 세체니 온천(<b>도시공원</b>) → 10:30 어부의 요새·마차시 성당(<b>부다 성</b>) → 13:00 점심 → 15:00 세체니 다리 도보 횡단 → 16:30 국회의사당(<b>페스트</b>)',
- tip:'📌 <b>부다 성 구간(10:30~13:00)에 점심·카페 후보가 비어 있다.</b> 원래 있던 두 곳이 폐업으로 확인돼 뺐다 — 어부의 요새·마차시 성당 주변에서 한 곳 정해 넣으면 이 날이 완성된다.<br><br>일정의 13:00 점심이 「부다 지구 또는 중앙시장」인데, <b>중앙시장은 페스트 쪽이라 15:00 세체니 다리 도보 횡단과 순서가 어긋난다.</b> 점심은 부다에서 해결하고 다리를 건너 국회의사당으로 가는 쪽이 깔끔하다. 중앙시장은 12/24 오전 장보기 일정에 이미 들어 있다.',
+ tip:'✅ <b>부다 성 구간(10:30~13:00) 후보를 채웠다</b> — 폐업한 두 곳(뤼스빔·알라바르도시)의 자리를 <b>레테시바르(카페)·21 마자르 벤데글뢰(점심)</b>로 대체했다. 넷 다 마차시 성당에서 도보 5분 안이다.<br><br>일정의 13:00 점심이 「부다 지구 또는 중앙시장」인데, <b>중앙시장은 페스트 쪽이라 15:00 세체니 다리 도보 횡단과 순서가 어긋난다.</b> 점심은 부다에서 해결하고 다리를 건너 국회의사당으로 가는 쪽이 깔끔하다. 중앙시장은 12/24 오전 장보기 일정에 이미 들어 있다.',
  list:[
+ {mt:'10:30 카페',pk:1,nm:'부다바리 레테시바르',en:'Budavári Rétesvár · Balta köz 4',
+  q:'Budavari Retesvar Budapest',sq:'Budavári Rétesvár',tag:'08:00 개장',star:5,pr:'1,000~2,000 Ft · 약 0.5~0.9만원',
+  ds:'<b>레테시</b>(헝가리 전통 슈트루델) 전문점. 사과·양귀비씨·코티지치즈 속을 얇은 반죽에 말아 굽는, 헝가리에서 가장 흔하고 오래된 간식이다. <b>08:00에 열어</b> 온천을 마치고 부다 성으로 올라오는 시간과 잘 맞고, 값이 아주 싸다. 폐업한 뤼스빔의 자리를 대신한다. 구글 4.6(890).'},
+ {mt:'12:00 점심',pk:1,nm:'21 마자르 벤데글뢰',en:'21 Magyar Vendéglő · Fortuna u. 21',
+  q:'21 Magyar Vendeglo Budapest',sq:'21 Magyar Vendéglő Fortuna',tag:'마차시 도보 3분',star:5,pr:'1인 6,000~8,000 Ft · 약 2.7~3.6만원',
+  ds:'<b>굴라시 · 우이하지 치킨수프 · 치킨 파프리카시 · 송아지 스튜</b>를 상시 메뉴로 두고, 옛 조리법을 현대 기법으로 다시 만든 곳. 부다 성 안 포르투나 거리에 있어 <b>마차시 성당에서 도보 3분</b>. 11:30 개장이라 성 관람을 마치고 그대로 이어진다. 구글 4.5(3,146).'},
+ {mt:'12:00 점심 · 대안',nm:'아라니바스티야',en:'Aranybástya · Csónak u. 1',
+  q:'Aranybastya Budapest',sq:'Aranybástya',tag:'구글 4.8',star:5,pr:'메인 2,900~6,500 Ft · 약 1.3~2.9만원',
+  ds:'<b>굴라시 · 치킨 파프리카시 · 랑고시</b> — 헝가리 대표 요리가 모두 있고 <b>평점이 4.8(3,320)로 이 구역에서 가장 높다.</b> 테라스에서 도나우강·세체니 다리·국회의사당이 보인다. 다만 <b>성 남단(푸니쿨라 쪽)</b>이라 어부의 요새에서 도보 10분 — 넣으려면 성 관람을 남쪽으로 마무리해야 한다. 12:00 개장.'},
+ {mt:'12:00 점심 · 대안',nm:'발타자르 그릴',en:'Baltazár Grill · Országház u. 31',
+  q:'Baltazar Grill Budapest',sq:'Baltazár Grill Országház',tag:'07:30 개장',star:4,pr:'메인 3,880~11,000 Ft · 약 1.8~5.0만원',
+  ds:'헝가리식 숯불(요스퍼) 그릴과 지역 와인. 디저트로 <b>에스테르하지 토르테</b>(호두 스펀지에 바닐라 크림을 켜켜이 쌓은 헝가리 고전 케이크)를 낸다. 다만 스테이크·버거 비중이 커서 <b>전통 음식 비중은 위 세 곳보다 낮다.</b> <b>07:30에 여는 운영 성향</b>이라 12/24 이브에도 열 가능성이 있다. 구글 4.6(1,803).'},
  {mt:'10:00 이른 점심',nm:'군델',en:'Gundel · 도시공원',q:'Gundel Restaurant Budapest',tag:'온천 바로 옆',
   ds:'역사 있는 고급 헝가리 식당. 팔로츠 수프, 군델 팬케이크 같은 클래식으로 알려져 있다. <b>세체니 온천 바로 옆</b>이라 이 여행에서 이곳이 동선에 맞는 시점은 온천 직후뿐이다. 다만 10:30 부다 성 일정과 붙어 있어, 넣으려면 <b>온천을 일찍 끝내고 이른 점심으로 당겨야</b> 한다.'},
  {mt:'10:00 이른 점심',nm:'살레틀리',en:'Szaletly · 도시공원',q:'Szaletly Budapest',tag:'부담 적음',
@@ -1050,8 +1066,11 @@ const FOOD = [
   ds:'유대인 지구 호텔 레스토랑. <b>숙소에서 도보권</b>이고 12/24 저녁 영업을 하는 곳으로 알려져 있다. 이브 저녁 1순위로 두기 좋다.'},
  {mt:'18:00 저녁',nm:'고즈두 우드바르',en:'Gozsdu udvar · 7구',q:'Gozsdu udvar Budapest',tag:'여는 곳 있음',
   ds:'<b>숙소에서 도보 5분.</b> 여러 곳이 모여 있어 이브에도 문 연 데를 찾기 쉬운 편이다. 예약이 다 실패했을 때의 마지막 보루.'},
- {mt:'18:00 저녁',nm:'호텔 뷔페 (전략)',en:'Corinthia Grand Hotel Royal · Erzsébet krt',q:'Corinthia Hotel Budapest',tag:'선결제',
-  ds:'대형 호텔들이 이브 뷔페를 운영한다. <b>사전 예약 + 전액 선결제</b>가 보통이라 값은 비싸지만 확실하다.'}]},
+ {mt:'18:00 저녁',nm:'발타자르 그릴',en:'Baltazár Grill · Országház u. 31 · 부다 성',
+  q:'Baltazar Grill Budapest',sq:'Baltazár Grill Országház',tag:'영업 확인 필요',star:3,pr:'메인 3,880~11,000 Ft · 약 1.8~5.0만원',
+  ds:'헝가리식 숯불 그릴. <b>평소 07:30에 여는 운영 성향</b>이라 이브에도 열 가능성이 있어 후보로 둔다. <b>다만 12/24 영업은 확인되지 않았다</b> — 연휴 영업시간은 12월에야 공개되므로 9~10월에 전화(+36 1 300 7050)로 물어보는 편이 확실하다. 열려 있다면 부다 성이라 숙소에서 멀지만 값은 합리적이다.'},
+ {mt:'18:00 저녁',nm:'호텔 뷔페 (전략)',en:'Corinthia Grand Hotel Royal · Erzsébet krt',q:'Corinthia Hotel Budapest',tag:'선결제 · 고가',star:2,pr:'⚠️ 5만원 초과 예상',
+  ds:'대형 호텔들이 이브 뷔페를 운영한다. <b>사전 예약 + 전액 선결제</b>가 보통이라 확실하지만 <b>1인 5만원을 넘는다.</b> 다른 후보가 모두 실패했을 때의 마지막 수단으로만.'}]},
 
 {d:'2026-12-25',w:'금',city:'vie',ct:'이동',t:'부다페스트 → 비엔나 · 크리스마스 당일',urgent:1,
  rt:'11:00 체크아웃 → 12:00 켈레티역 → <b>13:00 레일젯(약 2시간 30분)</b> → 16:00 비엔나 체크인 → 19:30 저녁',
@@ -1341,6 +1360,11 @@ function copy(txt){
 }
 /* 명소 좌표 (OpenStreetMap Nominatim 조회, 2026-08-04 · 도시 경계 검증 완료) */
 const GEO={
+ /* 부다 성 구역 — 폐업 3곳 대체 (2026-08-12 조회·검증) */
+ '21 Magyar Vendeglo Budapest':[47.50414,19.03128],
+ 'Aranybastya Budapest':[47.49966,19.03689],
+ 'Baltazar Grill Budapest':[47.50475,19.02903],
+ 'Budavari Retesvar Budapest':[47.50067,19.03347],
  'Adina Apartment Hotel Vienna Belvedere':[48.18555,16.38199],
  'Advent Bazilika Christmas Market Budapest':[47.50078,19.05397],
  'ARAZ Restaurant Budapest':[47.4968,19.06673],
@@ -1444,6 +1468,10 @@ const GEO={
    여기 없는 q 는 q 를 그대로 검색한다. 바꿀 때는 반드시 실제 구글지도에서 열어 확인. */
 const SQ={
  /* ── 식당·카페 (검증 완료 2026-08-10) ── */
+ '21 Magyar Vendeglo Budapest':'21 Magyar Vendéglő Fortuna',
+ 'Aranybastya Budapest':'Aranybástya',
+ 'Baltazar Grill Budapest':'Baltazár Grill Országház',
+ 'Budavari Retesvar Budapest':'Budavári Rétesvár',
  'ARAZ Restaurant Budapest':'ARAZ Dohány utca 42',
  'Adina Apartment Hotel Vienna Belvedere':'Adina Apartment Hotel',
  'Advent Bazilika Christmas Market Budapest':'Advent Bazilika',
@@ -1900,7 +1928,8 @@ function toggleFood(i){ openFood.has(i)?openFood.delete(i):openFood.add(i);
       ${g.list.map(p=>`<div class="sp${p.pk?' pk':''}">
         <div class="h1">
           <div class="nm2">
-            <div class="k1"><span class="mslot">${esc(p.mt)}</span>${esc(p.nm)}${p.tag?`<span class="badge ${p.tag.includes('폐업')||p.tag.includes('휴업')?'r':p.tag.includes('필수')||p.tag.includes('선결제')||p.tag.includes('어긋')?'y':'g'}">${esc(p.tag)}</span>`:''}</div>
+            <div class="k1"><span class="mslot">${esc(p.mt)}</span>${esc(p.nm)}${p.tag?`<span class="badge ${p.tag.includes('폐업')||p.tag.includes('휴업')?'r':p.tag.includes('필수')||p.tag.includes('선결제')||p.tag.includes('어긋')||p.tag.includes('고가')||p.tag.includes('확인')?'y':'g'}">${esc(p.tag)}</span>`:''}</div>
+          ${p.star||p.pr?`<div class="rate">${p.star?`<span class="st5" title="추천도 ${p.star}/5">${'★'.repeat(p.star)}${'☆'.repeat(5-p.star)}</span>`:''}${p.pr?`<span class="pr">${esc(p.pr)}</span>`:''}</div>`:''}
             <div class="e1">${esc(p.en)}</div>
           </div>
           <button class="b map" onclick="op(srchU('${esc(p.q).replace(/'/g,"\\'")}'))">🗺️</button>
