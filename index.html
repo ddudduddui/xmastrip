@@ -299,6 +299,23 @@ h2.sec:first-child{margin-top:2px}
 .rsvg .rp text{font-size:9.5px;font-weight:800;fill:var(--tx2);text-anchor:middle;font-family:inherit}
 .rsvg .rp.past circle{fill:var(--gd);stroke:var(--gd)} .rsvg .rp.past text{fill:#fff}
 .rsvg .rp.dn circle{stroke-dasharray:2 2}
+/* 실제 지도 / 관계도 전환 */
+.rtog{display:flex;gap:6px;margin-bottom:9px}
+.rtog button{flex:1;padding:7px 4px;border-radius:8px;border:1px solid var(--line);
+  background:var(--bg2);color:var(--tx3);font-size:11.5px;font-weight:800;
+  font-family:inherit;cursor:pointer}
+.rtog button.on{background:var(--gd);border-color:var(--gd);color:#fff}
+.rmap{height:250px;border-radius:10px;overflow:hidden;background:var(--bg2);
+  border:1px solid var(--line)}
+.rnote{font-size:10.5px;color:var(--tx3);line-height:1.5;margin-top:6px}
+.rnote b{color:var(--gd)}
+/* 번호 마커 — 이미지 없이 CSS 로만 그린다 */
+.lnum span{display:flex;align-items:center;justify-content:center;width:24px;height:24px;
+  border-radius:99px;background:#d9a325;color:#fff;font-size:11px;font-weight:800;
+  border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);font-family:inherit}
+.lnum span.dn{background:#8d99b5}
+.leaflet-container{background:var(--card2);font-family:inherit}
+
 .rsvg .rsep{stroke:var(--line);stroke-width:1;stroke-dasharray:4 4;opacity:.8}
 .rsvg .rfar{font-size:9px;font-weight:800;fill:var(--tx3);text-anchor:end;font-family:inherit}
 .rsvg .rmover{fill:var(--ac2);stroke:var(--bg2);stroke-width:2.5}
@@ -1972,62 +1989,170 @@ function routeSvg(di){
       <polyline class="rprog" points="${line}" id="rprog${di}"/>
       ${dots}
       <circle class="rmover" id="rmover${di}" cx="${p[0].x.toFixed(1)}" cy="${p[0].y.toFixed(1)}" r="6"/>
-    </svg>
-    <div class="rbar">
-      <button class="b go" onclick="playRoute(${di})" id="rbtn${di}">▶ 재생</button>
-      <span class="rsum">${p.length}곳 · 총 <b>${kmTxt(total)}</b></span>
-      <span class="rnow" id="rnow${di}">직선거리 기준</span>
-    </div>
-    <ol class="rleg">${legend}</ol>`;
+    </svg>`;
+}
+
+/* ── 실제 지도(Leaflet + OpenStreetMap) ──
+   라이브러리는 저장소에 넣어 CDN 의존이 없지만 «타일 그림»은 인터넷이 필요하다.
+   그래서 처음 열 때만 불러오고, 타일이 안 오면 관계도로 되돌린다. */
+let LEAF=null;
+function loadLeaflet(){
+  if(LEAF) return LEAF;
+  LEAF=new Promise((res,rej)=>{
+    if(window.L) return res(window.L);
+    const css=document.createElement('link');
+    css.rel='stylesheet'; css.href='vendor/leaflet.css';
+    document.head.appendChild(css);
+    const js=document.createElement('script');
+    js.src='vendor/leaflet.js';
+    js.onload=()=>window.L?res(window.L):rej(new Error('지도 라이브러리를 읽지 못했습니다'));
+    js.onerror=()=>rej(new Error('지도 라이브러리를 찾지 못했습니다'));
+    document.head.appendChild(js);
+    setTimeout(()=>{ if(!window.L) rej(new Error('지도 라이브러리 응답 없음')) },15000);
+  });
+  return LEAF;
+}
+
+const LMAPS={};
+function destroyMap(di){ if(LMAPS[di]){ try{LMAPS[di].map.remove()}catch(e){} delete LMAPS[di] } }
+
+async function showRealMap(di){
+  const host=$('#rmap'+di); if(!host) return;
+  const note=$('#rmsg'+di);
+  setRouteMode(di,'map');
+  if(LMAPS[di]){ LMAPS[di].map.invalidateSize(); return; }
+  note.textContent='지도를 불러오는 중…';
+  let L;
+  try{ L=await loadLeaflet(); }
+  catch(e){ note.innerHTML=`지도를 열지 못했습니다 — ${esc(e.message)}. <b>관계도로 보세요.</b>`; setRouteMode(di,'svg'); return; }
+  const pts=routePts(di);
+  const ll=pts.map(p=>[p.ll[0],p.ll[1]]);
+  const map=L.map(host,{scrollWheelZoom:false,attributionControl:true});
+  const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> 기여자'});
+  let bad=0, ok=0;
+  tiles.on('tileerror',()=>{ if(++bad>4&&!ok) note.innerHTML='지도 그림을 받지 못했습니다(인터넷 필요). <b>관계도</b>로 보시거나 연결 후 다시 열어주세요.'; });
+  tiles.on('tileload',()=>{ if(!ok++) note.textContent='© OpenStreetMap · 선은 직선 연결이라 실제 도로가 아닙니다'; });
+  tiles.addTo(map);
+  L.polyline(ll,{color:'#6f7fa6',weight:3,opacity:.55,dashArray:'5 6'}).addTo(map);
+  const prog=L.polyline([ll[0]],{color:'#d9a325',weight:5,opacity:.95}).addTo(map);
+  pts.forEach((p,i)=>L.marker([p.ll[0],p.ll[1]],{icon:L.divIcon({className:'lnum',
+    html:`<span${p.done?' class="dn"':''}>${i+1}</span>`,iconSize:[24,24],iconAnchor:[12,12]}),
+    title:`${p.tm||''} ${p.nm}`}).addTo(map));
+  const mover=L.circleMarker(ll[0],{radius:7,color:'#fff',weight:2.5,fillColor:'#ff6b5e',fillOpacity:1}).addTo(map);
+  map.fitBounds(L.latLngBounds(ll).pad(0.12));
+  LMAPS[di]={map,prog,mover,ll};
+  setTimeout(()=>map.invalidateSize(),60);
+}
+
+function setRouteMode(di,mode){
+  const box=$('#rt'+di); if(!box) return;
+  box.querySelector('.rmap-wrap').style.display = mode==='map'?'block':'none';
+  box.querySelector('.rsvg-wrap').style.display = mode==='map'?'none':'block';
+  box.querySelectorAll('.rtog button').forEach(b=>b.classList.toggle('on',b.dataset.m===mode));
+  box.dataset.mode=mode;
 }
 
 const rTimers={};
 function toggleRoute(di){
   const box=$('#rt'+di); if(!box) return;
-  if(box.classList.contains('on')){ stopRoute(di); box.classList.remove('on'); box.innerHTML=''; return; }
-  box.innerHTML=routeSvg(di); box.classList.add('on');
+  if(box.classList.contains('on')){ stopRoute(di); destroyMap(di); box.classList.remove('on'); box.innerHTML=''; return; }
+  box.innerHTML=`
+    <div class="rtog">
+      <button data-m="map" class="on" onclick="showRealMap(${di})">🗺 실제 지도</button>
+      <button data-m="svg" onclick="setRouteMode(${di},'svg')">📐 관계도</button>
+    </div>
+    <div class="rmap-wrap"><div class="rmap" id="rmap${di}"></div>
+      <div class="rnote" id="rmsg${di}"></div></div>
+    <div class="rsvg-wrap" style="display:none">${routeSvg(di)}</div>
+    <div class="rbar">
+      <button class="b go" onclick="playRoute(${di})" id="rbtn${di}">▶ 재생</button>
+      <span class="rsum">${routeStat(di)}</span>
+      <span class="rnow" id="rnow${di}">직선거리 기준</span>
+    </div>
+    <ol class="rleg">${routeLegend(di)}</ol>`;
+  box.classList.add('on');
+  showRealMap(di);
 }
 function stopRoute(di){ if(rTimers[di]){cancelAnimationFrame(rTimers[di]); delete rTimers[di]} }
 
+/* 구간 거리와 합계 — 표시·애니메이션이 같은 값을 쓰도록 한 곳에서 계산한다 */
+function routeDists(di){
+  const raw=routePts(di), d=[]; let t=0;
+  for(let i=1;i<raw.length;i++){ const v=haver(raw[i-1].ll,raw[i].ll); d.push(v); t+=v; }
+  return {raw:raw,d:d,t:t};
+}
+function routeStat(di){ const r=routeDists(di); return `${r.raw.length}곳 · 총 <b>${kmTxt(r.t)}</b>`; }
+function routeLegend(di){
+  const r=routeDists(di);
+  return r.raw.map((q,i)=>`<li${q.done?' class="dn"':''}>
+      <span class="n">${i+1}</span>
+      <span class="t">${esc(q.tm||'')}</span>
+      <span class="v">${esc(q.nm)}</span>
+      <span class="d">${i?kmTxt(r.d[i-1]):'출발'}</span>
+    </li>`).join('');
+}
+
+/* 재생 — 실제 지도와 관계도 양쪽에서 같은 방식으로 움직인다.
+   구간마다 같은 시간을 주는 이유: 거리에 비례시키면 200km 기차가 화면을 다 먹고
+   50m 도보는 눈에 띄지도 않는다. 여기서 보여줄 것은 «순서»다. */
 function playRoute(di){
-  const svg=$('#rt'+di+' .rsvg'); if(!svg) return;
+  const box=$('#rt'+di); if(!box) return;
   stopRoute(di);
-  const prog=$('#rprog'+di), mover=$('#rmover'+di), btn=$('#rbtn'+di), now=$('#rnow'+di);
-  const pts=routePts(di), p=projectClustered(pts,340,220,30).pts;
-  const segLen=[], segKm=[]; let totalPx=0;
-  for(let i=1;i<p.length;i++){
-    const dx=p[i].x-p[i-1].x, dy=p[i].y-p[i-1].y;
-    const L=Math.hypot(dx,dy); segLen.push(L); totalPx+=L;
-    segKm.push(haver(p[i-1].ll,p[i].ll));
+  const mode=box.dataset.mode||'map';
+  const rd=routeDists(di), raw=rd.raw, segKm=rd.d, n=segKm.length;
+  if(n<1) return;
+  const btn=$('#rbtn'+di), now=$('#rnow'+di);
+  const DUR=Math.min(11000,1800+n*900);
+
+  let svgP=null,prog=null,mover=null,segLen=[],totalPx=0;
+  if(mode==='svg'){
+    svgP=projectClustered(raw,340,220,30).pts;
+    prog=$('#rprog'+di); mover=$('#rmover'+di);
+    if(!prog||!mover) return;
+    for(let i=1;i<svgP.length;i++) segLen.push(Math.hypot(svgP[i].x-svgP[i-1].x,svgP[i].y-svgP[i-1].y));
+    totalPx=segLen.reduce((s,v)=>s+v,0)||1;
+    prog.style.strokeDasharray=totalPx;
   }
-  /* 구간마다 최소 시간을 보장해 짧은 구간이 순간이동처럼 보이지 않게 한다 */
-  const DUR=Math.min(9000,2200+segLen.length*750);
-  const t0=performance.now();
-  btn.textContent='⏸ 정지'; btn.setAttribute('onclick',`stopRoute(${di});this.textContent='▶ 다시';this.setAttribute('onclick','playRoute(${di})')`);
-  prog.style.strokeDasharray=totalPx; prog.style.strokeDashoffset=totalPx;
-  const step=t=>{
-    const e=Math.min(1,(t-t0)/DUR);
-    const walked=e*totalPx;
-    prog.style.strokeDashoffset=totalPx-walked;
-    let acc=0,i=0;
-    while(i<segLen.length&&acc+segLen[i]<walked){acc+=segLen[i];i++}
-    const f=segLen[i]?(walked-acc)/segLen[i]:0;
-    const a=p[Math.min(i,p.length-1)], b=p[Math.min(i+1,p.length-1)];
-    mover.setAttribute('cx',(a.x+(b.x-a.x)*f).toFixed(1));
-    mover.setAttribute('cy',(a.y+(b.y-a.y)*f).toFixed(1));
-    if(now&&segKm[i]!==undefined) now.textContent=`${i+1} → ${i+2} · ${kmTxt(segKm[i])}`;
-    svg.querySelectorAll('.rp').forEach((g,gi)=>g.classList.toggle('past',gi<=i));
-    if(e<1) rTimers[di]=requestAnimationFrame(step);
-    else{ delete rTimers[di]; now.textContent=`도착 · 총 ${kmTxt(segKm.reduce((s,v)=>s+v,0))}`;
-      btn.textContent='▶ 다시'; btn.setAttribute('onclick',`playRoute(${di})`); }
+  const M=LMAPS[di];
+  if(mode==='map'&&!M){ toast('지도를 먼저 불러오세요'); return; }
+
+  const paint=(i,f)=>{
+    if(mode==='svg'){
+      let acc=0; for(let k=0;k<i;k++) acc+=segLen[k];
+      prog.style.strokeDashoffset=totalPx-(acc+segLen[i]*f);
+      const a=svgP[i],b=svgP[i+1];
+      mover.setAttribute('cx',(a.x+(b.x-a.x)*f).toFixed(1));
+      mover.setAttribute('cy',(a.y+(b.y-a.y)*f).toFixed(1));
+      box.querySelectorAll('.rp').forEach((g,gi)=>g.classList.toggle('past',gi<=i));
+    }else{
+      const a=M.ll[i],b=M.ll[i+1];
+      const cur=[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];
+      M.mover.setLatLng(cur);
+      M.prog.setLatLngs(M.ll.slice(0,i+1).concat([cur]));
+    }
+    if(now) now.textContent=`${i+1} → ${i+2} · ${kmTxt(segKm[i])}`;
   };
-  /* 움직임을 줄여달라는 설정이면 애니메이션 없이 결과만 보여준다 */
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-    prog.style.strokeDashoffset=0; svg.querySelectorAll('.rp').forEach(g=>g.classList.add('past'));
-    const last=p[p.length-1]; mover.setAttribute('cx',last.x); mover.setAttribute('cy',last.y);
-    now.textContent=`총 ${kmTxt(segKm.reduce((s,v)=>s+v,0))}`;
-    btn.textContent='▶ 다시'; return;
-  }
+  const finish=()=>{
+    delete rTimers[di];
+    if(now) now.textContent=`도착 · 총 ${kmTxt(rd.t)}`;
+    if(btn){ btn.textContent='▶ 다시'; btn.setAttribute('onclick',`playRoute(${di})`); }
+  };
+
+  /* 움직임 최소화 설정이면 결과만 보여준다 */
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ paint(n-1,1); finish(); return; }
+
+  if(btn){ btn.textContent='⏸ 정지';
+    btn.setAttribute('onclick',`stopRoute(${di});this.textContent='▶ 다시';this.setAttribute('onclick','playRoute(${di})')`); }
+  const t0=performance.now();
+  const step=t=>{
+    /* rAF 의 첫 타임스탬프는 직전에 잰 performance.now() 보다 «이를 수» 있다.
+       그대로 두면 e 가 음수가 되어 i=-1 로 배열 밖을 짚고 첫 프레임에서 죽는다. */
+    const e=Math.max(0,Math.min(1,(t-t0)/DUR)), pos=e*n;
+    const i=Math.max(0,Math.min(n-1,Math.floor(pos)));
+    paint(i,Math.max(0,Math.min(1,pos-i)));
+    if(e<1) rTimers[di]=requestAnimationFrame(step); else finish();
+  };
   rTimers[di]=requestAnimationFrame(step);
 }
 
