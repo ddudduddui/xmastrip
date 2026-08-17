@@ -896,7 +896,10 @@ const DAYS = [
 {d:'2026-12-31',w:'목',city:'pra',ct:'프라하',t:'프라하성 + 새해 전야',sum:'프라하성 · 구시가 광장 카운트다운',
  items:[
   {tm:'10:00',nm:'프라하성',en:'Prague Castle',ds:'성 비투스 대성당 · 황금소로',q:'Prague Castle'},
-  {tm:'13:00',nm:'점심 — 말라스트라나',en:'Malá Strana',q:'Malá Strana Prague'},
+  {tm:'13:00',nm:'점심 — 포크스 (꼴레뇨)',en:"Pork's Mostecká · Mostecká 16",
+   ds:'체코 대표 음식 꼴레뇨(족발)와 필스너 우르켈 탱크 생맥주. 카를교 바로 앞이라 프라하성에서 내려와 그대로 이어진다',
+   warn:'⚠️ 예약 필수 — 웨이팅이 길기로 유명하다. 구글지도 「예약하기」 또는 porks.cz 의 BOOK A TABLE',
+   q:'Porks Mostecka Praha'},
   {tm:'15:00',nm:'천문시계 · 구시가 산책',en:'Prague Astronomical Clock',ds:'정시 인형 퍼레이드',q:'Prague Astronomical Clock'},
   {tm:'18:00',nm:'저녁 식사',warn:'연말 성수기 — 미리 예약해두면 안전'},
   {tm:'23:00',nm:'새해 전야 카운트다운',en:'Old Town Square',ds:'구시가 광장 · 자정 불꽃',
@@ -913,7 +916,8 @@ const DAYS = [
 {d:'2027-01-02',w:'토',city:'air',ct:'귀국',t:'프라하 → 인천',sum:'오전 자유 → Bolt 택시 → 18:30 출국',
  items:[
   {tm:'오전',nm:'프라하 시내 or 근교 마지막 일정',ds:'짐은 호텔에 맡기고 이동'},
-  {tm:'13:00',nm:'점심 · 기념품 쇼핑'},
+  {tm:'13:00',nm:'점심 · 기념품 쇼핑',ds:'포크스 신시가지점(Vodičkova 17)이 숙소 550m · 11:00 개장 — 꼴레뇨를 아직 못 먹었다면 마지막 기회',
+   warn:'⚠️ 예약 권장 — 같은 브랜드라 이 지점도 붐빈다',q:'Porks Vodickova Praha'},
   {tm:'14:30',nm:'Unitas Hotel 체크아웃 · 짐 수령',q:'Unitas Hotel Prague'},
   {tm:'15:00',nm:'Bolt 택시 → 프라하 공항',ds:'약 25~30분 · 편도 약 600~800 CZK',
    tip:'사전 예약 불필요 — 당일 Bolt 앱으로 호출',q:'Václav Havel Airport Prague'},
@@ -1233,7 +1237,10 @@ const FOOD = [
  warn:'<b>12/31 은 체코 공휴일이 아니라 식당들이 정상 영업합니다.</b> 다만 대부분 특별 「NYE 메뉴」로 바꾸고 좌석을 미리 받으므로 예약이 필요합니다. 23:00 구시가 광장 카운트다운을 감안해 저녁은 <b>광장까지 걸어갈 수 있는 곳</b>으로 잡으세요.',
  tip:'점심은 강 서쪽(말라스트라나), 저녁은 강 동쪽(구시가)이다. <b>카를교를 건너는 것이 15:00 일정이므로</b> 점심을 강 동쪽에서 먹으면 다리를 두 번 건너게 된다.',
  list:[
- {mt:'13:00 점심',pk:1,nm:'우 모드레 카흐니치키',en:'U modré kachničky',q:'U modre kachnicky Praha',star:5,pr:'Kč 1,000 이상 · 6.8만원+ ⚠️',tag:'오리',
+ {mt:'13:00 점심',pk:1,nm:'포크스 (꼴레뇨)',en:"Pork's Mostecká · Mostecká 16",
+  q:'Porks Mostecka Praha',star:5,pr:'Kč 300~700 · 2.0~4.8만원',tag:'예약 필수',
+  ds:'<b>꼴레뇨</b>(체코식 족발) 전문. 바삭한 껍질 아래 고기가 촉촉하고, 함께 나오는 <b>사우어크라우트</b>(양배추 절임)와 먹으면 좋다는 평. <b>필스너 우르켈 탱크 생맥주</b>로도 이름났다. <b>카를교에서 217m·프라하성에서 542m</b>라 오전 성 일정에서 그대로 내려오면 된다.<br><br>⚠️ <b>웨이팅이 길기로 유명해 예약이 사실상 필수</b> — 구글지도 「예약하기」 또는 <b>porks.cz</b> 의 BOOK A TABLE 로 날짜·시간·인원을 지정하면 된다. 주차는 없다. 구글 4.7.'},
+ {mt:'13:00 점심 · 대안',nm:'우 모드레 카흐니치키',en:'U modré kachničky',q:'U modre kachnicky Praha',star:5,pr:'Kč 1,000 이상 · 6.8만원+ ⚠️',tag:'오리',
   ds:'<b>오리 요리</b>로 이름난 곳. 체코 전통 요리를 격식 있게 먹고 싶을 때. 평점 4.7(1,891).<br><br><b>지점이 둘이다</b> — 이 앱은 일정(프라하성에서 내려오는 말라스트라나 점심)에 맞는 <b>Nebovidská 460/6 본점</b> 좌표를 쓴다. 구시가 Michalská 16 에 2호점이 따로 있으니 헷갈리지 마세요.'},
  {mt:'13:00 점심 · 대안',nm:'카페 사보이',en:'Café Savoy · Vítězná 5',q:'Cafe Savoy Praha',star:4,pr:'Kč 200~800 · 1.4~5.4만원 ⚠️',tag:'말라스트라나',
   ds:'높은 천장의 클래식 카페. 브런치가 강한 곳이라 늦은 점심에도 맞는다. 말라스트라나 남쪽이라 프라하성에서 내려와 강변을 따라 걸으면 된다.'},
@@ -1264,6 +1271,9 @@ const FOOD = [
  rt:'오전 자유 → <b>13:00 점심·기념품</b> → 14:30 체크아웃·짐 수령 → 15:00 Bolt 택시 → 15:45 공항 → 18:30 출국',
  tip:'14:30 체크아웃 전에 점심을 끝내야 한다. <b>숙소(Unitas) 반경 500m 안</b>에서 고르면 시간을 하나도 잃지 않는다.',
  list:[
+ {mt:'13:00 점심 · 대안',nm:'포크스 신시가지점',en:"Pork's Vodičkova · Vodičkova 17",
+  q:'Porks Vodickova Praha',star:5,pr:'Kč 300~700 · 2.0~4.8만원',tag:'숙소 550m',
+  ds:'12/31 에 간 포크스와 같은 브랜드의 신시가지 지점. <b>숙소에서 550m·카페 루브르에서 392m</b>이고 <b>11:00 에 열어</b> 마지막 점심에 맞다. 꼴레뇨를 아직 못 먹었다면 여기가 마지막 기회. 구글 4.7(1,745). <b>이 지점도 붐비니 예약을 권한다.</b>'},
  {mt:'13:00 점심',pk:1,nm:'카페 루브르',en:'Café Louvre · Národní 22',q:'Cafe Louvre Praha',star:5,pr:'Kč 100~500 · 0.7~3.4만원',tag:'숙소 도보 3분',
   ds:'1902년에 문을 연 2층 카페 겸 식당. 아인슈타인과 카프카가 드나든 곳으로 알려져 있다. <b>숙소에서 도보 3분</b>이라 마지막 점심으로 시간 손실이 없고, 식사와 커피·케이크를 한자리에서 끝낼 수 있다.'},
  {mt:'13:00 점심 · 대안',nm:'칸티나',en:'Kantýna · Politických vězňů 5',q:'Kantýna Politických vězňů 5 Praha',star:5,pr:'Kč 300~800 · 2.0~5.4만원 ⚠️',tag:'빠름',
@@ -1304,6 +1314,7 @@ const LISTS = [
  '드레스덴 점심 예약 — 아우구스티너 (12/30 12:30, 2인) · 연말 성수기라 예약 권장',
  '**12/24 이브 저녁 예약 (부다페스트)** — ARAZ 등. 오후 2시면 다 닫히니 예약 없으면 못 먹는다',
  '12/31 새해 전야 저녁 예약 (프라하) — 믈리네츠·카페 임페리얼 등. 정상 영업이지만 NYE 좌석은 미리 찬다',
+ '**12/31 점심 포크스 예약** — 웨이팅이 길다. 구글지도 「예약하기」 또는 porks.cz → BOOK A TABLE',
  '**1/1 새해 첫날 식사 확인 (프라하)** — 휴무가 가장 많은 날. 체르베니 옐렌 등 영업 여부 미리 확인',
  '출발 2~3주 전 식당 운영시간·휴무 전부 재확인 (홈페이지·구글지도)',
  '세체니 온천 티켓 온라인 사전 예약',
@@ -1426,6 +1437,9 @@ function copy(txt){
 }
 /* 명소 좌표 (OpenStreetMap Nominatim 조회, 2026-08-04 · 도시 경계 검증 완료) */
 const GEO={
+ /* 포크스 — 꼴레뇨 전문 2개 지점 (2026-08-14 조회·검증) */
+ 'Porks Mostecka Praha':[50.08755,14.40617],
+ 'Porks Vodickova Praha':[50.08027,14.42346],
  /* 부다 성 구역 — 폐업 3곳 대체 (2026-08-12 조회·검증) */
  '21 Magyar Vendeglo Budapest':[47.50414,19.03128],
  'Aranybastya Budapest':[47.49966,19.03689],
@@ -1534,6 +1548,8 @@ const GEO={
    여기 없는 q 는 q 를 그대로 검색한다. 바꿀 때는 반드시 실제 구글지도에서 열어 확인. */
 const SQ={
  /* ── 식당·카페 (검증 완료 2026-08-10) ── */
+ 'Porks Mostecka Praha':"Pork's Mostecka",
+ 'Porks Vodickova Praha':"Pork's Vodičkova",
  '21 Magyar Vendeglo Budapest':'21 Magyar Vendéglő Fortuna',
  'Aranybastya Budapest':'Aranybástya',
  'Baltazar Grill Budapest':'Baltazár Grill Országház',
