@@ -798,7 +798,10 @@ const DAYS = [
   {tm:'17:30',nm:'100E 공항버스 → 데악 페렌츠 광장',ds:'약 40분 · 2,500 HUF · BudapestGO 앱으로 티켓 구매',
    tip:'광장에서 숙소까지 도보 10분',q:'Deák Ferenc tér Budapest'},
   {tm:'19:00',nm:'플로린 아파트 호텔 체크인',en:'Florin Apart Hotel · Karoly Krt. 9',q:'Florin Apart Hotel Budapest'},
-  {tm:'20:00',nm:'저녁 식사',ds:'숙소 주변 7구 시내'},
+  {tm:'20:00',nm:'저녁 식사 — 멘자',en:'Menza · Liszt Ferenc tér 2',
+   ds:'정통 굴라시와 오리 리소토로 이름난 곳. 숙소에서 도보 12분(891m)',
+   warn:'⚠️ 예약 권장 — 저녁은 늘 웨이팅이다. menzaetterem.hu 의 Book a table. 도착일이라 미리 잡아두면 헤매지 않는다',
+   q:'Menza Budapest'},
   {tm:'21:30',nm:'국회의사당 야경 + 도나우강변 산책',en:'Hungarian Parliament Building',q:'Hungarian Parliament Building',
    tip:'오늘 밤 짐 정리 시 수영복·수건 미리 꺼내두기 (내일 온천 오픈런)'}
  ]},
@@ -1090,6 +1093,9 @@ const FOOD = [
  rt:'16:55 공항 → 100E 버스 → 데악 광장 → <b>7구 숙소(19:00)</b> → 저녁(20:00) → 국회의사당 야경(21:30)',
  tip:'비행 직후 저녁 20:00 이다. <b>숙소에서 걸어갈 수 있는 7구 안</b>에서 끝내는 편이 낫고, 예약 없이 자리를 찾으려면 여러 집이 모여 있는 곳이 안전하다.',
  list:[
+ {mt:'20:00 저녁',nm:'멘자',en:'Menza · Liszt Ferenc tér 2 · 6구',q:'Menza Budapest',
+  star:5,pr:'6,000~16,000 Ft · 2.7~7.2만원 ⚠️',tag:'예약 권장',
+  ds:'<b>굴라시</b>와 비프 스튜를 내는 정통 헝가리 식당. 복고풍 인테리어로 이름났고 리뷰가 <b>2만 2천 개</b>에 평점 4.5 다. 대표 메뉴는 <b>수제 파스타를 넣은 굴라시 수프</b>(2,890 Ft)와 <b>구운 오리 가슴살 + 트러플 버섯 리소토</b>(5,990 Ft). 부다페스트에서 꼭 맛본다는 <b>토카이 와인</b>도 잔으로 판다.<br><br>⚠️ <b>평일 저녁·주말은 늘 웨이팅</b>이라 예약해두는 편이 낫다 — 공식 홈페이지 <b>menzaetterem.hu</b> 의 Book a table. 11:00~23:00 영업(주방 11:30~22:30). <b>메뉴 가격에 서비스 차지 12% 가 별도로 붙는다.</b><br><br>💡 실제 후기 기준 <b>2인이 맥주·와인을 곁들여 17,293 Ft</b>(서비스 차지 포함, 1인 약 3.9만원) 였다 — 구글 가격대 상단은 넉넉히 잡힌 값이니 과하게 시키지 않으면 예산 안에 든다. 숙소에서 <b>891m</b>.'},
  {mt:'20:00 저녁',pk:1,nm:'고즈두 우드바르',en:'Gozsdu udvar · 7구',q:'Gozsdu udvar Budapest',star:4,pr:'가격대 미공개 · 노점마다 다름',tag:'숙소 도보 5분',
   ds:'식당·바가 늘어선 통로형 식당가. <b>한 곳이 차 있으면 옆집으로 옮기면 된다</b> — 예약 없이 도착하는 첫날 저녁에 가장 무난하다.'},
  {mt:'20:00 저녁',nm:'벨바로시 디쥐노토로시',en:'Belvárosi Disznótoros · 5구',q:'Belvarosi Disznotoros Budapest',star:4,pr:'2,000~4,000 Ft · 0.9~1.8만원',tag:'싸고 빠름',
@@ -1121,6 +1127,9 @@ const FOOD = [
   ds:'요즘의 헝가리 가정식을 편안하게 내는 곳. 역시 도시공원 안이고 군델보다 값과 격식의 부담이 적다.'},
  {mt:'13:00 점심 · 대안',nm:'중앙시장 2층',en:'Great Market Hall · 페스트',q:'Great Market Hall Budapest',star:5,pr:'랑고시 1,000~2,000 Ft · 0.5~0.9만원',tag:'동선 어긋남',
   ds:'랑고시(튀긴 빵)와 굴라시를 파는 먹거리 층. 맛과 값은 좋지만 <b>페스트 쪽이라 다리 횡단 순서가 뒤집힌다.</b> 게다가 오후에 문을 닫는다. 굳이 넣으려면 부다 일정 전 이른 시간에.'},
+ {mt:'19:00 저녁 · 대안',nm:'멘자',en:'Menza · Liszt Ferenc tér 2 · 6구',q:'Menza Budapest',
+  star:5,pr:'6,000~16,000 Ft · 2.7~7.2만원 ⚠️',tag:'예약 권장',
+  ds:'국회의사당에서 <b>1.3km</b>, 숙소에서 <b>891m</b>. 헝가리쿰보다 국회의사당에서는 멀지만 <b>숙소 쪽에 가까워</b> 저녁 후 돌아오기 편하다. 굴라시·오리 리소토·토카이 와인. <b>예약 권장.</b>'},
  {mt:'19:00 저녁',pk:1,nm:'헝가리쿰 비스트로',en:'Hungarikum Bisztró · 국회의사당 근처',q:'Hungarikum Bisztro Budapest',star:5,pr:'가격대 미공개 · 중간대',tag:'예약 권장',
   ds:'집안 조리법을 따른 옛 헝가리 요리 — 굴라시, 파프리카 스튜(푀르쾰트), 수제 뇨키(노케들리). 라이브 음악. <b>국회의사당에서 도보 6분</b>이라 16:30 일정이 그대로 저녁으로 이어진다. 자리가 자주 차니 예약해두는 편이 안전하다.'}]},
 
@@ -1315,6 +1324,7 @@ const LISTS = [
  '**12/24 이브 저녁 예약 (부다페스트)** — ARAZ 등. 오후 2시면 다 닫히니 예약 없으면 못 먹는다',
  '12/31 새해 전야 저녁 예약 (프라하) — 믈리네츠·카페 임페리얼 등. 정상 영업이지만 NYE 좌석은 미리 찬다',
  '**12/31 점심 포크스 예약** — 웨이팅이 길다. 구글지도 「예약하기」 또는 porks.cz → BOOK A TABLE',
+ '12/22 도착일 저녁 멘자 예약 — menzaetterem.hu → Book a table. 저녁은 늘 웨이팅',
  '**1/1 새해 첫날 식사 확인 (프라하)** — 휴무가 가장 많은 날. 체르베니 옐렌 등 영업 여부 미리 확인',
  '출발 2~3주 전 식당 운영시간·휴무 전부 재확인 (홈페이지·구글지도)',
  '세체니 온천 티켓 온라인 사전 예약',
@@ -1438,6 +1448,7 @@ function copy(txt){
 /* 명소 좌표 (OpenStreetMap Nominatim 조회, 2026-08-04 · 도시 경계 검증 완료) */
 const GEO={
  /* 포크스 — 꼴레뇨 전문 2개 지점 (2026-08-14 조회·검증) */
+ 'Menza Budapest':[47.50396,19.06277],
  'Porks Mostecka Praha':[50.08755,14.40617],
  'Porks Vodickova Praha':[50.08027,14.42346],
  /* 부다 성 구역 — 폐업 3곳 대체 (2026-08-12 조회·검증) */
@@ -1548,6 +1559,7 @@ const GEO={
    여기 없는 q 는 q 를 그대로 검색한다. 바꿀 때는 반드시 실제 구글지도에서 열어 확인. */
 const SQ={
  /* ── 식당·카페 (검증 완료 2026-08-10) ── */
+ 'Menza Budapest':'Menza Liszt Ferenc tér',
  'Porks Mostecka Praha':"Pork's Mostecka",
  'Porks Vodickova Praha':"Pork's Vodičkova",
  '21 Magyar Vendeglo Budapest':'21 Magyar Vendéglő Fortuna',
