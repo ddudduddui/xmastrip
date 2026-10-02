@@ -110,6 +110,15 @@ h2.sec:first-child{margin-top:2px}
 .day.open .chev{transform:rotate(180deg)}
 .dbody{display:none;border-top:1px solid var(--line);padding:4px 13px 13px}
 .day.open .dbody{display:block}
+/* 도시 카드 안의 식당/카페 하위 묶음 */
+.sub{margin-top:10px;border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.subh{display:flex;align-items:center;gap:8px;padding:10px 12px;cursor:pointer;
+  user-select:none;background:var(--card2,rgba(127,127,127,.06));font-weight:700;font-size:14px}
+.subh .cnt2{margin-left:auto;font-size:12px;color:var(--tx3);font-weight:600}
+.subh .cv{color:var(--tx3);font-size:11px;transition:transform .22s}
+.sub.open .subh .cv{transform:rotate(180deg)}
+.subb{display:none;padding:2px 11px 10px}
+.sub.open .subb{display:block}
 .city{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;
   border-radius:5px;margin-left:6px;vertical-align:1px}
 .c-bud{background:rgba(224,72,60,.18);color:var(--ac2)}
@@ -2410,6 +2419,8 @@ renderDays();
 const openFood = new Set();
 function toggleFood(i){ openFood.has(i)?openFood.delete(i):openFood.add(i);
   $('#fd'+i).classList.toggle('open') }
+/* 도시 카드 안의 식당/카페 묶음 접기 */
+function toggleSub(k){ const el=$('#sb'+k); if(el) el.classList.toggle('open') }
 (function(){
   const now=new Date(), today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
   let todayIdx=-1;
@@ -2431,10 +2442,18 @@ function toggleFood(i){ openFood.has(i)?openFood.delete(i):openFood.add(i);
         <span class="vl" style="color:var(--ac2)">⚠️ 주의</span>${g.warn}</div>`:''}
       ${g.tip?`<div class="vp" style="border-left-color:var(--gd);margin-top:8px">
         <span class="vl" style="color:var(--gd)">💡 메모</span>${g.tip}</div>`:''}
-      ${g.list.map(p=>`<div class="sp${p.pk?' pk':''}">
+      ${['식당','카페'].filter(k=>g.list.some(p=>p.mt===k)).map(k=>{
+        const sel=g.list.filter(p=>p.mt===k), sid=gi+'-'+(k==='식당'?'r':'c');
+        return `<div class="sub${k==='식당'?' open':''}" id="sb${sid}">
+        <div class="subh" onclick="toggleSub('${sid}')">
+          <span>${k==='식당'?'🍽️':'☕'} ${k}</span>
+          <span class="cnt2">${sel.length}곳</span><span class="cv">▼</span>
+        </div>
+        <div class="subb">
+      ${sel.map(p=>`<div class="sp${p.pk?' pk':''}">
         <div class="h1">
           <div class="nm2">
-            <div class="k1"><span class="mslot">${esc(p.mt)}</span>${esc(p.nm)}${p.tag?`<span class="badge ${p.tag.includes('폐업')||p.tag.includes('휴업')?'r':p.tag.includes('필수')||p.tag.includes('선결제')||p.tag.includes('어긋')||p.tag.includes('고가')||p.tag.includes('확인')?'y':'g'}">${esc(p.tag)}</span>`:''}</div>
+            <div class="k1">${esc(p.nm)}${p.tag?`<span class="badge ${p.tag.includes('폐업')||p.tag.includes('휴업')?'r':p.tag.includes('필수')||p.tag.includes('선결제')||p.tag.includes('어긋')||p.tag.includes('고가')||p.tag.includes('확인')?'y':'g'}">${esc(p.tag)}</span>`:''}</div>
           ${p.star||p.pr?`<div class="rate">${p.star?`<span class="st5" title="추천도 ${p.star}/5">${'★'.repeat(p.star)}${'☆'.repeat(5-p.star)}</span>`:''}${p.pr?`<span class="pr">${esc(p.pr)}</span>`:''}</div>`:''}
             <div class="e1">${esc(p.en)}</div>
           </div>
@@ -2448,6 +2467,7 @@ function toggleFood(i){ openFood.has(i)?openFood.delete(i):openFood.add(i);
           <a href="${geoU(p.q)}" onclick="event.stopPropagation()">오프라인 지도로 열기 ›</a></div>`
          :'<div class="note" style="margin-top:6px">📌 좌표 없음 — 지도에서 이름으로 검색됩니다</div>'}
       </div>`).join('')}
+        </div></div>`}).join('')}
       <div class="allmap" onclick="openMulti(FOOD[${gi}].list.slice(0,9).map(p=>p.q),'${esc(g.ct)} 식당·카페')">
         <span class="pin">📍</span>
         <span class="t2">${esc(g.ct)} <b>상위 9곳</b> 지도에 표시 <span style="opacity:.7">(지도 URL 한계)</span></span>
