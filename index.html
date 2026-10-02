@@ -529,8 +529,10 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="tt">KE963 · 가는 편 <span class="badge g">확정</span></div>
     <div class="st">B787-9 · 일반석 스탠다드(T)</div>
     <div class="row"><span class="k">구간</span><span class="v">ICN 인천 → BUD 부다페스트</span></div>
-    <div class="row"><span class="k">일시</span><span class="v">12.22(화) 12:15 → 16:55</span></div>
+    <div class="row"><span class="k">일시</span><span class="v">12.22(화) 12:20 → 17:10</span></div>
     <div class="row"><span class="k">좌석</span><span class="v">45G / 45H</span></div>
+    <div class="row"><span class="k">예약번호</span><span class="v">EB7OCS</span></div>
+    <div class="note">⚠️ 2026-10 스케줄 변경 — 출발 12:15 → <b>12:20</b>, 도착 16:55 → <b>17:10</b>. 도착일 저녁 시각을 15분씩 뒤로 옮겼다.</div>
   </div>
   <div class="card">
     <div class="tt">KE970 · 오는 편 <span class="badge g">확정</span></div>
@@ -791,23 +793,23 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
 <script>
 /* ══════════════ 데이터 ══════════════ */
 const DAYS = [
-{d:'2026-12-22',w:'화',city:'air',ct:'이동',t:'인천 → 부다페스트',sum:'16:55 도착 → 멘자 19:45 예약 → 국회의사당 야경',
+{d:'2026-12-22',w:'화',city:'air',ct:'이동',t:'인천 → 부다페스트',sum:'17:10 도착 → 멘자 19:45 예약 → 국회의사당 야경',
  items:[
   {tm:'07:15',nm:'집 → 인천공항 리무진',ds:'평일 출근시간대 감안, 체크인 시작 09:15 도착 목표(2시간 버퍼)',
    warn:'강설 시 플랜B — 지하철 06:46 동구릉역 출발 (8호선→9호선 석촌→공항철도 김포공항→인천공항2터미널, 2시간 29분, 5,650원)',q:'인천국제공항 제2여객터미널'},
-  {tm:'12:15',nm:'KE963 인천 출발',ds:'약 11시간 40분 비행'},
-  {tm:'16:55',nm:'부다페스트 도착',en:'Budapest Ferenc Liszt Airport (BUD)',
+  {tm:'12:20',nm:'KE963 인천 출발',ds:'약 11시간 50분 비행 · 예약번호 EB7OCS',tip:'2026-10 스케줄 변경으로 12:15 → 12:20 으로 5분 늦춰졌다. 공항 도착 목표(09:15)는 그대로 둔다'},
+  {tm:'17:10',nm:'부다페스트 도착',en:'Budapest Ferenc Liszt Airport (BUD)',
    ds:'솅겐 밖에서 오는 편이라 여권심사가 있다. 심사 + 수하물 수취에 **30~45분**을 잡아야 한다',
    q:'Budapest Ferenc Liszt International Airport'},
-  {tm:'17:40',nm:'100E 공항버스 → 데악 페렌츠 광장',ds:'약 40분 · 2,500 HUF · BudapestGO 앱으로 티켓 구매 → **18:20경 도착**',
+  {tm:'17:55',nm:'100E 공항버스 → 데악 페렌츠 광장',ds:'약 40분 · 2,500 HUF · BudapestGO 앱으로 티켓 구매 → **18:35경 도착**',
    tip:'광장에서 숙소까지 도보 10분. 티켓은 한국에서 앱에 미리 등록해두면 여기서 시간을 벌 수 있다',
    q:'Deák Ferenc tér Budapest'},
-  {tm:'18:30',nm:'플로린 아파트 호텔 체크인',en:'Florin Apart Hotel · Karoly Krt. 9',
-   ds:'19:45 예약까지 **1시간 15분 여유** — 짐 풀고 씻고 갈아입을 시간이 된다. 숙소 → 멘자 도보 12분',
+  {tm:'18:45',nm:'플로린 아파트 호텔 체크인',en:'Florin Apart Hotel · Karoly Krt. 9',
+   ds:'19:45 예약까지 **1시간 여유** — 짐 풀고 씻고 갈아입기엔 빠듯하지만 된다. 숙소 → 멘자 도보 12분',
    q:'Florin Apart Hotel Budapest'},
   {tm:'19:45',fx:1,nm:'저녁 — 멘자',en:'Menza · Liszt Ferenc tér 2',
    ds:'**19:45 · 2인 · JIHUN JUNG** — 예약 확정. 정통 굴라시와 구운 오리 가슴살 트러플 리소토. 숙소에서 도보 12분(891m)',
-   warn:'⚠️ 착륙 2시간 50분 뒤라 **30분 연착까지는 흡수된다.** 16:55 착륙 → 심사·수하물 30~45분 → 100E 40분 → 데악 18:20 → 숙소 18:30 → 멘자 19:45. **그보다 더 늦으면 숙소를 건너뛰고 데악에서 바로 가는 편이 빠르다**(데악 → 멘자 930m). 예약이 풀려도 대기 후 입장은 가능하다.',
+   warn:'⚠️ 스케줄 변경으로 **여유가 15분 줄었다**(착륙 2시간 50분 전 → **2시간 35분 전**). 17:10 착륙 → 심사·수하물 30~45분 → 100E 40분 → 데악 18:35 → 숙소 18:45 → 멘자 19:45. 숙소에서 30분 쉬는 걸 감안하면 **15~20분 연착까지** 흡수되고, **숙소를 건너뛰면 45분까지** 버틴다(데악 → 멘자 930m). 예약이 풀려도 대기 후 입장은 가능하다.',
    tip:'예약 확인 메일 캡처를 🎟 티켓 탭(분류 「기타」)에 저장해 두면 현장에서 바로 보여줄 수 있다',
    q:'Menza Budapest'},
   {tm:'21:15',nm:'국회의사당 야경 + 도나우강변 산책',en:'Hungarian Parliament Building',q:'Hungarian Parliament Building',
@@ -1099,7 +1101,7 @@ const SPOTS = [
    운영시간·휴무는 시기가 되어야 확정되므로 사실만 적고 재확인하게 둔다. */
 const FOOD = [
 {d:'2026-12-22',w:'화',city:'bud',ct:'부다페스트',t:'도착 첫날 · 7구 안에서',
- rt:'16:55 공항 → 100E 버스 → 데악 광장 → <b>7구 숙소(19:00)</b> → 저녁(20:00) → 국회의사당 야경(21:30)',
+ rt:'17:10 공항 → 100E 버스 → 데악 광장(18:35) → <b>숙소 체크인(18:45)</b> → <b>멘자 19:45</b> → 국회의사당 야경(21:15)',
  tip:'비행 직후 저녁 20:00 이다. <b>숙소에서 걸어갈 수 있는 7구 안</b>에서 끝내는 편이 낫고, 예약 없이 자리를 찾으려면 여러 집이 모여 있는 곳이 안전하다.',
  list:[
  {mt:'19:45 저녁',pk:1,nm:'멘자 ✅ 예약 완료',en:'Menza · Liszt Ferenc tér 2 · 6구',q:'Menza Budapest',
