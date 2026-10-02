@@ -512,7 +512,7 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
 
   <h2 class="sec">도시별 주요 장소</h2>
   <div id="spots"></div>
-  <div class="foot">식당·카페는 <b>🍽 식당</b> 탭으로 옮겼습니다 — 그날 동선에 맞춰 일자별로 정리되어 있습니다.</div>
+  <div class="foot">식당·카페는 <b>🍽 식당/카페</b> 탭에 있습니다 — 도시별로 정리되어 있습니다.</div>
 </section>
 
 <!-- ══════════ 식당·카페 ══════════ -->
@@ -788,7 +788,7 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
 <nav>
   <button class="on" data-p="plan"><span class="ic">🗓️</span>일정</button>
   <button data-p="place"><span class="ic">📍</span>장소</button>
-  <button data-p="food"><span class="ic">🍽️</span>식당</button>
+  <button data-p="food"><span class="ic">🍽️</span>식당/카페</button>
   <button data-p="move"><span class="ic">🚄</span>교통</button>
   <button data-p="money"><span class="ic">💰</span>예산</button>
   <button data-p="exp"><span class="ic">💸</span>경비</button>
@@ -2444,7 +2444,7 @@ function toggleSub(k){ const el=$('#sb'+k); if(el) el.classList.toggle('open') }
         <span class="vl" style="color:var(--gd)">💡 메모</span>${g.tip}</div>`:''}
       ${['식당','카페'].filter(k=>g.list.some(p=>p.mt===k)).map(k=>{
         const sel=g.list.filter(p=>p.mt===k), sid=gi+'-'+(k==='식당'?'r':'c');
-        return `<div class="sub${k==='식당'?' open':''}" id="sb${sid}">
+        return `<div class="sub" id="sb${sid}">
         <div class="subh" onclick="toggleSub('${sid}')">
           <span>${k==='식당'?'🍽️':'☕'} ${k}</span>
           <span class="cnt2">${sel.length}곳</span><span class="cv">▼</span>
