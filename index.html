@@ -17,7 +17,7 @@
   --bg:#0f172a; --bg2:#16213c; --card:#1b2745; --card2:#223055;
   --line:#2e3d63; --tx:#e9eefb; --tx2:#a3b0d0; --tx3:#6f7fa6;
   --ac:#e0483c; --ac2:#ff6b5e; --gr:#2f9e6f; --gr2:#3ec98d;
-  --gd:#d9a325; --bl:#4a8fe0; --shadow:0 4px 16px rgba(0,0,0,.35);
+  --gd:#d9a325; --bl:#4a8fe0; --pu:#b98cf0; --shadow:0 4px 16px rgba(0,0,0,.35);
   --safe-b:env(safe-area-inset-bottom,0px);
 }
 /* 라이트 팔레트 — OS 설정 / 뷰어 토글(data-theme) 양쪽 대응 */
@@ -25,19 +25,19 @@
   --bg:#f4f6fb; --bg2:#ffffff; --card:#ffffff; --card2:#eef2fa;
   --line:#dde3f0; --tx:#1a2340; --tx2:#5a678a; --tx3:#8d99b5;
   --ac:#d13b2e; --ac2:#b8281c; --gr:#1e8a5d; --gr2:#157048;
-  --gd:#a97b09; --bl:#2a6fc0; --shadow:0 2px 10px rgba(30,45,90,.10);
+  --gd:#a97b09; --bl:#2a6fc0; --pu:#7a44c4; --shadow:0 2px 10px rgba(30,45,90,.10);
 }}
 :root[data-theme="light"]{
   --bg:#f4f6fb; --bg2:#ffffff; --card:#ffffff; --card2:#eef2fa;
   --line:#dde3f0; --tx:#1a2340; --tx2:#5a678a; --tx3:#8d99b5;
   --ac:#d13b2e; --ac2:#b8281c; --gr:#1e8a5d; --gr2:#157048;
-  --gd:#a97b09; --bl:#2a6fc0; --shadow:0 2px 10px rgba(30,45,90,.10);
+  --gd:#a97b09; --bl:#2a6fc0; --pu:#7a44c4; --shadow:0 2px 10px rgba(30,45,90,.10);
 }
 :root[data-theme="dark"]{
   --bg:#0f172a; --bg2:#16213c; --card:#1b2745; --card2:#223055;
   --line:#2e3d63; --tx:#e9eefb; --tx2:#a3b0d0; --tx3:#6f7fa6;
   --ac:#e0483c; --ac2:#ff6b5e; --gr:#2f9e6f; --gr2:#3ec98d;
-  --gd:#d9a325; --bl:#4a8fe0; --shadow:0 4px 16px rgba(0,0,0,.35);
+  --gd:#d9a325; --bl:#4a8fe0; --pu:#b98cf0; --shadow:0 4px 16px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
@@ -125,6 +125,7 @@ h2.sec:first-child{margin-top:2px}
 .c-vie{background:rgba(74,143,224,.18);color:var(--bl)}
 .c-pra{background:rgba(47,158,111,.2);color:var(--gr2)}
 .c-drs{background:rgba(217,163,37,.18);color:var(--gd)}
+.c-sbg{background:rgba(150,92,214,.18);color:var(--pu)}
 .c-air{background:rgba(150,150,180,.2);color:var(--tx2)}
 
 /* 일정 항목 */
@@ -879,7 +880,7 @@ const DAYS = [
   {tm:'13:30',nm:'쇤브룬 정원 · 글로리에테',en:'Gloriette Schönbrunn',ds:'언덕 위에서 궁전과 빈 시내가 내려다보인다',tip:'12월 빈은 16:05 에 해가 진다 — 정원은 반드시 밝을 때 볼 것',q:'Gloriette, Schönbrunn, Wien'},
   {tm:'15:00',nm:'비엔나 카페 — 자허 또는 센트랄',en:'Café Sacher / Café Central',ds:'자허토르테 · 아인슈페너 · 쇤브룬에서 U4 한 번에 카를스플라츠',q:'Cafe Sacher Wien'}
  ]},
-{d:'2026-12-28',w:'월',city:'vie',ct:'잘츠부르크',t:'잘츠부르크 당일치기',sum:'레일젯 2시간 22분 · 현지 8시간 · 성과 돔 광장 마켓',
+{d:'2026-12-28',w:'월',city:'sbg',ct:'잘츠부르크',t:'잘츠부르크 당일치기',sum:'레일젯 2시간 22분 · 현지 8시간 · 성과 돔 광장 마켓',
  items:[
   {tm:'07:30',nm:'숙소 → 빈 중앙역',en:'Wien Hauptbahnhof',ds:'**307m · 도보 5분** — 이 날 아침이 편한 이유다',q:'Wien Hauptbahnhof'},
   {tm:'07:57',nm:'레일젯 빈 → 잘츠부르크',ds:'약 **2시간 22분** · 시간당 2편(급행·완행) · ÖBB',
@@ -2449,7 +2450,7 @@ function toggleSub(k){ const el=$('#sb'+k); if(el) el.classList.toggle('open') }
   const now=new Date(), today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
   let todayIdx=-1;
   $('#food').innerHTML = FOOD.map((g,gi)=>{
-    const isT=g.city===(DAYS.find(x=>x.d===today)||{}).city; if(isT&&todayIdx<0) todayIdx=gi;
+    const tc=(DAYS.find(x=>x.d===today)||{}).city, isT=g.city===(tc==='sbg'?'vie':tc); if(isT&&todayIdx<0) todayIdx=gi;
     const picks=g.list.filter(p=>p.pk).length;
     return `<div class="day${isT?' today':''}" id="fd${gi}">
     <div class="dh" onclick="toggleFood(${gi})">
@@ -3109,8 +3110,8 @@ function saveManual(){
 /* ══════════════ 경비 기록 ══════════════ */
 const EKEY='xmas-trip-2026-exp';
 const CATS=[['식비','🍽️'],['교통','🚇'],['입장료','🎫'],['마켓·쇼핑','🛍️'],['카페·간식','☕'],['기타','💼']];
-const CITYCUR={bud:'HUF',vie:'EUR',pra:'CZK',drs:'EUR',air:'KRW'};
-const CITYNM={bud:'부다페스트',vie:'비엔나',pra:'프라하',drs:'드레스덴',air:'이동·기타'};
+const CITYCUR={bud:'HUF',vie:'EUR',pra:'CZK',drs:'EUR',sbg:'EUR',air:'KRW'};
+const CITYNM={bud:'부다페스트',vie:'비엔나',pra:'프라하',drs:'드레스덴',sbg:'잘츠부르크',air:'이동·기타'};
 const BUDGET=3258908;
 const nfk=new Intl.NumberFormat('ko-KR');
 let eCat='식비', eCur='HUF';
