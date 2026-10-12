@@ -627,7 +627,8 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
       <div class="mini"><div class="k">예산 총액</div><div class="v">1,000만 원</div></div>
       <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 326만 원</div></div>
     </div>
-    <div class="note">온천·기차·투어 / 식비·잡비 미확정 · <b>남은 입장권은 벨베데레(12/28) 2인 €46</b> · 발레는 보지 않기로 해 빠졌다 · 입장권은 실제 결제 원화 기준</div>
+    <div class="note">온천·기차·투어 / 식비·잡비 미확정 · <b>남은 입장권은 벨베데레(12/26) 2인 €46</b> · 발레는 보지 않기로 해 빠졌다 · 입장권은 실제 결제 원화 기준</div>
+    <div class="note" style="margin-top:7px">🚄 <b>잘츠부르크 당일치기(12/28) 약 37만원</b> — 기차 2인 왕복 €80(특가) + 잘츠부르크 카드 2인 €70 + 식사 €80. 위 잔여 326만 원에서 나간다(약 11%). <b>기차를 늦게 잡으면 정상가 €260 이라 66만원까지 오른다.</b></div>
   </div>
 
   <h2 class="sec">환전 계획</h2>
@@ -861,13 +862,15 @@ const DAYS = [
   {tm:'19:30',nm:'크리스마스 당일 저녁 식사',ds:'후보: Griechenbeisl · Meissl & Schadn · Huth Gastwirtschaft',
    warn:'⚠️ 예약 필수 — 12/25 는 여는 곳이 적다. 19:30~20:00 권장. 「🍽 식당」 탭 참고',q:'Griechenbeisl Vienna'}
  ]},
-{d:'2026-12-26',w:'토',city:'vie',ct:'비엔나',t:'구시가 · 슈테판 대성당',sum:'슈테판 대성당 · 그라벤 · 케른트너 거리',
+{d:'2026-12-26',w:'토',city:'vie',ct:'비엔나',t:'벨베데레 + 구시가 · 시청 마켓',sum:'오전 벨베데레 클림트 · 오후 구시가 · 시청 마켓 마지막 날',
  items:[
-  {tm:'10:00',nm:'슈테판 대성당',en:"St. Stephen's Cathedral (Stephansdom)",ds:'구시가 중심 · 남탑 전망',q:"St. Stephen's Cathedral Vienna"},
-  {tm:'11:30',nm:'그라벤 거리',en:'Graben',ds:'페스트조일레 · 크리스마스 조명',q:'Graben Vienna'},
-  {tm:'13:00',nm:'케른트너 거리 + 점심',en:'Kärntner Straße',q:'Kärntner Straße Vienna'},
-  {tm:'15:00',nm:'빈 시청 앞 마켓 (Christkindlmarkt)',en:'Rathausplatz Christmas Market',ds:'비엔나 최대 규모 마켓',q:'Rathausplatz Christmas Market Vienna'},
-  {tm:'18:00',nm:'저녁 — 구시가',warn:'숙소↔구시가 도보 30~40분 → 야간엔 트램/지하철 이용'}
+  {tm:'10:00',nm:'벨베데레 궁전',en:'Belvedere Palace',ds:'클림트 「키스」 · **시간지정 티켓 필수**(2인 €46) · 09:00~18:00',tip:'숙소에서 **도보 8분** — 아침 이동이 없다. 관람 후 트램 D 로 오페라·시내까지 한 번에 나간다',q:'Belvedere Palace Vienna'},
+  {tm:'12:30',nm:'점심 — 시내로 이동',ds:'트램 D 로 오페라극장 앞까지 한 번에. 식당·카페 탭의 🇦🇹 비엔나 묶음 참고'},
+  {tm:'14:00',nm:'슈테판 대성당',en:"St. Stephen's Cathedral (Stephansdom)",ds:'구시가 중심 · 남탑 전망',q:"St. Stephen's Cathedral Vienna"},
+  {tm:'15:00',nm:'그라벤 · 케른트너 거리',en:'Graben · Kärntner Straße',ds:'페스트조일레 · 크리스마스 조명 · 일몰 16:05 이라 바로 야경이 된다',q:'Graben Vienna'},
+  {tm:'16:00',nm:'빈 시청 앞 마켓 (Christkindlmarkt)',en:'Rathausplatz Christmas Market',ds:'비엔나 최대 규모 · 10:00~22:00',
+   warn:'⚠️ **오늘이 마지막 날이다.** 시청 앞 마켓은 12/26 에 끝난다 — 12/27·12/28 에는 없다. 이 날 꼭 볼 것',q:'Rathausplatz Christmas Market Vienna'},
+  {tm:'18:30',nm:'저녁 — 구시가',warn:'숙소↔구시가 도보 30~40분 → 야간엔 트램/지하철 이용'}
  ]},
 {d:'2026-12-27',w:'일',city:'vie',ct:'비엔나',t:'쇤브룬 궁전 + 비엔나 카페',sum:'쇤브룬 궁전·마켓·정원 · 오후는 카페 한 곳',
  items:[
@@ -876,15 +879,26 @@ const DAYS = [
   {tm:'13:30',nm:'쇤브룬 정원 · 글로리에테',en:'Gloriette Schönbrunn',ds:'언덕 위에서 궁전과 빈 시내가 내려다보인다',tip:'12월 빈은 16:05 에 해가 진다 — 정원은 반드시 밝을 때 볼 것',q:'Gloriette, Schönbrunn, Wien'},
   {tm:'15:00',nm:'비엔나 카페 — 자허 또는 센트랄',en:'Café Sacher / Café Central',ds:'자허토르테 · 아인슈페너 · 쇤브룬에서 U4 한 번에 카를스플라츠',q:'Cafe Sacher Wien'}
  ]},
-{d:'2026-12-28',w:'월',city:'vie',ct:'비엔나',t:'벨베데레 + 비엔나 마지막 날',sum:'오전 벨베데레 클림트 · 오후 시내 · 저녁 구시가',
+{d:'2026-12-28',w:'월',city:'vie',ct:'잘츠부르크',t:'잘츠부르크 당일치기',sum:'레일젯 2시간 22분 · 현지 8시간 · 성과 돔 광장 마켓',
  items:[
-  {tm:'10:00',nm:'벨베데레 궁전',en:'Belvedere Palace',ds:'클림트 「키스」 · 시간지정 티켓 필수(€23) · 09:00~18:00',tip:'숙소에서 도보 8분 — 이 날 아침은 이동이 없다. 관람 후 트램 D 로 오페라·시내까지 한 번에 나간다',q:'Belvedere Palace Vienna'},
-  {tm:'12:30',nm:'나슈마르크트 — 점심',en:'Naschmarkt',ds:'16세기부터 이어진 빈 최대 재래시장 · 벨베데레에서 1.5km · 즉석 식당이 섞여 있어 점심 장소로 좋다',q:'Naschmarkt Vienna'},
-  {tm:'14:00',nm:'미술사 박물관 ⟨갈지 미정⟩',en:'Kunsthistorisches Museum',ds:'나슈마르크트에서 **도보 8분**(621m) · 12/28(월) 10:00~18:00 개관 확인 · 브뤼헐·페르메이르·라파엘',tip:'가기로 하면 **시간지정 예약 필수**(2026-09-08 시행). 14:00 슬롯이면 16:30 에 나와 구시가 야경으로 이어진다',q:'Kunsthistorisches Museum Vienna'},
-  {tm:'대안',nm:'호프부르크 왕궁',en:'Hofburg',ds:'시씨 박물관 · 미술사 박물관에서 도보 5분',warn:'**마지막 입장 16:30** — 미술사 박물관과 같은 날 둘 다는 빠듯하다. 둘 중 하나만',q:'Hofburg Vienna'},
-  {tm:'16:30',nm:'구시가 산책 — 케른트너 거리 · 슈테판 대성당',en:'Kärntner Straße · Stephansdom',ds:'일몰 16:05 이라 바로 야경이 된다 · 무료 · 저녁 식당까지 도보권',q:"St. Stephen's Cathedral Vienna"},
-  {tm:'19:00',nm:'저녁 — 비엔나 마지막 밤',en:'Plachutta · Wollzeile 38',ds:'타펠슈피츠 · 구시가에서 도보권 · 식당 탭에 후보 정리됨',tip:'내일 오전 프라하행이라 늦게까지 끌지 말 것',q:'Plachutta Wollzeile Wien'},
-  {tm:'밤',nm:'짐 정리',warn:'내일 09:00 빈 중앙역 — **숙소에서 307m**라 이동 부담은 없다. 캐리어 자물쇠 확인'}
+  {tm:'07:30',nm:'숙소 → 빈 중앙역',en:'Wien Hauptbahnhof',ds:'**307m · 도보 5분** — 이 날 아침이 편한 이유다',q:'Wien Hauptbahnhof'},
+  {tm:'07:57',nm:'레일젯 빈 → 잘츠부르크',ds:'약 **2시간 22분** · 시간당 2편(급행·완행) · ÖBB',
+   warn:'⚠️ **시각은 아직 추정이다.** ÖBB 는 2026/2027 시간표를 아직 안 올렸다 — 2026-10-12 조회 시 **나이트젯만** 예매 가능했다. 12/13 시간표 개정 이후 날짜라 그렇다. 열리면 실제 시각으로 고칠 것',
+   tip:'빈 ↔ 잘츠부르크는 **시간당 2편**이라 자리가 없어 못 가는 일은 없다. 특가(Sparschiene €19.90~)만 서두르면 된다',q:'Salzburg Hauptbahnhof'},
+  {tm:'10:19',nm:'잘츠부르크 도착',en:'Salzburg Hauptbahnhof',ds:'구시가까지 **도보 15~20분** 또는 버스 1·3·5·6 으로 10분',q:'Salzburg Hauptbahnhof'},
+  {tm:'10:30',nm:'미라벨 정원',en:'Mirabellgarten',ds:'역에서 **도보 10분** · 무료 · 「사운드 오브 뮤직」 도레미 촬영지. 겨울엔 꽃이 없지만 성이 보이는 구도는 그대로다',q:'Mirabellgarten Salzburg'},
+  {tm:'11:30',nm:'모차르트 생가',en:'Mozarts Geburtshaus · Getreidegasse 9',ds:'매일 **09:00~17:30**(마지막 입장 17:00) · €15/인. 노란 건물 · 철제 간판이 늘어선 게트라이데가세 한복판',q:'Mozarts Geburtshaus'},
+  {tm:'12:40',nm:'점심 — 게트라이데가세 일대',ds:'구시가 한가운데라 선택지가 많다',q:'Getreidegasse Salzburg'},
+  {tm:'14:00',nm:'호엔잘츠부르크 성',en:'Festung Hohensalzburg',ds:'**09:30~17:00**(10~12월) · 푸니쿨라 2분 · Basic €15.50 / All-inclusive €19.20 (둘 다 푸니쿨라 포함)',
+   tip:'유럽에서 가장 크게 남아 있는 중세 성 중 하나다. 성벽에서 시내와 알프스가 한눈에 보인다',q:'Festung Hohensalzburg'},
+  {tm:'16:00',nm:'돔 광장 크리스마스 마켓',en:'Salzburger Christkindlmarkt · Domplatz',ds:'월~목 **10:00~20:30** · 11/19~1/1 운영이라 이 날도 한창이다',
+   tip:'**일몰이 16:20** 이라 도착하자마자 조명이 켜진다. 글뤼바인에 프레첼로 저녁을 때우고 느긋하게 나오면 된다',q:'Salzburger Dom'},
+  {tm:'대안',nm:'돔크바르티어 ⟨날씨가 궂으면⟩',en:'DomQuartier',ds:'대주교 궁전 + 대성당 테라스 + 미술관 · **월요일 영업**(화요일 휴무) · 10:00~17:00 · €13/인',
+   warn:'넣으려면 점심 후 14:00 에 넣고 성을 15:00 로 미뤄야 한다 — 빠듯하다. **춥거나 눈이 올 때의 실내 대피처**로 생각할 것. 잘츠부르크 박물관은 개보수로 2027년까지 휴관이다',q:'DomQuartier Salzburg'},
+  {tm:'18:05',nm:'역으로 이동',ds:'버스 1·3·5·6 으로 10분 · 15분 여유',q:'Salzburg Hauptbahnhof'},
+  {tm:'18:30',nm:'레일젯 잘츠부르크 → 빈',ds:'**20:52 빈 도착** · 숙소까지 도보 5분',
+   tip:'마켓에서 저녁까지 먹고 올 생각이면 **한 시간 뒤 차(19:30 → 21:52)** 도 괜찮다. 다음날 빈 중앙역 이동이 09:00 이라 여유가 있다',q:'Wien Hauptbahnhof'},
+  {tm:'밤',nm:'짐 정리',warn:'내일 09:00 빈 중앙역 — **숙소에서 307m** 라 이동 부담은 없다. 캐리어 자물쇠 확인'}
  ]},
 {d:'2026-12-29',w:'화',city:'pra',ct:'이동',t:'비엔나 → 프라하',sum:'오전 레일젯 약 4시간 · 프라하 구시가 첫 야경',
  items:[
@@ -1247,6 +1261,9 @@ const MOVES = [
 {nm:'비엔나 → 프라하',how:'ÖBB 레일젯',st:'r',
  ds:'12/29 오전 · 약 4시간',warn:'**아직 안 열렸다** — 12/29 는 12월 중순 시간표 개정 이후라 그 전에는 조회가 안 된다. DB 는 10월 중순 개시, ČD 구간은 11월 말~12월 초로 더 늦을 수 있다. ÖBB 를 먼저 보고 안 열렸으면 11월에 재시도',
  from:'Wien Hauptbahnhof',to:'Praha hlavní nádraží'},
+{nm:'빈 ↔ 잘츠부르크',how:'ÖBB 레일젯',st:'r',
+ ds:'12/28 당일 왕복 · 편도 약 2시간 22분 · 시간당 2편',warn:'**아직 안 열렸다**(2026-10-12 직접 조회). ÖBB 안내: 2027 시간표(12/13부) 계획이 미완이라 **현재 나이트젯만 예매 가능**하고 그 시각도 바뀔 수 있다. 10월 중 재확인',tip:'빈 **중앙역** 출발이라 숙소에서 도보 5분이다. WESTbahn 이 2인 왕복 €24 싸지만 **서역** 출발이라 아침에 손해다. 연말이니 좌석 지정(€3 안팎/인) 권장',
+ from:'Wien Hauptbahnhof',to:'Salzburg Hauptbahnhof'},
 {nm:'프라하 ↔ 드레스덴',how:'EC 유로시티 직행',st:'y',
  ds:'12/30 왕복 · 편도 약 2시간 7분 · 직행 하루 약 12편',warn:'**아직 안 열렸다**(2026-09-30 DB 조회 확인). DB 공식 안내: 새 시간표 기간 예매는 **10월 중순부터**. ČD·DB 두 곳 비교, 왕복 할인 없으니 편도 2장. 연말 성수기라 좌석 지정 권장',
  from:'Praha hlavní nádraží',to:'Dresden Hauptbahnhof'},
@@ -1437,6 +1454,13 @@ function copy(txt){
 }
 /* 명소 좌표 (OpenStreetMap Nominatim 조회, 2026-08-04 · 도시 경계 검증 완료) */
 const GEO={
+ 'Mozarts Geburtshaus':[47.79994,13.04355],
+ 'DomQuartier Salzburg':[47.79831,13.04564],
+ 'Festung Hohensalzburg':[47.79521,13.0481],
+ 'Getreidegasse Salzburg':[47.80002,13.04233],
+ 'Mirabellgarten Salzburg':[47.80466,13.04164],
+ 'Salzburg Hauptbahnhof':[47.81306,13.04585],
+ 'Salzburger Dom':[47.79785,13.04662],
  '(A)void cafe':[50.09325,14.42421],
  '21 - Magyar Vendéglő':[47.50411,19.03128],
  '9BAR':[47.50198,19.05592],
