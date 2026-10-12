@@ -558,7 +558,7 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
   <h2 class="sec">🎫 기차 예약 보관함</h2>
   <div class="card">
     <div class="tt">언제 예매하나 <span class="badge y">10월 중순</span></div>
-    <div class="note" style="margin:6px 0 0">유럽 철도는 <b>12월 중순에 시간표를 개정</b>하고, 개정 이후 날짜의 승차권은 통상 <b>10월 중순</b>에 열립니다(직전 개정은 10/15 부터 판매). 아래 <b>기차 4구간 전부</b> 해당됩니다 — 그전에는 조회해도 나오지 않습니다.<br><br>
+    <div class="note" style="margin:6px 0 0">유럽 철도는 <b>12월 중순에 시간표를 개정</b>하고, 개정 이후 날짜의 승차권은 통상 <b>10월 중순</b>에 열립니다(직전 개정은 10/15 부터 판매). 아래 <b>기차 6편 전부</b> 해당됩니다 — 그전에는 조회해도 나오지 않습니다.<br><br>
     <b>특가는 좌석 한정이라 빨리 팔립니다.</b> 열리는 즉시 사는 것이 가장 싸고, 늦으면 정상운임만 남습니다. <b>왕복 할인은 없으니 편도 2장</b>을 따로 사면 됩니다.<br><br>
     같은 기차를 <b>ÖBB · MÁV · ČD · DB 가 각각 팔기도 합니다</b> — 두 곳 이상 조회해 싼 쪽으로. Omio·Trainline 같은 재판매 사이트는 수수료가 붙으니 <b>철도사 직접 구매</b>가 낫습니다.</div>
   </div>
@@ -857,7 +857,7 @@ const DAYS = [
   {tm:'오전',nm:'오전 여유 일정 · 짐 정리'},
   {tm:'11:00',nm:'플로린 아파트 호텔 체크아웃',ds:'체크아웃 11:00',q:'Florin Apart Hotel Budapest'},
   {tm:'12:00',nm:'부다페스트 켈레티역 이동',en:'Budapest-Keleti',q:'Budapest Keleti railway station'},
-  {tm:'13:00',nm:'레일젯 부다페스트 → 비엔나',ds:'ÖBB/MÁV · 약 2시간 20~40분',
+  {tm:'13:00',nm:'레일젯 부다페스트 → 비엔나',en:'Budapest-Keleti → Wien Hbf',ds:'ÖBB/MÁV · 약 2시간 20~40분',
    warn:'⚠️ 10월 중순 예매 시작 — 열리는 즉시 예약(특가 좌석 한정). ÖBB·MÁV 두 곳 비교',q:'Wien Hauptbahnhof'},
   {tm:'16:00',nm:'Adina Apartment Hotel 체크인',en:'Canettistraße 3, 1100 Wien',ds:'빈 중앙역 인근 · 취사 가능',q:'Adina Apartment Hotel Vienna Belvedere'},
   {tm:'19:30',nm:'크리스마스 당일 저녁 식사',ds:'후보: Griechenbeisl · Meissl & Schadn · Huth Gastwirtschaft',
@@ -883,7 +883,7 @@ const DAYS = [
 {d:'2026-12-28',w:'월',city:'sbg',ct:'잘츠부르크',t:'잘츠부르크 당일치기',sum:'레일젯 2시간 22분 · 현지 8시간 · 성과 돔 광장 마켓',
  items:[
   {tm:'07:30',nm:'숙소 → 빈 중앙역',en:'Wien Hauptbahnhof',ds:'**307m · 도보 5분** — 이 날 아침이 편한 이유다',q:'Wien Hauptbahnhof'},
-  {tm:'07:57',nm:'레일젯 빈 → 잘츠부르크',ds:'약 **2시간 22분** · 시간당 2편(급행·완행) · ÖBB',
+  {tm:'07:57',nm:'레일젯 빈 → 잘츠부르크',en:'Wien Hbf → Salzburg Hbf',ds:'약 **2시간 22분** · 시간당 2편(급행·완행) · ÖBB',
    warn:'⚠️ **시각은 아직 추정이다.** ÖBB 는 2026/2027 시간표를 아직 안 올렸다 — 2026-10-12 조회 시 **나이트젯만** 예매 가능했다. 12/13 시간표 개정 이후 날짜라 그렇다. 열리면 실제 시각으로 고칠 것',
    tip:'빈 ↔ 잘츠부르크는 **시간당 2편**이라 자리가 없어 못 가는 일은 없다. 특가(Sparschiene €19.90~)만 서두르면 된다',q:'Salzburg Hauptbahnhof'},
   {tm:'10:19',nm:'잘츠부르크 도착',en:'Salzburg Hauptbahnhof',ds:'구시가까지 **도보 15~20분** 또는 버스 1·3·5·6 으로 10분',q:'Salzburg Hauptbahnhof'},
@@ -897,14 +897,14 @@ const DAYS = [
   {tm:'대안',nm:'돔크바르티어 ⟨날씨가 궂으면⟩',en:'DomQuartier',ds:'대주교 궁전 + 대성당 테라스 + 미술관 · **월요일 영업**(화요일 휴무) · 10:00~17:00 · €13/인',
    warn:'넣으려면 점심 후 14:00 에 넣고 성을 15:00 로 미뤄야 한다 — 빠듯하다. **춥거나 눈이 올 때의 실내 대피처**로 생각할 것. 잘츠부르크 박물관은 개보수로 2027년까지 휴관이다',q:'DomQuartier Salzburg'},
   {tm:'18:05',nm:'역으로 이동',ds:'버스 1·3·5·6 으로 10분 · 15분 여유',q:'Salzburg Hauptbahnhof'},
-  {tm:'18:30',nm:'레일젯 잘츠부르크 → 빈',ds:'**20:52 빈 도착** · 숙소까지 도보 5분',
+  {tm:'18:30',nm:'레일젯 잘츠부르크 → 빈',en:'Salzburg Hbf → Wien Hbf',ds:'**20:52 빈 도착** · 숙소까지 도보 5분',
    tip:'마켓에서 저녁까지 먹고 올 생각이면 **한 시간 뒤 차(19:30 → 21:52)** 도 괜찮다. 다음날 빈 중앙역 이동이 09:00 이라 여유가 있다',q:'Wien Hauptbahnhof'},
   {tm:'밤',nm:'짐 정리',warn:'내일 09:00 빈 중앙역 — **숙소에서 307m** 라 이동 부담은 없다. 캐리어 자물쇠 확인'}
  ]},
 {d:'2026-12-29',w:'화',city:'pra',ct:'이동',t:'비엔나 → 프라하',sum:'오전 레일젯 약 4시간 · 프라하 구시가 첫 야경',
  items:[
   {tm:'09:00',nm:'빈 중앙역 이동',en:'Wien Hauptbahnhof',ds:'숙소에서 도보권',q:'Wien Hauptbahnhof'},
-  {tm:'10:00',nm:'레일젯 비엔나 → 프라하',ds:'ÖBB · 약 4시간',
+  {tm:'10:00',nm:'레일젯 비엔나 → 프라하',en:'Wien Hbf → Praha hl.n. (독 Prag Hbf)',ds:'ÖBB · 약 4시간',
    warn:'⚠️ 10월 중순 예매 시작 — 열리는 즉시 예약(특가 좌석 한정). ÖBB 에서 구매',q:'Praha hlavní nádraží'},
   {tm:'14:30',nm:'프라하 중앙역 도착',en:'Praha hlavní nádraží',q:'Praha hlavní nádraží'},
   {tm:'15:30',nm:'Unitas Hotel 체크인',en:'Bartolomějská 308/9, Praha 1',ds:'구시가 광장 인근 · 마켓·야경 도보권',q:'Unitas Hotel Prague'},
@@ -913,7 +913,7 @@ const DAYS = [
  ]},
 {d:'2026-12-30',w:'수',city:'drs',ct:'드레스덴',t:'드레스덴 당일치기',sum:'EC 직행 왕복 · 건축·도시 관광',
  items:[
-  {tm:'08:00',nm:'프라하 중앙역 출발 (EC 직행)',ds:'약 2시간~2시간 15분',
+  {tm:'08:00',nm:'프라하 중앙역 출발 (EC 직행)',en:'Praha hl.n. → Dresden Hbf',ds:'약 2시간~2시간 15분',
    warn:'⚠️ 연말 성수기 — 왕복 사전 예약 권장',q:'Praha hlavní nádraží'},
   {tm:'10:15',nm:'드레스덴 중앙역 도착',en:'Dresden Hauptbahnhof',q:'Dresden Hauptbahnhof'},
   {tm:'10:30',nm:'츠빙거 궁전',en:'Zwinger Palace',q:'Zwinger Dresden'},
@@ -927,7 +927,7 @@ const DAYS = [
   {tm:'16:00',nm:'구시가 자유 산책 · 카페·쇼핑',
    warn:'슈트리첼마르크트는 12/24 전후 종료 → 마켓은 못 봄'},
   {tm:'17:30',nm:'드레스덴 중앙역 이동',q:'Dresden Hauptbahnhof'},
-  {tm:'18:00',nm:'드레스덴 출발 (EC 직행)'},
+  {tm:'18:00',nm:'드레스덴 출발 (EC 직행)',en:'Dresden Hbf → Praha hl.n.'},
   {tm:'20:15',nm:'프라하 중앙역 도착',q:'Praha hlavní nádraží'}
  ]},
 {d:'2026-12-31',w:'목',city:'pra',ct:'프라하',t:'프라하성 + 새해 전야',sum:'프라하성 · 구시가 광장 카운트다운',
@@ -1256,16 +1256,16 @@ const MOVES = [
 {nm:'부다페스트 공항 → 숙소',how:'100E 공항버스',st:'g',
  ds:'데악 페렌츠 광장까지 직행 약 40분 · 2,500 HUF · 도보 10분',
  tip:'BudapestGO 앱으로 티켓 구매',from:'Budapest Ferenc Liszt International Airport',to:'Deák Ferenc tér Budapest'},
-{nm:'부다페스트 → 비엔나',how:'ÖBB/MÁV 레일젯',st:'r',
+{nm:'부다페스트 → 비엔나',how:'ÖBB/MÁV 레일젯',st:'r',sn:['Budapest-Keleti','Wien Hbf'],alt:'부다페스트는 **Keleti**(동역)가 빈행 출발역이다 — **Nyugati**(서역)·**Déli**(남역)는 다른 역이다. Kelenföld 경유 편성은 Keleti 다음 정차역이라 괜찮다',
  ds:'12/25 · 약 2시간 20~40분',warn:'**아직 안 열렸다** — 12/25 도 시간표 개정 이후다. **MÁV 는 11월 말~12월 초**에야 열리는 편이니 ÖBB 쪽을 먼저 확인할 것',
  from:'Budapest Keleti railway station',to:'Wien Hauptbahnhof'},
-{nm:'비엔나 → 프라하',how:'ÖBB 레일젯',st:'r',
+{nm:'비엔나 → 프라하',how:'ÖBB 레일젯',st:'r',sn:['Wien Hbf','Praha hl.n.'],alt:'ÖBB·DB 독일어 화면에서는 프라하가 **Prag Hbf** 로 나온다. **Praha-Holešovice** 행 편성은 다른 역이고 구시가에서 멀다 — 숙소(Unitas)는 중앙역 쪽이다',
  ds:'12/29 오전 · 약 4시간',warn:'**아직 안 열렸다** — 12/29 는 12월 중순 시간표 개정 이후라 그 전에는 조회가 안 된다. DB 는 10월 중순 개시, ČD 구간은 11월 말~12월 초로 더 늦을 수 있다. ÖBB 를 먼저 보고 안 열렸으면 11월에 재시도',
  from:'Wien Hauptbahnhof',to:'Praha hlavní nádraží'},
-{nm:'빈 ↔ 잘츠부르크',how:'ÖBB 레일젯',st:'r',
+{nm:'빈 ↔ 잘츠부르크',how:'ÖBB 레일젯',st:'r',sn:['Wien Hbf','Salzburg Hbf'],alt:'**Wien Westbahnhof**(서역)가 아니라 **Wien Hbf**(중앙역)다 — 숙소가 중앙역 307m 다. Wien Mitte·Wien Meidling 도 다른 역이다',
  ds:'12/28 당일 왕복 · 편도 약 2시간 22분 · 시간당 2편',warn:'**아직 안 열렸다**(2026-10-12 직접 조회). ÖBB 안내: 2027 시간표(12/13부) 계획이 미완이라 **현재 나이트젯만 예매 가능**하고 그 시각도 바뀔 수 있다. 10월 중 재확인',tip:'빈 **중앙역** 출발이라 숙소에서 도보 5분이다. WESTbahn 이 2인 왕복 €24 싸지만 **서역** 출발이라 아침에 손해다. 연말이니 좌석 지정(€3 안팎/인) 권장',
  from:'Wien Hauptbahnhof',to:'Salzburg Hauptbahnhof'},
-{nm:'프라하 ↔ 드레스덴',how:'EC 유로시티 직행',st:'y',
+{nm:'프라하 ↔ 드레스덴',how:'EC 유로시티 직행',st:'y',sn:['Praha hl.n.','Dresden Hbf'],alt:'DB 독일어 화면에서는 프라하가 **Prag Hbf** 다. **Hbf = Hauptbahnhof**(중앙역) 약자',
  ds:'12/30 왕복 · 편도 약 2시간 7분 · 직행 하루 약 12편',warn:'**아직 안 열렸다**(2026-09-30 DB 조회 확인). DB 공식 안내: 새 시간표 기간 예매는 **10월 중순부터**. ČD·DB 두 곳 비교, 왕복 할인 없으니 편도 2장. 연말 성수기라 좌석 지정 권장',
  from:'Praha hlavní nádraží',to:'Dresden Hauptbahnhof'},
 {nm:'프라하 숙소 → 공항',how:'Bolt 택시',st:'g',
@@ -1279,7 +1279,7 @@ const LISTS = [
 {id:'todo-red',t:'🔴 급함',items:[
  '집 → 인천공항 리무진버스 예약 (12/22, 07:15경 출발 목표)',
  '강설 시 플랜B 지하철 경로 확인 (06:46 동구릉역 출발)']},
-{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차 4구간은 12월 중순 시간표 개정 탓에 아직 안 열렸다 — DB 기준 10월 중순 개시. 열리는 즉시 사야 특가를 잡는다',items:[
+{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차 6편(잘츠부르크 왕복 포함)은 12월 중순 시간표 개정 탓에 아직 안 열렸다 — DB 기준 10월 중순 개시, ÖBB 는 2026-10-12 조회 시 나이트젯만 열려 있었다. 열리는 즉시 사야 특가를 잡는다',items:[
  '12/25 크리스마스 저녁 식사 예약 (비엔나, 19:30~20:00)',
  '부다페스트 → 비엔나 편도 기차 (12/25) — **아직 미오픈**(09/30 확인). ÖBB 먼저, MÁV 는 11월 말~12월 초',
  '비엔나 → 프라하 레일젯 (12/29) — **아직 미오픈**(09/30 확인). ÖBB 10월 중순부터 순차 개시',
@@ -2510,6 +2510,12 @@ function toggleSub(k){ const el=$('#sb'+k); if(el) el.classList.toggle('open') }
   $('#moves').innerHTML = MOVES.map(m=>`<div class="card">
     <div class="tt">${esc(m.nm)}<span class="badge ${m.st}">${m.st==='g'?'확정':m.st==='y'?'예약 필요':'미오픈'}</span></div>
     <div class="st">${esc(m.how)}</div>
+    ${m.sn?`<div class="row"><span class="k">예매 역명</span><span class="v" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace">${esc(m.sn[0])} → ${esc(m.sn[1])}</span></div>
+    <div class="btns">
+      <button class="b" onclick="copy('${esc(m.sn[0]).replace(/'/g,"\\'")}')">📋 ${esc(m.sn[0])}</button>
+      <button class="b" onclick="copy('${esc(m.sn[1]).replace(/'/g,"\\'")}')">📋 ${esc(m.sn[1])}</button>
+    </div>`:''}
+    ${m.alt?`<div class="note" style="margin-top:6px">🔎 ${em(m.alt)}</div>`:''}
     ${m.ds?`<div class="ds" style="font-size:13px;color:var(--tx2)">${em(m.ds)}</div>`:''}
     ${m.tip?`<div class="tip">💡 ${em(m.tip)}</div>`:''}
     ${m.warn?`<div class="warn">⚠️ ${em(m.warn)}</div>`:''}
@@ -2982,16 +2988,28 @@ function renderTalk(){
 
 /* ══════════════ 기차 예약 보관함 ══════════════ */
 const TKEY='xmas-trip-2026-tickets';
-/* 예약해야 할 구간 4건을 빈 양식으로 미리 깔아 둔다 */
+/* 예약해야 할 6편을 빈 양식으로 미리 깔아 둔다.
+   id 는 휴대폰에 저장된 입력과 짝이므로 기존 t1~t4 를 그대로 두고 뒤에 t5·t6 을 붙였다.
+   보이는 순서는 배열 순서라 날짜대로 끼워 넣는다. */
 const TSEED=[
  {id:'t1',rt:'부다페스트 → 비엔나',date:'12/25 (금)',op:'ÖBB / MÁV 레일젯',
-  fq:'Budapest Keleti railway station',tq:'Wien Hauptbahnhof',dur:'약 2시간 20~40분'},
+  fq:'Budapest Keleti railway station',tq:'Wien Hauptbahnhof',dur:'약 2시간 20~40분',
+  sn:'Budapest-Keleti → Wien Hbf'},
+ {id:'t5',rt:'빈 → 잘츠부르크',date:'12/28 (월) 아침',op:'ÖBB 레일젯',
+  fq:'Wien Hauptbahnhof',tq:'Salzburg Hauptbahnhof',dur:'약 2시간 22분',
+  sn:'Wien Hbf → Salzburg Hbf'},
+ {id:'t6',rt:'잘츠부르크 → 빈',date:'12/28 (월) 저녁',op:'ÖBB 레일젯',
+  fq:'Salzburg Hauptbahnhof',tq:'Wien Hauptbahnhof',dur:'약 2시간 22분',
+  sn:'Salzburg Hbf → Wien Hbf'},
  {id:'t2',rt:'비엔나 → 프라하',date:'12/29 (화)',op:'ÖBB 레일젯',
-  fq:'Wien Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'약 4시간'},
+  fq:'Wien Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'약 4시간',
+  sn:'Wien Hbf → Praha hl.n. (독 Prag Hbf)'},
  {id:'t3',rt:'프라하 → 드레스덴',date:'12/30 (수)',op:'EC 유로시티',
-  fq:'Praha hlavní nádraží',tq:'Dresden Hauptbahnhof',dur:'약 2시간~2시간 15분'},
+  fq:'Praha hlavní nádraží',tq:'Dresden Hauptbahnhof',dur:'약 2시간~2시간 15분',
+  sn:'Praha hl.n. (독 Prag Hbf) → Dresden Hbf'},
  {id:'t4',rt:'드레스덴 → 프라하',date:'12/30 (수) 저녁',op:'EC 유로시티',
-  fq:'Dresden Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'약 2시간~2시간 15분'}
+  fq:'Dresden Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'약 2시간~2시간 15분',
+  sn:'Dresden Hbf → Praha hl.n. (독 Prag Hbf)'}
 ];
 const TF=[['tno','열차번호','예: RJ 41'],['dep','출발 시각','예: 13:40'],['arr','도착 시각','예: 16:19'],
           ['car','차량·좌석','예: 24호차 51·52'],['pnr','예약번호','예: XK7Q2M'],['memo','메모','플랫폼·환승 등']];
@@ -3006,6 +3024,7 @@ function renderT(){
     return `<div class="card tk${done?' ok':''}">
       <div class="tt">${esc(t.rt)}<span class="badge ${done?'g':'y'}">${done?'예약 완료':'미입력'}</span></div>
       <div class="st">${esc(t.date)} · ${esc(t.op)} · ${esc(t.dur)}</div>
+      ${t.sn?`<div class="st" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tx2)">🔎 ${esc(t.sn)}</div>`:''}
       ${done?`<div class="tkview">${
         [['tno','열차'],['dep','출발'],['arr','도착'],['car','좌석'],['pnr','예약번호']]
         .filter(k=>v[k[0]]).map(k=>`<div class="tv"><span>${k[1]}</span><b>${esc(v[k[0]])}</b></div>`).join('')
