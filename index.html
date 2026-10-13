@@ -622,11 +622,12 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="row"><span class="k">프라하 숙소 5박</span><span class="v">1,547,836원</span></div>
     <div class="row"><span class="k">쇤브룬 궁전 입장권 2인 (€84)</span><span class="v">133,422원</span></div>
     <div class="row"><span class="k">체코 필하모닉 2인 (4,600 Kč)</span><span class="v">약 312,800원</span></div>
-    <div class="row big"><span class="k">확정 소계</span><span class="v">약 6,741,092원</span></div>
+    <div class="row"><span class="k">프라하↔드레스덴 기차 2인 (€97.96)</span><span class="v">약 155,600원</span></div>
+    <div class="row big"><span class="k">확정 소계</span><span class="v">약 6,896,692원</span></div>
     <div class="hr"></div>
     <div class="grid2">
       <div class="mini"><div class="k">예산 총액</div><div class="v">1,000만 원</div></div>
-      <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 326만 원</div></div>
+      <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 310만 원</div></div>
     </div>
     <div class="note">온천·기차·투어 / 식비·잡비 미확정 · <b>남은 입장권은 벨베데레(12/26) 2인 €46</b> · 발레는 보지 않기로 해 빠졌다 · 입장권은 실제 결제 원화 기준</div>
     <div class="note" style="margin-top:7px">🚄 <b>잘츠부르크 당일치기(12/28) 약 37만원</b> — 기차 2인 왕복 €80(특가) + 잘츠부르크 카드 2인 €70 + 식사 €80. 위 잔여 326만 원에서 나간다(약 11%). <b>기차를 늦게 잡으면 정상가 €260 이라 66만원까지 오른다.</b></div>
@@ -911,24 +912,30 @@ const DAYS = [
   {tm:'17:30',nm:'구시가 광장 크리스마스 마켓',en:'Old Town Square',ds:'대형 트리 · 천문시계',q:'Old Town Square Prague'},
   {tm:'19:30',nm:'카를교 야경',en:'Charles Bridge',ds:'프라하성 조명 배경',q:'Charles Bridge Prague'}
  ]},
-{d:'2026-12-30',w:'수',city:'drs',ct:'드레스덴',t:'드레스덴 당일치기',sum:'EC 직행 왕복 · 건축·도시 관광',
+{d:'2026-12-30',w:'수',city:'drs',ct:'드레스덴',t:'드레스덴 당일치기',sum:'RJ 직행 왕복 예약 완료 · 현지 8시간 20분',
  items:[
-  {tm:'08:00',nm:'프라하 중앙역 출발 (EC 직행)',en:'Praha hl.n. → Dresden Hbf',ds:'약 2시간~2시간 15분',
-   warn:'⚠️ 연말 성수기 — 왕복 사전 예약 권장',q:'Praha hlavní nádraží'},
-  {tm:'10:15',nm:'드레스덴 중앙역 도착',en:'Dresden Hauptbahnhof',q:'Dresden Hauptbahnhof'},
-  {tm:'10:30',nm:'츠빙거 궁전',en:'Zwinger Palace',q:'Zwinger Dresden'},
-  {tm:'11:30',nm:'프라우엔 교회',en:'Frauenkirche',q:'Frauenkirche Dresden'},
-  {tm:'12:30',nm:'점심 — 아우구스티너',en:'Augustiner an der Frauenkirche · An der Frauenkirche 13',
+  {tm:'07:50',nm:'숙소 → 프라하 중앙역',en:'Unitas Hotel → Praha hl.n.',ds:'약 1.4km · **도보 20분** 또는 Bolt 5~8분(150~200 CZK)',
+   tip:'눈·빙판이면 Bolt 를 부르는 편이 안전하다. 역이 커서 국제선 승강장 찾는 데 5~10분 걸리니 08:10 까지는 도착할 것',q:'Praha hlavní nádraží'},
+  {tm:'08:31',nm:'프라하 중앙역 출발 — RJ 178',en:'Praha hl.n. → Dresden Hbf',ds:'2시간 18분 · 전광판에서 **RJ 178 Hamburg-Altona** 를 찾는다',
+   tip:'엘베 협곡 구간이 절경이다 — **진행 방향 오른쪽**이 강 쪽이다. 좌석 지정이 없으니 일찍 타서 오른쪽 창가를 잡을 것. 좌석 위 전광판에 「Dresden Hbf – Hamburg」로 뜬 자리는 이 구간에선 비어 있다',
+   warn:'⚠️ **열차 지정(Zugbindung)이라 이 차만 탈 수 있다.** 놓치면 표가 무효다. 그리고 **여권이 없으면 표도 무효** — 검표 때 사진 신분증을 보여야 한다(표에 JIHUN JUNG 으로 찍혀 있다)',q:'Praha hlavní nádraží'},
+  {tm:'10:49',nm:'드레스덴 중앙역 도착',en:'Dresden Hauptbahnhof',ds:'구시가까지 도보 15분',q:'Dresden Hauptbahnhof'},
+  {tm:'11:10',nm:'츠빙거 궁전',en:'Zwinger Palace',q:'Zwinger Dresden'},
+  {tm:'12:10',nm:'프라우엔 교회',en:'Frauenkirche',q:'Frauenkirche Dresden'},
+  {tm:'13:00',nm:'점심 — 아우구스티너',en:'Augustiner an der Frauenkirche · An der Frauenkirche 13',
    ds:'프라우엔 교회 바로 옆 · 바이에른 요리와 아우구스티너 맥주',
    tip:'교회에서 도보 1분 — 오전 일정(츠빙거 → 프라우엔 교회) 직후 그대로 이어진다',
    q:'Augustiner an der Frauenkirche Dresden'},
-  {tm:'14:00',nm:'브륄의 테라스',en:"Brühl's Terrace (Brühlsche Terrasse)",ds:'"유럽의 발코니" · 엘베강 전망',q:'Brühlsche Terrasse Dresden'},
-  {tm:'15:00',nm:'젬퍼오퍼 외관 + 노이마르크트 광장',en:'Semperoper',q:'Semperoper Dresden'},
-  {tm:'16:00',nm:'구시가 자유 산책 · 카페·쇼핑',
+  {tm:'14:30',nm:'브륄의 테라스',en:"Brühl's Terrace (Brühlsche Terrasse)",ds:'"유럽의 발코니" · 엘베강 전망',q:'Brühlsche Terrasse Dresden'},
+  {tm:'15:30',nm:'젬퍼오퍼 외관 + 노이마르크트 광장',en:'Semperoper',q:'Semperoper Dresden'},
+  {tm:'16:30',nm:'구시가 자유 산책 · 카페',ds:'일몰이 16시경이라 이때부터는 야경이다',
    warn:'슈트리첼마르크트는 12/24 전후 종료 → 마켓은 못 봄'},
-  {tm:'17:30',nm:'드레스덴 중앙역 이동',q:'Dresden Hauptbahnhof'},
-  {tm:'18:00',nm:'드레스덴 출발 (EC 직행)',en:'Dresden Hbf → Praha hl.n.'},
-  {tm:'20:15',nm:'프라하 중앙역 도착',q:'Praha hlavní nádraží'}
+  {tm:'18:00',nm:'이른 저녁 또는 카페',ds:'복귀가 19:10 이라 한 시간이 남는다. 역 근처로 내려오면서 해결하면 좋다'},
+  {tm:'18:50',nm:'드레스덴 중앙역 이동',q:'Dresden Hauptbahnhof'},
+  {tm:'19:10',nm:'드레스덴 출발 — RJ 385',en:'Dresden Hbf → Praha hl.n.',ds:'2시간 15분 · 이미 어두워 창밖은 안 보인다',
+   warn:'⚠️ 이 차도 **열차 지정**이다. 여권 지참',q:'Dresden Hauptbahnhof'},
+  {tm:'21:25',nm:'프라하 중앙역 도착',q:'Praha hlavní nádraží'},
+  {tm:'21:45',nm:'숙소 도착',en:'Unitas Hotel',ds:'도보 20분 또는 Bolt. 다음날 10:00 프라하성이라 서두를 것 없다',q:'Unitas Hotel Prague'}
  ]},
 {d:'2026-12-31',w:'목',city:'pra',ct:'프라하',t:'프라하성 + 새해 전야',sum:'프라하성 · 구시가 광장 카운트다운',
  items:[
@@ -1265,8 +1272,11 @@ const MOVES = [
 {nm:'빈 ↔ 잘츠부르크',how:'ÖBB 레일젯',st:'r',sn:['Wien Hbf','Salzburg Hbf'],alt:'**Wien Westbahnhof**(서역)가 아니라 **Wien Hbf**(중앙역)다 — 숙소가 중앙역 307m 다. Wien Mitte·Wien Meidling 도 다른 역이다',
  ds:'12/28 당일 왕복 · 편도 약 2시간 22분 · 시간당 2편',warn:'**아직 안 열렸다**(2026-10-12 직접 조회). ÖBB 안내: 2027 시간표(12/13부) 계획이 미완이라 **현재 나이트젯만 예매 가능**하고 그 시각도 바뀔 수 있다. 10월 중 재확인',tip:'빈 **중앙역** 출발이라 숙소에서 도보 5분이다. WESTbahn 이 2인 왕복 €24 싸지만 **서역** 출발이라 아침에 손해다. 연말이니 좌석 지정(€3 안팎/인) 권장',
  from:'Wien Hauptbahnhof',to:'Salzburg Hauptbahnhof'},
-{nm:'프라하 ↔ 드레스덴',how:'EC 유로시티 직행',st:'y',sn:['Praha hl.n.','Dresden Hbf'],alt:'DB 독일어 화면에서는 프라하가 **Prag Hbf** 다. **Hbf = Hauptbahnhof**(중앙역) 약자',
- ds:'12/30 왕복 · 편도 약 2시간 7분 · 직행 하루 약 12편',warn:'**아직 안 열렸다**(2026-09-30 DB 조회 확인). DB 공식 안내: 새 시간표 기간 예매는 **10월 중순부터**. ČD·DB 두 곳 비교, 왕복 할인 없으니 편도 2장. 연말 성수기라 좌석 지정 권장',
+{nm:'프라하 ↔ 드레스덴',how:'RJ 레일젯 직행',st:'g',sn:['Praha hl.n.','Dresden Hbf'],
+ ds:'12/30 왕복 **예약 완료**(2026-10-14 구매) · 편도 2시간 15~18분<br><b>가는 편</b> RJ 178 · 08:31 → 10:49 · €49.98<br><b>오는 편</b> RJ 385 · 19:10 → 21:25 · €47.98<br><b>예약번호</b> 581994584544 · 총 €97.96 · Super Sparpreis Europa',
+ alt:'티켓코드 — 가는 편 **AX4UEPBY** · 오는 편 **GCEU4NFX**',
+ warn:'⚠️ **취소·변경 불가**이고 **열차 지정**이다. RJ 178 / RJ 385 만 탈 수 있다.<br>**여권이 없으면 표가 무효다** — 검표 때 사진 신분증 제시 의무. 표에 **JIHUN JUNG** 으로 발권돼 있어 지훈님이 반드시 동행해야 한다.<br>좌석 지정은 ČD 운행 열차라 DB 에서 불가했다 — **ČD 예매가 열리면(11월 말~12월 초) 좌석만 따로 살 수 있다**',
+ tip:'엘베 협곡이 절경이다 — 갈 때 **진행 방향 오른쪽**이 강 쪽. 올 때는 어두워 상관없다',
  from:'Praha hlavní nádraží',to:'Dresden Hauptbahnhof'},
 {nm:'프라하 숙소 → 공항',how:'Bolt 택시',st:'g',
  ds:'약 25~30분 · 편도 약 600~800 CZK',tip:'사전 예약 불필요 — 당일 앱으로 호출',
