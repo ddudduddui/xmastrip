@@ -624,12 +624,14 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="row"><span class="k">쇤브룬 궁전 입장권 2인 (€84)</span><span class="v">133,422원</span></div>
     <div class="row"><span class="k">체코 필하모닉 2인 (4,600 Kč)</span><span class="v">289,877원</span></div>
     <div class="row"><span class="k">프라하↔드레스덴 기차 2인 (€97.96)</span><span class="v">147,292원</span></div>
-    <div class="row big"><span class="k">확정 소계</span><span class="v">약 6,865,461원</span></div>
+    <div class="row"><span class="k">부다페스트→비엔나 기차 2인 + 좌석 (€35.80)</span><span class="v">약 53,843원</span></div>
+    <div class="row big"><span class="k">확정 소계</span><span class="v">약 6,919,304원</span></div>
     <div class="hr"></div>
     <div class="grid2">
       <div class="mini"><div class="k">예산 총액</div><div class="v">1,000만 원</div></div>
-      <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 313만 원</div></div>
+      <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 308만 원</div></div>
     </div>
+    <div class="note">부다페스트→비엔나 기차는 카드 청구 전이라 <b>1,504원/EUR 로 환산한 추정값</b>이다 — 청구액이 나오면 고칠 것</div>
     <div class="note">온천·기차·투어 / 식비·잡비 미확정 · <b>남은 입장권은 벨베데레(12/26) 2인 €46</b> · 입장권은 실제 결제 원화 기준</div>
     <div class="note" style="margin-top:7px">🎄 <b>슈탈호프 중세 마켓(12/30) 2인 €10</b> — 약 1.5만원. 드레스덴에서 유일하게 <b>입장료를 받는</b> 마켓이다(라우흐네히테 기간). 나머지 네 도시 마켓은 전부 무료.</div>
     <div class="note" style="margin-top:7px">🚄 <b>잘츠부르크 당일치기(12/28) 약 35만원</b> — 기차 2인 왕복 €80(특가) + 잘츠부르크 카드 2인 €70 + 식사 €80 = €230. 위 잔여 311만 원에서 나간다(약 11%). <b>기차를 늦게 잡으면 정상가 €260 이라 62만원까지 오른다.</b></div>
@@ -851,17 +853,25 @@ const DAYS = [
   {tm:'12:30',nm:'보로시마르티 광장 마켓',en:'Vörösmarty Square Christmas Market',ds:'부다페스트에서 가장 오래된 마켓 · 수공예 노점 위주',
    warn:'⚠️ 폐장 전 마지막 기회 — 원래 15:00 계획이었으나 그 시간엔 닫혀 있다',q:'Vörösmarty Square Budapest'},
   {tm:'14:00',nm:'숙소 휴식 · 짐 정리',ds:'거리가 조용해지는 시간 — 무리해서 돌아다닐 것이 없다',
-   tip:'내일 오전 체크아웃(11:00)과 13:00 기차 대비'},
+   tip:'내일 **08:15 체크아웃 · 09:30 기차**(RJX 62) — 짐은 오늘 다 싸 둘 것. 표 3장 **A4 출력본**도 챙긴다'},
   {tm:'18:00',nm:'크리스마스 이브 저녁',ds:'후보: ARAZ(7구·숙소 도보권) · 고즈두 우드바르 · 호텔 뷔페',
    warn:'⚠️ 예약 없으면 굶는다 — 여는 곳이 호텔 레스토랑과 일부 외국 음식점뿐이다. 「🍽 식당」 탭 참고'}
  ]},
-{d:'2026-12-25',w:'금',city:'vie',ct:'이동',t:'부다페스트 → 비엔나',sum:'오전 여유 → 레일젯 이동 → 크리스마스 저녁',
+{d:'2026-12-25',w:'금',city:'vie',ct:'이동',t:'부다페스트 → 비엔나',sum:'09:30 RJX 62 예약 완료 · 12:20 빈 도착 · 크리스마스 저녁',
  items:[
-  {tm:'오전',nm:'오전 여유 일정 · 짐 정리'},
-  {tm:'11:00',nm:'플로린 아파트 호텔 체크아웃',ds:'체크아웃 11:00',q:'Florin Apart Hotel Budapest'},
-  {tm:'12:00',nm:'부다페스트 켈레티역 이동',en:'Budapest-Keleti',q:'Budapest Keleti railway station'},
-  {tm:'13:00',nm:'레일젯 부다페스트 → 비엔나',en:'Budapest-Keleti → Wien Hbf',ds:'ÖBB/MÁV · 약 2시간 20~40분',
-   warn:'⚠️ 10월 중순 예매 시작 — 열리는 즉시 예약(특가 좌석 한정). ÖBB·MÁV 두 곳 비교',q:'Wien Hauptbahnhof'},
+  {tm:'08:15',nm:'플로린 아파트 호텔 체크아웃',ds:'짐은 전날 밤에 다 싸 둔다',q:'Florin Apart Hotel Budapest'},
+  {tm:'08:30',nm:'부다페스트 켈레티역 이동',en:'Budapest-Keleti',ds:'약 2km · M2 아스토리아 → 켈레티 두 정거장 또는 Bolt',
+   tip:'크리스마스 아침이라 배차가 줄 수 있다. **09:00 까지 역 도착**을 목표로 — 역 상가에서 기차 간식·물을 산다',
+   warn:'**Keleti**(동역)다 — Nyugati(서역)·Déli(남역)가 아니다',q:'Budapest Keleti railway station'},
+  {tm:'09:30',nm:'켈레티역 출발 — RJX 62',fx:1,en:'Budapest-Keleti → Wien Hbf',
+   ds:'**예약 완료**(2026-10-14 · ÖBB) · 2등석 · **23호차 41(창가)·43(통로)** · 2시간 50분',
+   tip:'23호차는 **조용한 칸(Ruhezone)** 이다 — 통화 금지, 대화는 작게',
+   warn:'⚠️ **국경을 넘는 구간이라 표를 A4 세로로 출력해 가야 한다**(오스트리아 국내만 화면 인정). 승차권 2장 + 좌석권 1장, 총 3장.<br>**열차 지정 · 교환·환불 불가**(Sparschiene) — RJX 62 만 탈 수 있다. 표가 **각자 이름**이라 둘 다 여권 지참',
+   q:'Budapest Keleti railway station'},
+  {tm:'12:20',nm:'빈 중앙역 도착',en:'Wien Hbf',q:'Wien Hauptbahnhof'},
+  {tm:'12:40',nm:'숙소에 짐 맡기기',en:'Adina Apartment Hotel · Canettistraße 3',ds:'중앙역에서 도보권 · 체크인 전이라 짐만 맡긴다',
+   tip:'맡기기 어려우면 중앙역 코인로커를 쓴다',q:'Adina Apartment Hotel Vienna Belvedere'},
+  {tm:'13:00',nm:'오후 — 비어 있음',ds:'크리스마스 당일이라 상점은 대부분 닫는다. 점심은 중앙역 상가에서 해결하면 안전하다'},
   {tm:'16:00',nm:'Adina Apartment Hotel 체크인',en:'Canettistraße 3, 1100 Wien',ds:'빈 중앙역 인근 · 취사 가능',q:'Adina Apartment Hotel Vienna Belvedere'},
   {tm:'19:30',nm:'크리스마스 당일 저녁 식사',ds:'후보: Griechenbeisl · Meissl & Schadn · Huth Gastwirtschaft',
    warn:'⚠️ 예약 필수 — 12/25 는 여는 곳이 적다. 19:30~20:00 권장. 「🍽 식당」 탭 참고',q:'Griechenbeisl Vienna'}
@@ -1271,8 +1281,9 @@ const MOVES = [
 {nm:'부다페스트 공항 → 숙소',how:'100E 공항버스',st:'g',
  ds:'데악 페렌츠 광장까지 직행 약 40분 · 2,500 HUF · 도보 10분',
  tip:'BudapestGO 앱으로 티켓 구매',from:'Budapest Ferenc Liszt International Airport',to:'Deák Ferenc tér Budapest'},
-{nm:'부다페스트 → 비엔나',how:'ÖBB/MÁV 레일젯',st:'r',sn:['Budapest-Keleti','Wien Hbf'],alt:'부다페스트는 **Keleti**(동역)가 빈행 출발역이다 — **Nyugati**(서역)·**Déli**(남역)는 다른 역이다. Kelenföld 경유 편성은 Keleti 다음 정차역이라 괜찮다',
- ds:'12/25 · 약 2시간 20~40분',warn:'**아직 안 열렸다** — 12/25 도 시간표 개정 이후다. **MÁV 는 11월 말~12월 초**에야 열리는 편이니 ÖBB 쪽을 먼저 확인할 것',
+{nm:'부다페스트 → 비엔나',how:'ÖBB 레일젯 RJX 62',st:'g',sn:['Budapest-Keleti','Wien Hbf'],alt:'부다페스트는 **Keleti**(동역)가 빈행 출발역이다 — **Nyugati**(서역)·**Déli**(남역)는 다른 역이다',
+ ds:'12/25 **예약 완료**(2026-10-14 구매 · ÖBB) · 2시간 50분<br><b>열차</b> RJX 62 · 09:30 → 12:20 · 2등석<br><b>좌석</b> 23호차 41(창가)·43(통로) · 조용한 칸(Ruhezone)<br><b>예약번호</b> 0820 1848 9085 6584 · Sparschiene €14.90×2 + 좌석 €6 = 총 €35.80',
+ warn:'⚠️ **교환·환불 불가**이고 **열차 지정**이다. RJX 62 만 탈 수 있다.<br>**국경을 넘는 구간이라 A4 세로로 출력해 가야 한다**(오스트리아 국내만 휴대폰 화면 인정) — 승차권 2장 + 좌석권 1장.<br>표가 **JIHUN JUNG · HYUNJUNG KIM** 각자 이름으로 발권돼 있어 **둘 다 여권 지참**',
  from:'Budapest Keleti railway station',to:'Wien Hauptbahnhof'},
 {nm:'비엔나 → 프라하',how:'ÖBB 레일젯',st:'r',sn:['Wien Hbf','Praha hl.n.'],alt:'ÖBB·DB 독일어 화면에서는 프라하가 **Prag Hbf** 로 나온다. **Praha-Holešovice** 행 편성은 다른 역이고 구시가에서 멀다 — 숙소(Unitas)는 중앙역 쪽이다',
  ds:'12/29 오전 · 약 4시간',warn:'**아직 안 열렸다** — 12/29 는 12월 중순 시간표 개정 이후라 그 전에는 조회가 안 된다. DB 는 10월 중순 개시, ČD 구간은 11월 말~12월 초로 더 늦을 수 있다. ÖBB 를 먼저 보고 안 열렸으면 11월에 재시도',
@@ -1297,10 +1308,10 @@ const LISTS = [
 {id:'todo-red',t:'🔴 급함',items:[
  '집 → 인천공항 리무진버스 예약 (12/22, 07:15경 출발 목표)',
  '강설 시 플랜B 지하철 경로 확인 (06:46 동구릉역 출발)']},
-{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차는 6편 중 2편 완료. 남은 4편은 ÖBB·MÁV 가 아직 안 열렸다(10/14 재확인) — 주 1회 확인해 열리는 즉시 살 것',items:[
+{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차는 6편 중 3편 완료(12/25 부다→빈 · 12/30 드레스덴 왕복). 남은 3편은 ÖBB — 주 1회 확인해 열리는 즉시 살 것',items:[
  '**빈 ↔ 잘츠부르크 왕복** (12/28) — ÖBB',
  '**비엔나 → 프라하** (12/29) — ÖBB',
- '**부다페스트 → 비엔나** (12/25) — ÖBB 또는 MÁV',
+ '**부다페스트 → 비엔나** (12/25) — ✅ 예약 완료(RJX 62 · 2026-10-14). 체크해 두세요',
  '**벨베데레 예약** (12/26 10:00, 2인 €46) — 지금 바로 가능',
  '**세체니 온천 예약** — 캘린더가 1개월 전에 열린다 → 11월 23일경',
  '**12/24 이브 저녁 예약** (부다페스트) — 오후 2시면 다 닫는다',
@@ -1316,7 +1327,7 @@ const LISTS = [
  '**12월 초 — ČD 가 열리면 프라하↔드레스덴 좌석만 따로 구매**(2인 €6 안팎). 배치도에서 **진행 방향 오른쪽**을 고르면 엘베 협곡이 보인다']},
 {id:'app-move',t:'📱 앱 — 교통·이동',note:'앱 설치와 카드 등록은 Wi-Fi 가 있는 한국에서 끝내 둘 것',items:[
  'BudapestGO — 100E 공항버스·BKK 72시간권 (12/22 도착 직후 필요)',
- 'ÖBB — 남은 기차 4편 예매·승차권',
+ 'ÖBB — 남은 기차 3편 예매·승차권',
  'WienMobil — 비엔나 지하철·트램',
  'PID Lítačka — 프라하 대중교통',
  'Bolt — **전화번호 SMS 인증을 한국에서** 끝낼 것. 1/2 프라하 공항 이동용',
@@ -2975,8 +2986,8 @@ const TKEY='xmas-trip-2026-tickets';
    id 는 휴대폰에 저장된 입력과 짝이므로 기존 t1~t4 를 그대로 두고 뒤에 t5·t6 을 붙였다.
    보이는 순서는 배열 순서라 날짜대로 끼워 넣는다. */
 const TSEED=[
- {id:'t1',rt:'부다페스트 → 비엔나',date:'12/25 (금)',op:'ÖBB / MÁV 레일젯',
-  fq:'Budapest Keleti railway station',tq:'Wien Hauptbahnhof',dur:'약 2시간 20~40분',
+ {id:'t1',rt:'부다페스트 → 비엔나',date:'12/25 (금) 09:30',op:'ÖBB 레일젯 RJX 62',
+  fq:'Budapest Keleti railway station',tq:'Wien Hauptbahnhof',dur:'2시간 50분',
   sn:'Budapest-Keleti → Wien Hbf'},
  {id:'t5',rt:'빈 → 잘츠부르크',date:'12/28 (월) 아침',op:'ÖBB 레일젯',
   fq:'Wien Hauptbahnhof',tq:'Salzburg Hauptbahnhof',dur:'약 2시간 22분',
@@ -3114,7 +3125,7 @@ const EKEY='xmas-trip-2026-exp';
 const CATS=[['식비','🍽️'],['교통','🚇'],['입장료','🎫'],['마켓·쇼핑','🛍️'],['카페·간식','☕'],['기타','💼']];
 const CITYCUR={bud:'HUF',vie:'EUR',pra:'CZK',drs:'EUR',sbg:'EUR',air:'KRW'};
 const CITYNM={bud:'부다페스트',vie:'비엔나',pra:'프라하',drs:'드레스덴',sbg:'잘츠부르크',air:'이동·기타'};
-const BUDGET=3134539;   /* 1,000만 − 확정 소계 6,865,461 (실제 결제액 기준) */
+const BUDGET=3080696;   /* 1,000만 − 확정 소계 6,919,304 (실제 결제액 기준 · 12/25 기차 €35.80 은 1,504원 환산 추정) */
 const nfk=new Intl.NumberFormat('ko-KR');
 let eCat='식비', eCur='HUF';
 
