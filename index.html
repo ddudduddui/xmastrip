@@ -2870,8 +2870,8 @@ function renderT(){
       ${t.warn?`<div class="warn">⚠️ ${em(t.warn)}</div>`:''}
       <div class="btns">
         <button class="b dir wide" onclick="op(dirU('${esc(t.tq)}','${esc(t.fq)}'))">🧭 역 → 역 경로</button>
-        <button class="b map" onclick="op(pinU('${esc(t.fq)}'))">출발역</button>
-        <button class="b map" onclick="op(pinU('${esc(t.tq)}'))">도착역</button>
+        <button class="b map" onclick="op(srchU('${esc(t.fq)}'))">🗺️ 출발역</button>
+        <button class="b map" onclick="op(srchU('${esc(t.tq)}'))">🗺️ 도착역</button>
       </div>
     </div>`).join('');
 }
