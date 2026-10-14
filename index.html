@@ -625,15 +625,17 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="row"><span class="k">체코 필하모닉 2인 (4,600 Kč)</span><span class="v">289,877원</span></div>
     <div class="row"><span class="k">프라하↔드레스덴 기차 2인 (€97.96)</span><span class="v">147,292원</span></div>
     <div class="row"><span class="k">부다페스트→비엔나 기차 2인 + 좌석 (€35.80)</span><span class="v">53,481원</span></div>
-    <div class="row big"><span class="k">확정 소계</span><span class="v">약 6,918,942원</span></div>
+    <div class="row"><span class="k">빈↔잘츠부르크 기차 2인 왕복 + 좌석 (€110.60)</span><span class="v">약 165,236원</span></div>
+    <div class="row big"><span class="k">확정 소계</span><span class="v">약 7,084,178원</span></div>
     <div class="hr"></div>
     <div class="grid2">
       <div class="mini"><div class="k">예산 총액</div><div class="v">1,000만 원</div></div>
-      <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 308만 원</div></div>
+      <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 292만 원</div></div>
     </div>
+    <div class="note">빈↔잘츠부르크 기차는 카드 청구 전이라 <b>1,494원/EUR 로 환산한 추정값</b>이다 — 청구액이 나오면 고칠 것</div>
     <div class="note">온천·기차·투어 / 식비·잡비 미확정 · <b>남은 입장권은 벨베데레(12/26) 2인 €46</b> · 입장권은 실제 결제 원화 기준</div>
     <div class="note" style="margin-top:7px">🎄 <b>슈탈호프 중세 마켓(12/30) 2인 €10</b> — 약 1.5만원. 드레스덴에서 유일하게 <b>입장료를 받는</b> 마켓이다(라우흐네히테 기간). 나머지 네 도시 마켓은 전부 무료.</div>
-    <div class="note" style="margin-top:7px">🚄 <b>잘츠부르크 당일치기(12/28) 약 35만원</b> — 기차 2인 왕복 €80(특가) + 잘츠부르크 카드 2인 €70 + 식사 €80 = €230. 위 잔여 311만 원에서 나간다(약 11%). <b>기차를 늦게 잡으면 정상가 €260 이라 62만원까지 오른다.</b></div>
+    <div class="note" style="margin-top:7px">🚄 <b>잘츠부르크 당일치기(12/28)</b> — 기차 2인 왕복 <b>€110.60 은 결제 완료</b>(위 확정 소계에 포함). 남은 현지 비용은 잘츠부르크 카드 2인 €70 + 식사 €80 = <b>€150, 약 22만원</b>이다.</div>
   </div>
 
   <h2 class="sec">환전 계획</h2>
@@ -892,26 +894,30 @@ const DAYS = [
   {tm:'13:30',nm:'쇤브룬 정원 · 글로리에테',en:'Gloriette Schönbrunn',ds:'언덕 위에서 궁전과 빈 시내가 내려다보인다',tip:'12월 빈은 16:05 에 해가 진다 — 정원은 반드시 밝을 때 볼 것',q:'Gloriette, Schönbrunn, Wien'},
   {tm:'15:00',nm:'비엔나 카페 — 자허 또는 센트랄',en:'Café Sacher / Café Central',ds:'자허토르테 · 아인슈페너 · 쇤브룬에서 U4 한 번에 카를스플라츠',q:'Cafe Sacher Wien'}
  ]},
-{d:'2026-12-28',w:'월',city:'sbg',ct:'잘츠부르크',t:'잘츠부르크 당일치기',sum:'레일젯 2시간 22분 · 현지 8시간 · 성과 돔 광장 마켓',
+{d:'2026-12-28',w:'월',city:'sbg',ct:'잘츠부르크',t:'잘츠부르크 당일치기',sum:'RJX 262 · IC 406 왕복 예약 완료 · 현지 약 9시간 · 성과 돔 광장 마켓',
  items:[
-  {tm:'07:30',nm:'숙소 → 빈 중앙역',en:'Wien Hauptbahnhof',ds:'**307m · 도보 5분** — 이 날 아침이 편한 이유다',q:'Wien Hauptbahnhof'},
-  {tm:'07:57',nm:'레일젯 빈 → 잘츠부르크',en:'Wien Hbf → Salzburg Hbf',ds:'약 **2시간 22분** · 시간당 2편(급행·완행) · ÖBB',
-   warn:'⚠️ **시각은 아직 추정이다.** ÖBB 는 2026/2027 시간표를 아직 안 올렸다 — 2026-10-14 재확인 시에도 **나이트젯만** 예매 가능했다. 12/13 시간표 개정 이후 날짜라 그렇다. 열리면 실제 시각으로 고칠 것',
-   tip:'빈 ↔ 잘츠부르크는 **시간당 2편**이라 자리가 없어 못 가는 일은 없다. 특가(Sparschiene €19.90~)만 서두르면 된다',q:'Salzburg Hauptbahnhof'},
-  {tm:'10:19',nm:'잘츠부르크 도착',en:'Salzburg Hauptbahnhof',ds:'구시가까지 **도보 15~20분** 또는 버스 1·3·5·6 으로 10분',q:'Salzburg Hauptbahnhof'},
-  {tm:'10:30',nm:'미라벨 정원',en:'Mirabellgarten',ds:'역에서 **도보 10분** · 무료 · 「사운드 오브 뮤직」 도레미 촬영지. 겨울엔 꽃이 없지만 성이 보이는 구도는 그대로다',q:'Mirabellgarten Salzburg'},
-  {tm:'11:30',nm:'모차르트 생가',en:'Mozarts Geburtshaus · Getreidegasse 9',ds:'매일 **09:00~17:30**(마지막 입장 17:00) · €15/인. 노란 건물 · 철제 간판이 늘어선 게트라이데가세 한복판',q:'Mozarts Geburtshaus'},
-  {tm:'12:40',nm:'점심 — 게트라이데가세 일대',ds:'구시가 한가운데라 선택지가 많다',q:'Getreidegasse Salzburg'},
-  {tm:'14:00',nm:'호엔잘츠부르크 성',en:'Festung Hohensalzburg',ds:'**09:30~17:00**(10~12월) · 푸니쿨라 2분 · Basic €15.50 / All-inclusive €19.20 (둘 다 푸니쿨라 포함)',
+  {tm:'08:10',nm:'숙소 → 빈 중앙역',en:'Wien Hauptbahnhof',ds:'**307m · 도보 5분** — 이 날 아침이 편한 이유다',q:'Wien Hauptbahnhof'},
+  {tm:'08:28',nm:'빈 중앙역 출발 — RJX 262',fx:1,en:'Wien Hbf → Salzburg Hbf',
+   ds:'**예약 완료**(2026-10-14 · ÖBB) · 2등석 · **23호차 41(창가)·43(통로)** · 직행 2시간 25분',
+   tip:'23호차는 **조용한 칸(Ruhezone)** 이다 — 통화 금지, 대화는 작게. 오스트리아 국내 구간이라 **휴대폰 PDF 로 된다**',
+   warn:'⚠️ **열차 지정 · 교환·환불 불가**(Sparschiene). 표가 **각자 이름**이라 둘 다 여권 지참',q:'Salzburg Hauptbahnhof'},
+  {tm:'10:53',nm:'잘츠부르크 도착',en:'Salzburg Hauptbahnhof',ds:'구시가까지 **도보 15~20분** 또는 버스 1·3·5·6 으로 10분',q:'Salzburg Hauptbahnhof'},
+  {tm:'11:05',nm:'미라벨 정원',en:'Mirabellgarten',ds:'역에서 **도보 10분** · 무료 · 「사운드 오브 뮤직」 도레미 촬영지. 겨울엔 꽃이 없지만 성이 보이는 구도는 그대로다',q:'Mirabellgarten Salzburg'},
+  {tm:'12:00',nm:'모차르트 생가',en:'Mozarts Geburtshaus · Getreidegasse 9',ds:'매일 **09:00~17:30**(마지막 입장 17:00) · €15/인. 노란 건물 · 철제 간판이 늘어선 게트라이데가세 한복판',q:'Mozarts Geburtshaus'},
+  {tm:'13:10',nm:'점심 — 게트라이데가세 일대',ds:'구시가 한가운데라 선택지가 많다',q:'Getreidegasse Salzburg'},
+  {tm:'14:30',nm:'호엔잘츠부르크 성',en:'Festung Hohensalzburg',ds:'**09:30~17:00**(10~12월) · 푸니쿨라 2분 · Basic €15.50 / All-inclusive €19.20 (둘 다 푸니쿨라 포함)',
    tip:'유럽에서 가장 크게 남아 있는 중세 성 중 하나다. 성벽에서 시내와 알프스가 한눈에 보인다',q:'Festung Hohensalzburg'},
-  {tm:'16:00',nm:'돔 광장 크리스마스 마켓',en:'Salzburger Christkindlmarkt · Domplatz',ds:'월~목 **10:00~20:30** · 11/19~1/1 운영이라 이 날도 한창이다',
-   tip:'**일몰이 16:20** 이라 도착하자마자 조명이 켜진다. 글뤼바인에 프레첼로 저녁을 때우고 느긋하게 나오면 된다',q:'Salzburger Dom'},
+  {tm:'16:30',nm:'돔 광장 크리스마스 마켓',en:'Salzburger Christkindlmarkt · Domplatz',ds:'월~목 **10:00~20:30** · 11/19~1/1 운영이라 이 날도 한창이다',
+   tip:'**일몰이 16:20** 이라 도착하자마자 조명이 켜진다. 기차가 20:30 이라 **저녁까지 마켓에서 먹고** 3시간 넘게 머물 수 있다',q:'Salzburger Dom'},
   {tm:'대안',nm:'돔크바르티어 ⟨날씨가 궂으면⟩',en:'DomQuartier',ds:'대주교 궁전 + 대성당 테라스 + 미술관 · **월요일 영업**(화요일 휴무) · 10:00~17:00 · €13/인',
-   warn:'넣으려면 점심 후 14:00 에 넣고 성을 15:00 로 미뤄야 한다 — 빠듯하다. **춥거나 눈이 올 때의 실내 대피처**로 생각할 것. 잘츠부르크 박물관은 개보수로 2027년까지 휴관이다',q:'DomQuartier Salzburg'},
-  {tm:'18:05',nm:'역으로 이동',ds:'버스 1·3·5·6 으로 10분 · 15분 여유',q:'Salzburg Hauptbahnhof'},
-  {tm:'18:30',nm:'레일젯 잘츠부르크 → 빈',en:'Salzburg Hbf → Wien Hbf',ds:'**20:52 빈 도착** · 숙소까지 도보 5분',
-   tip:'마켓에서 저녁까지 먹고 올 생각이면 **한 시간 뒤 차(19:30 → 21:52)** 도 괜찮다. 다음날 빈 중앙역 이동이 09:00 이라 여유가 있다',q:'Wien Hauptbahnhof'},
-  {tm:'밤',nm:'짐 정리',warn:'내일 09:00 빈 중앙역 — **숙소에서 307m** 라 이동 부담은 없다. 캐리어 자물쇠 확인'}
+   warn:'넣으려면 점심 후 14:30 에 넣고 성을 15:30 으로 미뤄야 한다 — 성이 17:00 에 닫아 빠듯하다. **춥거나 눈이 올 때의 실내 대피처**로 생각할 것. 잘츠부르크 박물관은 개보수로 2027년까지 휴관이다',q:'DomQuartier Salzburg'},
+  {tm:'20:05',nm:'역으로 이동',ds:'버스 1·3·5·6 으로 10분 · **20:15 까지 역 도착**',
+   warn:'⚠️ 열차 지정이라 **20:30 을 놓치면 표가 무효**다. 마켓에서 20:05 에는 일어설 것',q:'Salzburg Hauptbahnhof'},
+  {tm:'20:30',nm:'잘츠부르크 출발 — IC 406',fx:1,en:'Salzburg Hbf → Wien Hbf',
+   ds:'**예약 완료**(2026-10-14 · ÖBB) · 2등석 · **좌석 지정 없음** · 직행 2시간 46분 · **23:16 빈 도착**',
+   tip:'**바르샤바행 국제열차**라 좌석 지정이 안 됐다. 이미 사람이 타 있을 수 있으니 열차가 들어오면 바로 타서 빈 자리를 찾을 것',
+   warn:'⚠️ **빈 중앙역(23:16)에서 꼭 내린다** — 그대로 있으면 체코·폴란드로 간다. 교환·환불 불가 · 둘 다 여권 지참',q:'Wien Hauptbahnhof'},
+  {tm:'23:30',nm:'숙소 도착 · 바로 취침',warn:'다음날 프라하 이동이다 — **짐은 이 날 아침에 미리 싸 둘 것.** 12/29 프라하행은 10시 이후 편으로 잡는다'}
  ]},
 {d:'2026-12-29',w:'화',city:'pra',ct:'이동',t:'비엔나 → 프라하',sum:'오전 레일젯 약 4시간 · 프라하 구시가 첫 야경',
  items:[
@@ -1287,8 +1293,9 @@ const MOVES = [
 {nm:'비엔나 → 프라하',how:'ÖBB 레일젯',st:'r',sn:['Wien Hbf','Praha hl.n.'],alt:'ÖBB·DB 독일어 화면에서는 프라하가 **Prag Hbf** 로 나온다. **Praha-Holešovice** 행 편성은 다른 역이고 구시가에서 멀다 — 숙소(Unitas)는 중앙역 쪽이다',
  ds:'12/29 오전 · 약 4시간',warn:'**아직 안 열렸다** — 12/29 는 12월 중순 시간표 개정 이후라 그 전에는 조회가 안 된다. DB 는 10월 중순 개시, ČD 구간은 11월 말~12월 초로 더 늦을 수 있다. ÖBB 를 먼저 보고 안 열렸으면 11월에 재시도',
  from:'Wien Hauptbahnhof',to:'Praha hlavní nádraží'},
-{nm:'빈 ↔ 잘츠부르크',how:'ÖBB 레일젯',st:'r',sn:['Wien Hbf','Salzburg Hbf'],alt:'**Wien Westbahnhof**(서역)가 아니라 **Wien Hbf**(중앙역)다 — 숙소가 중앙역 307m 다. Wien Mitte·Wien Meidling 도 다른 역이다',
- ds:'12/28 당일 왕복 · 편도 약 2시간 22분 · 시간당 2편',warn:'**아직 안 열렸다**(2026-10-14 재확인). ÖBB 안내: 2027 시간표(12/13부) 계획이 미완이라 **현재 나이트젯만 예매 가능**하고 그 시각도 바뀔 수 있다. 주 1회 재확인',tip:'빈 **중앙역** 출발이라 숙소에서 도보 5분이다. WESTbahn 이 2인 왕복 €24 싸지만 **서역** 출발이라 아침에 손해다. 연말이니 좌석 지정(€3 안팎/인) 권장',
+{nm:'빈 ↔ 잘츠부르크',how:'ÖBB RJX 262 · IC 406',st:'g',sn:['Wien Hbf','Salzburg Hbf'],alt:'**Wien Westbahnhof**(서역)가 아니라 **Wien Hbf**(중앙역)다 — 숙소가 중앙역 307m 다. Wien Mitte·Wien Meidling 도 다른 역이다',
+ ds:'12/28 왕복 **예약 완료**(2026-10-14 구매 · ÖBB)<br><b>가는 편</b> RJX 262 · 08:28 → 10:53 · 23호차 41(창가)·43(통로) · 조용한 칸<br><b>오는 편</b> IC 406 · 20:30 → 23:16 · <b>좌석 지정 없음</b>(바르샤바행 국제열차)<br><b>예약번호</b> 0355 6927 9817 0993 · Sparschiene €24.90×3 + €29.90 + 좌석 €6 = 총 €110.60',
+ warn:'⚠️ **교환·환불 불가**이고 **열차 지정**이다. 오는 편 IC 406 은 **빈 중앙역에서 꼭 내린다** — 종착이 바르샤바다.<br>ÖBB 안내: 2027 시간표(12/13부)가 미완이라 **시각이 바뀔 수 있다** → 12월 초 재확인',tip:'오스트리아 국내 구간이라 **휴대폰 PDF 로 된다**(출력 불필요). 표가 각자 이름이라 둘 다 여권 지참',
  from:'Wien Hauptbahnhof',to:'Salzburg Hauptbahnhof'},
 {nm:'프라하 ↔ 드레스덴',how:'RJ 레일젯 직행',st:'g',sn:['Praha hl.n.','Dresden Hbf'],
  ds:'12/30 왕복 **예약 완료**(2026-10-14 구매) · 편도 2시간 15~18분<br><b>가는 편</b> RJ 178 · 08:31 → 10:49 · €49.98<br><b>오는 편</b> RJ 385 · 19:10 → 21:25 · €47.98<br><b>예약번호</b> 581994584544 · 총 €97.96 · Super Sparpreis Europa',
@@ -1307,9 +1314,9 @@ const LISTS = [
 {id:'todo-red',t:'🔴 급함',items:[
  '집 → 인천공항 리무진버스 예약 (12/22, 07:15경 출발 목표)',
  '강설 시 플랜B 지하철 경로 확인 (06:46 동구릉역 출발)']},
-{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차는 6편 중 3편 완료(12/25 부다→빈 · 12/30 드레스덴 왕복). 남은 3편은 ÖBB — 주 1회 확인해 열리는 즉시 살 것',items:[
- '**빈 ↔ 잘츠부르크 왕복** (12/28) — ÖBB',
- '**비엔나 → 프라하** (12/29) — ÖBB',
+{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차는 6편 중 5편 완료(12/25 부다→빈 · 12/28 잘츠부르크 왕복 · 12/30 드레스덴 왕복). 남은 건 12/29 비엔나→프라하 하나',items:[
+ '**빈 ↔ 잘츠부르크 왕복** (12/28) — ✅ 예약 완료(RJX 262 · IC 406 · 2026-10-14). 체크해 두세요',
+ '**비엔나 → 프라하** (12/29) — ÖBB · 전날 23:30 귀가라 **10시 이후 편**으로',
  '**부다페스트 → 비엔나** (12/25) — ✅ 예약 완료(RJX 62 · 2026-10-14). 체크해 두세요',
  '**벨베데레 예약** (12/26 10:00, 2인 €46) — 지금 바로 가능',
  '**세체니 온천 예약** — 캘린더가 1개월 전에 열린다 → 11월 23일경',
@@ -1323,10 +1330,12 @@ const LISTS = [
 {id:'todo-green',t:'🟢 여유 있게',items:[
  '여권 유효기간 확인 (귀국일 기준 6개월 이상)',
  '온라인 체크인(출발 48시간 전) 캘린더 등록',
- '**12월 초 — ČD 가 열리면 프라하↔드레스덴 좌석만 따로 구매**(2인 €6 안팎). 배치도에서 **진행 방향 오른쪽**을 고르면 엘베 협곡이 보인다']},
+ '**12월 초 — ČD 가 열리면 프라하↔드레스덴 좌석만 따로 구매**(2인 €6 안팎). 배치도에서 **진행 방향 오른쪽**을 고르면 엘베 협곡이 보인다',
+ '**12월 초 — ÖBB 기차 시각 재확인**(12/25 RJX 62 · 12/28 RJX 262·IC 406). 2027 시간표가 미완이라 바뀔 수 있다고 ÖBB 가 공지했다',
+ '**12/25 기차표 A4 출력** — 국경을 넘는 구간이라 화면 불가. 승차권 2장 + 좌석권 1장']},
 {id:'app-move',t:'📱 앱 — 교통·이동',note:'앱 설치와 카드 등록은 Wi-Fi 가 있는 한국에서 끝내 둘 것',items:[
  'BudapestGO — 100E 공항버스·BKK 72시간권 (12/22 도착 직후 필요)',
- 'ÖBB — 남은 기차 3편 예매·승차권',
+ 'ÖBB — 남은 기차 1편 예매·승차권',
  'WienMobil — 비엔나 지하철·트램',
  'PID Lítačka — 프라하 대중교통',
  'Bolt — **전화번호 SMS 인증을 한국에서** 끝낼 것. 1/2 프라하 공항 이동용',
@@ -2988,11 +2997,11 @@ const TSEED=[
  {id:'t1',rt:'부다페스트 → 비엔나',date:'12/25 (금) 09:30',op:'ÖBB 레일젯 RJX 62',
   fq:'Budapest Keleti railway station',tq:'Wien Hauptbahnhof',dur:'2시간 50분',
   sn:'Budapest-Keleti → Wien Hbf'},
- {id:'t5',rt:'빈 → 잘츠부르크',date:'12/28 (월) 아침',op:'ÖBB 레일젯',
-  fq:'Wien Hauptbahnhof',tq:'Salzburg Hauptbahnhof',dur:'약 2시간 22분',
+ {id:'t5',rt:'빈 → 잘츠부르크',date:'12/28 (월) 08:28',op:'ÖBB 레일젯 RJX 262',
+  fq:'Wien Hauptbahnhof',tq:'Salzburg Hauptbahnhof',dur:'2시간 25분',
   sn:'Wien Hbf → Salzburg Hbf'},
- {id:'t6',rt:'잘츠부르크 → 빈',date:'12/28 (월) 저녁',op:'ÖBB 레일젯',
-  fq:'Salzburg Hauptbahnhof',tq:'Wien Hauptbahnhof',dur:'약 2시간 22분',
+ {id:'t6',rt:'잘츠부르크 → 빈',date:'12/28 (월) 20:30',op:'ÖBB 인터시티 IC 406',
+  fq:'Salzburg Hauptbahnhof',tq:'Wien Hauptbahnhof',dur:'2시간 46분',
   sn:'Salzburg Hbf → Wien Hbf'},
  {id:'t2',rt:'비엔나 → 프라하',date:'12/29 (화)',op:'ÖBB 레일젯',
   fq:'Wien Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'약 4시간',
@@ -3124,7 +3133,7 @@ const EKEY='xmas-trip-2026-exp';
 const CATS=[['식비','🍽️'],['교통','🚇'],['입장료','🎫'],['마켓·쇼핑','🛍️'],['카페·간식','☕'],['기타','💼']];
 const CITYCUR={bud:'HUF',vie:'EUR',pra:'CZK',drs:'EUR',sbg:'EUR',air:'KRW'};
 const CITYNM={bud:'부다페스트',vie:'비엔나',pra:'프라하',drs:'드레스덴',sbg:'잘츠부르크',air:'이동·기타'};
-const BUDGET=3081058;   /* 1,000만 − 확정 소계 6,918,942 (실제 결제액 기준) */
+const BUDGET=2915822;   /* 1,000만 − 확정 소계 7,084,178 (실제 결제액 기준 · 12/28 기차 €110.60 은 1,494원 환산 추정) */
 const nfk=new Intl.NumberFormat('ko-KR');
 let eCat='식비', eCur='HUF';
 
