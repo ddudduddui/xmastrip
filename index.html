@@ -607,7 +607,7 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
       <button class="b wide" onclick="op('https://search.naver.com/search.naver?query=' + encodeURIComponent('환율'))">🔎 네이버 환율</button>
     </div>
     <div class="note" style="margin:9px 0 2px">네이버 <b>매매기준율</b>을 보고 아래에 직접 입력하면 계산기·경비 집계에 함께 반영됩니다. (1단위 = 원)</div>
-    <div class="note" style="margin:7px 0 2px">💳 <b>실제 카드 결제로 확인한 환율</b> — 위 자동 갱신값과 비교<br>🇦🇹 유로 — 쇤브룬 <b>1,588원</b>(2026-09) → DB 기차 <b>1,504원</b>(2026-10-14) · ÖBB 기차 <b>1,494원</b>(2026-10-14)<br>🇨🇿 코루나 — 체코 필하모닉 <b>63.0원</b><br>자동 갱신값(ECB)과 <b>거의 일치</b>합니다. 카드 결제가 조금 높은 만큼이 <b>카드사 수수료·스프레드</b>입니다 — 유로는 0.2% 수준, 코루나는 2% 안팎입니다. <b>현지 결제액은 여기 계산보다 1~2% 더 나온다고 보면 됩니다.</b></div>
+    <div class="note" style="margin:7px 0 2px">💳 <b>실제 카드 결제로 확인한 환율</b> — 위 자동 갱신값과 비교<br>🇦🇹 유로 — 쇤브룬 <b>1,588원</b>(2026-09) → DB 기차 <b>1,504원</b>(2026-10-14) · ÖBB 기차 3건 <b>1,492~1,494원</b>(2026-10-14)<br>🇨🇿 코루나 — 체코 필하모닉 <b>63.0원</b><br>자동 갱신값(ECB)과 <b>거의 일치</b>합니다. 카드 결제가 조금 높은 만큼이 <b>카드사 수수료·스프레드</b>입니다 — 유로는 0.2% 수준, 코루나는 2% 안팎입니다. <b>현지 결제액은 여기 계산보다 1~2% 더 나온다고 보면 됩니다.</b></div>
     <table class="rtab" id="rtab"></table>
     <div class="btns" style="margin-top:9px">
       <button class="b go wide" onclick="saveManual()">입력한 환율 적용</button>
@@ -625,16 +625,14 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="row"><span class="k">체코 필하모닉 2인 (4,600 Kč)</span><span class="v">289,877원</span></div>
     <div class="row"><span class="k">프라하↔드레스덴 기차 2인 (€97.96)</span><span class="v">147,292원</span></div>
     <div class="row"><span class="k">부다페스트→비엔나 기차 2인 + 좌석 (€35.80)</span><span class="v">53,481원</span></div>
-    <div class="row"><span class="k">빈↔잘츠부르크 기차 2인 왕복 + 좌석 (€110.60)</span><span class="v">약 165,236원</span></div>
-    <div class="row"><span class="k">비엔나→프라하 기차 2인 + 좌석 (€90.40)</span><span class="v">약 135,058원</span></div>
-    <div class="row big"><span class="k">확정 소계</span><span class="v">약 7,219,236원</span></div>
+    <div class="row"><span class="k">빈↔잘츠부르크 기차 2인 왕복 + 좌석 (€110.60)</span><span class="v">164,962원</span></div>
+    <div class="row"><span class="k">비엔나→프라하 기차 2인 + 좌석 (€90.40)</span><span class="v">134,916원</span></div>
+    <div class="row big"><span class="k">확정 소계</span><span class="v">약 7,218,820원</span></div>
     <div class="hr"></div>
     <div class="grid2">
       <div class="mini"><div class="k">예산 총액</div><div class="v">1,000만 원</div></div>
       <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 278만 원</div></div>
-    </div>
-    <div class="note">빈↔잘츠부르크 · 비엔나→프라하 기차는 카드 청구 전이라 <b>1,494원/EUR 로 환산한 추정값</b>이다 — 청구액이 나오면 고칠 것</div>
-    <div class="note">온천·기차·투어 / 식비·잡비 미확정 · <b>남은 입장권은 벨베데레(12/26) 2인 €46</b> · 입장권은 실제 결제 원화 기준</div>
+    </div>    <div class="note">온천·기차·투어 / 식비·잡비 미확정 · <b>남은 입장권은 벨베데레(12/26) 2인 €46</b> · 입장권은 실제 결제 원화 기준</div>
     <div class="note" style="margin-top:7px">🎄 <b>슈탈호프 중세 마켓(12/30) 2인 €10</b> — 약 1.5만원. 드레스덴에서 유일하게 <b>입장료를 받는</b> 마켓이다(라우흐네히테 기간). 나머지 네 도시 마켓은 전부 무료.</div>
     <div class="note" style="margin-top:7px">🚄 <b>잘츠부르크 당일치기(12/28)</b> — 기차 2인 왕복 <b>€110.60 은 결제 완료</b>(위 확정 소계에 포함). 남은 현지 비용은 잘츠부르크 카드 2인 €70 + 식사 €80 = <b>€150, 약 22만원</b>이다.</div>
   </div>
@@ -3138,7 +3136,7 @@ const EKEY='xmas-trip-2026-exp';
 const CATS=[['식비','🍽️'],['교통','🚇'],['입장료','🎫'],['마켓·쇼핑','🛍️'],['카페·간식','☕'],['기타','💼']];
 const CITYCUR={bud:'HUF',vie:'EUR',pra:'CZK',drs:'EUR',sbg:'EUR',air:'KRW'};
 const CITYNM={bud:'부다페스트',vie:'비엔나',pra:'프라하',drs:'드레스덴',sbg:'잘츠부르크',air:'이동·기타'};
-const BUDGET=2780764;   /* 1,000만 − 확정 소계 7,219,236 (실제 결제액 기준 · 12/28 €110.60 · 12/29 €90.40 기차는 1,494원 환산 추정) */
+const BUDGET=2781180;   /* 1,000만 − 확정 소계 7,218,820 (실제 결제액 기준) */
 const nfk=new Intl.NumberFormat('ko-KR');
 let eCat='식비', eCur='HUF';
 
