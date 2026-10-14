@@ -540,15 +540,14 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="btns"><button class="b wide go" onclick="op('https://www.koreanair.com/booking/checkin')">온라인 체크인 (48h 전)</button></div>
   </div>
 
-  <h2 class="sec">🚄 기차 <span class="cnt">6편 · 2등석</span></h2>
+  <h2 class="sec">🎫 기차 예약 보관함 <span class="cnt">6편 · 2등석 · 수정 불가</span></h2>
   <div class="card tight">
-    <div class="note" style="margin:2px 0 0">표는 <b>전부 열차 지정 · 교환·환불 불가</b>다 — 적힌 열차만 탈 수 있다. 표가 각자 이름이라 <b>둘 다 여권</b>을 지닌다.<br>
+    <div class="note" style="margin:2px 0 0">2026-10-14 에 예약을 마친 표 그대로다 — 앱에 고정돼 있어 휴대폰에서 바뀌거나 지워지지 않는다.<br>
+    표는 <b>전부 열차 지정 · 교환·환불 불가</b>다 — 적힌 열차만 탈 수 있다. 표가 각자 이름이라 <b>둘 다 여권</b>을 지닌다.<br>
     <b>국경을 넘는 12/25 · 12/29 는 A4 출력본</b>이 필요하다(오스트리아 국내 12/28 은 휴대폰 PDF 로 된다).</div>
   </div>
   <div id="trains"></div>
 
-  <h2 class="sec">구간 이동</h2>
-  <div id="moves"></div>
 
   <h2 class="sec">바로가기</h2>
   <div class="card tight">
@@ -1248,17 +1247,6 @@ const FOOD = [
  {mt:'카페',nm:'(A)void cafe',en:'술집',q:'(A)void cafe',pr:'★ 4.4 · 리뷰 1,918',mn:'블타바 강변 바지선 바'},
  {mt:'카페',nm:'Kro Coffee',en:'커피숍',q:'Kro Coffee',pr:'★ 4.4 · 리뷰 521',mn:'스페셜티 커피'},
  {mt:'카페',nm:'Cukrarna Mysak',en:'패스트리 판매점',q:'Cukrarna Mysak',pr:'★ 4.2 · 리뷰 3,097',mn:'체코 전통 과자 — 1911년 개업한 노포 제과점'}]}
-];
-
-const MOVES = [
-{nm:'부다페스트 공항 → 숙소',how:'100E 공항버스',st:'g',
- ds:'데악 페렌츠 광장까지 직행 약 40분 · 2,500 HUF · 도보 10분',
- tip:'BudapestGO 앱으로 티켓 구매',from:'Budapest Ferenc Liszt International Airport',to:'Deák Ferenc tér Budapest'},
-{nm:'프라하 숙소 → 공항',how:'Bolt 택시',st:'g',
- ds:'약 25~30분 · 편도 약 600~800 CZK',tip:'사전 예약 불필요 — 당일 앱으로 호출',
- from:'Unitas Hotel Prague',to:'Václav Havel Airport Prague'},
-{nm:'부다페스트 시내 교통',how:'BKK 72시간권',st:'y',
- ds:'4,150~5,500 HUF/1인 · 3박 일정에 적합 (또는 24시간권)',tip:'BudapestGO 앱 미리 설치'}
 ];
 
 const LISTS = [
@@ -2453,23 +2441,6 @@ function toggleSub(k){ const el=$('#sb'+k); if(el) el.classList.toggle('open') }
   openFood.forEach(i=>{const el=$('#fd'+i); if(el) el.classList.add('open')});
 })();
 
-/* ══════════════ 교통 렌더 ══════════════ */
-(function(){
-  $('#moves').innerHTML = MOVES.map(m=>`<div class="card">
-    <div class="tt">${esc(m.nm)}<span class="badge ${m.st}">${m.st==='g'?'확정':m.st==='y'?'예약 필요':'미오픈'}</span></div>
-    <div class="st">${esc(m.how)}</div>
-    ${m.alt?`<div class="note" style="margin-top:6px">🔎 ${em(m.alt)}</div>`:''}
-    ${m.ds?`<div class="ds" style="font-size:13px;color:var(--tx2)">${em(m.ds)}</div>`:''}
-    ${m.tip?`<div class="tip">💡 ${em(m.tip)}</div>`:''}
-    ${m.warn?`<div class="warn">⚠️ ${em(m.warn)}</div>`:''}
-    ${m.from?`<div class="btns">
-      <button class="b dir wide" onclick="op(dirU('${esc(m.to).replace(/'/g,"\\'")}','${esc(m.from).replace(/'/g,"\\'")}'))">🧭 경로 보기</button>
-      <button class="b map" onclick="op(pinU('${esc(m.from).replace(/'/g,"\\'")}'))">출발지</button>
-      <button class="b map" onclick="op(pinU('${esc(m.to).replace(/'/g,"\\'")}'))">도착지</button>
-    </div>`:''}
-  </div>`).join('');
-})();
-
 /* ══════════════ 체크리스트 ══════════════ */
 const KEY='xmas-trip-2026-v2';   /* 체크 상태는 「묶음id-순번」으로 저장한다.
    2026-10-14 준비 탭을 117→80 항목으로 정리하면서 순번이 전부 밀렸다.
@@ -2849,38 +2820,38 @@ function renderTalk(){
 const TRAINS=[
  {tno:'RJX 62',rt:'부다페스트 → 비엔나',date:'12/25 (금)',op:'ÖBB 레일젯',dur:'2시간 50분',
   dep:'09:30',fs:'Budapest-Keleti',arr:'12:20',ts:'Wien Hbf',
-  seat:'23호차 41(창가)·43(통로)',pnr:'0820 1848 9085 6584',
+  seat:'23호차 41(창가)·43(통로)',pnr:'0820 1848 9085 6584',fare:'€35.80 · 53,481원',
   memo:'조용한 칸(Ruhezone) · **A4 출력 3장**(국경 구간)',
   warn:'부다페스트는 **Keleti**(동역)에서 탄다 — Nyugati·Déli 가 아니다',
   fq:'Budapest Keleti railway station',tq:'Wien Hauptbahnhof'},
  {tno:'RJX 262',rt:'빈 → 잘츠부르크',date:'12/28 (월)',op:'ÖBB 레일젯',dur:'2시간 25분',
   dep:'08:28',fs:'Wien Hbf',arr:'10:53',ts:'Salzburg Hbf',
-  seat:'23호차 41(창가)·43(통로)',pnr:'0355 6927 9817 0993',
+  seat:'23호차 41(창가)·43(통로)',pnr:'0355 6927 9817 0993',fare:'€55.80 (왕복 164,962원)',
   memo:'조용한 칸(Ruhezone) · 휴대폰 PDF 로 된다',
   warn:'**Wien Hbf**(중앙역)다 — Westbahnhof·Meidling 이 아니다',
   fq:'Wien Hauptbahnhof',tq:'Salzburg Hauptbahnhof'},
  {tno:'IC 406',rt:'잘츠부르크 → 빈',date:'12/28 (월)',op:'ÖBB 인터시티',dur:'2시간 46분',
   dep:'20:30',fs:'Salzburg Hbf',arr:'23:16',ts:'Wien Hbf',
-  seat:'지정 없음(자유석)',pnr:'0355 6927 9817 0993',
+  seat:'지정 없음(자유석)',pnr:'0355 6927 9817 0993',fare:'€54.80 (왕복 164,962원)',
   memo:'바르샤바행 국제열차라 좌석 지정이 안 됐다 — 들어오면 바로 타서 자리를 잡는다 · 휴대폰 PDF 로 된다',
   warn:'**빈 중앙역(23:16)에서 꼭 내린다** — 종착이 바르샤바다. 20:15 까지 역에 도착',
   fq:'Salzburg Hauptbahnhof',tq:'Wien Hauptbahnhof'},
  {tno:'RJX 254',rt:'비엔나 → 프라하',date:'12/29 (화)',op:'ÖBB 레일젯',dur:'4시간 13분',
   dep:'09:10',fs:'Wien Hbf',arr:'13:23',ts:'Praha hl.n.',
-  seat:'23호차 32(창가)·38(통로)',pnr:'0741 0542 7909 2789',
+  seat:'23호차 32(창가)·38(통로)',pnr:'0741 0542 7909 2789',fare:'€90.40 · 134,916원',
   memo:'조용한 칸(Ruhezone) · **A4 출력 4장**(국경 구간) · 두 자리가 떨어져 있을 수 있다',
   warn:'**Praha hl.n.**(중앙역)에서 내린다 — Holešovice 가 아니다',
   fq:'Wien Hauptbahnhof',tq:'Praha hlavní nádraží'},
  {tno:'RJ 178',rt:'프라하 → 드레스덴',date:'12/30 (수)',op:'레일젯 · ČD 운행 · DB 발권',dur:'2시간 18분',
   dep:'08:31',fs:'Praha hl.n.',arr:'10:49',ts:'Dresden Hbf',
   seat:'지정 없음(자유석)',pnr:'581994584544',
-  memo:'티켓코드 AX4UEPBY · 엘베 협곡은 **진행 방향 오른쪽** — 일찍 타서 오른쪽 창가를 잡는다',
+  fare:'€49.98 (왕복 147,292원)',memo:'티켓코드 AX4UEPBY · 엘베 협곡은 **진행 방향 오른쪽** — 일찍 타서 오른쪽 창가를 잡는다',
   warn:'**JIHUN JUNG** 명의라 지훈님이 반드시 동행한다. 전광판에서 **RJ 178 Hamburg-Altona** 를 찾는다',
   fq:'Praha hlavní nádraží',tq:'Dresden Hauptbahnhof'},
  {tno:'RJ 385',rt:'드레스덴 → 프라하',date:'12/30 (수)',op:'레일젯 · ČD 운행 · DB 발권',dur:'2시간 15분',
   dep:'19:10',fs:'Dresden Hbf',arr:'21:25',ts:'Praha hl.n.',
   seat:'지정 없음(자유석)',pnr:'581994584544',
-  memo:'티켓코드 GCEU4NFX · 이미 어두워 창밖은 안 보인다',
+  fare:'€47.98 (왕복 147,292원)',memo:'티켓코드 GCEU4NFX · 이미 어두워 창밖은 안 보인다',
   warn:'**JIHUN JUNG** 명의라 지훈님이 반드시 동행한다',
   fq:'Dresden Hauptbahnhof',tq:'Praha hlavní nádraží'}
 ];
@@ -2893,6 +2864,7 @@ function renderT(){
         <div class="tv"><span>도착 · ${esc(t.ts)}</span><b>${esc(t.arr)}</b></div>
         <div class="tv"><span>좌석</span><b>${esc(t.seat)}</b></div>
         <div class="tv"><span>예약번호</span><b>${esc(t.pnr)}</b></div>
+        <div class="tv"><span>운임 · 2인</span><b>${esc(t.fare)}</b></div>
         ${t.memo?`<div class="tm">${em(t.memo)}</div>`:''}
       </div>
       ${t.warn?`<div class="warn">⚠️ ${em(t.warn)}</div>`:''}
