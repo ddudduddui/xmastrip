@@ -626,13 +626,14 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="row"><span class="k">프라하↔드레스덴 기차 2인 (€97.96)</span><span class="v">147,292원</span></div>
     <div class="row"><span class="k">부다페스트→비엔나 기차 2인 + 좌석 (€35.80)</span><span class="v">53,481원</span></div>
     <div class="row"><span class="k">빈↔잘츠부르크 기차 2인 왕복 + 좌석 (€110.60)</span><span class="v">약 165,236원</span></div>
-    <div class="row big"><span class="k">확정 소계</span><span class="v">약 7,084,178원</span></div>
+    <div class="row"><span class="k">비엔나→프라하 기차 2인 + 좌석 (€90.40)</span><span class="v">약 135,058원</span></div>
+    <div class="row big"><span class="k">확정 소계</span><span class="v">약 7,219,236원</span></div>
     <div class="hr"></div>
     <div class="grid2">
       <div class="mini"><div class="k">예산 총액</div><div class="v">1,000만 원</div></div>
-      <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 292만 원</div></div>
+      <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 278만 원</div></div>
     </div>
-    <div class="note">빈↔잘츠부르크 기차는 카드 청구 전이라 <b>1,494원/EUR 로 환산한 추정값</b>이다 — 청구액이 나오면 고칠 것</div>
+    <div class="note">빈↔잘츠부르크 · 비엔나→프라하 기차는 카드 청구 전이라 <b>1,494원/EUR 로 환산한 추정값</b>이다 — 청구액이 나오면 고칠 것</div>
     <div class="note">온천·기차·투어 / 식비·잡비 미확정 · <b>남은 입장권은 벨베데레(12/26) 2인 €46</b> · 입장권은 실제 결제 원화 기준</div>
     <div class="note" style="margin-top:7px">🎄 <b>슈탈호프 중세 마켓(12/30) 2인 €10</b> — 약 1.5만원. 드레스덴에서 유일하게 <b>입장료를 받는</b> 마켓이다(라우흐네히테 기간). 나머지 네 도시 마켓은 전부 무료.</div>
     <div class="note" style="margin-top:7px">🚄 <b>잘츠부르크 당일치기(12/28)</b> — 기차 2인 왕복 <b>€110.60 은 결제 완료</b>(위 확정 소계에 포함). 남은 현지 비용은 잘츠부르크 카드 2인 €70 + 식사 €80 = <b>€150, 약 22만원</b>이다.</div>
@@ -917,14 +918,17 @@ const DAYS = [
    ds:'**예약 완료**(2026-10-14 · ÖBB) · 2등석 · **좌석 지정 없음** · 직행 2시간 46분 · **23:16 빈 도착**',
    tip:'**바르샤바행 국제열차**라 좌석 지정이 안 됐다. 이미 사람이 타 있을 수 있으니 열차가 들어오면 바로 타서 빈 자리를 찾을 것',
    warn:'⚠️ **빈 중앙역(23:16)에서 꼭 내린다** — 그대로 있으면 체코·폴란드로 간다. 교환·환불 불가 · 둘 다 여권 지참',q:'Wien Hauptbahnhof'},
-  {tm:'23:30',nm:'숙소 도착 · 바로 취침',warn:'다음날 프라하 이동이다 — **짐은 이 날 아침에 미리 싸 둘 것.** 12/29 프라하행은 10시 이후 편으로 잡는다'}
+  {tm:'23:30',nm:'숙소 도착 · 바로 취침',warn:'다음날 **09:10 프라하행**(RJX 254)이다 — **짐은 이 날 아침에 미리 싸 둘 것.** 08:50 에 숙소를 나서면 된다'}
  ]},
-{d:'2026-12-29',w:'화',city:'pra',ct:'이동',t:'비엔나 → 프라하',sum:'오전 레일젯 약 4시간 · 프라하 구시가 첫 야경',
+{d:'2026-12-29',w:'화',city:'pra',ct:'이동',t:'비엔나 → 프라하',sum:'09:10 RJX 254 예약 완료 · 13:23 프라하 도착 · 구시가 첫 야경',
  items:[
-  {tm:'09:00',nm:'빈 중앙역 이동',en:'Wien Hauptbahnhof',ds:'숙소에서 도보권',q:'Wien Hauptbahnhof'},
-  {tm:'10:00',nm:'레일젯 비엔나 → 프라하',en:'Wien Hbf → Praha hl.n. (독 Prag Hbf)',ds:'ÖBB · 약 4시간',
-   warn:'⚠️ 10월 중순 예매 시작 — 열리는 즉시 예약(특가 좌석 한정). ÖBB 에서 구매',q:'Praha hlavní nádraží'},
-  {tm:'14:30',nm:'프라하 중앙역 도착',en:'Praha hlavní nádraží',q:'Praha hlavní nádraží'},
+  {tm:'08:50',nm:'체크아웃 · 빈 중앙역 이동',en:'Wien Hauptbahnhof',ds:'**307m · 도보 5분**',q:'Wien Hauptbahnhof'},
+  {tm:'09:10',nm:'빈 중앙역 출발 — RJX 254',fx:1,en:'Wien Hbf → Praha hl.n. (독 Prag Hbf)',
+   ds:'**예약 완료**(2026-10-14 · ÖBB) · 2등석 · **23호차 32(창가)·38(통로)** · 직행 4시간 13분 · 브르노 경유',
+   tip:'23호차는 **조용한 칸(Ruhezone)** 이다. 좌석권이 1인 1장씩 따로 나왔고 **번호가 떨어져 있어 옆자리가 아닐 수 있다** — 그러면 차 안에서 옆 사람과 바꿔 앉는다',
+   warn:'⚠️ **국경을 넘는 구간이라 표를 A4 세로로 출력해 가야 한다** — 승차권 2장 + 좌석권 2장, 총 4장.<br>**열차 지정 · 교환·환불 불가**(Sparschiene) — RJX 254 만 탈 수 있다. 둘 다 여권 지참',q:'Praha hlavní nádraží'},
+  {tm:'13:23',nm:'프라하 중앙역 도착',en:'Praha hlavní nádraží',ds:'숙소까지 약 1.4km · **도보 20분** 또는 Bolt',q:'Praha hlavní nádraží'},
+  {tm:'14:00',nm:'숙소에 짐 맡기기 · 늦은 점심',en:'Unitas Hotel',ds:'체크인 전이라 짐만 맡기고 구시가 쪽에서 점심',q:'Unitas Hotel Prague'},
   {tm:'15:30',nm:'Unitas Hotel 체크인',en:'Bartolomějská 308/9, Praha 1',ds:'구시가 광장 인근 · 마켓·야경 도보권',q:'Unitas Hotel Prague'},
   {tm:'17:30',nm:'구시가 광장 크리스마스 마켓',en:'Old Town Square',ds:'대형 트리 · 천문시계',q:'Old Town Square Prague'},
   {tm:'19:30',nm:'카를교 야경',en:'Charles Bridge',ds:'프라하성 조명 배경',q:'Charles Bridge Prague'}
@@ -1290,8 +1294,9 @@ const MOVES = [
  ds:'12/25 **예약 완료**(2026-10-14 구매 · ÖBB) · 2시간 50분<br><b>열차</b> RJX 62 · 09:30 → 12:20 · 2등석<br><b>좌석</b> 23호차 41(창가)·43(통로) · 조용한 칸(Ruhezone)<br><b>예약번호</b> 0820 1848 9085 6584 · Sparschiene €14.90×2 + 좌석 €6 = 총 €35.80',
  warn:'⚠️ **교환·환불 불가**이고 **열차 지정**이다. RJX 62 만 탈 수 있다.<br>**국경을 넘는 구간이라 A4 세로로 출력해 가야 한다**(오스트리아 국내만 휴대폰 화면 인정) — 승차권 2장 + 좌석권 1장.<br>표가 **JIHUN JUNG · HYUNJUNG KIM** 각자 이름으로 발권돼 있어 **둘 다 여권 지참**',
  from:'Budapest Keleti railway station',to:'Wien Hauptbahnhof'},
-{nm:'비엔나 → 프라하',how:'ÖBB 레일젯',st:'r',sn:['Wien Hbf','Praha hl.n.'],alt:'ÖBB·DB 독일어 화면에서는 프라하가 **Prag Hbf** 로 나온다. **Praha-Holešovice** 행 편성은 다른 역이고 구시가에서 멀다 — 숙소(Unitas)는 중앙역 쪽이다',
- ds:'12/29 오전 · 약 4시간',warn:'**아직 안 열렸다** — 12/29 는 12월 중순 시간표 개정 이후라 그 전에는 조회가 안 된다. DB 는 10월 중순 개시, ČD 구간은 11월 말~12월 초로 더 늦을 수 있다. ÖBB 를 먼저 보고 안 열렸으면 11월에 재시도',
+{nm:'비엔나 → 프라하',how:'ÖBB 레일젯 RJX 254',st:'g',sn:['Wien Hbf','Praha hl.n.'],alt:'ÖBB·DB 독일어 화면에서는 프라하가 **Prag Hbf** 로 나온다. **Praha-Holešovice** 행 편성은 다른 역이고 구시가에서 멀다 — 숙소(Unitas)는 중앙역 쪽이다',
+ ds:'12/29 **예약 완료**(2026-10-14 구매 · ÖBB) · 4시간 13분<br><b>열차</b> RJX 254 · 09:10 → 13:23 · 2등석 · 브르노 경유<br><b>좌석</b> 23호차 32(창가)·38(통로) · 조용한 칸 — 번호가 떨어져 있어 옆자리가 아닐 수 있다<br><b>예약번호</b> 0741 0542 7909 2789 · Sparschiene €42.20×2 + 좌석 €3×2 = 총 €90.40',
+ warn:'⚠️ **교환·환불 불가**이고 **열차 지정**이다. RJX 254 만 탈 수 있다.<br>**국경을 넘는 구간이라 A4 세로로 출력해 가야 한다** — 승차권 2장 + 좌석권 2장.<br>표가 각자 이름이라 **둘 다 여권 지참**',
  from:'Wien Hauptbahnhof',to:'Praha hlavní nádraží'},
 {nm:'빈 ↔ 잘츠부르크',how:'ÖBB RJX 262 · IC 406',st:'g',sn:['Wien Hbf','Salzburg Hbf'],alt:'**Wien Westbahnhof**(서역)가 아니라 **Wien Hbf**(중앙역)다 — 숙소가 중앙역 307m 다. Wien Mitte·Wien Meidling 도 다른 역이다',
  ds:'12/28 왕복 **예약 완료**(2026-10-14 구매 · ÖBB)<br><b>가는 편</b> RJX 262 · 08:28 → 10:53 · 23호차 41(창가)·43(통로) · 조용한 칸<br><b>오는 편</b> IC 406 · 20:30 → 23:16 · <b>좌석 지정 없음</b>(바르샤바행 국제열차)<br><b>예약번호</b> 0355 6927 9817 0993 · Sparschiene €24.90×3 + €29.90 + 좌석 €6 = 총 €110.60',
@@ -1314,9 +1319,9 @@ const LISTS = [
 {id:'todo-red',t:'🔴 급함',items:[
  '집 → 인천공항 리무진버스 예약 (12/22, 07:15경 출발 목표)',
  '강설 시 플랜B 지하철 경로 확인 (06:46 동구릉역 출발)']},
-{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차는 6편 중 5편 완료(12/25 부다→빈 · 12/28 잘츠부르크 왕복 · 12/30 드레스덴 왕복). 남은 건 12/29 비엔나→프라하 하나',items:[
+{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차는 **6편 전부 예약 완료**(2026-10-14). 남은 건 12월 초 시각 재확인과 출력뿐이다',items:[
  '**빈 ↔ 잘츠부르크 왕복** (12/28) — ✅ 예약 완료(RJX 262 · IC 406 · 2026-10-14). 체크해 두세요',
- '**비엔나 → 프라하** (12/29) — ÖBB · 전날 23:30 귀가라 **10시 이후 편**으로',
+ '**비엔나 → 프라하** (12/29) — ✅ 예약 완료(RJX 254 · 2026-10-14). 체크해 두세요',
  '**부다페스트 → 비엔나** (12/25) — ✅ 예약 완료(RJX 62 · 2026-10-14). 체크해 두세요',
  '**벨베데레 예약** (12/26 10:00, 2인 €46) — 지금 바로 가능',
  '**세체니 온천 예약** — 캘린더가 1개월 전에 열린다 → 11월 23일경',
@@ -1331,11 +1336,11 @@ const LISTS = [
  '여권 유효기간 확인 (귀국일 기준 6개월 이상)',
  '온라인 체크인(출발 48시간 전) 캘린더 등록',
  '**12월 초 — ČD 가 열리면 프라하↔드레스덴 좌석만 따로 구매**(2인 €6 안팎). 배치도에서 **진행 방향 오른쪽**을 고르면 엘베 협곡이 보인다',
- '**12월 초 — ÖBB 기차 시각 재확인**(12/25 RJX 62 · 12/28 RJX 262·IC 406). 2027 시간표가 미완이라 바뀔 수 있다고 ÖBB 가 공지했다',
- '**12/25 기차표 A4 출력** — 국경을 넘는 구간이라 화면 불가. 승차권 2장 + 좌석권 1장']},
+ '**12월 초 — ÖBB 기차 시각 재확인**(12/25 RJX 62 · 12/28 RJX 262·IC 406 · 12/29 RJX 254). 2027 시간표가 미완이라 바뀔 수 있다고 ÖBB 가 공지했다',
+ '**국경 넘는 기차표 A4 출력** — 화면 불가. 12/25 RJX 62 3장 + 12/29 RJX 254 4장']},
 {id:'app-move',t:'📱 앱 — 교통·이동',note:'앱 설치와 카드 등록은 Wi-Fi 가 있는 한국에서 끝내 둘 것',items:[
  'BudapestGO — 100E 공항버스·BKK 72시간권 (12/22 도착 직후 필요)',
- 'ÖBB — 남은 기차 1편 예매·승차권',
+ 'ÖBB — 기차 4편 승차권·시각 변경 알림',
  'WienMobil — 비엔나 지하철·트램',
  'PID Lítačka — 프라하 대중교통',
  'Bolt — **전화번호 SMS 인증을 한국에서** 끝낼 것. 1/2 프라하 공항 이동용',
@@ -3003,8 +3008,8 @@ const TSEED=[
  {id:'t6',rt:'잘츠부르크 → 빈',date:'12/28 (월) 20:30',op:'ÖBB 인터시티 IC 406',
   fq:'Salzburg Hauptbahnhof',tq:'Wien Hauptbahnhof',dur:'2시간 46분',
   sn:'Salzburg Hbf → Wien Hbf'},
- {id:'t2',rt:'비엔나 → 프라하',date:'12/29 (화)',op:'ÖBB 레일젯',
-  fq:'Wien Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'약 4시간',
+ {id:'t2',rt:'비엔나 → 프라하',date:'12/29 (화) 09:10',op:'ÖBB 레일젯 RJX 254',
+  fq:'Wien Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'4시간 13분',
   sn:'Wien Hbf → Praha hl.n. (독 Prag Hbf)'},
  {id:'t3',rt:'프라하 → 드레스덴',date:'12/30 (수)',op:'EC 유로시티',
   fq:'Praha hlavní nádraží',tq:'Dresden Hauptbahnhof',dur:'약 2시간~2시간 15분',
@@ -3133,7 +3138,7 @@ const EKEY='xmas-trip-2026-exp';
 const CATS=[['식비','🍽️'],['교통','🚇'],['입장료','🎫'],['마켓·쇼핑','🛍️'],['카페·간식','☕'],['기타','💼']];
 const CITYCUR={bud:'HUF',vie:'EUR',pra:'CZK',drs:'EUR',sbg:'EUR',air:'KRW'};
 const CITYNM={bud:'부다페스트',vie:'비엔나',pra:'프라하',drs:'드레스덴',sbg:'잘츠부르크',air:'이동·기타'};
-const BUDGET=2915822;   /* 1,000만 − 확정 소계 7,084,178 (실제 결제액 기준 · 12/28 기차 €110.60 은 1,494원 환산 추정) */
+const BUDGET=2780764;   /* 1,000만 − 확정 소계 7,219,236 (실제 결제액 기준 · 12/28 €110.60 · 12/29 €90.40 기차는 1,494원 환산 추정) */
 const nfk=new Intl.NumberFormat('ko-KR');
 let eCat='식비', eCur='HUF';
 
