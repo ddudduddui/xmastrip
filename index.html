@@ -631,6 +631,7 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
       <div class="mini"><div class="k">잔여 (대략)</div><div class="v" style="color:var(--gr2)">약 313만 원</div></div>
     </div>
     <div class="note">온천·기차·투어 / 식비·잡비 미확정 · <b>남은 입장권은 벨베데레(12/26) 2인 €46</b> · 입장권은 실제 결제 원화 기준</div>
+    <div class="note" style="margin-top:7px">🎄 <b>슈탈호프 중세 마켓(12/30) 2인 €10</b> — 약 1.5만원. 드레스덴에서 유일하게 <b>입장료를 받는</b> 마켓이다(라우흐네히테 기간). 나머지 네 도시 마켓은 전부 무료.</div>
     <div class="note" style="margin-top:7px">🚄 <b>잘츠부르크 당일치기(12/28) 약 35만원</b> — 기차 2인 왕복 €80(특가) + 잘츠부르크 카드 2인 €70 + 식사 €80 = €230. 위 잔여 311만 원에서 나간다(약 11%). <b>기차를 늦게 잡으면 정상가 €260 이라 62만원까지 오른다.</b></div>
   </div>
 
@@ -932,10 +933,13 @@ const DAYS = [
    q:'Augustiner an der Frauenkirche Dresden'},
   {tm:'14:30',nm:'프라우엔 교회',en:'Frauenkirche',ds:'식당 **바로 옆**(도보 1분) · 2차대전으로 무너진 것을 2005년에 되세웠다',q:'Frauenkirche Dresden'},
   {tm:'15:10',nm:'브륄의 테라스 + 노이마르크트 광장',en:"Brühl's Terrace (Brühlsche Terrasse)",ds:'"유럽의 발코니" · 엘베강 전망 · 교회에서 도보 3분',q:'Brühlsche Terrasse Dresden'},
-  {tm:'16:30',nm:'구시가 자유 산책 · 카페',ds:'일몰이 16시경이라 이때부터는 야경이다 · 퓌르스텐추크(군주의 행렬) 벽화도 이 근처다',
-   warn:'슈트리첼마르크트는 12/24 전후 종료 → 마켓은 못 봄'},
-  {tm:'18:00',nm:'이른 저녁 또는 카페',ds:'복귀가 19:10 이라 한 시간이 남는다. 역 근처로 내려오면서 해결하면 좋다'},
-  {tm:'18:50',nm:'드레스덴 중앙역 이동',q:'Dresden Hauptbahnhof'},
+  {tm:'16:00',nm:'퓌르스텐추크 (군주의 행렬)',en:'Fürstenzug',ds:'마이센 자기 타일 **2만 3천 장**으로 그린 길이 102m 벽화 · 무료 · 슈탈호프 바깥벽이다',q:'Fürstenzug Dresden'},
+  {tm:'16:30',nm:'슈탈호프 중세 크리스마스 마켓',en:'Mittelalter-Weihnacht im Stallhof · Rauhnächte',
+   ds:'레지덴츠 궁전 안뜰 · **11:00~21:30** · 입장 **성인 €5 · 2인 €10**. 일몰이 16시경이라 횃불과 모닥불이 켜진 뒤다',
+   tip:'**저녁도 여기서 해결하면 된다** — 중세 테마라 통구이 고기·플람쿠헨·미트(벌꿀술)를 판다. 퓌르스텐추크 벽화 바로 안쪽이라 걸어 들어가면 된다',
+   warn:'본 마켓은 12/23 에 끝나지만 **「라우흐네히테」가 12/27~30 에 이어서 열린다** — 12/30 이 마지막 날이다. 이 기간은 **유료**다(평일 무료, 금~일과 12/27~30 은 €5). 2026 요금은 2025 기준이라 **현장에서 확인할 것**',
+   q:'Stallhof Dresden'},
+  {tm:'18:30',nm:'드레스덴 중앙역 이동',ds:'슈탈호프에서 도보 약 18분 또는 트램',q:'Dresden Hauptbahnhof'},
   {tm:'19:10',nm:'드레스덴 출발 — RJ 385',en:'Dresden Hbf → Praha hl.n.',ds:'2시간 15분 · 이미 어두워 창밖은 안 보인다',
    warn:'⚠️ 이 차도 **열차 지정**이다. 여권 지참',q:'Dresden Hauptbahnhof'},
   {tm:'21:25',nm:'프라하 중앙역 도착',q:'Praha hlavní nádraží'},
@@ -1465,6 +1469,8 @@ function copy(txt){
 }
 /* 명소 좌표 (OpenStreetMap Nominatim 조회, 2026-08-04 · 도시 경계 검증 완료) */
 const GEO={
+ 'Fürstenzug Dresden':[51.05276,13.73897],
+ 'Stallhof Dresden':[51.05231,13.73862],
  'Mozarts Geburtshaus':[47.79994,13.04355],
  'DomQuartier Salzburg':[47.79831,13.04564],
  'Festung Hohensalzburg':[47.79521,13.0481],
