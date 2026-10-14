@@ -212,16 +212,6 @@ h2.sec:first-child{margin-top:2px}
 .ocrp.on{display:block}
 .ocrp i{display:block;height:100%;background:linear-gradient(90deg,var(--bl),#7ab4f0);
   border-radius:99px;transition:width .25s;width:0}
-/* 예약 보관함 자동 입력 확인 화면 */
-.imp{display:none;margin-top:10px;padding:12px;border-radius:11px;background:var(--card2);
-  border:1px solid rgba(47,158,111,.45)}
-.imp.on{display:block}
-.imp select{margin-bottom:8px}
-.imp .tr2 span{flex:0 0 66px}
-.imp .chips button{font-size:11px;padding:4px 8px}
-.tkv .lk{display:flex;align-items:center;gap:7px;margin-top:8px;padding:8px 10px;
-  border-radius:9px;background:rgba(47,158,111,.14);border:1px solid rgba(47,158,111,.4);
-  font-size:11.5px;font-weight:700;color:var(--gr2)}
 
 .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
 .chips button{padding:5px 9px;border-radius:7px;border:1px solid var(--line);
@@ -240,18 +230,13 @@ h2.sec:first-child{margin-top:2px}
 .pr .po{font-size:16px;font-weight:800;letter-spacing:-.3px;margin-top:2px;line-height:1.35}
 .pr .pp{font-size:13px;color:var(--ac2);font-weight:700;margin-top:2px}
 
-/* 예약 보관함 */
+/* 기차 카드 — 출발·도착·좌석을 타일로 */
 .tk.ok{border-color:rgba(47,158,111,.5)}
 .tkview{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 2px}
 .tv{flex:1 1 auto;min-width:78px;background:var(--card2);border-radius:9px;padding:8px 10px}
 .tv span{display:block;font-size:10px;color:var(--tx3);font-weight:700}
 .tv b{font-size:14px;font-weight:800;letter-spacing:-.2px;font-variant-numeric:tabular-nums}
 .tm{flex:1 1 100%;font-size:12px;color:var(--tx2);margin-top:4px;padding:0 2px}
-.tkedit{margin-top:8px}
-.tkedit summary{font-size:11.5px;font-weight:800;color:var(--bl);cursor:pointer;
-  padding:6px 0;list-style:none}
-.tkedit summary::-webkit-details-marker{display:none}
-.tkedit summary::before{content:"✎ ";}
 .tr2{display:flex;align-items:center;gap:9px;padding:4px 0}
 .tr2 span{flex:0 0 66px;font-size:11.5px;color:var(--tx2);font-weight:700}
 .tr2 input{flex:1;margin:0;padding:9px 10px;font-size:13px}
@@ -555,33 +540,19 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="btns"><button class="b wide go" onclick="op('https://www.koreanair.com/booking/checkin')">온라인 체크인 (48h 전)</button></div>
   </div>
 
-  <h2 class="sec">🎫 기차 예약 보관함</h2>
-  <div class="card">
-    <div class="tt">언제 예매하나 <span class="badge y">10월 중순</span></div>
-    <div class="note" style="margin:6px 0 0">유럽 철도는 <b>12월 중순에 시간표를 개정</b>하고, 개정 이후 날짜의 승차권은 통상 <b>10월 중순</b>에 열립니다(직전 개정은 10/15 부터 판매). 아래 <b>기차 6편 전부</b> 해당됩니다 — 그전에는 조회해도 나오지 않습니다.<br><br>
-    <b>특가는 좌석 한정이라 빨리 팔립니다.</b> 열리는 즉시 사는 것이 가장 싸고, 늦으면 정상운임만 남습니다. <b>왕복 할인은 없으니 편도 2장</b>을 따로 사면 됩니다.<br><br>
-    같은 기차를 <b>ÖBB · MÁV · ČD · DB 가 각각 팔기도 합니다</b> — 두 곳 이상 조회해 싼 쪽으로. Omio·Trainline 같은 재판매 사이트는 수수료가 붙으니 <b>철도사 직접 구매</b>가 낫습니다.</div>
-  </div>
+  <h2 class="sec">🚄 기차 <span class="cnt">6편 · 2등석</span></h2>
   <div class="card tight">
-    <div class="note" style="margin:2px 0 0">예약하면 <b>예약번호·좌석·시각</b>을 아래에 채워 두세요. 이 휴대폰에 저장되어 <b>비행기 모드·데이터 없이도</b> 열립니다.<br><br>
-    💡 <b>직접 입력하지 않아도 됩니다</b> — 표 캡처를 <b>🎟 티켓 탭</b>에 올리고 텍스트를 읽은 뒤 <b>「🚄 예약 보관함에 넣기」</b>를 누르면 아래 칸이 자동으로 채워집니다.</div>
+    <div class="note" style="margin:2px 0 0">표는 <b>전부 열차 지정 · 교환·환불 불가</b>다 — 적힌 열차만 탈 수 있다. 표가 각자 이름이라 <b>둘 다 여권</b>을 지닌다.<br>
+    <b>국경을 넘는 12/25 · 12/29 는 A4 출력본</b>이 필요하다(오스트리아 국내 12/28 은 휴대폰 PDF 로 된다).</div>
   </div>
-  <div id="tickets"></div>
+  <div id="trains"></div>
 
   <h2 class="sec">구간 이동</h2>
   <div id="moves"></div>
 
-  <h2 class="sec">예약 사이트</h2>
+  <h2 class="sec">바로가기</h2>
   <div class="card tight">
     <div class="btns">
-      <button class="b wide" onclick="op('https://www.oebb.at/en/')">ÖBB 오스트리아철도</button>
-      <button class="b wide" onclick="op('https://jegy.mav.hu/')">MÁV 헝가리철도</button>
-    </div>
-    <div class="btns" style="margin-top:6px">
-      <button class="b wide" onclick="op('https://www.cd.cz/en/')">ČD 체코철도</button>
-      <button class="b wide" onclick="op('https://www.bahn.com/en')">DB 독일철도</button>
-    </div>
-    <div class="btns" style="margin-top:6px">
       <button class="b wide" onclick="op('https://www.omnibus.hu/szechenyi-bath-tickets')">세체니 온천 티켓</button>
       <button class="b wide" onclick="op('https://bolt.eu/')">Bolt 택시</button>
     </div>
@@ -693,7 +664,7 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="btns" style="margin-top:6px">
       <button class="b wide" onclick="expClear()">전체 삭제</button>
     </div>
-    <div class="note" style="margin-top:6px"><b>백업 복사</b>는 경비뿐 아니라 <b>일정 변경·체크리스트·기차 예약·환율</b>까지 전부 담습니다. 이 휴대폰에만 저장되므로 여행 중 하루 한 번씩 복사해 메모앱이나 카톡 「나에게 보내기」에 붙여두시는 걸 권합니다.</div>
+    <div class="note" style="margin-top:6px"><b>백업 복사</b>는 경비뿐 아니라 <b>일정 변경·체크리스트·환율</b>까지 전부 담습니다. 이 휴대폰에만 저장되므로 여행 중 하루 한 번씩 복사해 메모앱이나 카톡 「나에게 보내기」에 붙여두시는 걸 권합니다.</div>
   </div>
 </section>
 
@@ -741,11 +712,6 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
     <div class="chips" id="tkv-chips"></div>
     <div class="note" style="margin:11px 0 5px"><b>읽어낸 내용</b> — 직접 고쳐도 되고, 고치면 바로 저장됩니다</div>
     <textarea id="tkv-text" placeholder="여기에 티켓 내용이 들어갑니다. 라이브 텍스트로 복사해 붙여넣거나 직접 입력하세요."></textarea>
-    <div class="btns" style="margin-top:9px">
-      <button class="b dir wide" onclick="tkImport()">🚄 예약 보관함에 넣기</button>
-    </div>
-    <div class="note" style="margin-top:4px">기차표라면 <b>열차번호·시각·좌석·예약번호</b>를 뽑아 교통 탭 예약 보관함에 채워 넣습니다. 적용 전에 확인 화면이 나옵니다.</div>
-    <div class="imp" id="tkv-imp"></div>
     <div class="note" id="tkv-meta" style="margin-top:8px"></div>
   </div>
 </div>
@@ -967,7 +933,7 @@ const DAYS = [
   {tm:'10:00',nm:'프라하성',en:'Prague Castle',ds:'성 비투스 대성당 · 황금소로',q:'Prague Castle'},
   {tm:'13:00',nm:'점심 — 포크스 (꼴레뇨)',en:"Pork's Mostecká · Mostecká 16",
    ds:'체코 대표 음식 꼴레뇨(족발)와 필스너 우르켈 탱크 생맥주. 카를교 바로 앞이라 프라하성에서 내려와 그대로 이어진다',
-   warn:'⚠️ **예약 창이 아직 안 열렸다(2026-08 확인).** 보통 2~3개월 전에 열리므로 **10~11월에 재시도** — 기차 예매(10월 중순)와 같이 확인하면 잊지 않는다. porks.cz 의 BOOK A TABLE 또는 구글지도 「예약하기」.<br><br>열리지 않으면 **12:00 개장 직후에 가는 것이 대기를 피하는 방법**이다. 프라하성을 10:00 에 시작해 11:30경 내려오면 개장 시간과 맞는다.',
+   warn:'⚠️ **예약 창이 아직 안 열렸다(2026-08 확인).** 보통 2~3개월 전에 열리므로 **10~11월에 재시도**. porks.cz 의 BOOK A TABLE 또는 구글지도 「예약하기」.<br><br>열리지 않으면 **12:00 개장 직후에 가는 것이 대기를 피하는 방법**이다. 프라하성을 10:00 에 시작해 11:30경 내려오면 개장 시간과 맞는다.',
    q:'Porks Mostecka Praha'},
   {tm:'15:00',nm:'천문시계 · 구시가 산책',en:'Prague Astronomical Clock',ds:'정시 인형 퍼레이드',q:'Prague Astronomical Clock'},
   {tm:'18:00',nm:'저녁 식사',warn:'연말 성수기 — 미리 예약해두면 안전'},
@@ -1288,24 +1254,6 @@ const MOVES = [
 {nm:'부다페스트 공항 → 숙소',how:'100E 공항버스',st:'g',
  ds:'데악 페렌츠 광장까지 직행 약 40분 · 2,500 HUF · 도보 10분',
  tip:'BudapestGO 앱으로 티켓 구매',from:'Budapest Ferenc Liszt International Airport',to:'Deák Ferenc tér Budapest'},
-{nm:'부다페스트 → 비엔나',how:'ÖBB 레일젯 RJX 62',st:'g',sn:['Budapest-Keleti','Wien Hbf'],alt:'부다페스트는 **Keleti**(동역)가 빈행 출발역이다 — **Nyugati**(서역)·**Déli**(남역)는 다른 역이다',
- ds:'12/25 **예약 완료**(2026-10-14 구매 · ÖBB) · 2시간 50분<br><b>열차</b> RJX 62 · 09:30 → 12:20 · 2등석<br><b>좌석</b> 23호차 41(창가)·43(통로) · 조용한 칸(Ruhezone)<br><b>예약번호</b> 0820 1848 9085 6584 · Sparschiene €14.90×2 + 좌석 €6 = 총 €35.80',
- warn:'⚠️ **교환·환불 불가**이고 **열차 지정**이다. RJX 62 만 탈 수 있다.<br>**국경을 넘는 구간이라 A4 세로로 출력해 가야 한다**(오스트리아 국내만 휴대폰 화면 인정) — 승차권 2장 + 좌석권 1장.<br>표가 **JIHUN JUNG · HYUNJUNG KIM** 각자 이름으로 발권돼 있어 **둘 다 여권 지참**',
- from:'Budapest Keleti railway station',to:'Wien Hauptbahnhof'},
-{nm:'비엔나 → 프라하',how:'ÖBB 레일젯 RJX 254',st:'g',sn:['Wien Hbf','Praha hl.n.'],alt:'ÖBB·DB 독일어 화면에서는 프라하가 **Prag Hbf** 로 나온다. **Praha-Holešovice** 행 편성은 다른 역이고 구시가에서 멀다 — 숙소(Unitas)는 중앙역 쪽이다',
- ds:'12/29 **예약 완료**(2026-10-14 구매 · ÖBB) · 4시간 13분<br><b>열차</b> RJX 254 · 09:10 → 13:23 · 2등석 · 브르노 경유<br><b>좌석</b> 23호차 32(창가)·38(통로) · 조용한 칸 — 번호가 떨어져 있어 옆자리가 아닐 수 있다<br><b>예약번호</b> 0741 0542 7909 2789 · Sparschiene €42.20×2 + 좌석 €3×2 = 총 €90.40',
- warn:'⚠️ **교환·환불 불가**이고 **열차 지정**이다. RJX 254 만 탈 수 있다.<br>**국경을 넘는 구간이라 A4 세로로 출력해 가야 한다** — 승차권 2장 + 좌석권 2장.<br>표가 각자 이름이라 **둘 다 여권 지참**',
- from:'Wien Hauptbahnhof',to:'Praha hlavní nádraží'},
-{nm:'빈 ↔ 잘츠부르크',how:'ÖBB RJX 262 · IC 406',st:'g',sn:['Wien Hbf','Salzburg Hbf'],alt:'**Wien Westbahnhof**(서역)가 아니라 **Wien Hbf**(중앙역)다 — 숙소가 중앙역 307m 다. Wien Mitte·Wien Meidling 도 다른 역이다',
- ds:'12/28 왕복 **예약 완료**(2026-10-14 구매 · ÖBB)<br><b>가는 편</b> RJX 262 · 08:28 → 10:53 · 23호차 41(창가)·43(통로) · 조용한 칸<br><b>오는 편</b> IC 406 · 20:30 → 23:16 · <b>좌석 지정 없음</b>(바르샤바행 국제열차)<br><b>예약번호</b> 0355 6927 9817 0993 · Sparschiene €24.90×3 + €29.90 + 좌석 €6 = 총 €110.60',
- warn:'⚠️ **교환·환불 불가**이고 **열차 지정**이다. 오는 편 IC 406 은 **빈 중앙역에서 꼭 내린다** — 종착이 바르샤바다.<br>ÖBB 안내: 2027 시간표(12/13부)가 미완이라 **시각이 바뀔 수 있다** → 12월 초 재확인',tip:'오스트리아 국내 구간이라 **휴대폰 PDF 로 된다**(출력 불필요). 표가 각자 이름이라 둘 다 여권 지참',
- from:'Wien Hauptbahnhof',to:'Salzburg Hauptbahnhof'},
-{nm:'프라하 ↔ 드레스덴',how:'RJ 레일젯 직행',st:'g',sn:['Praha hl.n.','Dresden Hbf'],
- ds:'12/30 왕복 **예약 완료**(2026-10-14 구매) · 편도 2시간 15~18분<br><b>가는 편</b> RJ 178 · 08:31 → 10:49 · €49.98<br><b>오는 편</b> RJ 385 · 19:10 → 21:25 · €47.98<br><b>예약번호</b> 581994584544 · 총 €97.96 · Super Sparpreis Europa',
- alt:'티켓코드 — 가는 편 **AX4UEPBY** · 오는 편 **GCEU4NFX**',
- warn:'⚠️ **취소·변경 불가**이고 **열차 지정**이다. RJ 178 / RJ 385 만 탈 수 있다.<br>**여권이 없으면 표가 무효다** — 검표 때 사진 신분증 제시 의무. 표에 **JIHUN JUNG** 으로 발권돼 있어 지훈님이 반드시 동행해야 한다.<br>좌석 지정은 ČD 운행 열차라 DB 에서 불가했다 — **ČD 예매가 열리면(11월 말~12월 초) 좌석만 따로 살 수 있다**',
- tip:'엘베 협곡이 절경이다 — 갈 때 **진행 방향 오른쪽**이 강 쪽. 올 때는 어두워 상관없다',
- from:'Praha hlavní nádraží',to:'Dresden Hauptbahnhof'},
 {nm:'프라하 숙소 → 공항',how:'Bolt 택시',st:'g',
  ds:'약 25~30분 · 편도 약 600~800 CZK',tip:'사전 예약 불필요 — 당일 앱으로 호출',
  from:'Unitas Hotel Prague',to:'Václav Havel Airport Prague'},
@@ -1317,10 +1265,7 @@ const LISTS = [
 {id:'todo-red',t:'🔴 급함',items:[
  '집 → 인천공항 리무진버스 예약 (12/22, 07:15경 출발 목표)',
  '강설 시 플랜B 지하철 경로 확인 (06:46 동구릉역 출발)']},
-{id:'todo-yellow',t:'🟡 곧 해야 함',note:'기차는 **6편 전부 예약 완료**(2026-10-14). 남은 건 12월 초 시각 재확인과 출력뿐이다',items:[
- '**빈 ↔ 잘츠부르크 왕복** (12/28) — ✅ 예약 완료(RJX 262 · IC 406 · 2026-10-14). 체크해 두세요',
- '**비엔나 → 프라하** (12/29) — ✅ 예약 완료(RJX 254 · 2026-10-14). 체크해 두세요',
- '**부다페스트 → 비엔나** (12/25) — ✅ 예약 완료(RJX 62 · 2026-10-14). 체크해 두세요',
+{id:'todo-yellow',t:'🟡 곧 해야 함',items:[
  '**벨베데레 예약** (12/26 10:00, 2인 €46) — 지금 바로 가능',
  '**세체니 온천 예약** — 캘린더가 1개월 전에 열린다 → 11월 23일경',
  '**12/24 이브 저녁 예약** (부다페스트) — 오후 2시면 다 닫는다',
@@ -2513,11 +2458,6 @@ function toggleSub(k){ const el=$('#sb'+k); if(el) el.classList.toggle('open') }
   $('#moves').innerHTML = MOVES.map(m=>`<div class="card">
     <div class="tt">${esc(m.nm)}<span class="badge ${m.st}">${m.st==='g'?'확정':m.st==='y'?'예약 필요':'미오픈'}</span></div>
     <div class="st">${esc(m.how)}</div>
-    ${m.sn?`<div class="row"><span class="k">예매 역명</span><span class="v" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace">${esc(m.sn[0])} → ${esc(m.sn[1])}</span></div>
-    <div class="btns">
-      <button class="b" onclick="copy('${esc(m.sn[0]).replace(/'/g,"\\'")}')">📋 ${esc(m.sn[0])}</button>
-      <button class="b" onclick="copy('${esc(m.sn[1]).replace(/'/g,"\\'")}')">📋 ${esc(m.sn[1])}</button>
-    </div>`:''}
     ${m.alt?`<div class="note" style="margin-top:6px">🔎 ${em(m.alt)}</div>`:''}
     ${m.ds?`<div class="ds" style="font-size:13px;color:var(--tx2)">${em(m.ds)}</div>`:''}
     ${m.tip?`<div class="tip">💡 ${em(m.tip)}</div>`:''}
@@ -2536,6 +2476,15 @@ const KEY='xmas-trip-2026-v2';   /* 체크 상태는 「묶음id-순번」으로
    키를 올려 옛 체크가 엉뚱한 항목에 붙는 것을 막는다. */
 function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
 function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+/* 2026-10-14 기차 예약을 마쳐 「🟡 곧 해야 함」 맨 앞 3항목(기차 3구간)을 지웠다.
+   뒤 항목의 체크가 엉뚱한 곳에 붙지 않도록 한 번만 순번을 3칸 당긴다. */
+(function(){try{
+  const F=KEY+'-m1'; if(localStorage.getItem(F)) return;
+  const o=load(), n={};
+  Object.keys(o).forEach(k=>{const m=k.match(/^todo-yellow-(\d+)$/);
+    if(!m) n[k]=o[k]; else if(+m[1]>=3) n['todo-yellow-'+(+m[1]-3)]=o[k];});
+  save(n); localStorage.setItem(F,'1');
+}catch(e){}})();
 function renderLists(){
   const st=load();
   $('#lists').innerHTML = LISTS.map(L=>{
@@ -2685,10 +2634,7 @@ function tkOpen(id){
   $('#tkv-text').value=t.text||'';
   $('#tkv-msg').textContent='';
   $('#tkv-prog').classList.remove('on');
-  const lk=t.link?(TSEED.find(s=>s.id===t.link)||{}).rt:'';
-  $('#tkv-meta').innerHTML=`${esc(t.cat)} · ${(t.size/1024).toFixed(0)}KB · 추가 ${esc(t.at||'-')}`
-    + (lk?`<div class="lk">✓ 예약 보관함 「${esc(lk)}」에 반영됨</div>`:'');
-  $('#tkv-imp').classList.remove('on'); $('#tkv-imp').innerHTML='';
+  $('#tkv-meta').innerHTML=`${esc(t.cat)} · ${(t.size/1024).toFixed(0)}KB · 추가 ${esc(t.at||'-')}`;
   tkChips(t.text||'');
   $('#tkv').classList.add('on');
   document.body.style.overflow='hidden';
@@ -2734,100 +2680,6 @@ function tkChips(text){
       + g.map(([k,vs])=>vs.map(v=>
         `<button onclick="copy('${esc(v).replace(/'/g,"\\'")}')"><small>${k}</small>${esc(v)}</button>`).join('')).join('')
     : '';
-}
-
-/* ── 기차표 텍스트 → 예약 보관함 자동 입력 ──
-   OCR 결과는 반드시 틀린 값이 섞이므로 곧바로 쓰지 않고 확인 화면을 거친다.
-   각 항목은 후보를 여러 개 뽑아 사용자가 고르거나 고칠 수 있게 한다. */
-const STN={bud:/budapest|keleti|bp\.?\s*kel/i, vie:/wien|vienna|w[ie]{2}n\s*hbf/i,
-           pra:/praha|prague|hlavn[ií]/i, drs:/dresden/i};
-function parseTrain(text){
-  const T=String(text||''), U=a=>[...new Set(a)];
-  const c={};
-  /* 열차번호 — RJ/RJX/EC/IC/ICE/EN 등 */
-  c.tno=U((T.match(/\b(?:RJX|RJ|ICE|IC|EC|EN|NJ|REX|RE|RB)\s?-?\s?\d{1,4}\b/gi)||[])
-    .map(s=>s.toUpperCase().replace(/[\s-]+/g,' ').trim()));
-  /* 시각 — 값으로 검증(OCR 은 「DEP12:15」처럼 붙여 내놓는다) */
-  c.time=U((T.match(/\d{1,2}[:.]\d{2}/g)||[]).map(s=>s.replace('.',':')))
-    .filter(s=>{const[h,m]=s.split(':').map(Number); return h<24&&m<60});
-  /* 차량·좌석 — 독/영/체/헝 표기를 함께 본다.
-     「Platz 51, 52」처럼 2인 좌석이 나란히 오므로 숫자 나열 전체를 잡는다 */
-  const grab=re=>{const o=[];let m; const r=new RegExp(re.source,'ig');
-    while((m=r.exec(T))) o.push(m[1].replace(/\s*[,·/]\s*/g,'·').trim()); return U(o)};
-  const RUN='(\\d{1,3}(?:\\s*[,·/]\\s*\\d{1,3})*)';
-  const wg=grab(new RegExp('\\b(?:wagen|wg|coach|car|v[uů]z|kocsi|voiture)\\s*\\.?:?\\s*(\\d{1,3})'));
-  const pl=grab(new RegExp('\\b(?:platz|pl|seat|sitzplatz|m[ií]sto|hely|place)\\s*\\.?:?\\s*'+RUN));
-  c.car=[];
-  if(wg.length&&pl.length) c.car.push(`${wg[0]}호차 ${pl[0]}`);
-  else if(pl.length) c.car.push(pl[0]);
-  else if(wg.length) c.car.push(`${wg[0]}호차`);
-  /* 예약번호 — 라벨 뒤의 코드를 우선. 라벨과 코드 사이는 구분자만 건너뛴다
-     (\D 로 두면 코드 첫 글자가 영문일 때 그 글자까지 삼켜 QT8M5P → T8M5P 가 된다) */
-  const lab=grab(/(?:auftragsnummer|buchungsnummer|booking\s*(?:reference|ref|no|number)|reservation\s*(?:code|no)?|pnr|k[oó]d|order\s*(?:no|id))[^A-Za-z0-9]{0,14}([A-Z0-9]{5,9})/)
-    .map(s=>s.toUpperCase()).filter(s=>/\d/.test(s)&&/[A-Z]/.test(s));
-  const bare=U((T.match(/\b[A-Z0-9]{6}\b/g)||[])).filter(s=>/\d/.test(s)&&/[A-Z]/.test(s));
-  c.pnr=U(lab.concat(bare));
-  /* 구간 추정 — 도시명으로 판단 */
-  const has={}; Object.keys(STN).forEach(k=>has[k]=STN[k].test(T));
-  let route=null, sure=true;
-  if(has.bud&&has.vie) route='t1';
-  else if(has.vie&&has.pra) route='t2';
-  else if(has.pra&&has.drs){
-    const h=c.time.length?+c.time[0].split(':')[0]:null;
-    route = (h!==null&&h>=14) ? 't4' : 't3';   // 오후 출발이면 돌아오는 편
-    sure=false;                                 // 왕복이라 방향은 확인이 필요하다
-  }
-  return {c, route, sure,
-    pick:{tno:c.tno[0]||'', dep:c.time[0]||'', arr:c.time[1]||'',
-          car:c.car[0]||'', pnr:c.pnr[0]||''}};
-}
-
-const IMPF=[['tno','열차번호','tno'],['dep','출발 시각','time'],['arr','도착 시각','time'],
-            ['car','차량·좌석','car'],['pnr','예약번호','pnr']];
-let impP=null;
-function tkImport(){
-  const t=tkCache.find(x=>x.id===tkCur); if(!t) return;
-  const txt=$('#tkv-text').value||'';
-  if(!txt.trim()){toast('먼저 텍스트를 읽거나 붙여넣으세요');return}
-  impP=parseTrain(txt);
-  const found=IMPF.filter(f=>impP.pick[f[0]]).length;
-  $('#tkv-imp').innerHTML=`
-    <div class="tt" style="margin-bottom:6px">예약 보관함에 넣기
-      <span class="badge ${found>=3?'g':'y'}">${found}/5 인식</span></div>
-    <div class="note" style="margin:0 0 8px">아래 값은 <b>추출한 후보</b>입니다. <b>틀린 값이 섞일 수 있으니 확인·수정한 뒤</b> 적용하세요. 후보가 여럿이면 눌러서 바꿀 수 있습니다.</div>
-    <label class="tr2"><span>구간</span><select id="imp-route">
-      <option value="">— 고르세요 —</option>
-      ${TSEED.map(s=>`<option value="${s.id}"${impP.route===s.id?' selected':''}>${esc(s.rt)} · ${esc(s.date)}</option>`).join('')}
-    </select></label>
-    ${impP.route&&!impP.sure?`<div class="warn" style="margin:0 0 6px">⚠️ 프라하↔드레스덴은 왕복이라 <b>방향을 직접 확인</b>하세요</div>`:''}
-    ${IMPF.map(f=>{
-      const cands=(impP.c[f[2]]||[]).slice(0,6);
-      return `<label class="tr2"><span>${f[1]}</span>
-        <input type="text" id="imp-${f[0]}" value="${esc(impP.pick[f[0]])}" placeholder="인식 안 됨 — 직접 입력">
-      </label>
-      ${cands.length>1?`<div class="chips" style="margin:0 0 6px 75px">${cands.map(v=>
-        `<button onclick="document.getElementById('imp-${f[0]}').value='${esc(v).replace(/'/g,"\\'")}'">${esc(v)}</button>`).join('')}</div>`:''}`;
-    }).join('')}
-    <div class="btns" style="margin-top:9px">
-      <button class="b go wide" onclick="tkApplyImport()">✓ 예약 보관함에 적용</button>
-      <button class="b wide" onclick="$('#tkv-imp').classList.remove('on')">취소</button>
-    </div>`;
-  $('#tkv-imp').classList.add('on');
-  $('#tkv-imp').scrollIntoView({block:'nearest',behavior:'smooth'});
-}
-function tkApplyImport(){
-  const id=($('#imp-route')||{}).value;
-  if(!id){toast('구간을 골라주세요');return}
-  const v={}; let n=0;
-  IMPF.forEach(f=>{const x=(($('#imp-'+f[0])||{}).value||'').trim(); if(x){v[f[0]]=x;n++}});
-  if(!n){toast('넣을 내용이 없습니다');return}
-  const t=tkCache.find(x=>x.id===tkCur);
-  if(t) v.memo=(v.memo||'')||`🎟 ${t.nm} 에서 자동 입력`;
-  const o=loadT(); o[id]={...(o[id]||{}),...v}; saveT(o); renderT();
-  if(t){ t.link=id; tkPut({id:t.id,cat:t.cat,nm:t.nm,blob:t.blob,text:t.text,size:t.size,at:t.at,link:id}); }
-  $('#tkv-imp').classList.remove('on');
-  const rt=(TSEED.find(s=>s.id===id)||{}).rt||'';
-  toast(`${rt} 에 ${n}개 항목 적용 — 교통 탭에서 확인하세요`);
 }
 
 /* 자동 인식 — Tesseract 를 필요할 때만 인터넷에서 받아 쓴다(오프라인 불가) */
@@ -2991,64 +2843,65 @@ function renderTalk(){
     </div>`).join('');
 }
 
-/* ══════════════ 기차 예약 보관함 ══════════════ */
-const TKEY='xmas-trip-2026-tickets';
-/* 예약해야 할 6편을 빈 양식으로 미리 깔아 둔다.
-   id 는 휴대폰에 저장된 입력과 짝이므로 기존 t1~t4 를 그대로 두고 뒤에 t5·t6 을 붙였다.
-   보이는 순서는 배열 순서라 날짜대로 끼워 넣는다. */
-const TSEED=[
- {id:'t1',rt:'부다페스트 → 비엔나',date:'12/25 (금) 09:30',op:'ÖBB 레일젯 RJX 62',
-  fq:'Budapest Keleti railway station',tq:'Wien Hauptbahnhof',dur:'2시간 50분',
-  sn:'Budapest-Keleti → Wien Hbf'},
- {id:'t5',rt:'빈 → 잘츠부르크',date:'12/28 (월) 08:28',op:'ÖBB 레일젯 RJX 262',
-  fq:'Wien Hauptbahnhof',tq:'Salzburg Hauptbahnhof',dur:'2시간 25분',
-  sn:'Wien Hbf → Salzburg Hbf'},
- {id:'t6',rt:'잘츠부르크 → 빈',date:'12/28 (월) 20:30',op:'ÖBB 인터시티 IC 406',
-  fq:'Salzburg Hauptbahnhof',tq:'Wien Hauptbahnhof',dur:'2시간 46분',
-  sn:'Salzburg Hbf → Wien Hbf'},
- {id:'t2',rt:'비엔나 → 프라하',date:'12/29 (화) 09:10',op:'ÖBB 레일젯 RJX 254',
-  fq:'Wien Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'4시간 13분',
-  sn:'Wien Hbf → Praha hl.n. (독 Prag Hbf)'},
- {id:'t3',rt:'프라하 → 드레스덴',date:'12/30 (수)',op:'EC 유로시티',
-  fq:'Praha hlavní nádraží',tq:'Dresden Hauptbahnhof',dur:'약 2시간~2시간 15분',
-  sn:'Praha hl.n. (독 Prag Hbf) → Dresden Hbf'},
- {id:'t4',rt:'드레스덴 → 프라하',date:'12/30 (수) 저녁',op:'EC 유로시티',
-  fq:'Dresden Hauptbahnhof',tq:'Praha hlavní nádraží',dur:'약 2시간~2시간 15분',
-  sn:'Dresden Hbf → Praha hl.n. (독 Prag Hbf)'}
+/* ══════════════ 기차 ══════════════ */
+/* 6편 전부 예약을 마쳤다(2026-10-14) — 표에 적힌 값을 그대로 고정해 둔다.
+   예전에는 휴대폰에 직접 입력하는 보관함이었으나, 확정된 뒤로는 입력할 일이 없어 걷어냈다. */
+const TRAINS=[
+ {tno:'RJX 62',rt:'부다페스트 → 비엔나',date:'12/25 (금)',op:'ÖBB 레일젯',dur:'2시간 50분',
+  dep:'09:30',fs:'Budapest-Keleti',arr:'12:20',ts:'Wien Hbf',
+  seat:'23호차 41(창가)·43(통로)',pnr:'0820 1848 9085 6584',
+  memo:'조용한 칸(Ruhezone) · **A4 출력 3장**(국경 구간)',
+  warn:'부다페스트는 **Keleti**(동역)에서 탄다 — Nyugati·Déli 가 아니다',
+  fq:'Budapest Keleti railway station',tq:'Wien Hauptbahnhof'},
+ {tno:'RJX 262',rt:'빈 → 잘츠부르크',date:'12/28 (월)',op:'ÖBB 레일젯',dur:'2시간 25분',
+  dep:'08:28',fs:'Wien Hbf',arr:'10:53',ts:'Salzburg Hbf',
+  seat:'23호차 41(창가)·43(통로)',pnr:'0355 6927 9817 0993',
+  memo:'조용한 칸(Ruhezone) · 휴대폰 PDF 로 된다',
+  warn:'**Wien Hbf**(중앙역)다 — Westbahnhof·Meidling 이 아니다',
+  fq:'Wien Hauptbahnhof',tq:'Salzburg Hauptbahnhof'},
+ {tno:'IC 406',rt:'잘츠부르크 → 빈',date:'12/28 (월)',op:'ÖBB 인터시티',dur:'2시간 46분',
+  dep:'20:30',fs:'Salzburg Hbf',arr:'23:16',ts:'Wien Hbf',
+  seat:'지정 없음(자유석)',pnr:'0355 6927 9817 0993',
+  memo:'바르샤바행 국제열차라 좌석 지정이 안 됐다 — 들어오면 바로 타서 자리를 잡는다 · 휴대폰 PDF 로 된다',
+  warn:'**빈 중앙역(23:16)에서 꼭 내린다** — 종착이 바르샤바다. 20:15 까지 역에 도착',
+  fq:'Salzburg Hauptbahnhof',tq:'Wien Hauptbahnhof'},
+ {tno:'RJX 254',rt:'비엔나 → 프라하',date:'12/29 (화)',op:'ÖBB 레일젯',dur:'4시간 13분',
+  dep:'09:10',fs:'Wien Hbf',arr:'13:23',ts:'Praha hl.n.',
+  seat:'23호차 32(창가)·38(통로)',pnr:'0741 0542 7909 2789',
+  memo:'조용한 칸(Ruhezone) · **A4 출력 4장**(국경 구간) · 두 자리가 떨어져 있을 수 있다',
+  warn:'**Praha hl.n.**(중앙역)에서 내린다 — Holešovice 가 아니다',
+  fq:'Wien Hauptbahnhof',tq:'Praha hlavní nádraží'},
+ {tno:'RJ 178',rt:'프라하 → 드레스덴',date:'12/30 (수)',op:'레일젯 · ČD 운행 · DB 발권',dur:'2시간 18분',
+  dep:'08:31',fs:'Praha hl.n.',arr:'10:49',ts:'Dresden Hbf',
+  seat:'지정 없음(자유석)',pnr:'581994584544',
+  memo:'티켓코드 AX4UEPBY · 엘베 협곡은 **진행 방향 오른쪽** — 일찍 타서 오른쪽 창가를 잡는다',
+  warn:'**JIHUN JUNG** 명의라 지훈님이 반드시 동행한다. 전광판에서 **RJ 178 Hamburg-Altona** 를 찾는다',
+  fq:'Praha hlavní nádraží',tq:'Dresden Hauptbahnhof'},
+ {tno:'RJ 385',rt:'드레스덴 → 프라하',date:'12/30 (수)',op:'레일젯 · ČD 운행 · DB 발권',dur:'2시간 15분',
+  dep:'19:10',fs:'Dresden Hbf',arr:'21:25',ts:'Praha hl.n.',
+  seat:'지정 없음(자유석)',pnr:'581994584544',
+  memo:'티켓코드 GCEU4NFX · 이미 어두워 창밖은 안 보인다',
+  warn:'**JIHUN JUNG** 명의라 지훈님이 반드시 동행한다',
+  fq:'Dresden Hauptbahnhof',tq:'Praha hlavní nádraží'}
 ];
-const TF=[['tno','열차번호','예: RJ 41'],['dep','출발 시각','예: 13:40'],['arr','도착 시각','예: 16:19'],
-          ['car','차량·좌석','예: 24호차 51·52'],['pnr','예약번호','예: XK7Q2M'],['memo','메모','플랫폼·환승 등']];
-function loadT(){try{return JSON.parse(localStorage.getItem(TKEY)||'{}')}catch(e){return {}}}
-function saveT(o){try{localStorage.setItem(TKEY,JSON.stringify(o))}catch(e){}}
-function setT(id,f,v){const o=loadT(); o[id]=o[id]||{}; if(v.trim())o[id][f]=v.trim(); else delete o[id][f]; saveT(o); renderT()}
-function clearT(id){const o=loadT(); if(confirm('이 구간의 입력 내용을 지웁니다.')){delete o[id]; saveT(o); renderT(); toast('지웠습니다')}}
 function renderT(){
-  const st=loadT();
-  $('#tickets').innerHTML = TSEED.map(t=>{
-    const v=st[t.id]||{}, done=!!(v.pnr||v.tno||v.dep);
-    return `<div class="card tk${done?' ok':''}">
-      <div class="tt">${esc(t.rt)}<span class="badge ${done?'g':'y'}">${done?'예약 완료':'미입력'}</span></div>
+  $('#trains').innerHTML = TRAINS.map(t=>`<div class="card tk ok">
+      <div class="tt">${esc(t.tno)} · ${esc(t.rt)}<span class="badge g">확정</span></div>
       <div class="st">${esc(t.date)} · ${esc(t.op)} · ${esc(t.dur)}</div>
-      ${t.sn?`<div class="st" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--tx2)">🔎 ${esc(t.sn)}</div>`:''}
-      ${done?`<div class="tkview">${
-        [['tno','열차'],['dep','출발'],['arr','도착'],['car','좌석'],['pnr','예약번호']]
-        .filter(k=>v[k[0]]).map(k=>`<div class="tv"><span>${k[1]}</span><b>${esc(v[k[0]])}</b></div>`).join('')
-      }${v.memo?`<div class="tm">${esc(v.memo)}</div>`:''}</div>`:''}
-      <details class="tkedit"${done?'':' open'}>
-        <summary>${done?'수정':'입력'}</summary>
-        ${TF.map(f=>`<label class="tr2"><span>${f[1]}</span>
-          <input type="text" value="${esc(v[f[0]]||'')}" placeholder="${esc(f[2])}"
-            onchange="setT('${t.id}','${f[0]}',this.value)"></label>`).join('')}
-        <div class="btns">
-          <button class="b" onclick="clearT('${t.id}')">입력 지우기</button>
-        </div>
-      </details>
+      <div class="tkview">
+        <div class="tv"><span>출발 · ${esc(t.fs)}</span><b>${esc(t.dep)}</b></div>
+        <div class="tv"><span>도착 · ${esc(t.ts)}</span><b>${esc(t.arr)}</b></div>
+        <div class="tv"><span>좌석</span><b>${esc(t.seat)}</b></div>
+        <div class="tv"><span>예약번호</span><b>${esc(t.pnr)}</b></div>
+        ${t.memo?`<div class="tm">${em(t.memo)}</div>`:''}
+      </div>
+      ${t.warn?`<div class="warn">⚠️ ${em(t.warn)}</div>`:''}
       <div class="btns">
         <button class="b dir wide" onclick="op(dirU('${esc(t.tq)}','${esc(t.fq)}'))">🧭 역 → 역 경로</button>
         <button class="b map" onclick="op(pinU('${esc(t.fq)}'))">출발역</button>
         <button class="b map" onclick="op(pinU('${esc(t.tq)}'))">도착역</button>
       </div>
-    </div>`}).join('');
+    </div>`).join('');
 }
 
 /* ══════════════ 환율 ══════════════ */
@@ -3194,17 +3047,18 @@ function delExp(id){
   saveE(a); renderExp(); toast('삭제했습니다');
 }
 
-/* 통합 백업 — 경비 + 일정 변경 + 체크리스트 + 기차 예약 + 환율 */
+/* 통합 백업 — 경비 + 일정 변경 + 체크리스트 + 환율
+   (기차는 예약을 마친 뒤 앱에 고정했으므로 백업할 것이 없다. 옛 백업의 tickets 는 무시한다) */
 function expBackup(){
-  const d={v:2, exp:loadE(), plan:loadP(), checks:load(), tickets:loadT(),
+  const d={v:2, exp:loadE(), plan:loadP(), checks:load(),
            rate:{r:RATES,src:RMETA.src,at:RMETA.at}};
-  const n=d.exp.length+planCount()+Object.keys(d.checks).length+Object.keys(d.tickets).length;
+  const n=d.exp.length+planCount()+Object.keys(d.checks).length;
   if(!n){toast('저장된 내용이 없습니다');return}
   copy(JSON.stringify(d));
   toast(`경비 ${d.exp.length}건 · 일정 변경 ${planCount()}건 등 백업 복사`);
 }
 function expRestore(){
-  const s=prompt('백업한 텍스트를 붙여넣으세요 (경비는 합쳐지고, 일정·체크·예약은 덮어씁니다)');
+  const s=prompt('백업한 텍스트를 붙여넣으세요 (경비는 합쳐지고, 일정·체크는 덮어씁니다)');
   if(!s) return;
   let n; try{n=JSON.parse(s)}catch(e){toast('형식이 올바르지 않습니다');return}
 
@@ -3222,10 +3076,9 @@ function expRestore(){
     try{
       if(n.plan&&typeof n.plan==='object') localStorage.setItem(PKEY,JSON.stringify(n.plan));
       if(n.checks&&typeof n.checks==='object') save(n.checks);
-      if(n.tickets&&typeof n.tickets==='object') saveT(n.tickets);
       if(n.rate&&n.rate.r&&n.rate.r.EUR>0) saveR(n.rate.r,n.rate.src||'manual',n.rate.at);
     }catch(e){}
-    renderDays(); renderLists(); renderT();
+    renderDays(); renderLists();
   }
   renderExp();
   toast('불러왔습니다'+(add?` · 경비 ${add}건 추가`:''));
