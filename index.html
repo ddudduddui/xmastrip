@@ -870,7 +870,7 @@ const DAYS = [
   {tm:'10:53',nm:'잘츠부르크 도착',en:'Salzburg Hauptbahnhof',ds:'구시가까지 **도보 15~20분** 또는 버스 1·3·5·6 으로 10분',q:'Salzburg Hauptbahnhof'},
   {tm:'11:05',nm:'미라벨 정원',en:'Mirabellgarten',ds:'역에서 **도보 10분** · 무료 · 「사운드 오브 뮤직」 도레미 촬영지. 겨울엔 꽃이 없지만 성이 보이는 구도는 그대로다',q:'Mirabellgarten Salzburg'},
   {tm:'12:00',nm:'모차르트 생가',en:'Mozarts Geburtshaus · Getreidegasse 9',ds:'매일 **09:00~17:30**(마지막 입장 17:00) · €15/인. 노란 건물 · 철제 간판이 늘어선 게트라이데가세 한복판',q:'Mozarts Geburtshaus'},
-  {tm:'13:10',nm:'점심 — 게트라이데가세 일대',ds:'구시가 한가운데라 선택지가 많다',q:'Getreidegasse Salzburg'},
+  {tm:'13:10',nm:'점심 — 게트라이데가세 일대',ds:'구시가 한가운데라 선택지가 많다 · 후보는 **🍽 식당/카페 탭 → 🇦🇹 잘츠부르크**',tip:'**Die Weisse**(밀맥주·양파튀김 소고기)와 **Strobl-Stüberl**(해산물 스튜)이 구시가에서 멀지 않다',q:'Getreidegasse Salzburg'},
   {tm:'14:30',nm:'호엔잘츠부르크 성',en:'Festung Hohensalzburg',ds:'**09:30~17:00**(10~12월) · 푸니쿨라 2분 · Basic €15.50 / All-inclusive €19.20 (둘 다 푸니쿨라 포함)',
    tip:'유럽에서 가장 크게 남아 있는 중세 성 중 하나다. 성벽에서 시내와 알프스가 한눈에 보인다',q:'Festung Hohensalzburg'},
   {tm:'16:30',nm:'돔 광장 크리스마스 마켓',en:'Salzburger Christkindlmarkt · Domplatz',ds:'월~목 **10:00~20:30** · 11/19~1/1 운영이라 이 날도 한창이다',
@@ -1220,6 +1220,19 @@ const FOOD = [
  {mt:'카페',nm:'카페 자허',en:'카페',q:'카페 자허',pr:'★ 3.9 · 리뷰 20,514',mn:'자허토르테 — 원조를 주장하는 두 집 중 하나. 오페라극장 옆'},
  {mt:'카페',nm:'Ströck - Stephansplatz U-Bahn',en:'제과점',q:'Ströck - Stephansplatz U-Bahn',pr:'★ 3.9 · 리뷰 197',mn:'빵 — 오스트리아 베이커리 체인'},
  {mt:'카페',nm:'Hiiich Teddy Cafe',en:'커피숍',q:'Hiiich Teddy Cafe',pr:'★ 3.7 · 리뷰 267'}]},
+{city:'sbg',ct:'잘츠부르크',fl:'🇦🇹',t:'식당 · 카페',days:'12/28 · 당일치기',
+ rt:'전부 구시가·신시가 도보권이다. 돔 광장 마켓에서 멀지 않다.',
+ tip:'당일치기라 끼니는 점심 한 번과 마켓 저녁뿐이다. **13:10 점심**과 **16:30 이후 마켓** 사이에 넣을 곳을 고르면 된다.',
+ list:[
+ {mt:'식당',nm:'Die Weisse',en:'오스트리아 레스토랑',q:'Die Weisse Salzburg',pr:'★ 4.6 · 리뷰 4,656',
+  mn:'수제 밀맥주 · 소고기에 양파튀김 올린 메뉴',ds:'**수제밀맥주, 소고기 위에 양파튀김 올라 간 메뉴 추천**'},
+ {mt:'식당',nm:'Strobl-Stüberl',en:'오스트리아 레스토랑',q:'Strobl Stueberl Salzburg',pr:'★ 4.4 · 리뷰 1,057',
+  mn:'해산물 스튜',ds:'**해산물 스튜 최고**'},
+ {mt:'식당',nm:'Panoramarestaurant zur Festung Hohensalzburg',en:'오스트리아 레스토랑',q:'Panoramarestaurant Festung Hohensalzburg',pr:'★ 3.9 · 리뷰 1,475',
+  mn:'전망 — 성에서 시내와 알프스를 내려다본다',
+  ds:'**전망대 카페**<br>**14:30 호엔잘츠부르크 성 일정 안에 있다** — 따로 움직일 필요 없이 성 관람 중에 들르면 된다'},
+ {mt:'카페',nm:"Fabi's Frozen Yogurt",en:'요거트 아이스크림샵',q:"Fabi's Frozen Yogurt Salzburg",pr:'★ 4.8 · 리뷰 1,551',
+  ds:'📌 좌표 미확보 — 지도에서 이름으로 검색된다'}]},
 {city:'drs',ct:'드레스덴',fl:'🇩🇪',t:'식당 · 카페',days:'12/30 · 당일치기',
  rt:'프라우엔 교회 둘레에 다 모여 있다.',
  tip:'하루치기라 식사는 한 번뿐이다. **아우구스티너 13:00 예약 확정**. 더 넣고 싶으면 따로 추가하면 된다.',
@@ -1399,6 +1412,9 @@ function copy(txt){
 }
 /* 명소 좌표 (OpenStreetMap Nominatim 조회, 2026-08-04 · 도시 경계 검증 완료) */
 const GEO={
+ 'Panoramarestaurant Festung Hohensalzburg':[47.79521,13.0481],
+ 'Die Weisse Salzburg':[47.80702,13.05174],
+ 'Strobl Stueberl Salzburg':[47.80859,13.0413],
  'Fürstenzug Dresden':[51.05276,13.73897],
  'Stallhof Dresden':[51.05231,13.73862],
  'Mozarts Geburtshaus':[47.79994,13.04355],
