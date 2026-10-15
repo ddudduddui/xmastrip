@@ -805,12 +805,13 @@ const DAYS = [
   {tm:'13:00',nm:'점심 — 부다 지구 또는 중앙시장',en:'Great Market Hall',q:'Great Market Hall Budapest'},
   {tm:'15:00',nm:'세체니 다리 도보 횡단',en:'Széchenyi Chain Bridge',ds:'부다 → 페스트',q:'Széchenyi Chain Bridge Budapest'},
   {tm:'16:30',nm:'국회의사당 외관 + 강변 산책',en:'Hungarian Parliament Building',q:'Hungarian Parliament Building'},
+  {tm:'18:00',nm:'🛒 장보기 — 숙소 근처 마트',ds:'Karoly krt. 일대에 Spar·Aldi 가 있다. **부다페스트에서 먹을 아침거리**(빵·치즈·햄·우유·커피·과일)를 산다',warn:'⚠️ 내일(12/24)은 **정오면 다 닫는다.** 오늘 사두고, 내일 오전에는 **비엔나로 가져갈 것만** 보태면 된다',tip:'13:00 중앙시장에 들렀다면 치즈·햄·파프리카는 거기서 사두는 편이 좋다 — 품질이 낫고 구경거리도 된다'},
   {tm:'저녁',nm:'도나우강 야경 크루즈 (선택)',ds:'3박 일정 여유분 — 원하면 추가',q:'Danube river cruise Budapest'}
  ]},
 {d:'2026-12-24',w:'목',city:'bud',ct:'부다페스트',t:'대성당 + 마켓 (오후 조기 폐장)',sum:'⚠️ 오후 1~3시면 대부분 닫힘 — 오전에 몰아서',
  items:[
-  {tm:'09:30',nm:'식료품 장보기 — 오전에 반드시',ds:'12/25 비엔나 도착 후 먹을 것 + 비상식량(컵라면 등)',
-   warn:'⚠️ 부다페스트 상점은 12/24 정오에 닫는다. 오후로 미루면 못 산다. 12/23 에 미리 사두면 더 안전',q:'Great Market Hall Budapest'},
+  {tm:'09:30',nm:'식료품 장보기 — 오전에 반드시',ds:'**비엔나로 가져갈 것** + 비상식량(컵라면 등). 어제 산 것 중 남은 것과 함께 **보냉백에 담아 간다**',
+   warn:'⚠️ 부다페스트 상점은 12/24 정오에 닫는다. 오후로 미루면 못 산다.<br>**비엔나는 12/25·26·27 사흘 내리 마트가 닫는다** — 역 상점 말고는 살 데가 없으니 여기서 넉넉히 챙길 것',q:'Great Market Hall Budapest'},
   {tm:'10:30',nm:'성 이슈트반 대성당',en:"St. Stephen's Basilica",ds:'전망대 올라가면 시내 파노라마',q:"St. Stephen's Basilica Budapest"},
   {tm:'11:30',nm:'바실리카 앞 크리스마스 마켓',en:'Advent Bazilika Christmas Market',ds:'퇴뢰크 굴뚝빵·굴라시·뜨거운 와인',
    warn:'⚠️ 마켓은 오후 1~3시경 폐장 — 오전에 봐야 한다',
@@ -836,7 +837,8 @@ const DAYS = [
   {tm:'12:20',nm:'빈 중앙역 도착',en:'Wien Hbf',q:'Wien Hauptbahnhof'},
   {tm:'12:40',nm:'숙소에 짐 맡기기',en:'Adina Apartment Hotel · Canettistraße 3',ds:'중앙역에서 도보권 · 체크인 전이라 짐만 맡긴다',
    tip:'맡기기 어려우면 중앙역 코인로커를 쓴다',q:'Adina Apartment Hotel Vienna Belvedere'},
-  {tm:'13:00',nm:'오후 — 비어 있음',ds:'크리스마스 당일이라 상점은 대부분 닫는다. 점심은 중앙역 상가에서 해결하면 안전하다'},
+  {tm:'13:00',nm:'🛒 장보기 — 빈 중앙역 INTERSPAR pronto',en:'Wien Hauptbahnhof',ds:'**매일 06:00~23:00 · 일요일·공휴일에도 연다.** 숙소에서 307m. 점심도 역 상가에서 해결하면 안전하다',warn:'⚠️ **비엔나에서 일반 마트는 12/25·26(공휴일)·27(일요일) 사흘 내리 닫는다.** 12/28 은 잘츠부르크에 가 있으니 체류 내내 **역 상점이 사실상 유일한 창구**다. 4일치를 여기서 채울 것',tip:'역 상점은 법으로 매장 크기가 제한돼 품목이 적다. 큰 장은 못 보니 **빵·유제품·과일 위주**로 생각할 것',q:'Wien Hauptbahnhof'},
+  {tm:'14:00',nm:'오후 — 비어 있음',ds:'크리스마스 당일이라 상점·박물관이 대부분 닫는다. 슈테판 대성당은 미사 중에도 들어갈 수 있다'},
   {tm:'16:00',nm:'Adina Apartment Hotel 체크인',en:'Canettistraße 3, 1100 Wien',ds:'빈 중앙역 인근 · 취사 가능',q:'Adina Apartment Hotel Vienna Belvedere'},
   {tm:'19:30',nm:'크리스마스 당일 저녁 식사',ds:'후보: Griechenbeisl · Meissl & Schadn · Huth Gastwirtschaft',
    warn:'⚠️ 예약 필수 — 12/25 는 여는 곳이 적다. 19:30~20:00 권장. 「🍽 식당」 탭 참고',q:'Griechenbeisl Vienna'}
@@ -893,6 +895,7 @@ const DAYS = [
   {tm:'13:23',nm:'프라하 중앙역 도착',en:'Praha hlavní nádraží',ds:'숙소까지 약 1.4km · **도보 20분** 또는 Bolt',q:'Praha hlavní nádraží'},
   {tm:'14:00',nm:'숙소에 짐 맡기기 · 늦은 점심',en:'Unitas Hotel',ds:'체크인 전이라 짐만 맡기고 구시가 쪽에서 점심',q:'Unitas Hotel Prague'},
   {tm:'15:30',nm:'Unitas Hotel 체크인',en:'Bartolomějská 308/9, Praha 1',ds:'구시가 광장 인근 · 마켓·야경 도보권',q:'Unitas Hotel Prague'},
+  {tm:'16:30',nm:'🛒 장보기 — 구시가 마트',ds:'Albert·Billa 가 구시가에 있다. **4일치**(12/30~1/2 아침)를 산다',warn:'⚠️ **1/1 은 200㎡ 넘는 매장이 법으로 휴무**다. 12/30 은 드레스덴에 가 있으니 **오늘과 12/31 이 장 볼 날**이다',tip:'작은 가게·주유소·약국은 1/1 에도 연다. 급하면 그쪽을 쓰면 된다'},
   {tm:'17:30',nm:'구시가 광장 크리스마스 마켓',en:'Old Town Square',ds:'대형 트리 · 천문시계',q:'Old Town Square Prague'},
   {tm:'19:30',nm:'카를교 야경',en:'Charles Bridge',ds:'프라하성 조명 배경',q:'Charles Bridge Prague'}
  ]},
@@ -1337,7 +1340,8 @@ const LISTS = [
  '캐리어/가방 자물쇠',
  '크리스마스 당일(12/25) 대비 비상식량 소량',
  '**종이 완충재·뽁뽁이** — 마켓 머그컵은 도자기라 그냥 넣으면 깨진다',
- '**접이식 에코백** — 당일치기 때 산 것을 담을 용도']},
+ '**접이식 에코백** — 당일치기 때 산 것을 담을 용도',
+ '**접이식 보냉백 + 아이스팩** — 아침거리를 숙소에서 해 먹는 일정이라 **도시를 옮길 때 남은 식료품을 들고 간다**(12/25 부다페스트→비엔나, 12/29 비엔나→프라하). 치즈·햄·우유가 기차 2~4시간을 버텨야 한다. 아이스팩은 숙소 냉동실에서 다시 얼리면 된다']},
 {id:'nyconcert',t:'🎼 1/1 신년음악회 — 당일 준비',note:'체코 필하모닉 · 루돌피눔 드보르자크 홀 · 1/1 20:00 · 중앙 발코니 5열 38·39번',items:[
  '**19:40 도착** — 숙소에서 도보 10분(798m). 약 57분 공연이라 21:00 에 끝난다',
  '**저녁은 18:00 쯤 미리** — 1/1 은 문 여는 곳이 가장 적다. 공연 뒤에는 찾기 어렵다',
