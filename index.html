@@ -802,7 +802,7 @@ const DAYS = [
    tip:'온라인 사전 예약해두면 대기 줄 회피',q:'Széchenyi Thermal Bath Budapest'},
   {tm:'10:30',nm:'어부의 요새',en:"Fisherman's Bastion (Halászbástya)",ds:'부다 지구 · 도나우강·국회의사당 전망',q:"Fisherman's Bastion Budapest"},
   {tm:'11:30',nm:'마차시 성당',en:'Matthias Church',ds:'어부의 요새 바로 옆',q:'Matthias Church Budapest'},
-  {tm:'13:00',nm:'점심 — 부다 지구 또는 중앙시장',en:'Great Market Hall',q:'Great Market Hall Budapest'},
+  {tm:'13:00',nm:'점심 — Déryné',en:'Déryné Bisztró · Krisztina tér 3 (1구)',ds:'성 지구에서 **내려오는 길에 있다** — 마차시 성당에서 도보 10분. 부다페스트의 오래된 비스트로로 브런치·점심이 좋다',tip:'14:30 쯤 일어서면 **세체니 다리까지 도보 16분**이라 15:00 횡단에 맞는다<br>**예약을 권한다** — 06:00 온천 오픈런으로 시작한 날이라 기다릴 체력이 없다. SevenRooms 로 무료 예약·취소된다',q:'Déryné Bisztró Budapest'},
   {tm:'15:00',nm:'세체니 다리 도보 횡단',en:'Széchenyi Chain Bridge',ds:'부다 → 페스트',q:'Széchenyi Chain Bridge Budapest'},
   {tm:'16:30',nm:'국회의사당 외관 + 강변 산책',en:'Hungarian Parliament Building',q:'Hungarian Parliament Building'},
   {tm:'18:00',nm:'🛒 장보기 — 숙소 근처 마트',ds:'Karoly krt. 일대에 Spar·Aldi 가 있다. **부다페스트에서 먹을 아침거리**(빵·치즈·햄·우유·커피·과일)를 산다',warn:'⚠️ 내일(12/24)은 **정오면 다 닫는다.** 오늘 사두고, 내일 오전에는 **비엔나로 가져갈 것만** 보태면 된다',tip:'13:00 중앙시장에 들렀다면 치즈·햄·파프리카는 거기서 사두는 편이 좋다 — 품질이 낫고 구경거리도 된다'},
@@ -1138,7 +1138,7 @@ const FOOD = [
  {mt:'식당',nm:'Caviar & Bull Budapest',en:'유럽(현대식) 레스토랑',q:'Caviar & Bull Budapest',pr:'★ 4.7 · 리뷰 1,384'},
  {mt:'식당',nm:'오닉스',en:'고급 음식점',q:'오닉스',pr:'★ 4.7 · 리뷰 1,271',mn:'테이스팅 코스 — 헝가리 파인다이닝'},
  {mt:'식당',nm:'Retro Lángos Budapest',en:'임시 휴업',q:'Retro Lángos Budapest',pr:'★ 4.6 · 리뷰 21,419',tag:'⚠️ 임시 휴업',mn:'랑고시 — 튀긴 반죽에 사워크림·치즈'},
- {mt:'식당',nm:'Déryné',en:'비스트로',q:'Déryné',pr:'★ 4.6 · 리뷰 5,972'},
+ {mt:'식당',nm:'Déryné',en:'Déryné Bisztró · Krisztina tér 3 (부다 1구)',q:'Déryné Bisztró Budapest',pr:'★ 4.6 · 리뷰 5,972',mn:'브런치·점심이 좋은 오래된 비스트로',ds:'**12/23 점심 후보** — 부다 성 지구에서 내려오는 길. 마차시 성당 도보 10분 · 세체니 다리 도보 16분'},
  {mt:'식당',nm:'Két Szerecsen',en:'비스트로',q:'Két Szerecsen',pr:'★ 4.6 · 리뷰 5,698'},
  {mt:'식당',nm:'Pörc & Prézli Étterem',en:'헝가리 레스토랑',q:'Pörc & Prézli Étterem',pr:'★ 4.6 · 리뷰 4,305'},
  {mt:'식당',nm:'Ruben Étterem',en:'음식점',q:'Ruben Étterem',pr:'★ 4.6 · 리뷰 3,481'},
@@ -1413,6 +1413,7 @@ function copy(txt){
 }
 /* 명소 좌표 (OpenStreetMap Nominatim 조회, 2026-08-04 · 도시 경계 검증 완료) */
 const GEO={
+ 'Déryné Bisztró Budapest':[47.49721,19.03165],
  "Monk's Bistrot Budapest":[47.49265,19.05277],
  'CAMONDAS Dresden':[51.06276,13.75329],
  'Panoramarestaurant Festung Hohensalzburg':[47.79521,13.0481],
