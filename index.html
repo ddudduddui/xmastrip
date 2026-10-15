@@ -953,10 +953,12 @@ const DAYS = [
  ]},
 {d:'2027-01-02',w:'토',city:'air',ct:'귀국',t:'프라하 → 인천',sum:'오전 자유 → Bolt 택시 → 18:30 출국',
  items:[
-  {tm:'오전',nm:'프라하 시내 or 근교 마지막 일정',ds:'짐은 호텔에 맡기고 이동'},
+  {tm:'오전',nm:'프라하 시내 or 근교 마지막 일정'},
+  {tm:'12:00',nm:'Unitas Hotel 체크아웃 · 짐 맡기기',ds:'**체크아웃이 12:00 이다.** 비행기가 18:30 이라 오후가 통째로 남으니 **짐은 리셉션에 맡기고** 나간다',
+   warn:'메일로 보관 가능 여부를 미리 확인해 둘 것. 안 되면 **프라하 중앙역 코인로커**를 쓴다',q:'Unitas Hotel Prague'},
   {tm:'13:00',nm:'점심 · 기념품 쇼핑',ds:'포크스 신시가지점(Vodičkova 17)이 숙소 550m · 11:00 개장 — 꼴레뇨를 아직 못 먹었다면 마지막 기회',
    warn:'⚠️ 예약 권장 — 같은 브랜드라 이 지점도 붐빈다',q:'Porks Vodickova Praha'},
-  {tm:'14:30',nm:'Unitas Hotel 체크아웃 · 짐 수령',q:'Unitas Hotel Prague'},
+  {tm:'14:30',nm:'숙소에서 짐 수령',q:'Unitas Hotel Prague'},
   {tm:'15:00',nm:'Bolt 택시 → 프라하 공항',ds:'약 25~30분 · 편도 약 600~800 CZK',
    tip:'사전 예약 불필요 — 당일 Bolt 앱으로 호출',q:'Václav Havel Airport Prague'},
   {tm:'15:45',nm:'프라하 공항 도착 · 체크인',en:'Václav Havel Airport (PRG)',q:'Václav Havel Airport Prague'},
@@ -981,7 +983,7 @@ const STAYS = [
  warn:'구시가(슈테판 대성당) 도보 30~40분 → 야간 이동 시 트램/지하철',q:'Adina Apartment Hotel Vienna Belvedere'},
 {nm:'Unitas Hotel',en:'Unitas Hotel',city:'pra',ct:'프라하',
  ad:'Bartolomějská 308/9, 110 00 Praha 1, Czech Republic',
- rows:[['기간','12.29(화) ~ 1.2(토) · 5박'],['금액','1,547,836원'],['비고','재예약으로 151,357원 절감']],
+ rows:[['기간','12.29(화) ~ 1.2(토) · 4박'],['금액','1,547,836원'],['체크인','14:00 (23:30 마감)'],['체크아웃','12:00'],['예약번호','2608172100912CES1'],['예약자','HYUNJUNG KIM'],['비고','재예약으로 151,357원 절감 · 여기어때']],
  note:'구시가 광장(Old Town Square) 인근 · 마켓·야경 도보권',q:'Unitas Hotel Prague'}
 ];
 
