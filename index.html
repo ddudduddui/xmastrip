@@ -96,12 +96,13 @@ h2.sec:first-child{margin-top:2px}
   margin-bottom:11px;overflow:hidden;box-shadow:var(--shadow)}
 .day.today{border-color:var(--ac);box-shadow:0 0 0 2px rgba(224,72,60,.28),var(--shadow)}
 .dh{display:flex;align-items:center;gap:10px;padding:12px 13px;cursor:pointer;user-select:none}
-.dnum{flex:0 0 42px;height:42px;border-radius:11px;background:var(--card2);
+.dnum{flex:0 0 44px;height:54px;border-radius:11px;background:var(--card2);
   display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
 .dnum .m{font-size:9.5px;color:var(--tx3);font-weight:700}
 .dnum .d{font-size:17px;font-weight:800}
+.dnum .w{font-size:9.5px;color:var(--tx3);font-weight:700}
 .day.today .dnum{background:var(--ac);color:#fff}
-.day.today .dnum .m{color:rgba(255,255,255,.85)}
+.day.today .dnum .m,.day.today .dnum .w{color:rgba(255,255,255,.85)}
 .dti{flex:1;min-width:0}
 .dti .t{font-weight:700;font-size:14.5px;letter-spacing:-.2px}
 .dti .s{font-size:11.5px;color:var(--tx2);margin-top:1px;
@@ -781,7 +782,7 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
 <script>
 /* ══════════════ 데이터 ══════════════ */
 const DAYS = [
-{d:'2026-12-22',w:'화',city:'air',ct:'이동',t:'인천 → 부다페스트',sum:'17:10 도착 → 멘자 19:45 예약 → 국회의사당 야경',
+{d:'2026-12-22',w:'화',city:'air',ct:'이동',t:'인천 → 부다페스트',sum:'17:10 도착 → 멘자 20:30 예약 → 국회의사당 야경(선택)',
  items:[
   {tm:'07:05',nm:'집 → 인천공항 리무진',ds:'평일 출근시간대 감안, 체크인 시작 09:15 도착 목표(2시간 버퍼)',
    warn:'강설 시 플랜B — 지하철 06:46 동구릉역 출발 (8호선→9호선 석촌→공항철도 김포공항→인천공항2터미널, 2시간 29분, 5,650원)',q:'인천국제공항 제2여객터미널'},
@@ -2385,7 +2386,7 @@ function renderDays(){
       ${dayChanged(i)?`<button class="b dl" onclick="resetDay(${i})">이 날 원래대로</button>`:''}</div>`;
     html+=`<div class="day${isT?' today':''}${dayChanged(i)?' chg':''}" id="day${i}">
       <div class="dh" onclick="toggleDay(${i})">
-        <div class="dnum"><span class="m">${+m}월</span><span class="d">${+d}</span></div>
+        <div class="dnum"><span class="m">${+m}월</span><span class="d">${+d}</span><span class="w">(${D.w})</span></div>
         <div class="dti">
           <div class="t">${esc(D.t)}<span class="city c-${D.city}">${esc(D.ct)}</span>${dayChanged(i)?'<span class="badge y">변경</span>':''}</div>
           <div class="s">${+m}/${+d}(${D.w}) · ${esc(D.sum)}${doneN?` · <b style="color:var(--gr2)">완료 ${doneN}/${items.length}</b>`:''}</div>
