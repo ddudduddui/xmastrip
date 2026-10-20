@@ -2389,7 +2389,7 @@ function renderDays(){
         <div class="dnum"><span class="m">${+m}월</span><span class="d">${+d}</span><span class="w">(${D.w})</span></div>
         <div class="dti">
           <div class="t">${esc(D.t)}<span class="city c-${D.city}">${esc(D.ct)}</span>${dayChanged(i)?'<span class="badge y">변경</span>':''}</div>
-          <div class="s">${+m}/${+d}(${D.w}) · ${esc(D.sum)}${doneN?` · <b style="color:var(--gr2)">완료 ${doneN}/${items.length}</b>`:''}</div>
+          <div class="s">${esc(D.sum)}${doneN?` · <b style="color:var(--gr2)">완료 ${doneN}/${items.length}</b>`:''}</div>
         </div>
         <div class="chev">▼</div>
       </div>
