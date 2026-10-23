@@ -3242,6 +3242,13 @@ $$('nav button').forEach(b=>b.onclick=()=>{
   $$('.pane').forEach(p=>p.classList.remove('on')); $('#p-'+b.dataset.p).classList.add('on');
   window.scrollTo({top:0,behavior:'instant'});
 });
+
+/* ══════════════ 오프라인 ══════════════ */
+/* 서비스워커 — 비행기 모드·로밍 끊김에서도 앱이 열린다.
+   file:// 로 열면 등록되지 않는다(브라우저 제약). https 로 접속할 것 */
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
 </script>
 </body>
 </html>
