@@ -1,7 +1,7 @@
 /* 오프라인용 서비스워커 — 비행기·로밍 끊김에서도 앱이 열리게 한다.
    일정이 바뀌면 VERSION 만 올려서 다시 배포하면 된다. */
 
-const VERSION = '2026-10-23b';
+const VERSION = '2026-10-23c';
 const SHELL = 'shell-' + VERSION;   // 앱 본체
 const TILES = 'tiles-v1';           // 지도 타일 (버전 올려도 지우지 않는다)
 const TILE_MAX = 800;               // 타일 보관 상한

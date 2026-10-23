@@ -734,6 +734,15 @@ select,input[type=text]{width:100%;padding:11px 12px;font-size:14px;background:v
 
 <!-- ══════════ 준비 ══════════ -->
 <section class="pane" id="p-todo">
+  <h2 class="sec">✈️ 오프라인 준비</h2>
+  <div class="card tight" id="offbox">
+    <div id="offstat" class="note">확인 중…</div>
+    <div class="btns" style="margin-top:8px">
+      <button class="b" onclick="offCheck(1)">🔄 다시 확인</button>
+      <button class="b" onclick="offPrime()">📥 지금 통째로 받아두기</button>
+    </div>
+  </div>
+
   <div id="lists"></div>
 
   <h2 class="sec">앱 공식 사이트</h2>
@@ -3244,6 +3253,49 @@ $$('nav button').forEach(b=>b.onclick=()=>{
 });
 
 /* ══════════════ 오프라인 ══════════════ */
+async function offCheck(toast){
+  const el=$('#offstat'); if(!el) return;
+  const L=[];
+  if(location.protocol!=='https:'){
+    el.innerHTML='⚠️ <b>https 로 열어야 오프라인이 됩니다.</b><br>주소: <b>'+
+      'https://ddudduddui.github.io/xmastrip/</b> — 끝의 <b>/</b> 까지 있어야 합니다';
+    return;
+  }
+  if(!('serviceWorker' in navigator)){ el.innerHTML='⚠️ 이 브라우저는 오프라인 저장을 지원하지 않습니다'; return; }
+  const r=await navigator.serviceWorker.getRegistration();
+  const ctrl=!!navigator.serviceWorker.controller;
+  let shell=0, tiles=0;
+  for(const k of await caches.keys()){
+    const n=(await (await caches.open(k)).keys()).length;
+    if(k.startsWith('shell-')) shell+=n; else if(k.startsWith('tiles-')) tiles+=n;
+  }
+  const ok = r && r.active && ctrl && shell>=6;
+  L.push(ok
+    ? '✅ <b>오프라인 준비 완료</b> — 비행기 모드에서도 열립니다'
+    : '⚠️ <b>아직 준비 안 됨</b> — 아래 「지금 통째로 받아두기」를 누르고 <b>새로고침</b> 하세요');
+  L.push('저장된 앱 파일 <b>'+shell+'개</b> · 지도 타일 <b>'+tiles+'장</b>');
+  if(!r) L.push('서비스워커: 등록 안 됨');
+  else if(!ctrl) L.push('서비스워커: 등록됨 — <b>새로고침하면 적용</b>됩니다');
+  L.push('마지막 확인 '+new Date().toLocaleString('ko-KR'));
+  el.innerHTML=L.join('<br>');
+  if(toast) el.scrollIntoView({block:'center'});
+}
+async function offPrime(){
+  const el=$('#offstat'); if(el) el.textContent='받는 중…';
+  try{
+    if('serviceWorker' in navigator && location.protocol==='https:'){
+      const r=await navigator.serviceWorker.register('sw.js');
+      await r.update();
+    }
+    const c=await caches.open('precheck');
+    await Promise.all(['./','index.html','manifest.webmanifest','icon-180.png','icon-192.png',
+      'icon-512.png','vendor/leaflet.css','vendor/leaflet.js'].map(u=>fetch(u,{cache:'reload'}).catch(()=>{})));
+    await caches.delete('precheck');
+  }catch(e){}
+  await new Promise(r=>setTimeout(r,2500));
+  offCheck(1);
+}
+addEventListener('load',()=>setTimeout(()=>offCheck(0),1200));
 /* 서비스워커 — 비행기 모드·로밍 끊김에서도 앱이 열린다.
    file:// 로 열면 등록되지 않는다(브라우저 제약). https 로 접속할 것 */
 if ('serviceWorker' in navigator && location.protocol === 'https:') {
