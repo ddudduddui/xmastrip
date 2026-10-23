@@ -1,7 +1,7 @@
 /* 오프라인용 서비스워커 — 비행기·로밍 끊김에서도 앱이 열리게 한다.
    일정이 바뀌면 VERSION 만 올려서 다시 배포하면 된다. */
 
-const VERSION = '2026-10-23a';
+const VERSION = '2026-10-23b';
 const SHELL = 'shell-' + VERSION;   // 앱 본체
 const TILES = 'tiles-v1';           // 지도 타일 (버전 올려도 지우지 않는다)
 const TILE_MAX = 800;               // 타일 보관 상한
@@ -65,7 +65,8 @@ self.addEventListener('fetch', (e) => {
       if (hit) return hit;
       try {
         const res = await fetch(req);
-        if (res && res.status === 200) {
+        // 타일은 <img> 로 불러와 opaque(status 0) 로 온다 — 그것도 저장해야 한다
+        if (res && (res.status === 200 || res.type === 'opaque')) {
           c.put(req, res.clone());
           trimTiles();
         }
