@@ -1,7 +1,7 @@
 /* 오프라인용 서비스워커 — 비행기·로밍 끊김에서도 앱이 열리게 한다.
    일정이 바뀌면 VERSION 만 올려서 다시 배포하면 된다. */
 
-const VERSION = '2026-10-23c';
+const VERSION = '2026-10-23d';
 const SHELL = 'shell-' + VERSION;   // 앱 본체
 const TILES = 'tiles-v1';           // 지도 타일 (버전 올려도 지우지 않는다)
 const TILE_MAX = 800;               // 타일 보관 상한
@@ -101,17 +101,16 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  /* 나머지 정적 파일 — 캐시 우선 */
+  /* 나머지 정적 파일 — 캐시를 먼저 주고 뒤에서 갱신(stale-while-revalidate).
+     순수 캐시 우선으로 하면 새로 배포해도 옛 파일이 계속 나온다 */
   e.respondWith((async () => {
     const c = await caches.open(SHELL);
     const hit = await c.match(req);
-    if (hit) return hit;
-    try {
-      const res = await fetch(req);
+    const net = fetch(req).then((res) => {
       if (res && res.status === 200) c.put(req, res.clone());
       return res;
-    } catch (_) {
-      return new Response('', { status: 504 });
-    }
+    }).catch(() => null);
+    if (hit) { e.waitUntil(net); return hit; }
+    return (await net) || new Response('', { status: 504 });
   })());
 });
