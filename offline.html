@@ -3107,6 +3107,10 @@ function renderDays(){
 renderDays();
 
 /* ══════════════ 장소 렌더 ══════════════ */
+/* 도시 카드는 기본으로 모두 접어 둔다 — 2026-11-11.
+   장소가 40곳 가까이 되어 다 펼쳐 두면 탭을 열었을 때 스크롤이 너무 길었다. */
+const FLAG={bud:'🇭🇺',vie:'🇦🇹',sbg:'🇦🇹',pra:'🇨🇿',drs:'🇩🇪'};
+function toggleSpot(i){ const el=$('#sp'+i); if(el) el.classList.toggle('open') }
 (function(){
   $('#stays').innerHTML = STAYS.map(s=>`<div class="card">
     <div class="tt">${esc(s.nm)}<span class="city c-${s.city}">${esc(s.ct)}</span></div>
@@ -3122,8 +3126,16 @@ renderDays();
     </div>
   </div>`).join('');
 
-  $('#spots').innerHTML = SPOTS.map((g,gi)=>`<div class="card">
-    <div class="tt">${esc(g.ct)}<span class="city c-${g.city}">${g.list.length}곳</span></div>
+  $('#spots').innerHTML = SPOTS.map((g,gi)=>`<div class="day" id="sp${gi}">
+    <div class="dh" onclick="toggleSpot(${gi})">
+      <div class="dnum"><span class="m">${FLAG[g.city]||'📍'}</span><span class="d" style="font-size:16px">${g.list.length}</span></div>
+      <div class="dti">
+        <div class="t">${esc(g.ct)}<span class="city c-${g.city}">${g.list.length}곳</span></div>
+        <div class="s">${g.list.slice(0,3).map(p=>esc(p.nm)).join(' · ')}${g.list.length>3?` 외 ${g.list.length-3}곳`:''}</div>
+      </div>
+      <div class="chev">▼</div>
+    </div>
+    <div class="dbody">
     <div class="allmap" onclick="openMulti(SPOTS[${gi}].list.map(p=>p.q),'${esc(g.ct)}')">
       <span class="pin">📍</span>
       <span class="t2">${esc(g.ct)} 장소 <b>${g.list.length}곳</b> 지도에 모두 표시</span>
@@ -3146,6 +3158,8 @@ renderDays();
         📌 ${gtxt(p.q)} <span class="cp">복사</span>
         <a href="${geoU(p.q)}" onclick="event.stopPropagation()">오프라인 지도로 열기 ›</a></div>`:''}
     </div>`).join('')}
+  
+    </div>
   </div>`).join('');
 })();
 
