@@ -2461,7 +2461,20 @@ function toggleSpot(i){ const el=$('#sp'+i); if(el) el.classList.toggle('open') 
     </div>
   </div>`).join('');
 
-  $('#spots').innerHTML = SPOTS.map((g,gi)=>`<div class="day" id="sp${gi}">
+  /* 오늘이 여행 중이면 그 도시 카드만 열어 둔다 — 2026-11-11.
+     공항 이동일(air)은 앞뒤로 가장 가까운 도시를 따라간다: 12/22 는 부다페스트,
+     1/2 는 프라하. 잘츠부르크 당일치기(sbg)는 비엔나에 묶인다.
+     여행 기간이 아니면 null 이라 전부 접힌 채로 둔다. */
+  const spotCity=(()=>{
+    const n=new Date(), td=`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;
+    const i=DAYS.findIndex(x=>x.d===td); if(i<0) return null;
+    let c=DAYS[i].city;
+    if(c==='air') c=(DAYS.slice(i+1).find(x=>x.city!=='air')
+                   ||DAYS.slice(0,i).reverse().find(x=>x.city!=='air')||{}).city;
+    return c==='sbg'?'vie':c;
+  })();
+
+  $('#spots').innerHTML = SPOTS.map((g,gi)=>`<div class="day${g.city===spotCity?' today':''}" id="sp${gi}">
     <div class="dh" onclick="toggleSpot(${gi})">
       <div class="dnum"><span class="m">${FLAG[g.city]||'📍'}</span><span class="d" style="font-size:16px">${g.list.length}</span></div>
       <div class="dti">
@@ -2496,6 +2509,8 @@ function toggleSpot(i){ const el=$('#sp'+i); if(el) el.classList.toggle('open') 
   
     </div>
   </div>`).join('');
+  if(spotCity){ const i=SPOTS.findIndex(g=>g.city===spotCity);
+                if(i>=0) $('#sp'+i).classList.add('open') }
 })();
 
 /* ══════════════ 식당·카페 렌더 — 도시별 ══════════════ */
